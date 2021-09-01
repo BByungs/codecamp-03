@@ -250,3 +250,4 @@ export const RedIconString = styled.div`
     font-weight: bold;
 `
 
+

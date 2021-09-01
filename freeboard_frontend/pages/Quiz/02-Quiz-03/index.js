@@ -3,7 +3,7 @@ export default function TwodayQuiz02 () {
     const [validation , setValidation] = useState("123456")
 
     function onClickButton () {
-        setValidation(String(Math.floor(Math.random()*1000000)).padStart(6,"1"))
+        setValidation(String(Math.floor(Math.random()*1000000)).padStart(6,"1")) 
     }
     return (
         <>
