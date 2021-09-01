@@ -99,6 +99,7 @@ export const Email = styled.div`
 
 export const EmailInput = styled.input`
     width: 520px;
+    height: 30px;
     font-size: 24px;
     background-color:transparent;
     border: 0;
@@ -108,9 +109,16 @@ export const Underbar = styled.div`
     border-bottom: 1px solid #ffffff;
 `
 
-export const DeleteIcon = styled.img`
+export const EmailDeleteIcon = styled.img`
     width: 20px;
     height: 20px;
+    cursor: pointer;
+`
+
+export const PasswordDeleteIcon = styled.img`
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
 `
 export const EmailFirst = styled.div`
     height: 20px;
@@ -144,7 +152,7 @@ export const Password = styled.div`
 export const PasswordInput = styled.input`
     width: 520px;
     height: 20px;
-    font-size: 10px;
+    font-size: 30px;
     background-color:transparent;
     border: 0;
     color: white;
@@ -168,6 +176,10 @@ export const LoginButton = styled.button`
     font-size: 26px;
     color: #ffffff;
     margin-bottom: 44.3px;
+    cursor: pointer;
+    :hover {
+        opacity: 1;
+    }
 `
 
 export const EmPwSearchAndSignup = styled.div`
@@ -183,6 +195,7 @@ export const EmFont = styled.div`
     height: 20px;
     font-size: 20px;
     color: white;
+    cursor: pointer;
 `
 
 export const PwFont = styled.div`
@@ -190,6 +203,7 @@ export const PwFont = styled.div`
     height: 20px;
     font-size: 20px;
     color: white;
+    cursor: pointer;
 `
 
 export const SignupFont = styled.div`
@@ -197,6 +211,7 @@ export const SignupFont = styled.div`
     height: 20px;
     font-size: 20px;
     color: white;
+    cursor: pointer;
 `
 
 export const EmPwSearchAndSignupBar = styled.div`
@@ -215,4 +230,8 @@ export const KakaoTalkLoginButton = styled.div`
     color: #fae100;
     text-align: center;
     font-weight: bold;
+    cursor: pointer;
+    :hover {
+        opacity: 1;
+    }
 `

@@ -14,7 +14,8 @@ import {
     Email,
     EmailInput,
     Underbar,
-    DeleteIcon,
+    EmailDeleteIcon,
+    PasswordDeleteIcon,
     EmailFirst,
     EmailErrorMsg,
     Password,
@@ -29,9 +30,50 @@ import {
     EmPwSearchAndSignupBar,
     KakaoTalkLoginButton,
 } from "../../styles/itsload"
+import {useState} from "react"
 
 export default function ItsLoad() {
+    const [email, setEmail] = useState("")
+    const [emailError, setEmailError] = useState("")
+    const [password, setPassword] = useState("")
+    const [passwordError, setPasswordError] = useState("")
     
+    
+    function onChangeEmailInput (event) {
+        setEmail(event.target.value)
+    }
+
+    function onChangePasswordInput (event) {
+        setPassword(event.target.value)
+    }
+
+    function onClickKakaoLoginButton() {
+        if(!email.includes("@")) {
+            setEmailError("이메일 다시 확인해주세요")
+        } else {
+            setEmailError("")
+        }
+
+        if(password.length <10) {
+            setPasswordError("비밀번호는 10자 이상이여야 합니다")
+        } else {
+            setPasswordError("")
+        }
+
+        if(email.includes("@") && password.length >=10) {
+            alert("회원가입을 축하합니다")
+        }
+    }
+
+    function onClickEmailDeleteIcon() {
+        document.getElementById("emailInput").value = ""
+        setEmail(document.getElementById("passwordInput").value)
+    }
+    function onClickPasswordDeleteIcon() {
+        document.getElementById("passwordInput").value = ""
+        setPassword(document.getElementById("passwordInput").value)
+        
+    }
     return (
         <Container>
             {/* 상단 바 */}
@@ -57,30 +99,30 @@ export default function ItsLoad() {
                     {/* 이메일 입력칸 */}
                     <Email>
                         <EmailFirst>
-                            <EmailInput type="text" />
-                            <DeleteIcon src="deleteIcon.png" />
+                            <EmailInput id="emailInput" type="text" onChange={onChangeEmailInput} />
+                            <EmailDeleteIcon onClick={onClickEmailDeleteIcon} src="deleteIcon.png" />
                         </EmailFirst>
                         <Underbar />
                     </Email>
 
                     {/* 이메일 에러 메시지 */}
-                    <EmailErrorMsg></EmailErrorMsg>
+                    <EmailErrorMsg>{emailError}</EmailErrorMsg>
 
                     {/* 패스워드 입력칸 */}
                     <Password>
                         <PasswordFirst>
-                            <PasswordInput type="password" />
-                            <DeleteIcon src="deleteIcon.png" />
+                            <PasswordInput id="passwordInput" type="password" onChange={onChangePasswordInput} />
+                            <PasswordDeleteIcon onClick={onClickPasswordDeleteIcon} src="deleteIcon.png" />
                         </PasswordFirst>
                         <Underbar />
                     </Password>
                     
                     {/* 비밀번호 에러 메시지 */}
-                    <PasswordErrorMsg></PasswordErrorMsg>
+                    <PasswordErrorMsg>{passwordError}</PasswordErrorMsg>
                 </InputLogin>
 
                 {/* 로그인 버튼 */}
-                <LoginButton>로그인</LoginButton>
+                <LoginButton onClick={onClickKakaoLoginButton}>로그인</LoginButton>
 
                 {/* 이메일찾기, 비밀번호찾기, 회원가입 버튼 */}
                 <EmPwSearchAndSignup>
@@ -92,9 +134,7 @@ export default function ItsLoad() {
                 </EmPwSearchAndSignup>
 
                 {/* 카카오톡으로 로그인 버튼*/}
-                <KakaoTalkLoginButton>
-                    카카오톡으로 로그인
-                </KakaoTalkLoginButton>
+                <KakaoTalkLoginButton>카카오톡으로 로그인</KakaoTalkLoginButton>
             </Body>
         </Container>
     )
