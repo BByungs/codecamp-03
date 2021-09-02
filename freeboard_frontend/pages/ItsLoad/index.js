@@ -62,6 +62,8 @@ export default function ItsLoad() {
 
         if(email.includes("@") && password.length >=10) {
             alert("회원가입을 축하합니다")
+            document.getElementById("emailInput").value = ""
+            document.getElementById("passwordInput").value = ""
         }
     }
 
@@ -102,7 +104,7 @@ export default function ItsLoad() {
                             <EmailInput id="emailInput" type="text" onChange={onChangeEmailInput} />
                             <EmailDeleteIcon onClick={onClickEmailDeleteIcon} src="deleteIcon.png" />
                         </EmailFirst>
-                        <Underbar />
+                        
                     </Email>
 
                     {/* 이메일 에러 메시지 */}
