@@ -30,10 +30,8 @@ import {
     EmPwSearchAndSignupBar,
     KakaoTalkLoginButton,
 } from "../../styles/itsload"
-import {useState} from "react"
-import {useMutation , gql} from "@apollo/client"
 
-const 
+import {useState} from "react"
 
 export default function ItsLoad() {
     const [email, setEmail] = useState("")
