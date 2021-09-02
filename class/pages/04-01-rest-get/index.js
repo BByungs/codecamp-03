@@ -1,6 +1,6 @@
 import axios from "axios"
 
-// 비동기
+// // // 비동기
 // export default function RestGetPage() {
 //     function zzz() {
 //         const result = axios.get("https://koreanjson.com/posts/1")
@@ -22,7 +22,7 @@ export default function RestGetPage() {
     async function zzz() {
         const result = await axios.get("https://koreanjson.com/posts/1")
         // 기다렸다가 결과를 받아오기때문에 
-        console.log(result.data)
+        console.log(result)
         // 정보를 받아왔음
     }
     return (

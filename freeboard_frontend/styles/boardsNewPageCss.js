@@ -180,3 +180,16 @@ export const ErrorMessage = styled.div`
     display: flex;
     margin-left:3px;
 `
+
+export const Title = styled.div`
+    width: 996px;
+    height: 92px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+`
+
+export const TitleFont = styled.div`
+    width: 30px;
+    height:24px;
+`

@@ -31,6 +31,9 @@ import {
     KakaoTalkLoginButton,
 } from "../../styles/itsload"
 import {useState} from "react"
+import {useMutation , gql} from "@apollo/client"
+
+const 
 
 export default function ItsLoad() {
     const [email, setEmail] = useState("")

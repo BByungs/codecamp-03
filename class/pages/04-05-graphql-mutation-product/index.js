@@ -69,14 +69,12 @@ const CREATE_PRODUCT = gql`
         }
     }
 `
-
 export default function GraphqlMutationProductPage() {
     const [ createProduct ] = useMutation(CREATE_PRODUCT)
     const [seller, setSeller] = useState("")
     const [productName , setProductName] = useState("")
     const [detail , setDetail] = useState("")
     const [price , setPrice] = useState("")
-
     async function onClickSubmit() {
         const result = await createProduct({
             variables: {
@@ -84,13 +82,12 @@ export default function GraphqlMutationProductPage() {
                 createProductInput:{
                     name: productName,
                     detail: detail,
-                    price:  Number(price) // Number타입으로 바꿔줘야함
+                    price:  price // Number타입으로 바꿔줘야함
                 }
             }
         })
         console.log(result.data.createProduct._id)
     }
-
     function onChangeSeller(event) {
         setSeller(event.target.value)
     }
@@ -103,8 +100,6 @@ export default function GraphqlMutationProductPage() {
     function onChangePrice(event) {
         setPrice(event.target.value)
     }
-    
-    
     return (
         <>
             판매자: <input type="text" onChange={onChangeSeller}/><br/>

@@ -3,7 +3,6 @@
 import {useMutation , gql} from "@apollo/client"
 // gql = graphql
 // 쿼리문응 사용하겠다..
-
 const CREATE_BOARD = gql`
     mutation createBoard($writer:String, $title:String, $contents:String) {
         createBoard(
@@ -16,7 +15,6 @@ const CREATE_BOARD = gql`
         }
     }
 `
-
 export default function GraphqlMutationBoard2Page() {
     const [ createBoard ] = useMutation(CREATE_BOARD)
     
@@ -28,9 +26,7 @@ export default function GraphqlMutationBoard2Page() {
         console.log(result)
         console.log(result.data.createBoard.number)
     }
-
     return (
-
         <button onClick={aaa}>GRAPHQL-API 요청하기!!!</button>
     )
 }

@@ -1,7 +1,6 @@
 import {useMutation , gql} from "@apollo/client"
 // gql = graphql
 // 쿼리문응 사용하겠다..
-
 const CREATE_BOARD = gql`
     mutation {
         createBoard(
@@ -14,16 +13,13 @@ const CREATE_BOARD = gql`
         }
     }
 `
-
 export default function GraphqlMutationBoard1Page() {
     const [ createBoard ] = useMutation(CREATE_BOARD)
-    
     // 결과를 기다려야 하기때문에 async await을 싸줌
     async function aaa () {
         const result = await createBoard();
         console.log(result.data.createBoard.number)
     }
-
     return (
         <button onClick={aaa}>GRAPHQL-API 요청하기!!!</button>
     )
