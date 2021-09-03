@@ -30,6 +30,7 @@ import {
     TitleFont
     } from "../../../styles/boardsNewPageCss"
     import {useMutation , gql} from "@apollo/client"
+    import { useRouter } from "next/router"
 
     export const CREATE_BOARD = gql`
         mutation createBoard($createBoardInput: CreateBoardInput!) {
@@ -64,6 +65,8 @@ export default function BoardsNewPage() {
 
     const [ createBoard ] = useMutation(CREATE_BOARD)
 
+    const router = useRouter()
+
     function onChangeWriter (event) {
         setWriter(event.target.value)
     }
@@ -93,21 +96,25 @@ export default function BoardsNewPage() {
             setContentError("내용을 입력해주세요.")
         }
         if(writer !== "" && password !== "" && title !== "" && contents !== ""){
-          const result = await createBoard({
-            variables: {
-              createBoardInput: {
-                // 키와 밸류가 같으면 생략이 가능하다!!
-                // writer : writer,
-                writer,
-                password,
-                title,
-                contents
-              },
-            },
-          });
-          console.log(result.data.createBoard._id)
+            try {
+                const result = await createBoard({
+                    variables: {
+                        createBoardInput: {
+                            writer,
+                            title,
+                            contents,
+                            password
+                        }
+                    }
+                })
+                console.log(result)
+                console.log(result.data.createBoard._id)
+                router.push(`/boards/detailPage-nonMembers-basic-read/${result.data.createBoard._id}`)
+            } catch(error) {
+                console.log(error)
+            }
         }
-      }
+    }
     return (
         <Container>
                 <BigTitle>게시물 등록</BigTitle>
@@ -120,7 +127,7 @@ export default function BoardsNewPage() {
                     </Writer>
                     <Writer>
                         <SmallTitle>비밀번호</SmallTitle>
-                        <TitleInput type="text" placeholder="비밀번호를 입력해주세요." onChange={onChangePassword}/>
+                        <TitleInput type="password" placeholder="비밀번호를 입력해주세요." onChange={onChangePassword}/>
                         <ErrorMessage>{passwordError}</ErrorMessage>
                     </Writer>
                 </Container_Title>

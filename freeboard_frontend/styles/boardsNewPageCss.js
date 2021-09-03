@@ -36,7 +36,7 @@ export const TitleInput = styled.input`
     height: 52px;
     padding-left: 15px;
     font-size: 16px;
-    color: #BDBDBD;
+    color: black;
     border: 1px solid #BDBDBD;
 `
 
@@ -170,7 +170,7 @@ export const Input = styled.input`
     height:52px;
     padding-left: 15px;
     font-size: 16px;
-    color: #BDBDBD;
+    color: black;
     border: 1px solid #BDBDBD;
 `
 export const ErrorMessage = styled.div`
