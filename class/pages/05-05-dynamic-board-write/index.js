@@ -31,6 +31,9 @@ export default function DynamicBoardWrite() {
     function onChangeMyContents(event) {
         setMyContents(event.target.value)
     }
+
+    // 실패할 가능성이 있는 코드는 try catch로 감싸주는게 좋다
+
     async function aaa () {
         try { // 네트워크는 항상 성공하지 않기 때문에 이렇게 해줘야 한다.
             const result = await createBoard({

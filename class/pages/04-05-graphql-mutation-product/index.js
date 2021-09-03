@@ -82,7 +82,7 @@ export default function GraphqlMutationProductPage() {
                 createProductInput:{
                     name: productName,
                     detail: detail,
-                    price:  price // Number타입으로 바꿔줘야함
+                    price:  Number(price) // Number타입으로 바꿔줘야함
                 }
             }
         })
