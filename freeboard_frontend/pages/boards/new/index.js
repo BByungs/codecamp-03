@@ -31,7 +31,7 @@ import {
     } from "../../../styles/boardsNewPageCss"
     import {useMutation , gql} from "@apollo/client"
 
-    const CREATE_BOARD = gql`
+    export const CREATE_BOARD = gql`
         mutation createBoard($createBoardInput: CreateBoardInput!) {
             createBoard(createBoardInput: $createBoardInput) {
                 _id
@@ -54,12 +54,13 @@ import {
 export default function BoardsNewPage() {
     const [writer , setWriter] = useState("")
     const [password, setPassword] = useState("")
-    const [content, setContent] = useState("")
+    const [contents, setContents] = useState("")
     const [title , setTitle] = useState("")
 
     const [writerError , setWriterError] = useState("")
     const [passwordError, setPasswordError] = useState("")
     const [contentError , setContentError] = useState("")
+    const [titleError , setTitleError] = useState("")
 
     const [ createBoard ] = useMutation(CREATE_BOARD)
 
@@ -72,46 +73,41 @@ export default function BoardsNewPage() {
     }
 
     function onChangeContent(event) {
-        setContent(event.target.value)
+        setContents(event.target.value)
     }
     function onChangeTitle(event) {
         setTitle(event.target.value)
     }
 
-    async function onClickButton() {
-        
-        const result = await createBoard({
-            variables: { 
-                createBoardInput: {
-                    writer: writer, 
-                    title: title,
-                    contents: content,
-                    password: password
-                }
-            }
-            
-        })
-        
-        console.log(result)
-
-        if (password.length===0 && writer.length===0 && content.length===0) {
-            setWriterError("이름을 입력해 주세요.")
-            setPasswordError("비밀번호를 입력해주세요.")
-            setContentError("내용을 작성해 주세요")
+    async function onClickButton(){
+        if(writer === ""){
+          setWriterError("작성자를 입력해주세요.")
         }
-        else if(writer.length===0) {
-            setWriterError("이름을 입력해 주세요.")
-        } 
-        else if(password.length===0) {
-            setPasswordError("비밀번호를 입력해 주세요.")
+        if(password === ""){
+          setPasswordError("비밀번호를 입력해주세요.")
         }
-        else if(content.length===0) {
-            setContentError("내용을 작성해 주세요.")
+        if(title === ""){
+            setTitleError("제목을 입력해주세요.")
         }
-
-        alert("회원가입을 축하합니다!")
-        
-    }
+        if(contents === ""){
+            setContentError("내용을 입력해주세요.")
+        }
+        if(writer !== "" && password !== "" && title !== "" && contents !== ""){
+          const result = await createBoard({
+            variables: {
+              createBoardInput: {
+                // 키와 밸류가 같으면 생략이 가능하다!!
+                // writer : writer,
+                writer,
+                password,
+                title,
+                contents
+              },
+            },
+          });
+          console.log(result.data.createBoard._id)
+        }
+      }
     return (
         <Container>
                 <BigTitle>게시물 등록</BigTitle>
@@ -132,6 +128,7 @@ export default function BoardsNewPage() {
                 <Title>
                     <TitleFont>제목</TitleFont>
                     <Input placeholder="제목을 작성해 주세요." onChange={onChangeTitle}/>
+                    <ErrorMessage>{titleError}</ErrorMessage>
                 </Title>
 
                 {/* 내용 입력칸 */}
