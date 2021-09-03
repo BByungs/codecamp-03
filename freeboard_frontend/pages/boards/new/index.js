@@ -39,6 +39,18 @@ import {
         }
     `
 
+// const CREATE_BOARD = gql`
+//     mutation 이건 없어도되고, 다른걸로 바꿔도 상관없음createBoard(2-1.$createBoardInput: 3.CreateBoardInput!) {
+//         createBoard(1.createBoardInput: 2.$createBoardInput) {
+//             _id
+//             writer
+//             title
+//             ......
+//         }
+//     }
+// }
+// `
+
 export default function BoardsNewPage() {
     const [writer , setWriter] = useState("")
     const [password, setPassword] = useState("")
