@@ -1,4 +1,4 @@
-import {} from "../../../styles/02-Quiz-01"
+// import {} from "../../../styles/02-Quiz-01"
 import {useState} from "react"
 
 export default function TwodayQuiz () {
