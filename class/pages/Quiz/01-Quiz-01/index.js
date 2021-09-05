@@ -35,7 +35,7 @@ import {
     RedIcon,
     RedIconString,
     Wrapper
-} from "../../styles/homeworkCss"
+} from "../../../styles/homeworkCss"
 
 export default function homeworkIndex() {
 
@@ -66,9 +66,9 @@ export default function homeworkIndex() {
                         <MyPageSection>
                             <MyPageName>마이</MyPageName>
                             <Profile>
-                                <ProfilePhoto src="profilePhoto.png" />
+                                <ProfilePhoto src="/profilePhoto.png" />
                                 <ProfileName>임정아</ProfileName>
-                                <Right src="right.png" />
+                                <Right src="/right.png" />
                             </Profile>
                         </MyPageSection>
                         <List>
@@ -92,7 +92,7 @@ export default function homeworkIndex() {
                                 </QuestionContent>
                             </QuestionLeft>
                             <QuestionRight>
-                                <img src="bottom.png"></img>
+                                <img src="/bottom.png"></img>
                             </QuestionRight>
                         </Question>
                         <Question>
@@ -103,7 +103,7 @@ export default function homeworkIndex() {
                                 </QuestionContent>
                             </QuestionLeft>
                             <QuestionRight>
-                                <img src="bottom.png"></img>
+                                <img src="/bottom.png"></img>
                             </QuestionRight>
                         </Question>
                         <Question>
@@ -114,7 +114,7 @@ export default function homeworkIndex() {
                                 </QuestionContent>
                             </QuestionLeft>
                             <QuestionRight>
-                                <img src="bottom.png"></img>
+                                <img src="/bottom.png"></img>
                             </QuestionRight>
                         </Question>
                         <Question>
@@ -125,7 +125,7 @@ export default function homeworkIndex() {
                                 </QuestionContent>
                             </QuestionLeft>
                             <QuestionRight>
-                                <img src="bottom.png"></img>
+                                <img src="/bottom.png"></img>
                             </QuestionRight>
                         </Question>
                         <Question>
@@ -136,7 +136,7 @@ export default function homeworkIndex() {
                                 </QuestionContent>
                             </QuestionLeft>
                             <QuestionRight>
-                                <img src="bottom.png"></img>
+                                <img src="/bottom.png"></img>
                             </QuestionRight>
                         </Question>
                         <Question>
@@ -147,7 +147,7 @@ export default function homeworkIndex() {
                                 </QuestionContent>
                             </QuestionLeft>
                             <QuestionRight>
-                                <img src="bottom.png"></img>
+                                <img src="/bottom.png"></img>
                             </QuestionRight>
                         </Question>
                     </Bottom_Bottom>
@@ -159,19 +159,19 @@ export default function homeworkIndex() {
                 {/* Footer */}
                 <Footer>
                     <IconDiv>
-                        <Icon src="home.png" />
+                        <Icon src="/home.png" />
                         <IconString>홈</IconString>
                     </IconDiv>
                     <IconDiv>
-                        <Icon src="itsload.png" />
+                        <Icon src="/itsload.png" />
                         <IconString>잇츠로드</IconString>
                     </IconDiv>
                     <IconDiv>
-                        <Icon src="myfavorit.png" />
+                        <Icon src="/myfavorit.png" />
                         <IconString>마이찜</IconString>
                     </IconDiv>
                     <IconDiv>
-                        <RedIcon src="myIcon.png"/>
+                        <RedIcon src="/myIcon.png"/>
                         <RedIconString>마이</RedIconString>
                     </IconDiv>
                 </Footer>
