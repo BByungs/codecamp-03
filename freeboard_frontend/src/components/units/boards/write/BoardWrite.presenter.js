@@ -115,6 +115,5 @@ export default function BoardWriteUI(props) {
                 {/* 등록하기 버튼 */}
                 <RegistrationButton onClick={props.onClickButton}>등록하기</RegistrationButton>
         </Container>
-        
     )
 }

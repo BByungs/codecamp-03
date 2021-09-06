@@ -70,7 +70,7 @@ export default function BoardWrite() {
     }
     
     return <BoardWriteUI 
-        router={router}
+        // router={router}
         onChangeWriter={onChangeWriter}
         onChangePassword={onChangePassword}
         onChangeContent={onChangeContent}
