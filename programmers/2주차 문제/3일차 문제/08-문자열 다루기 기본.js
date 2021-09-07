@@ -1,9 +1,18 @@
 function solution(s) {
     // 문자열에 알파벳이 있나 확인하는 함수
+
+    // let checkNum = (s) => {
+    //     let alphabet = "abcdefghijklnmopqrstuvwxyzABCDEFGHIJKLNMOPQRSTUVWXYZ"
+    //     for(let i=0; i<alphabet.length; i++) {
+    //         if(s.includes(alphabet[i])===true) {
+    //             return false
+    //         }
+    //     }
+    //     return true
+    // }
     let checkNum = (s) => {
-        let alphabet = "abcdefghijklnmopqrstuvwxyzABCDEFGHIJKLNMOPQRSTUVWXYZ"
-        for(let i=0; i<alphabet.length; i++) {
-            if(s.includes(alphabet[i])===true) {
+        for(let i=0; i<s.length; i++) {
+            if(String(Number(s[i]))==="NaN") {
                 return false
             }
         }
@@ -20,4 +29,5 @@ function solution(s) {
     return checkNum(s) && checkLength(s)
 }
 console.log(solution("a234"))
+console.log(solution("1234"))
 
