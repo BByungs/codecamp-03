@@ -10,6 +10,7 @@ export default function BoardWrite() {
     const [password, setPassword] = useState("")
     const [contents, setContents] = useState("")
     const [title , setTitle] = useState("")
+    const [isActive , setIsActive] = useState(false)
 
     const [writerError , setWriterError] = useState("")
     const [passwordError, setPasswordError] = useState("")
@@ -38,12 +39,15 @@ export default function BoardWrite() {
     async function onClickButton(){
         if(writer === ""){
           setWriterError("작성자를 입력해주세요.")
+          // isActive 조건문에 따라서 버튼 색 변하게 해야함
         }
         if(password === ""){
           setPasswordError("비밀번호를 입력해주세요.")
+          // isActive 조건문에 따라서 버튼 색 변하게 해야함
         }
         if(title === ""){
             setTitleError("제목을 입력해주세요.")
+            // isActive 조건문에 따라서 버튼 색 변하게 해야함
         }
         if(contents === ""){
             setContentError("내용을 입력해주세요.")
@@ -76,5 +80,12 @@ export default function BoardWrite() {
         onChangeContent={onChangeContent}
         onChangeTitle={onChangeTitle}
         onClickButton={onClickButton}
+        writerError={writerError}
+        titleError={titleError}
+        contentError={contentError}
+        passwordError={passwordError}
+        // isActive 프롭스로 전달해야함
     />
 }
+
+// 버튼 세개만들고
