@@ -6,4 +6,4 @@ export const CREATE_BOARD = gql`
                 _id
             }
         }
-    `
+`

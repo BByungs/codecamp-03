@@ -1,5 +1,14 @@
 import styled from '@emotion/styled'; 
 
+export const Wrapper = styled.div`
+    width: 100%;
+    height: 1900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`
+
 export const Container = styled.div`
     width: 1200px;
     height: 1602px;
@@ -8,6 +17,7 @@ export const Container = styled.div`
     flex-direction: column;
     /* background-color: skyblue; */
     align-items: center;
+    margin-bottom: 25px;
 `
 
 export const Container_Top = styled.div`
@@ -130,7 +140,7 @@ export const Like = styled.div`
     width: 40px;
     height: 45px;
     justify-content: center;
-    align-items: center
+    align-items: center;
 `
 
 export const Hate = styled.div`
@@ -139,7 +149,7 @@ export const Hate = styled.div`
     width: 40px;
     height: 47px;
     justify-content: center;
-    align-items: center
+    align-items: center;
 `
 
 export const LikeButton = styled.img`
@@ -166,4 +176,8 @@ export const HateNum = styled.div`
     color: #828282;
     font-weight: 400;
     font-size: 18px;
+`
+export const DeleteButton = styled.button`
+    width: 150px;
+    height: 50px;
 `

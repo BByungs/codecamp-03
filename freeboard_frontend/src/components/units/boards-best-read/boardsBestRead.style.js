@@ -191,44 +191,54 @@ export const PostsList = styled.div`
 export const PostListTop = styled.div`
     width: 1200px;
     height: 52px;
-    padding: 11px 63px 14px 40px;
+    /* padding: 11px 63px 14px 40px; */
+    line-height: 52px;
     display: flex;
     flex-direction: row;
+    padding-right: 20px;
 
 `
 
 export const NumberName = styled.div`
-    width: 34px;
+    /* width: 34px; */
+    width: 10%;
     height: 27px;
     font-family: Noto Sans CJK KR;
     font-weight: 500;
     font-size: 18px;
+    text-align: center;
 `
 
 export const TitleName = styled.div`
-    width: 34px;
+    /* width: 34px; */
+    width: 70%;
     height: 27px;
     font-family: Noto Sans CJK KR;
     font-weight: 500;
     font-size: 18px;
-    margin-left: 401px;
+    text-align: center;
+    /* margin-left: 401px; */
 `
 export const PostListTopWriter = styled.div`
-    width: 50px;
+    /* width: 50px; */
+    width: 10%;
     height: 27px;
     font-family: Noto Sans CJK KR;
     font-weight: 500;
     font-size: 18px;
-    margin-left: 401px;
+    text-align: center;
+    /* margin-left: 401px; */
 `
 
 export const WeatherName = styled.div`
-    width: 34px;
+    /* width: 34px; */
+    width: 10%;
     height: 27px;
     font-family: Noto Sans CJK KR;
     font-weight: 500;
     font-size: 18px;
-    margin-left: 143px;
+    text-align: center;
+    /* margin-left: 143px; */
 `
 export const Underline = styled.div`
     border-bottom: 1px solid #BDBDBD;
@@ -251,11 +261,14 @@ export const EachPost = styled.div`
     flex-direction: row;
     width: 1200px;
     height: 53px;
-    padding: 14px 40px 14px 50px;
+    /* padding: 14px 40px 14px 50px; */
+    line-height:52px;
+    padding-right: 20px;
 `
 
 export const PostsNumner = styled.div`
-    width: 18px;
+    /* width: 18px; */
+    width: 10%;
     height: 24px;
     font-family: Noto Sans CJK KR;
     font-weight: 400;
@@ -265,36 +278,39 @@ export const PostsNumner = styled.div`
 `
 
 export const PostsTitle = styled.div`
-    width: 126px;
-    height: 24px;
+    /* width: 126px; */
+    width: 70%;
+    height: 52px;
     font-family: Noto Sans CJK KR;
     font-weight: 400;
     font-size: 16px;
     text-align: center;
     color: #4F4F4F;
-    margin-left: 363px;
+    /* margin-left: 363px; */
 `
 
 export const PostsWriter = styled.div`
-    width: 45px;
-    height: 24px;
+    /* width: 45px; */
+    width: 10%;
+    height: 52px;
     font-family: Noto Sans CJK KR;
     font-weight: 400;
     font-size: 16px;
     text-align: center;
     color: #4F4F4F;
-    margin-left: 357px;
+    /* margin-left: 357px; */
 `
 
 export const PostsDate = styled.div`
-    width: 87px;
-    height: 24px;
+    /* width: 100px; */
+    width: 10%;
+    height: 52px;
     font-family: Noto Sans CJK KR;
     font-weight: 400;
     font-size: 16px;
     text-align: center;
     color: #4F4F4F;
-    margin-left: 123px;
+    /* margin-left: 123px; */
 `
 export const Footer = styled.div`
     width: 1200px;

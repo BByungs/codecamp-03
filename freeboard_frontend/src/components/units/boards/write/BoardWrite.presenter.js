@@ -26,13 +26,16 @@ import {
     Input,
     ErrorMessage,
     Title,
-    TitleFont
+    TitleFont,
+    Wrapper,
+    DeleteButton
 } from "./BoardWrite.styles"
 
 export default function BoardWriteUI(props) {
 
     return (
-        <Container>
+        <Wrapper>  
+            <Container>
                 <BigTitle>게시물 등록</BigTitle>
                 {/* 작성자 , 비밀번호 */}
                 <Container_Title>
@@ -115,5 +118,7 @@ export default function BoardWriteUI(props) {
                 {/* 등록하기 버튼 */}
                 <RegistrationButton onClick={props.onClickButton}>등록하기</RegistrationButton>
         </Container>
+        <DeleteButton>삭제하기</DeleteButton>
+        </Wrapper>
     )
 }

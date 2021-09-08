@@ -22,14 +22,17 @@ import {
     LikeButton,
     HateButton,
     LikeNum,
-    HateNum
+    HateNum,
+    Wrapper,
+    DeleteButton
 } from "./BaordRead.styles"
 
 
 export default function BoardReadUI(props) {
 
     return (
-        <Container>
+        <Wrapper>
+            <Container>
             <Container_Top>
                 {/* 작성자와 아이콘 있는곳 */}
                 <Container_Top_WriterInfo_Icon>
@@ -73,7 +76,8 @@ export default function BoardReadUI(props) {
                     <HateNum>1920</HateNum>
                 </Hate>
             </LikeAndHateButton>
-
         </Container>
+        <DeleteButton onClick={props.onClickDelete}>삭제하기</DeleteButton>
+        </Wrapper>
     )
 }

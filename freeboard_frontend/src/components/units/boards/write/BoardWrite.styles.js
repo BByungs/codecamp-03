@@ -12,11 +12,21 @@ export const Container = styled.div`
     box-sizing: border-box; */
     justify-content: space-between;
     padding: 60px 60px 60px 97px;
-    margin: auto;
-    margin-top: 100px;
+    /* margin: auto; */
+    /* margin-top: 100px; */
+    margin-bottom: 25px;
     
 
 `
+export const Wrapper = styled.div`
+    width: 100%;
+    height: 1900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`
+
 export const Container_Title = styled.div`
     width: 996px;
     /* align-items: center; */
@@ -192,4 +202,13 @@ export const Title = styled.div`
 export const TitleFont = styled.div`
     width: 30px;
     height:24px;
+`
+
+export const DeleteButton = styled.button`
+    width: 179px;
+    height: 52px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin-left: 25px;
 `

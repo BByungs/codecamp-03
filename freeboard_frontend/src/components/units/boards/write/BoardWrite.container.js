@@ -4,6 +4,7 @@ import { useRouter } from "next/router"
 import { useMutation } from "@apollo/client"
 import { useState } from "react"
 
+
 export default function BoardWrite() {
     
     const [writer , setWriter] = useState("")
@@ -19,6 +20,7 @@ export default function BoardWrite() {
 
     const [ createBoard ] = useMutation(CREATE_BOARD)
 
+    const [id,setId] = useState("")
     const router = useRouter()
 
     function onChangeWriter (event) {
@@ -66,7 +68,9 @@ export default function BoardWrite() {
                 })
                 console.log(result)
                 console.log(result.data.createBoard._id)
+                setId(result.data.createBoard._id)
                 router.push(`/boards/detailPage-nonMembers-basic-read/${result.data.createBoard._id}`)
+
             } catch(error) {
                 console.log(error)
             }
@@ -87,5 +91,3 @@ export default function BoardWrite() {
         // isActive 프롭스로 전달해야함
     />
 }
-
-// 버튼 세개만들고
