@@ -2,18 +2,23 @@ import BoardWriteUI from "./BoardWrite.presenter"
 // presenter를 import를 통해 불러와야함
 import {useState, useEffect} from "react"
 import {useMutation} from "@apollo/client"
+import {useRouter} from "next/router"
+import {UPDATE_BOARD} from "./BoardWrite.queries"
 
 import { CREATE_BOARD } from "./BoardWrite.queries"
 // CREATE_BOARD를 import 해온거
 
-export default function BoardWrite() {
+export default function BoardWrite(props) {
     const [ createBoard ] = useMutation(CREATE_BOARD)
+    const [ updateBoard ] = useMutation(UPDATE_BOARD)
     const [myWriter , setMyWriter] = useState("")
     const [myTitle, setMyTitle] = useState("")
     const [myContents, setMyContents] = useState("")
 
     const [zzz ,setZzz] = useState(true)
     const [qqq, setQqq] = useState(false)
+
+    const router = useRouter()
     
     // myWriter , myTitle , myContents 모두 내용이 저장되어 있다면,
     // 즉, (myWriter !== "" && myTitle !== "" && myContents !== "") 라면,
@@ -25,6 +30,7 @@ export default function BoardWrite() {
         });
         console.log(result)
         console.log(result.data.createBoard.number)
+        router.push(`/08-04-board-detail/${result.data.createBoard.number}`)
     }
     // 함수들을 props로 연결해줘여함
     function onChangeMyWriter(event) {
@@ -62,6 +68,22 @@ export default function BoardWrite() {
         changeZzz()
     }, [])
     
+    async function onClickEdit() {
+        try {
+            await updateBoard({
+                variables:{ 
+                    number: Number(router.query.number),
+                    writer: myWriter, 
+                    title: myTitle,
+                    contents: myContents
+                }
+            })
+            router.push(`/08-04-board-detail/${router.query.number}`)
+        } catch(error) {
+            console.log(error)
+        }
+    }
+
 
     return <BoardWriteUI 
         // props로 전달해준거임
@@ -71,6 +93,8 @@ export default function BoardWrite() {
         aaa={aaa}
         zzz={zzz}
         qqq={qqq}
+        isEdit={props.isEdit}
+        onClickEdit={onClickEdit}
     />
     // 얘를 리턴 해줘야 연결이됨
 }
