@@ -1,6 +1,5 @@
 import { useRouter } from "next/router"
 import { useQuery , gql } from "@apollo/client"
-
 const FETCH_BOARD = gql`
     query fetchBoard($number: Int) {
         fetchBoard(number: $number) {
@@ -11,6 +10,8 @@ const FETCH_BOARD = gql`
     }
 `
 
+// /08-04-board-detail/[number]/index.js
+// 게시물 상세 페이지
 export default function BoardDetailPage() {
 
     const router = useRouter()
@@ -18,7 +19,8 @@ export default function BoardDetailPage() {
     const { data } = useQuery(FETCH_BOARD, {
         variables: {number: Number(router.query.number)}
     }) 
-
+    
+    // 수정하러 이동하기 버튼을 누르면 작동하는 함수
     function onClickMoveToEdit() {
         router.push(`/08-04-board-detail/${router.query.number}/edit`)
         // 상세페이지로 이동
@@ -38,7 +40,3 @@ export default function BoardDetailPage() {
         </>
     )
 }
-
-// data && data.fetchBoard.contents === data?.fetchBoard.contents
-// 조건부 렌더링이랑 옵셔널체이닝 기능은 똑같지만
-// 옵셔널체이닝이 더 쓰기 편해서 이걸 더 많이 쓴다고함
