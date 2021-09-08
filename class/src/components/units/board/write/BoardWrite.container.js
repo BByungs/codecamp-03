@@ -84,7 +84,11 @@ export default function BoardWrite(props) {
     // 등록하기 버튼 => 상세페이지로 이동
     async function aaa () {
         const result = await createBoard({
-            variables: { writer: myWriter, title: myTitle, contents: myContents}
+            variables: { 
+                writer: myWriter, 
+                title: myTitle, 
+                contents: myContents
+            }
         });
         console.log(result)
         console.log(result.data.createBoard.number)
