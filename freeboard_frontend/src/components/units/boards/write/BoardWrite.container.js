@@ -111,6 +111,7 @@ export default function BoardWrite(props) {
                 router.push(`/boards/detailPage-nonMembers-basic-read/${router.query.detailPageNonMembersBasic}`)  
             } catch(error) {
                 console.log(error)
+                alert(error.message)
             }
         }
     }
