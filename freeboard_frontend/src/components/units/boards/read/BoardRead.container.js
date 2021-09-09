@@ -22,15 +22,27 @@ export default function BoardRead() {
                     boardId: router.query.detailPageNonMembersBasic
                 }
             })
+            router.push('/boards/board-best')
         } catch(error) {
             console.log(error)
         }
         console.log(router.query.detailPageNonMembersBasic)
     }
+
+    function onClickMoveEdit() {
+        router.push(`/boards/detailPage-nonMembers-basic-read/${router.query.detailPageNonMembersBasic}/edit`)
+    }
+
+    function onClickMoveToList() { 
+        router.push('/boards/board-best/')
+    }
+
     return <BoardReadUI 
         router={router}
         data={data}
         onClickDelete={onClickDelete}
+        onClickMoveEdit={onClickMoveEdit}
+        onClickMoveToList={onClickMoveToList}
     />
 }
 

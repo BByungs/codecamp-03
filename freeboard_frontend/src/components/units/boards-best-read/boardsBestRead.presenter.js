@@ -133,10 +133,10 @@ export default function BoardBestUI(props) {
             {/* 맨 밑에 페이지 버튼 , 게시물 등록하기 버튼 있는데 */}
             <Footer>
                 <Page>
-                    <LeftArrow src="/leftArrow.png" />
-                    <RightArrow src="/rightArrow.png" />
+                    {/* <LeftArrow src="/leftArrow.png" />
+                    <RightArrow src="/rightArrow.png" /> */}
                 </Page>
-                <PostSubmitBtn>
+                <PostSubmitBtn onClick={props.onClickSubmit}>
                     <PencilImg src="/pencil.png" />
                     <Text>게시물 등록하기</Text>
                 </PostSubmitBtn>

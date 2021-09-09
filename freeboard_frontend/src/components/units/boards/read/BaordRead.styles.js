@@ -178,6 +178,46 @@ export const HateNum = styled.div`
     font-size: 18px;
 `
 export const DeleteButton = styled.button`
-    width: 150px;
-    height: 50px;
+    width: 200px;
+    height: 75px;
+    font-size: 21px;
+    background: #FFD600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    :hover {
+        opacity: 0.7;
+    }
+`
+
+export const EditButton = styled.button`
+    width: 200px;
+    height: 75px;
+    font-size: 21px;
+    background: #FFD600;
+    border: none;
+    border-radius: 10px; 
+    cursor: pointer;
+    :hover {
+        opacity: 0.7;
+    }
+`
+
+export const Button = styled.div`
+    display: flex;
+    width: 750px;
+    justify-content: space-between;
+`
+
+export const ListMoveButton =styled.button`
+    width: 200px;
+    height: 75px;
+    font-size: 21px;
+    background: #FFD600;
+    border: none;
+    border-radius: 10px; 
+    cursor: pointer;
+    :hover {
+        opacity: 0.7;
+    }
 `

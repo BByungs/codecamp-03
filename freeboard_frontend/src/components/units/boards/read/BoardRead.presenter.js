@@ -24,7 +24,10 @@ import {
     LikeNum,
     HateNum,
     Wrapper,
-    DeleteButton
+    DeleteButton,
+    EditButton,
+    Button,
+    ListMoveButton
 } from "./BaordRead.styles"
 
 
@@ -77,7 +80,12 @@ export default function BoardReadUI(props) {
                 </Hate>
             </LikeAndHateButton>
         </Container>
-        <DeleteButton onClick={props.onClickDelete}>삭제하기</DeleteButton>
+        <Button>
+            <DeleteButton onClick={props.onClickDelete}>삭제하기</DeleteButton>
+            <ListMoveButton onClick={props.onClickMoveToList}>목록으로</ListMoveButton>
+            <EditButton onClick={props.onClickMoveEdit}>수정하기</EditButton>
+        </Button>
+        
         </Wrapper>
     )
 }

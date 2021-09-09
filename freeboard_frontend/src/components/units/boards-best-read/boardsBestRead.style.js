@@ -264,6 +264,9 @@ export const EachPost = styled.div`
     /* padding: 14px 40px 14px 50px; */
     line-height:52px;
     padding-right: 20px;
+    :hover {
+        background-color: #f5f5f5;
+    }
 `
 
 export const PostsNumner = styled.div`
@@ -347,6 +350,10 @@ export const PostSubmitBtn = styled.button`
     background-color: white;
     border: 1px solid #F2F2F2;
     border-radius: 10px;
+    :hover {
+        background-color: #f5f5f5;
+    }
+    cursor: pointer;
 `
 
 export const PencilImg = styled.img`

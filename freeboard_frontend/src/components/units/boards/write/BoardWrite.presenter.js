@@ -36,7 +36,7 @@ export default function BoardWriteUI(props) {
     return (
         <Wrapper>  
             <Container>
-                <BigTitle>게시물 등록</BigTitle>
+                <BigTitle>{props.isEdit ? "게시물 등록" : "게시물 수정"}</BigTitle>
                 {/* 작성자 , 비밀번호 */}
                 <Container_Title>
                     <Writer>
@@ -115,10 +115,12 @@ export default function BoardWriteUI(props) {
                     </Check>
                 </MainSetting>
 
-                {/* 등록하기 버튼 */}
-                <RegistrationButton onClick={props.onClickButton}>등록하기</RegistrationButton>
+                {/* 등록하기 버튼(false) */}
+                {props.isEdit && <RegistrationButton onClick={props.onClickButton}>등록하기</RegistrationButton>}
+                {/* 수정하기 버튼(true) */}
+                {!props.isEdit && <RegistrationButton onClick={props.onclickEdit}>수정하기</RegistrationButton>}
         </Container>
-        <DeleteButton>삭제하기</DeleteButton>
+        {/* <DeleteButton>삭제하기</DeleteButton> */}
         </Wrapper>
     )
 }

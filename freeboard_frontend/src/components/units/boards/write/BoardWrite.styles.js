@@ -173,6 +173,11 @@ export const RegistrationButton = styled.button`
     margin-left: 425px;
     background: #FFD600;
     cursor: pointer;
+    border-radius: 10px;
+    :hover {
+        opacity: 0.7;
+    };
+    
 `
 
 export const Input = styled.input`
