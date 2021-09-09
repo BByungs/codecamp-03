@@ -10,6 +10,7 @@ function solution(s) {
     //     }
     //     return true
     // }
+
     let checkNum = (s) => {
         for(let i=0; i<s.length; i++) {
             if(String(Number(s[i]))==="NaN") {
