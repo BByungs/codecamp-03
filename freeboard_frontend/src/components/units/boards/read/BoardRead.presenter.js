@@ -23,18 +23,44 @@ import {
     HateButton,
     LikeNum,
     HateNum,
-    Wrapper,
+    Wrapper_Bottom,
     DeleteButton,
     EditButton,
     Button,
-    ListMoveButton
+    ListMoveButton,
+    Underline,
+    Comment_Submit_Container,
+    CommentImg,
+    Comment_Img_Name,
+    CommentName,
+    StarScope,
+    StarImg,
+    Comment_Submit,
+    Comment_Submit_Input,
+    Comment_Submit_Write_Button,
+    Underline2,
+    Comment_Submit_StringCount,
+    Comment_Submit_Button,
+    CommentList,
+    CommentList_Comment_Container,
+    CommentList_Profile_StarScope,
+    CommentList_ProfilePhoto,
+    CommentList_Writer,
+    CommentList_Comment_Read,
+    CommentList_Write_Date,
+    Comment_Submit_String,
+    CommentList_Comment_Container_Top,
+    CommentList_Comment_Container_Top_Right,
+    CommentPencil,
+    CommentX,
+    Underline3
 } from "./BaordRead.styles"
 
 
 export default function BoardReadUI(props) {
 
     return (
-        <Wrapper>
+        <Wrapper_Bottom>
             <Container>
             <Container_Top>
                 {/* 작성자와 아이콘 있는곳 */}
@@ -81,11 +107,101 @@ export default function BoardReadUI(props) {
             </LikeAndHateButton>
         </Container>
         <Button>
-            <DeleteButton onClick={props.onClickDelete}>삭제하기</DeleteButton>
+            {/* <DeleteButton onClick={props.onClickDelete}>삭제하기</DeleteButton> */}
             <ListMoveButton onClick={props.onClickMoveToList}>목록으로</ListMoveButton>
             <EditButton onClick={props.onClickMoveEdit}>수정하기</EditButton>
         </Button>
         
-        </Wrapper>
+
+        <Underline />
+
+        {/* 댓글 적는 곳 */}
+        <Comment_Submit_Container>
+            {/* 댓글아이콘 , 댓글 */}
+            <Comment_Img_Name>
+                <CommentImg src="/commentImg.png" />
+                <CommentName>댓글</CommentName>
+            </Comment_Img_Name>
+
+            {/* 별점 */}
+            <StarScope>
+                <StarImg src="/star.png" />
+                <StarImg src="/star.png" />
+                <StarImg src="/star.png" />
+                <StarImg src="/star.png" />
+                <StarImg src="/star.png" />
+            </StarScope>
+
+            {/* 댓글 등록 부분 */}
+            <Comment_Submit>
+                <Comment_Submit_Input>
+                
+                </Comment_Submit_Input>
+                <Underline2 />
+                <Comment_Submit_Write_Button>
+                    <Comment_Submit_StringCount>
+                        <Comment_Submit_String>46/100</Comment_Submit_String>
+                    </Comment_Submit_StringCount>
+                    <Comment_Submit_Button>등록하기</Comment_Submit_Button>
+                </Comment_Submit_Write_Button>
+            </Comment_Submit>
+        </Comment_Submit_Container>
+
+        {/* 댓글 리스트 맵 돌려야 하는얘 */}
+        <CommentList>
+
+            <CommentList_Comment_Container>
+                <CommentList_Comment_Container_Top>
+                    <CommentList_ProfilePhoto src="/CommentList_Profile.png" />
+                    <CommentList_Comment_Container_Top_Right> 
+                        <CommentList_Profile_StarScope>
+                            <CommentList_Writer>안병진</CommentList_Writer>
+                            <StarScope>
+                                <StarImg src="/star.png" />
+                                <StarImg src="/star.png" />
+                                <StarImg src="/star.png" />
+                                <StarImg src="/star.png" />
+                                <StarImg src="/star.png" />
+                            </StarScope>
+                            <CommentPencil src="/commentPencil.png" />
+                            <CommentX src="/commentX.png" />
+                        </CommentList_Profile_StarScope>
+                        <CommentList_Comment_Read>진짜 유익하고 정말 필요한 정보인 것 같아요~! 앞으로도 좋은 정보 부탁드립니다~!</CommentList_Comment_Read>
+                        <CommentList_Write_Date>2021.09.10</CommentList_Write_Date>    
+                    </CommentList_Comment_Container_Top_Right>
+                </CommentList_Comment_Container_Top>
+                <Underline3 />
+            </CommentList_Comment_Container>
+            
+            <CommentList_Comment_Container>
+                <CommentList_Comment_Container_Top>
+                    <CommentList_ProfilePhoto src="/CommentList_Profile.png" />
+                    <CommentList_Comment_Container_Top_Right> 
+                        <CommentList_Profile_StarScope>
+                            <CommentList_Writer>안병진</CommentList_Writer>
+                            <StarScope>
+                                <StarImg src="/star.png" />
+                                <StarImg src="/star.png" />
+                                <StarImg src="/star.png" />
+                                <StarImg src="/star.png" />
+                                <StarImg src="/star.png" />
+                            </StarScope>
+                            <CommentPencil src="/commentPencil.png" />
+                            <CommentX src="/commentX.png" />
+                        </CommentList_Profile_StarScope>
+                        <CommentList_Comment_Read>진짜 유익하고 정말 필요한 정보인 것 같아요~! 앞으로도 좋은 정보 부탁드립니다~!</CommentList_Comment_Read>
+                        <CommentList_Write_Date>2021.09.10</CommentList_Write_Date>    
+                    </CommentList_Comment_Container_Top_Right>
+                </CommentList_Comment_Container_Top>
+                <Underline3 />
+            </CommentList_Comment_Container>
+            
+            
+            
+        </CommentList>
+        
+        </Wrapper_Bottom>
     )
 }
+
+// commentList_Profile_StarScope width:64+22+120

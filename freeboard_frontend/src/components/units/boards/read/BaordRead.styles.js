@@ -1,12 +1,13 @@
 import styled from '@emotion/styled'; 
 
-export const Wrapper = styled.div`
+export const Wrapper_Bottom = styled.div`
     width: 100%;
-    height: 1900px;
+    /* height: 1900px; */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 80px 360px 589px 360px;
 `
 
 export const Container = styled.div`
@@ -17,7 +18,8 @@ export const Container = styled.div`
     flex-direction: column;
     /* background-color: skyblue; */
     align-items: center;
-    margin-bottom: 25px;
+    margin-bottom: 80px;
+    border: 1px solid black;
 `
 
 export const Container_Top = styled.div`
@@ -191,33 +193,234 @@ export const DeleteButton = styled.button`
 `
 
 export const EditButton = styled.button`
-    width: 200px;
-    height: 75px;
-    font-size: 21px;
-    background: #FFD600;
-    border: none;
-    border-radius: 10px; 
+    width: 179px;
+    height: 52px;
+    background: white;
     cursor: pointer;
     :hover {
         opacity: 0.7;
-    }
+    };
+    border: 1px soild #BDBDBD;
+    font-family: Noto Sans CJK KR;
+    font-weight: 500;
+    font-size: 16px;
 `
 
 export const Button = styled.div`
     display: flex;
-    width: 750px;
+    width: 382px;
+    height: 52px;
     justify-content: space-between;
+    margin-bottom: 80px;
 `
 
 export const ListMoveButton =styled.button`
-    width: 200px;
-    height: 75px;
-    font-size: 21px;
-    background: #FFD600;
-    border: none;
-    border-radius: 10px; 
+    width: 179px;
+    height: 52px;
+    background: white;
     cursor: pointer;
     :hover {
         opacity: 0.7;
     }
+    border: 1px soild #BDBDBD;
+    font-family: Noto Sans CJK KR;
+    font-weight: 500;
+    font-size: 16px;
+`
+
+export const Underline = styled.div`
+    width:1199px;
+    border-bottom: 1px solid #BDBDBD;
+    margin-bottom: 40px;
+`
+
+export const Underline2 = styled.div`
+    width:1199px;
+    border-bottom: 1px solid #BDBDBD;
+`
+
+export const Underline3 = styled.div`
+    width:1198px;
+    border-bottom: 1px solid #F2F2F2;
+`
+
+export const Comment_Submit_Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+    height: 272px;
+    margin-bottom: 46px;
+
+`
+
+export const CommentImg = styled.img`
+    width: 20px;
+    height: 20px;
+    margin-right: 14px;
+`
+
+export const Comment_Img_Name = styled.div`
+    display: flex;
+    align-items:center;
+    margin-bottom: 42px;
+`
+
+export const CommentName = styled.div`
+    width: 34px;
+    height: 27px;
+    font-family: Noto Sans CJK KR;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 27px;
+    letter-spacing: 0em;
+    text-align: left;
+`
+
+export const StarScope = styled.div`
+    width: 120px;
+    height: 20px;
+    display: flex;
+    margin-bottom: 22px;
+    margin-right: 908px;
+`
+
+export const StarImg = styled.img`
+    margin-right: 4px;
+    width: 20px;
+    height: 20px;
+`
+
+export const Comment_Submit = styled.div`
+    width: 1200px;
+    height: 161px;
+    border: 1px solid #BDBDBD;
+    display: flex;
+    flex-direction: column;
+`
+
+export const Comment_Submit_Input = styled.textarea`
+    width: 1196px;
+    height: 108px;
+    padding-top: 20px;
+    padding-left: 20px;
+    resize: none;
+    border: none;
+`
+
+export const Comment_Submit_Write_Button = styled.div`
+    width: 1200px;
+    height: 52px;
+    display: flex;
+`
+
+export const Comment_Submit_StringCount = styled.div`
+    width: 1108px;
+    height: 52px;
+    border: none;
+    padding-left: 20px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+`
+export const Comment_Submit_Button = styled.button`
+    width: 89px;
+    height: 52px;
+    background-color: black;
+    border: none;
+    padding: 14px 16px 14px 16px;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: Noto Sans CJK KR;
+    color: white;
+    :hover {
+        opacity: 0.7;
+    }
+`
+
+
+
+export const CommentList = styled.div`
+    width: 1199px;
+    display: flex;
+    flex-direction: column;
+`
+
+export const CommentList_Comment_Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 1199px;
+    height:111px;
+`
+
+export const CommentList_Profile_StarScope = styled.div`
+    display: flex;
+    width: 1200px;
+    height: 27px;
+    margin-bottom: 11px;
+    text-align: center;
+`
+export const CommentList_ProfilePhoto = styled.img`
+    width: 40px;
+    height: 40px;
+    margin-right: 16px;
+`
+
+export const CommentList_Writer = styled.div`
+    font-family: Noto Sans CJK KR;
+    font-size: 16px;
+    font-weight: 500;
+    width: 45px;
+    height: 24px;
+    margin-right: 18px;
+`
+
+export const CommentList_Comment_Read = styled.div`
+    font-family: Noto Sans CJK KR;
+    font-weight: 400;
+    font-size: 16px;
+    height: 24px;
+    width: 1200px;
+    color: #4F4F4F;
+    margin-bottom: 16px;
+`
+
+
+export const CommentList_Write_Date = styled.div`
+    width: 60px;
+    height: 18px;
+    font-family: Noto Sans CJK KR;
+    font-weight: 400;
+    font-size: 12px;
+    color: #BDBDBD;
+    margin-bottom: 20px;
+`
+
+
+
+export const Comment_Submit_String = styled.div`
+    width: 53px;
+    height: 24px;
+    font-family: Noto Sans CJK KR;
+    font-weight: 500;
+    font-size: 16px;
+    color: #BDBDBD;
+`
+
+export const CommentList_Comment_Container_Top = styled.div`
+    display: flex;
+`
+
+export const CommentList_Comment_Container_Top_Right = styled.div`
+    display: column;
+`
+
+export const CommentPencil = styled.img`
+    width: 18px;
+    height: 18px;
+    margin-right: 16px;
+`
+
+export const CommentX = styled.img`
+    width: 18px;
+    height: 18px;
 `
