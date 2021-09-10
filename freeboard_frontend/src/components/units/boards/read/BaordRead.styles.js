@@ -248,7 +248,7 @@ export const Comment_Submit_Container = styled.div`
     display: flex;
     flex-direction: column;
     width: 1200px;
-    height: 272px;
+    height: 300px;
     margin-bottom: 46px;
 
 `
@@ -262,7 +262,7 @@ export const CommentImg = styled.img`
 export const Comment_Img_Name = styled.div`
     display: flex;
     align-items:center;
-    margin-bottom: 42px;
+    margin-bottom: 40px;
 `
 
 export const CommentName = styled.div`
@@ -332,6 +332,7 @@ export const Comment_Submit_Button = styled.button`
     font-weight: 500;
     font-family: Noto Sans CJK KR;
     color: white;
+    cursor: pointer;
     :hover {
         opacity: 0.7;
     }
@@ -350,6 +351,7 @@ export const CommentList_Comment_Container = styled.div`
     flex-direction: column;
     width: 1199px;
     height:111px;
+    margin-bottom: 15px;
 `
 
 export const CommentList_Profile_StarScope = styled.div`
@@ -403,11 +405,12 @@ export const Comment_Submit_String = styled.div`
     font-family: Noto Sans CJK KR;
     font-weight: 500;
     font-size: 16px;
-    color: #BDBDBD;
+    color: #BDBDBD; 
 `
 
 export const CommentList_Comment_Container_Top = styled.div`
     display: flex;
+    height: 100px;
 `
 
 export const CommentList_Comment_Container_Top_Right = styled.div`
@@ -418,9 +421,45 @@ export const CommentPencil = styled.img`
     width: 18px;
     height: 18px;
     margin-right: 16px;
+    cursor: pointer;
 `
 
 export const CommentX = styled.img`
     width: 18px;
     height: 18px;
+    cursor: pointer;
+`
+
+export const Writer_Password_Starscope = styled.div`
+    display: flex;
+    width: 530px;
+    height: 52px;
+    margin-bottom: 20px;
+    align-items: center
+`
+
+export const Comment_Writer_Input = styled.input`
+    width: 180px;
+    height: 52px;
+    padding-top: 14px;
+    padding-left: 20px;
+    padding-bottom: 14px;
+    font-family: Noto Sans CJK KR;
+    font-size: 16px;
+    font-weight: 500;
+    margin-right: 24px;
+    border: 1px solid #BDBDBD;
+`
+
+export const Comment_Password_Input = styled.input`
+    width: 180px;
+    height: 52px;
+    padding-top: 14px;
+    padding-left: 20px;
+    padding-bottom: 14px;
+    font-family: Noto Sans CJK KR;
+    font-size: 16px;
+    font-weight: 500;
+    margin-right: 26px;
+    border: 1px solid #BDBDBD;
 `
