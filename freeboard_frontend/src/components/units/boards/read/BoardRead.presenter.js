@@ -56,6 +56,16 @@ import {
   Writer_Password_Starscope,
   Comment_Writer_Input,
   Comment_Password_Input,
+  Comments_Edit,
+  Edit_Writer_Password_Starscope,
+  Edit_Comment_Writer_Input,
+  Edit_Comment_Password_Input,
+  Edit_Comment_Submit,
+  Edit_Comment_Submit_Input,
+  Edit_Comment_Submit_Write_Button,
+  Edit_Comment_Submit_String,
+  Edit_Comment_Submit_StringCount,
+  Edit_Comment_Submit_Button,
 } from "./BaordRead.styles";
 
 export default function BoardReadUI(props) {
@@ -123,12 +133,12 @@ export default function BoardReadUI(props) {
           <CommentImg src="/commentImg.png" />
           <CommentName>댓글</CommentName>
         </Comment_Img_Name>
-
         <Writer_Password_Starscope>
           <Comment_Writer_Input
             type="text"
             onChange={props.onChangeWriterInput}
             placeholder="Writer"
+            defaultValue=""
           />
           <Comment_Password_Input
             type="password"
@@ -144,7 +154,6 @@ export default function BoardReadUI(props) {
             <StarImg src="/star.png" />
           </StarScope>
         </Writer_Password_Starscope>
-
         {/* 댓글 등록 부분 */}
         <Comment_Submit>
           <Comment_Submit_Input
@@ -167,6 +176,49 @@ export default function BoardReadUI(props) {
         {/* map에서 key값을 받아와야 먹힘 */}
         {props.commentsData?.fetchBoardComments.map((el) => (
           <CommentList_Comment_Container key={el._id}>
+            <Comments_Edit isActive={props.isActive}>
+              <Edit_Writer_Password_Starscope>
+                <Edit_Comment_Writer_Input
+                  type="text"
+                  onChange={props.onChangeEditCommentWriterInput}
+                  placeholder="Writer"
+                  defaultValue=""
+                />
+                <Edit_Comment_Password_Input
+                  type="password"
+                  onChange={props.onChangeEditCommentPasswordInput}
+                  placeholder="Password"
+                />
+                {/* 별점 */}
+                <StarScope>
+                  <StarImg src="/star.png" />
+                  <StarImg src="/star.png" />
+                  <StarImg src="/star.png" />
+                  <StarImg src="/star.png" />
+                  <StarImg src="/star.png" />
+                </StarScope>
+              </Edit_Writer_Password_Starscope>
+              {/* 댓글 등록 부분 */}
+              <Edit_Comment_Submit>
+                <Edit_Comment_Submit_Input
+                  onChange={props.onChangeEditCommentSubmitInput}
+                ></Edit_Comment_Submit_Input>
+                <Underline2 />
+                <Edit_Comment_Submit_Write_Button>
+                  <Edit_Comment_Submit_StringCount>
+                    <Edit_Comment_Submit_String>
+                      46/100
+                    </Edit_Comment_Submit_String>
+                  </Edit_Comment_Submit_StringCount>
+                  <Edit_Comment_Submit_Button
+                  // onClick={}
+                  >
+                    수정하기
+                  </Edit_Comment_Submit_Button>
+                </Edit_Comment_Submit_Write_Button>
+              </Edit_Comment_Submit>
+            </Comments_Edit>
+
             <CommentList_Comment_Container_Top>
               <CommentList_ProfilePhoto src="/CommentList_Profile.png" />
               <CommentList_Comment_Container_Top_Right>
@@ -179,7 +231,10 @@ export default function BoardReadUI(props) {
                     <StarImg src="/star.png" />
                     <StarImg src="/star.png" />
                   </StarScope>
-                  <CommentPencil src="/commentPencil.png" />
+                  <CommentPencil
+                    src="/commentPencil.png"
+                    onClick={props.onClickEdit}
+                  />
                   <CommentX src="/commentX.png" />
                 </CommentList_Profile_StarScope>
                 <CommentList_Comment_Read>

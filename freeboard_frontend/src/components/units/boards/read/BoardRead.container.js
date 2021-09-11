@@ -11,37 +11,23 @@ import { useState } from "react";
 
 export default function BoardRead() {
   const router = useRouter();
-
   const [deleteBoard] = useMutation(DELETE_BOARD);
   const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT);
-
   const [commentInput, setCommentInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
   const [writerInput, setWriterInput] = useState("");
-
+  const [editWriterInput, setEditWriterInput] = useState("");
+  const [editPasswordInput, setEditPasswordInput] = useState("");
+  const [editCommentInput, setEditCommentInput] = useState("");
+  const [isActive, setIsActive] = useState(false);
   const { data } = useQuery(FETCH_BOARD, {
     variables: { boardId: router.query.detailPageNonMembersBasic },
   });
-
   const { data: commentsData } = useQuery(FETCH_BOARD_COMMENTS, {
     variables: {
       boardId: router.query.detailPageNonMembersBasic,
     },
   });
-
-  async function onClickDelete() {
-    try {
-      await deleteBoard({
-        variables: {
-          boardId: router.query.detailPageNonMembersBasic,
-        },
-      });
-      router.push("/boards/board-best");
-    } catch (error) {
-      console.log(error);
-    }
-    console.log(router.query.detailPageNonMembersBasic);
-  }
 
   function onClickMoveEdit() {
     router.push(
@@ -61,6 +47,31 @@ export default function BoardRead() {
   }
   function onChangePasswordInput(event) {
     setPasswordInput(event.target.value);
+  }
+  function onChangeEditCommentWriterInput(event) {
+    setEditWriterInput(event.target.value);
+  }
+  function onChangeEditCommentPasswordInput(event) {
+    setEditPasswordInput(event.target.value);
+  }
+  function onChangeEditCommentSubmitInput(event) {
+    setEditCommentInput(event.target.value);
+  }
+  function onClickEdit() {
+    setIsActive(true);
+  }
+  async function onClickDelete() {
+    try {
+      await deleteBoard({
+        variables: {
+          boardId: router.query.detailPageNonMembersBasic,
+        },
+      });
+      router.push("/boards/board-best");
+    } catch (error) {
+      console.log(error);
+    }
+    console.log(router.query.detailPageNonMembersBasic);
   }
 
   async function onClickCommentSubmit() {
@@ -100,6 +111,11 @@ export default function BoardRead() {
       onChangePasswordInput={onChangePasswordInput}
       onChangeWriterInput={onChangeWriterInput}
       commentsData={commentsData}
+      onChangeEditCommentWriterInput={onChangeEditCommentWriterInput}
+      onChangeEditCommentPasswordInput={onChangeEditCommentPasswordInput}
+      onChangeEditCommentSubmitInput={onChangeEditCommentSubmitInput}
+      onClickEdit={onClickEdit}
+      isActive={isActive}
     />
   );
 }
