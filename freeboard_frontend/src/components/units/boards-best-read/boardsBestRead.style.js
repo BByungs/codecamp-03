@@ -49,6 +49,10 @@ export const Post = styled.div`
   /* background-color: red; */
   justify-content: space-between;
   /* padding-top : 1px; */
+  :hover {
+    box-shadow: none;
+  }
+  cursor: pointer;
 `;
 export const PostThumbnail = styled.img`
   width: 284px;
@@ -176,6 +180,10 @@ export const ToSearch = styled.button`
   text-align: center;
   border: none;
   border-radius: 10px;
+  :hover {
+    opacity: 0.7;
+  }
+  cursor: pointer;
 `;
 
 export const PostsList = styled.div`

@@ -7,6 +7,7 @@ export const FETCH_BOARD = gql`
       title
       contents
       _id
+      createdAt
     }
   }
 `;
@@ -41,6 +42,9 @@ export const FETCH_BOARD_COMMENTS = gql`
       _id
       writer
       contents
+      createdAt
+      updatedAt
+      rating
     }
   }
 `;

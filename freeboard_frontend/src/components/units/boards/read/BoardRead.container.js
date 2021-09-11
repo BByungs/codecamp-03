@@ -75,7 +75,12 @@ export default function BoardRead() {
           },
           boardId: router.query.detailPageNonMembersBasic,
         },
-        refetchQueries: [{ boardId: router.query.detailPageNonMembersBasic }],
+        refetchQueries: [
+          {
+            query: FETCH_BOARD_COMMENTS,
+            variables: { boardId: router.query.detailPageNonMembersBasic },
+          },
+        ],
       });
       console.log(router.query.detailPageNonMembersBasic);
     } catch (error) {

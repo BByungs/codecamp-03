@@ -24,7 +24,6 @@ import {
   LikeNum,
   HateNum,
   Wrapper_Bottom,
-  DeleteButton,
   EditButton,
   Button,
   ListMoveButton,
@@ -73,7 +72,10 @@ export default function BoardReadUI(props) {
                 <ProfileName>
                   {props.data && props.data.fetchBoard.writer}
                 </ProfileName>
-                <ProfileWriteDay>Date : 2021.02.18</ProfileWriteDay>
+                <ProfileWriteDay>
+                  Date :{" "}
+                  {props.data && props.data.fetchBoard.createdAt.slice(0, 10)}
+                </ProfileWriteDay>
               </Container_Top_WriterInfo_Profile>
             </Container_Top_WriterInfo>
 
@@ -106,7 +108,6 @@ export default function BoardReadUI(props) {
         </LikeAndHateButton>
       </Container>
       <Button>
-        {/* <DeleteButton onClick={props.onClickDelete}>삭제하기</DeleteButton> */}
         <ListMoveButton onClick={props.onClickMoveToList}>
           목록으로
         </ListMoveButton>
@@ -125,10 +126,12 @@ export default function BoardReadUI(props) {
 
         <Writer_Password_Starscope>
           <Comment_Writer_Input
+            type="text"
             onChange={props.onChangeWriterInput}
             placeholder="Writer"
           />
           <Comment_Password_Input
+            type="password"
             onChange={props.onChangePasswordInput}
             placeholder="Password"
           />
@@ -168,9 +171,7 @@ export default function BoardReadUI(props) {
               <CommentList_ProfilePhoto src="/CommentList_Profile.png" />
               <CommentList_Comment_Container_Top_Right>
                 <CommentList_Profile_StarScope>
-                  <CommentList_Writer>
-                    {props.commentsData?.fetchBoardComments.writer}
-                  </CommentList_Writer>
+                  <CommentList_Writer>{el.writer}</CommentList_Writer>
                   <StarScope>
                     <StarImg src="/star.png" />
                     <StarImg src="/star.png" />
@@ -182,10 +183,10 @@ export default function BoardReadUI(props) {
                   <CommentX src="/commentX.png" />
                 </CommentList_Profile_StarScope>
                 <CommentList_Comment_Read>
-                  {props.commentsData?.fetchBoardComments.contents}
+                  {el.contents}
                 </CommentList_Comment_Read>
                 <CommentList_Write_Date>
-                  {props.commentsData?.fetchBoardComments.createdAt}
+                  {el.createdAt.slice(0, 10)}
                 </CommentList_Write_Date>
               </CommentList_Comment_Container_Top_Right>
             </CommentList_Comment_Container_Top>
@@ -196,5 +197,3 @@ export default function BoardReadUI(props) {
     </Wrapper_Bottom>
   );
 }
-
-// commentList_Profile_StarScope width:64+22+120
