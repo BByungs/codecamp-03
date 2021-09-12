@@ -16,9 +16,6 @@ export default function BoardRead() {
   const [commentInput, setCommentInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
   const [writerInput, setWriterInput] = useState("");
-  const [editWriterInput, setEditWriterInput] = useState("");
-  const [editPasswordInput, setEditPasswordInput] = useState("");
-  const [editCommentInput, setEditCommentInput] = useState("");
   const [isActive, setIsActive] = useState(false);
   const { data } = useQuery(FETCH_BOARD, {
     variables: { boardId: router.query.detailPageNonMembersBasic },
@@ -48,15 +45,7 @@ export default function BoardRead() {
   function onChangePasswordInput(event) {
     setPasswordInput(event.target.value);
   }
-  function onChangeEditCommentWriterInput(event) {
-    setEditWriterInput(event.target.value);
-  }
-  function onChangeEditCommentPasswordInput(event) {
-    setEditPasswordInput(event.target.value);
-  }
-  function onChangeEditCommentSubmitInput(event) {
-    setEditCommentInput(event.target.value);
-  }
+
   function onClickEdit() {
     setIsActive(true);
   }
@@ -111,10 +100,6 @@ export default function BoardRead() {
       onChangePasswordInput={onChangePasswordInput}
       onChangeWriterInput={onChangeWriterInput}
       commentsData={commentsData}
-      onChangeEditCommentWriterInput={onChangeEditCommentWriterInput}
-      onChangeEditCommentPasswordInput={onChangeEditCommentPasswordInput}
-      onChangeEditCommentSubmitInput={onChangeEditCommentSubmitInput}
-      onClickEdit={onClickEdit}
       isActive={isActive}
     />
   );
