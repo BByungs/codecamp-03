@@ -17,6 +17,7 @@ export default function BoardRead() {
   const [passwordInput, setPasswordInput] = useState("");
   const [writerInput, setWriterInput] = useState("");
   const [isActive, setIsActive] = useState(false);
+  const [eventTargetId, setEventTargetId] = useState("");
   const { data } = useQuery(FETCH_BOARD, {
     variables: { boardId: router.query.detailPageNonMembersBasic },
   });
@@ -46,8 +47,10 @@ export default function BoardRead() {
     setPasswordInput(event.target.value);
   }
 
-  function onClickEdit() {
+  function onClickEdit(event) {
     setIsActive(true);
+    console.log(event.target.id);
+    setEventTargetId(event.target.id);
   }
   async function onClickDelete() {
     try {
@@ -101,6 +104,8 @@ export default function BoardRead() {
       onChangeWriterInput={onChangeWriterInput}
       commentsData={commentsData}
       isActive={isActive}
+      onClickEdit={onClickEdit}
+      eventTargetId={eventTargetId}
     />
   );
 }

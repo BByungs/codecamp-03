@@ -56,6 +56,7 @@ import {
   Writer_Password_Starscope,
   Comment_Writer_Input,
   Comment_Password_Input,
+  List,
 } from "./BaordRead.styles";
 import EditComment from "../../../../../pages/boards/editComment";
 
@@ -167,34 +168,41 @@ export default function BoardReadUI(props) {
         {/* map에서 key값을 받아와야 먹힘 */}
         {props.commentsData?.fetchBoardComments.map((el) => (
           <CommentList_Comment_Container key={el._id}>
-            {/* <EditComment /> */}
-            <CommentList_Comment_Container_Top>
-              <CommentList_ProfilePhoto src="/CommentList_Profile.png" />
-              <CommentList_Comment_Container_Top_Right>
-                <CommentList_Profile_StarScope>
-                  <CommentList_Writer>{el.writer}</CommentList_Writer>
-                  <StarScope>
-                    <StarImg src="/star.png" />
-                    <StarImg src="/star.png" />
-                    <StarImg src="/star.png" />
-                    <StarImg src="/star.png" />
-                    <StarImg src="/star.png" />
-                  </StarScope>
-                  <CommentPencil
-                    src="/commentPencil.png"
-                    onClick={props.onClickEdit}
-                  />
-                  <CommentX src="/commentX.png" />
-                </CommentList_Profile_StarScope>
-                <CommentList_Comment_Read>
-                  {el.contents}
-                </CommentList_Comment_Read>
-                <CommentList_Write_Date>
-                  {el.createdAt.slice(0, 10)}
-                </CommentList_Write_Date>
-              </CommentList_Comment_Container_Top_Right>
-            </CommentList_Comment_Container_Top>
-            <Underline3 />
+            {props.isActive && el._id === props.eventTargetId && (
+              <EditComment />
+            )}
+            {el._id !== props.eventTargetId && (
+              <List>
+                <CommentList_Comment_Container_Top>
+                  <CommentList_ProfilePhoto src="/CommentList_Profile.png" />
+                  <CommentList_Comment_Container_Top_Right>
+                    <CommentList_Profile_StarScope>
+                      <CommentList_Writer>{el.writer}</CommentList_Writer>
+                      <StarScope>
+                        <StarImg src="/star.png" />
+                        <StarImg src="/star.png" />
+                        <StarImg src="/star.png" />
+                        <StarImg src="/star.png" />
+                        <StarImg src="/star.png" />
+                      </StarScope>
+                      <CommentPencil
+                        src="/commentPencil.png"
+                        onClick={props.onClickEdit}
+                        id={el._id}
+                      />
+                      <CommentX src="/commentX.png" />
+                    </CommentList_Profile_StarScope>
+                    <CommentList_Comment_Read>
+                      {el.contents}
+                    </CommentList_Comment_Read>
+                    <CommentList_Write_Date>
+                      {el.createdAt.slice(0, 10)}
+                    </CommentList_Write_Date>
+                  </CommentList_Comment_Container_Top_Right>
+                </CommentList_Comment_Container_Top>
+                <Underline3 />
+              </List>
+            )}
           </CommentList_Comment_Container>
         ))}
       </CommentList>

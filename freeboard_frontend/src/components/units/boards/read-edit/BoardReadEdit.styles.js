@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 // Commnets_edit
 export const Comments_Edit = styled.div`
   width: 1200px;
+  margin-bottom: 40px;
 `;
 
 export const Edit_Writer_Password_Starscope = styled.div`

@@ -445,3 +445,8 @@ export const Comment_Password_Input = styled.input`
   margin-right: 26px;
   border: 1px solid #bdbdbd;
 `;
+
+export const List = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
