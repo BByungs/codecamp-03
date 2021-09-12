@@ -325,7 +325,7 @@ export const CommentList_Profile_StarScope = styled.div`
   width: 1200px;
   height: 27px;
   margin-bottom: 11px;
-  text-align: center;
+  /* text-align: center; */
 `;
 export const CommentList_ProfilePhoto = styled.img`
   width: 40px;
@@ -337,7 +337,7 @@ export const CommentList_Writer = styled.div`
   font-family: Noto Sans CJK KR;
   font-size: 16px;
   font-weight: 500;
-  width: 45px;
+  width: 60px;
   height: 24px;
   margin-right: 18px;
 `;
