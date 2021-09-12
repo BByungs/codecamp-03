@@ -19,7 +19,7 @@ export default function BoardReadEdit() {
   function onChangeEditCommentSubmitInput(event) {
     setEditCommentInput(event.target.value);
   }
-  async function onClickEditCommentButton() {
+  async function onClickEditCommentButton(event) {
     try {
       await updateBoardComment({
         variables: {
