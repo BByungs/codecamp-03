@@ -337,7 +337,7 @@ export const CommentList_Writer = styled.div`
   font-family: Noto Sans CJK KR;
   font-size: 16px;
   font-weight: 500;
-  width: 60px;
+  width: 70px;
   height: 24px;
   margin-right: 18px;
 `;
