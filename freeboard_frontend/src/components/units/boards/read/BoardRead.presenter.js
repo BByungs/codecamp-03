@@ -57,8 +57,17 @@ import {
   Comment_Writer_Input,
   Comment_Password_Input,
   List,
+  Comments_Edit,
+  Edit_Writer_Password_Starscope,
+  Edit_Comment_Writer_Input,
+  Edit_Comment_Password_Input,
+  Edit_Comment_Submit,
+  Edit_Comment_Submit_Input,
+  Edit_Comment_Submit_Write_Button,
+  Edit_Comment_Submit_StringCount,
+  Edit_Comment_Submit_String,
+  Edit_Comment_Submit_Button,
 } from "./BaordRead.styles";
-import EditComment from "../../../../../pages/boards/editComment";
 
 export default function BoardReadUI(props) {
   return (
@@ -169,7 +178,44 @@ export default function BoardReadUI(props) {
         {props.commentsData?.fetchBoardComments.map((el) => (
           <CommentList_Comment_Container key={el._id}>
             {props.isActive && el._id === props.eventTargetId && (
-              <EditComment />
+              <Comments_Edit>
+                <Edit_Writer_Password_Starscope>
+                  <Edit_Comment_Writer_Input type="text" placeholder="Writer" />
+                  <Edit_Comment_Password_Input
+                    type="password"
+                    onChange={props.onChangeEditCommentPasswordInput}
+                    placeholder="Password"
+                  />
+                  {/* 별점 */}
+                  <StarScope>
+                    <StarImg src="/star.png" />
+                    <StarImg src="/star.png" />
+                    <StarImg src="/star.png" />
+                    <StarImg src="/star.png" />
+                    <StarImg src="/star.png" />
+                  </StarScope>
+                </Edit_Writer_Password_Starscope>
+                {/* 댓글 등록 부분 */}
+                <Edit_Comment_Submit>
+                  <Edit_Comment_Submit_Input
+                    onChange={props.onChangeEditCommentSubmitInput}
+                  ></Edit_Comment_Submit_Input>
+                  <Underline2 />
+                  <Edit_Comment_Submit_Write_Button>
+                    <Edit_Comment_Submit_StringCount>
+                      <Edit_Comment_Submit_String>
+                        46/100
+                      </Edit_Comment_Submit_String>
+                    </Edit_Comment_Submit_StringCount>
+                    <Edit_Comment_Submit_Button
+                      onClick={props.onClickEditCommentButton}
+                      id={el._id}
+                    >
+                      수정하기
+                    </Edit_Comment_Submit_Button>
+                  </Edit_Comment_Submit_Write_Button>
+                </Edit_Comment_Submit>
+              </Comments_Edit>
             )}
             {el._id !== props.eventTargetId && (
               <List>
