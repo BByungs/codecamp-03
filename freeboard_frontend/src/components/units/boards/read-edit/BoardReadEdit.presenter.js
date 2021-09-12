@@ -18,11 +18,7 @@ export default function BoardReadEditUI(props) {
   return (
     <Comments_Edit>
       <Edit_Writer_Password_Starscope>
-        <Edit_Comment_Writer_Input
-          type="text"
-          onChange={props.onChangeEditCommentWriterInput}
-          placeholder="Writer"
-        />
+        <Edit_Comment_Writer_Input type="text" placeholder="Writer" />
         <Edit_Comment_Password_Input
           type="password"
           onChange={props.onChangeEditCommentPasswordInput}
@@ -47,9 +43,7 @@ export default function BoardReadEditUI(props) {
           <Edit_Comment_Submit_StringCount>
             <Edit_Comment_Submit_String>46/100</Edit_Comment_Submit_String>
           </Edit_Comment_Submit_StringCount>
-          <Edit_Comment_Submit_Button
-          // onClick={}
-          >
+          <Edit_Comment_Submit_Button onClick={props.onClickEditCommentButton}>
             수정하기
           </Edit_Comment_Submit_Button>
         </Edit_Comment_Submit_Write_Button>
