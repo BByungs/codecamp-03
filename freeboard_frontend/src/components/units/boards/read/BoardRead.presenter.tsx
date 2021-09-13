@@ -67,6 +67,7 @@ import {
   Edit_Comment_Submit_StringCount,
   Edit_Comment_Submit_String,
   Edit_Comment_Submit_Button,
+  DeleteButton,
 } from "./BaordRead.styles";
 
 export default function BoardReadUI(props) {
@@ -123,6 +124,7 @@ export default function BoardReadUI(props) {
           목록으로
         </ListMoveButton>
         <EditButton onClick={props.onClickMoveEdit}>수정하기</EditButton>
+        <DeleteButton onClick={props.onClickBoardDelete}>삭제하기</DeleteButton>
       </Button>
 
       <Underline />
@@ -171,6 +173,8 @@ export default function BoardReadUI(props) {
           </Comment_Submit_Write_Button>
         </Comment_Submit>
       </Comment_Submit_Container>
+
+      {/* ======================================================================= */}
 
       {/* 댓글 리스트 맵 돌려야 하는얘 */}
       <CommentList>

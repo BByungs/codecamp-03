@@ -196,7 +196,7 @@ export const EditButton = styled.button`
 
 export const Button = styled.div`
   display: flex;
-  width: 382px;
+  width: 632px;
   height: 52px;
   justify-content: space-between;
   margin-bottom: 80px;
@@ -547,4 +547,18 @@ export const StarImg = styled.img`
 export const Underline2 = styled.div`
   width: 1199px;
   border-bottom: 1px solid #bdbdbd;
+`;
+
+export const DeleteButton = styled.button`
+  width: 179px;
+  height: 52px;
+  background: white;
+  cursor: pointer;
+  :hover {
+    opacity: 0.7;
+  }
+  border: 1px soild #bdbdbd;
+  font-family: Noto Sans CJK KR;
+  font-weight: 500;
+  font-size: 16px;
 `;

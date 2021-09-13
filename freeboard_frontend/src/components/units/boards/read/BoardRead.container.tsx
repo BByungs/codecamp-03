@@ -5,10 +5,10 @@ import {
   FETCH_BOARD_COMMENTS,
   UPDATE_BOARD_COMMENT,
   DELETE_BOARD_COMMENT,
+  DELETE_BOARD,
 } from "./BoardRead.queries";
 import { useQuery, useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-import { DELETE_BOARD } from "./BoardRead.queries";
 import { useState } from "react";
 
 export default function BoardRead() {
@@ -56,20 +56,6 @@ export default function BoardRead() {
   }
   function onChangeEditCommentSubmitInput(event) {
     setEditCommentInput(event.target.value);
-  }
-
-  async function onClickDelete() {
-    try {
-      await deleteBoard({
-        variables: {
-          boardId: router.query.detailPageNonMembersBasic,
-        },
-      });
-      router.push("/boards/board-best");
-    } catch (error) {
-      console.log(error);
-    }
-    console.log(router.query.detailPageNonMembersBasic);
   }
 
   // 등록하기 버튼
@@ -154,11 +140,23 @@ export default function BoardRead() {
       alert(error);
     }
   }
+
+  async function onClickBoardDelete() {
+    try {
+      await deleteBoard({
+        variables: {
+          boardId: router.query.detailPageNonMembersBasic,
+        },
+      });
+      router.push(`/boards/board-best`);
+    } catch (error) {
+      alert(error.message);
+    }
+  }
   return (
     <BoardReadUI
       router={router}
       data={data}
-      onClickDelete={onClickDelete}
       onClickMoveEdit={onClickMoveEdit}
       onClickMoveToList={onClickMoveToList}
       onClickCommentSubmit={onClickCommentSubmit}
@@ -173,6 +171,7 @@ export default function BoardRead() {
       updateBoardComment={updateBoardComment}
       onClickEditCommentButton={onClickEditCommentButton}
       onClickCommentDelete={onClickCommentDelete}
+      onClickBoardDelete={onClickBoardDelete}
     />
   );
 }
