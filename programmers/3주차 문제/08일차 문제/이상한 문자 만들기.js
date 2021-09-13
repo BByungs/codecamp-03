@@ -37,6 +37,8 @@ console.log(solution("hello world hAHa abcd"))
 //     return answer
 // }
 
+
+// map안에서 또 map 돌린거
 function solution(s) {
     const answer = s.split(" ")
     .map(str=>{
