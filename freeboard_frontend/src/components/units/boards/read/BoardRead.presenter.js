@@ -178,7 +178,7 @@ export default function BoardReadUI(props) {
         {props.commentsData?.fetchBoardComments
           .map((el) => (
             <CommentList_Comment_Container key={el._id}>
-              {props.isActive && el._id === props.eventTargetId && (
+              {el._id === props.eventTargetId && (
                 <Comments_Edit>
                   <Edit_Writer_Password_Starscope>
                     <Edit_Comment_Writer_Input
@@ -240,7 +240,11 @@ export default function BoardReadUI(props) {
                           onClick={props.onClickEdit}
                           id={el._id}
                         />
-                        <CommentX src="/commentX.png" />
+                        <CommentX
+                          src="/commentX.png"
+                          onClick={props.onClickCommentDelete}
+                          id={el._id}
+                        />
                       </CommentList_Profile_StarScope>
                       <CommentList_Comment_Read>
                         {el.contents}

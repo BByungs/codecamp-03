@@ -4,6 +4,7 @@ import {
   CREATE_BOARD_COMMENT,
   FETCH_BOARD_COMMENTS,
   UPDATE_BOARD_COMMENT,
+  DELETE_BOARD_COMMENT,
 } from "./BoardRead.queries";
 import { useQuery, useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
@@ -17,11 +18,11 @@ export default function BoardRead() {
   const [eventTargetId, setEventTargetId] = useState("");
   const [editPasswordInput, setEditPasswordInput] = useState("");
   const [editCommentInput, setEditCommentInput] = useState("");
-  const [isActive, setIsActive] = useState(false);
 
   const [deleteBoard] = useMutation(DELETE_BOARD);
   const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT);
   const [updateBoardComment] = useMutation(UPDATE_BOARD_COMMENT);
+  const [deleteBoardComment] = useMutation(DELETE_BOARD_COMMENT);
 
   const router = useRouter();
   const { data } = useQuery(FETCH_BOARD, {
@@ -98,7 +99,6 @@ export default function BoardRead() {
   }
   // 펜슬버튼
   function onClickEdit(event) {
-    setIsActive(true);
     console.log(event.target.id);
     setEventTargetId(event.target.id);
   }
@@ -129,11 +129,31 @@ export default function BoardRead() {
           },
         ],
       });
+      setEventTargetId("");
     } catch (error) {
       alert(error);
     }
   }
 
+  async function onClickCommentDelete(event) {
+    const promptPassword = prompt("비밀번호를 입력하세요");
+    try {
+      await deleteBoardComment({
+        variables: {
+          password: promptPassword,
+          boardCommentId: event.target.id,
+        },
+        refetchQueries: [
+          {
+            query: FETCH_BOARD_COMMENTS,
+            variables: { boardId: router.query.detailPageNonMembersBasic },
+          },
+        ],
+      });
+    } catch (error) {
+      alert(error);
+    }
+  }
   return (
     <BoardReadUI
       router={router}
@@ -146,13 +166,13 @@ export default function BoardRead() {
       onChangePasswordInput={onChangePasswordInput}
       onChangeWriterInput={onChangeWriterInput}
       commentsData={commentsData}
-      isActive={isActive}
       onClickEdit={onClickEdit}
       eventTargetId={eventTargetId}
       onChangeEditCommentPasswordInput={onChangeEditCommentPasswordInput}
       onChangeEditCommentSubmitInput={onChangeEditCommentSubmitInput}
       updateBoardComment={updateBoardComment}
       onClickEditCommentButton={onClickEditCommentButton}
+      onClickCommentDelete={onClickCommentDelete}
     />
   );
 }
