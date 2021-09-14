@@ -24,6 +24,11 @@ export default function BoardWrite(props) {
   const [id, setId] = useState("");
   const router = useRouter();
 
+  const [detailAddress, setDetailAddress] = useState("");
+  const [myZipcode, setMyZipcode] = useState("");
+  const [myAddress, setMyAddress] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+
   function onChangeWriter(event) {
     setWriter(event.target.value);
   }
@@ -68,17 +73,23 @@ export default function BoardWrite(props) {
               contents,
               password,
               youtubeUrl,
+              boardAddress: {
+                zipcode: myZipcode,
+                address: myAddress,
+                addressDetail: detailAddress,
+              },
             },
           },
         });
-        console.log(result);
-        console.log(result.data.createBoard._id);
+        console.log(
+          `id: ${result.data.createBoard._id} , 우편번호: ${myZipcode} , 주소: ${myAddress} , 상세주소: ${detailAddress} , youtubeUrl: ${youtubeUrl}`
+        );
         setId(result.data.createBoard._id);
         router.push(
           `/boards/detailPage-nonMembers-basic-read/${result.data.createBoard._id}`
         );
       } catch (error) {
-        console.log(error);
+        alert(error.message);
       }
     }
   }
@@ -95,11 +106,19 @@ export default function BoardWrite(props) {
             title,
             contents,
             youtubeUrl,
+            boardAddress: {
+              zipcode: myZipcode,
+              address: myAddress,
+              addressDetail: detailAddress,
+            },
           },
           password,
           boardId: router.query.detailPageNonMembersBasic,
         },
       });
+      console.log(
+        `우편번호: ${myZipcode} , 주소: ${myAddress} , 상세주소: ${detailAddress} , youtubeUrl: ${youtubeUrl}`
+      );
       router.push(
         `/boards/detailPage-nonMembers-basic-read/${router.query.detailPageNonMembersBasic}`
       );
@@ -107,6 +126,21 @@ export default function BoardWrite(props) {
       console.log(error);
       alert(error.message);
     }
+  }
+
+  function InputDetailAddress(event) {
+    setDetailAddress(event.target.value);
+  }
+
+  const handleComplete = (data) => {
+    setMyZipcode(data.zonecode);
+    setMyAddress(data.address);
+    console.log(data);
+    setIsOpen((prev) => !prev);
+  };
+
+  function onToggleZipcode() {
+    setIsOpen((prev) => !prev);
   }
 
   return (
@@ -124,7 +158,12 @@ export default function BoardWrite(props) {
       passwordError={passwordError}
       onclickEdit={onclickEdit}
       isEdit={props.isEdit}
-      // isActive 프롭스로 전달해야함
+      InputDetailAddress={InputDetailAddress}
+      handleComplete={handleComplete}
+      onToggleZipcode={onToggleZipcode}
+      myZipcode={myZipcode}
+      myAddress={myAddress}
+      isOpen={isOpen}
     />
   );
 }

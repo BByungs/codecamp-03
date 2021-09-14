@@ -10,9 +10,15 @@ export const FETCH_BOARD = gql`
       likeCount
       dislikeCount
       youtubeUrl
+      boardAddress {
+        zipcode
+        address
+        addressDetail
+      }
     }
   }
 `;
+// ! 이거 체크
 
 export const DELETE_BOARD = gql`
   mutation deleteBoard($boardId: ID!) {

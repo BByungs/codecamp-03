@@ -28,8 +28,10 @@ import {
   Title,
   TitleFont,
   Wrapper,
-  DeleteButton,
+  Address,
 } from "./BoardWrite.styles";
+import DaumPostcode from "react-daum-postcode";
+import { useState } from "react";
 
 export default function BoardWriteUI(props) {
   return (
@@ -81,11 +83,22 @@ export default function BoardWriteUI(props) {
         <Container_Address>
           <SmallTitle>주소</SmallTitle>
           <AddressSearch>
-            <AddressInput type="text" placeholder="07250" />
-            <AddressSearchButton>우편번호 검색</AddressSearchButton>
+            <AddressInput type="text" defaultValue={props.myZipcode} />
+            <AddressSearchButton onClick={props.onToggleZipcode}>
+              우편번호 검색
+            </AddressSearchButton>
+            {props.isOpen && (
+              <Address visible={true} onCancel={props.onToggleZipcode}>
+                <DaumPostcode onComplete={props.handleComplete} />
+              </Address>
+            )}
           </AddressSearch>
-          <Input />
-          <Input />
+          <Input type="text" defaultValue={props.myAddress} />
+          <Input
+            type="text"
+            placeholder="상세주소를 입력하세요"
+            onChange={props.InputDetailAddress}
+          />
         </Container_Address>
 
         {/* 유튜브 입력칸 */}

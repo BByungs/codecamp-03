@@ -1,4 +1,10 @@
 import styled from "@emotion/styled";
+import { Modal } from "antd";
+
+export const Address = styled(Modal)`
+  height: auto;
+  width: auto;
+`;
 
 export const Container = styled.div`
   width: 1200px;
@@ -93,7 +99,7 @@ export const AddressInput = styled.input`
   width: 77px;
   text-align: center;
   font-size: 16px;
-  color: #bdbdbd;
+  color: black;
   border: 1px solid #bdbdbd;
 `;
 

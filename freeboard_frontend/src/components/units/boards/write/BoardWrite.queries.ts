@@ -4,7 +4,6 @@ export const CREATE_BOARD = gql`
   mutation createBoard($createBoardInput: CreateBoardInput!) {
     createBoard(createBoardInput: $createBoardInput) {
       _id
-      youtubeUrl
     }
   }
 `;
@@ -21,11 +20,10 @@ export const UPDATE_BOARD = gql`
       boardId: $boardId
     ) {
       _id
-      writer
-      title
-      contents
-      createdAt
-      youtubeUrl
     }
   }
 `;
+
+// 백엔드에서 정보를 가져올때 필요한 정보들을 여기다 적고
+
+// 필요한값은 컨테이너에서 적어주면 됨

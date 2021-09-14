@@ -67,6 +67,8 @@ import {
   DeleteButton,
   MapIcon,
   MyRate,
+  WriterAddress,
+  AddressFont,
 } from "./BaordRead.styles";
 import ReactPlayer from "react-player";
 
@@ -76,6 +78,14 @@ export default function BoardReadUI(props) {
       <Container>
         <Container_Top>
           {/* 작성자와 아이콘 있는곳 */}
+          <WriterAddress>
+            <AddressFont>
+              {props.data?.fetchBoard.boardAddress.address}
+            </AddressFont>
+            <AddressFont>
+              {props.data?.fetchBoard.boardAddress.addressDetail}
+            </AddressFont>
+          </WriterAddress>
           <Container_Top_WriterInfo_Icon>
             {/* 작성자이름 , 날짜 , 프로필사진  */}
             <Container_Top_WriterInfo>

@@ -579,3 +579,26 @@ export const DeleteButton = styled.button`
   font-weight: 500;
   font-size: 16px;
 `;
+
+export const WriterAddress = styled.div`
+  width: 376px;
+  height: 70px;
+  background: #aeaeae;
+  padding: 8px 16px 8px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: right;
+  margin-left: 600px;
+  margin-bottom: 5px;
+`;
+
+export const AddressFont = styled.div`
+  height: 16px;
+  width: 312px;
+  font-family: Noto Sans CJK KR;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  color: white;
+`;
