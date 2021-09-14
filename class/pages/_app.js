@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client"; // apollo 쓰려면 import해서 이렇게 가져와야함
+import "antd/dist/antd.css";
 
 function MyApp({ Component, pageProps }) {
   // Apollo Setting
