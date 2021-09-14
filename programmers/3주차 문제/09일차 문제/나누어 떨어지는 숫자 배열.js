@@ -1,12 +1,11 @@
 function solution(arr, divisor) {    
-    let newArr = arr.filter((el)=>{
-        if(el%divisor===0) {
-            return true
-        }
-    })
-    if(newArr.length===0) {
-        return [-1]
-    } 
-    return newArr.sort((a,b)=>a-b)
+    let result = arr.filter(el=>el%divisor===0)
+    .sort((a,b)=>a-b)
     
+    return result.length===0 
+    ? [-1] 
+    : result
 }
+
+console.log(solution([5,9,7,10],5))
+
