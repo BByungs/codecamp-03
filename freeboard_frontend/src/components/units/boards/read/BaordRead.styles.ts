@@ -1,5 +1,8 @@
 import styled from "@emotion/styled";
+import { Rate } from "antd";
 
+export const MyRate = styled(Rate)``;
+export const ListRate = styled(Rate)``;
 export const Wrapper_Bottom = styled.div`
   width: 100%;
   /* height: 1900px; */
@@ -123,17 +126,12 @@ export const Contents = styled.div`
   font-size: 16px;
 `;
 
-export const Video = styled.img`
-  width: 486px;
-  height: 240px;
-  margin-bottom: 160px;
-`;
-
 export const LikeAndHateButton = styled.div`
   display: flex;
   justify-content: space-between;
   width: 120px;
   height: 27px;
+  margin-top: 160px;
 `;
 
 export const Like = styled.div`
@@ -353,7 +351,7 @@ export const CommentList_Comment_Read = styled.div`
 `;
 
 export const CommentList_Write_Date = styled.div`
-  width: 60px;
+  width: 75px;
   height: 18px;
   font-family: Noto Sans CJK KR;
   font-weight: 400;
@@ -385,6 +383,7 @@ export const CommentPencil = styled.img`
   height: 18px;
   margin-right: 16px;
   cursor: pointer;
+  margin-left: 860px;
 `;
 
 export const CommentX = styled.img`
@@ -395,7 +394,7 @@ export const CommentX = styled.img`
 
 export const Writer_Password_Starscope = styled.div`
   display: flex;
-  width: 530px;
+  width: 550px;
   height: 52px;
   margin-bottom: 20px;
   align-items: center;
@@ -441,7 +440,7 @@ export const Comments_Edit = styled.div`
 
 export const Edit_Writer_Password_Starscope = styled.div`
   display: flex;
-  width: 530px;
+  width: 550px;
   height: 52px;
   margin-bottom: 20px;
   align-items: center;

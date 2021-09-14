@@ -11,7 +11,17 @@ import { useQuery, useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
+import { Rate } from "antd";
+
+// const desc = ["terrible", "bad", "normal", "good", "wonderful"];
+
 export default function BoardRead() {
+  const [value, setValue] = useState(3);
+
+  const handleChange = (value) => {
+    setValue(value);
+  };
+
   const [commentInput, setCommentInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
   const [writerInput, setWriterInput] = useState("");
@@ -172,6 +182,7 @@ export default function BoardRead() {
       onClickEditCommentButton={onClickEditCommentButton}
       onClickCommentDelete={onClickCommentDelete}
       onClickBoardDelete={onClickBoardDelete}
+      handleChange={handleChange}
     />
   );
 }

@@ -15,7 +15,6 @@ import {
   Title,
   BoardImg,
   Contents,
-  Video,
   LikeAndHateButton,
   Like,
   Hate,
@@ -68,9 +67,20 @@ import {
   Edit_Comment_Submit_String,
   Edit_Comment_Submit_Button,
   DeleteButton,
+  ListRate,
+  MyRate,
 } from "./BaordRead.styles";
+import { Rate } from "antd";
+import { useState } from "react";
+import React from "react";
+import ReactPlayer from "react-player";
 
 export default function BoardReadUI(props) {
+  const [value, setValue] = useState(3);
+
+  const handleChange = (value) => {
+    setValue(value);
+  };
   return (
     <Wrapper_Bottom>
       <Container>
@@ -106,7 +116,11 @@ export default function BoardReadUI(props) {
           <Contents>{props.data && props.data.fetchBoard.contents}</Contents>
         </WriteTitle>
 
-        <Video src="/video.png" />
+        <ReactPlayer
+          url={props.data?.fetchBoard.youtubeUrl}
+          width={486}
+          height={240}
+        />
 
         <LikeAndHateButton>
           <Like>
@@ -149,13 +163,7 @@ export default function BoardReadUI(props) {
             placeholder="Password"
           />
           {/* 별점 */}
-          <StarScope>
-            <StarImg src="/star.png" />
-            <StarImg src="/star.png" />
-            <StarImg src="/star.png" />
-            <StarImg src="/star.png" />
-            <StarImg src="/star.png" />
-          </StarScope>
+          <Rate onChange={handleChange} value={value} />
         </Writer_Password_Starscope>
         {/* 댓글 등록 부분 */}
         <Comment_Submit>
@@ -195,13 +203,7 @@ export default function BoardReadUI(props) {
                       placeholder="Password"
                     />
                     {/* 별점 */}
-                    <StarScope>
-                      <StarImg src="/star.png" />
-                      <StarImg src="/star.png" />
-                      <StarImg src="/star.png" />
-                      <StarImg src="/star.png" />
-                      <StarImg src="/star.png" />
-                    </StarScope>
+                    <Rate onChange={handleChange} value={value} />
                   </Edit_Writer_Password_Starscope>
                   {/* 댓글 등록 부분 */}
                   <Edit_Comment_Submit>
@@ -232,13 +234,7 @@ export default function BoardReadUI(props) {
                     <CommentList_Comment_Container_Top_Right>
                       <CommentList_Profile_StarScope>
                         <CommentList_Writer>{el.writer}</CommentList_Writer>
-                        <StarScope>
-                          <StarImg src="/star.png" />
-                          <StarImg src="/star.png" />
-                          <StarImg src="/star.png" />
-                          <StarImg src="/star.png" />
-                          <StarImg src="/star.png" />
-                        </StarScope>
+                        <ListRate onChange={handleChange} value={value} />
                         <CommentPencil
                           src="/commentPencil.png"
                           onClick={props.onClickEdit}
