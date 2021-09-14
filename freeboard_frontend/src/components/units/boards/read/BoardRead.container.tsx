@@ -6,21 +6,19 @@ import {
   UPDATE_BOARD_COMMENT,
   DELETE_BOARD_COMMENT,
   DELETE_BOARD,
+  LIKE_BOARD,
+  DISLIKE_BOARD,
 } from "./BoardRead.queries";
 import { useQuery, useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-import { Rate } from "antd";
-
-// const desc = ["terrible", "bad", "normal", "good", "wonderful"];
-
 export default function BoardRead() {
-  const [value, setValue] = useState(3);
+  const [myStar, setMyStar] = useState(0);
 
-  const handleChange = (value) => {
-    setValue(value);
-  };
+  function onChangeStar(value) {
+    setMyStar(value);
+  }
 
   const [commentInput, setCommentInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
@@ -33,6 +31,8 @@ export default function BoardRead() {
   const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT);
   const [updateBoardComment] = useMutation(UPDATE_BOARD_COMMENT);
   const [deleteBoardComment] = useMutation(DELETE_BOARD_COMMENT);
+  const [likeBoard] = useMutation(LIKE_BOARD);
+  const [dislikeBoard] = useMutation(DISLIKE_BOARD);
 
   const router = useRouter();
   const { data } = useQuery(FETCH_BOARD, {
@@ -77,7 +77,7 @@ export default function BoardRead() {
             writer: writerInput,
             password: passwordInput,
             contents: commentInput,
-            rating: 4,
+            rating: myStar,
           },
           boardId: router.query.detailPageNonMembersBasic,
         },
@@ -88,9 +88,8 @@ export default function BoardRead() {
           },
         ],
       });
-      console.log(router.query.detailPageNonMembersBasic);
     } catch (error) {
-      console.log(error);
+      alert(error.message);
     }
   }
   // 펜슬버튼
@@ -106,16 +105,9 @@ export default function BoardRead() {
         variables: {
           updateBoardCommentInput: {
             contents: editCommentInput,
-            rating: 4,
+            rating: myStar,
           },
           password: editPasswordInput,
-          // id값 BoardReadEdit.presenter.js에서 받와야하는데
-          // 여긴 다른폴더라 값을 받아오지 못함
-          // 이걸 어떻게 받아오기만 하면 댓글수정 기능이 구현 될텐데
-          // 어떻게 해야할지 모르겠음
-          // 이부분 질문
-          // 원래는 수정하는 부분 나눴는데
-          // 값을 못 받아와서 합침
           boardCommentId: event.target.id,
         },
         refetchQueries: [
@@ -163,6 +155,30 @@ export default function BoardRead() {
       alert(error.message);
     }
   }
+
+  function likeCount() {
+    likeBoard({
+      variables: { boardId: router.query.detailPageNonMembersBasic },
+      refetchQueries: [
+        {
+          query: FETCH_BOARD,
+          variables: { boardId: router.query.detailPageNonMembersBasic },
+        },
+      ],
+    });
+  }
+
+  function hateCount() {
+    dislikeBoard({
+      variables: { boardId: router.query.detailPageNonMembersBasic },
+      refetchQueries: [
+        {
+          query: FETCH_BOARD,
+          variables: { boardId: router.query.detailPageNonMembersBasic },
+        },
+      ],
+    });
+  }
   return (
     <BoardReadUI
       router={router}
@@ -182,7 +198,9 @@ export default function BoardRead() {
       onClickEditCommentButton={onClickEditCommentButton}
       onClickCommentDelete={onClickCommentDelete}
       onClickBoardDelete={onClickBoardDelete}
-      handleChange={handleChange}
+      likeCount={likeCount}
+      hateCount={hateCount}
+      onChangeStar={onChangeStar}
     />
   );
 }

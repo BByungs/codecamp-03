@@ -1,8 +1,17 @@
 import styled from "@emotion/styled";
 import { Rate } from "antd";
+import { EnvironmentOutlined } from "@ant-design/icons";
+
+export const MapIcon = styled(EnvironmentOutlined)`
+  color: #ffd600;
+  font-size: 20px;
+  :hover {
+    opacity: 0.7;
+  }
+  cursor: pointer;
+`;
 
 export const MyRate = styled(Rate)``;
-export const ListRate = styled(Rate)``;
 export const Wrapper_Bottom = styled.div`
   width: 100%;
   /* height: 1900px; */
@@ -92,6 +101,10 @@ export const Underbar = styled.div`
 export const MagnetIcon = styled.img`
   width: 26.67px;
   height: 13.33px;
+  cursor: pointer;
+  :hover {
+    opacity: 0.7;
+  }
 `;
 
 export const PointIcon = styled.img`
@@ -132,13 +145,14 @@ export const LikeAndHateButton = styled.div`
   width: 120px;
   height: 27px;
   margin-top: 160px;
+  align-items: center;
 `;
 
 export const Like = styled.div`
   display: flex;
   flex-direction: column;
   width: 40px;
-  height: 45px;
+  height: 47px;
   justify-content: center;
   align-items: center;
 `;
@@ -150,11 +164,13 @@ export const Hate = styled.div`
   height: 47px;
   justify-content: center;
   align-items: center;
+  margin-top: 2px;
 `;
 
 export const LikeButton = styled.img`
-  width: 20px;
-  height: 18px;
+  width: 22px;
+  height: 20px;
+  margin-bottom: 2px;
 `;
 
 export const HateButton = styled.img`
@@ -168,6 +184,7 @@ export const LikeNum = styled.div`
   font-size: 18px;
   font-weight: 400;
   color: #ffd600;
+  text-align: center;
 `;
 
 export const HateNum = styled.div`
@@ -176,6 +193,7 @@ export const HateNum = styled.div`
   color: #828282;
   font-weight: 400;
   font-size: 18px;
+  text-align: center;
 `;
 
 export const EditButton = styled.button`

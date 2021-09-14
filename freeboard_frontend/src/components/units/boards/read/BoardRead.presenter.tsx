@@ -31,8 +31,6 @@ import {
   CommentImg,
   Comment_Img_Name,
   CommentName,
-  StarScope,
-  StarImg,
   Comment_Submit,
   Comment_Submit_Input,
   Comment_Submit_Write_Button,
@@ -67,20 +65,12 @@ import {
   Edit_Comment_Submit_String,
   Edit_Comment_Submit_Button,
   DeleteButton,
-  ListRate,
+  MapIcon,
   MyRate,
 } from "./BaordRead.styles";
-import { Rate } from "antd";
-import { useState } from "react";
-import React from "react";
 import ReactPlayer from "react-player";
 
 export default function BoardReadUI(props) {
-  const [value, setValue] = useState(3);
-
-  const handleChange = (value) => {
-    setValue(value);
-  };
   return (
     <Wrapper_Bottom>
       <Container>
@@ -104,7 +94,7 @@ export default function BoardReadUI(props) {
             {/* 아이콘 있는 곳 */}
             <Container_Top_WriterIcon>
               <MagnetIcon src="/magnet.png" />
-              <PointIcon src="/point.png" />
+              <MapIcon />
             </Container_Top_WriterIcon>
           </Container_Top_WriterInfo_Icon>
           <Underbar />
@@ -124,12 +114,12 @@ export default function BoardReadUI(props) {
 
         <LikeAndHateButton>
           <Like>
-            <LikeButton src="/like.png" />
-            <LikeNum>1920</LikeNum>
+            <LikeButton onClick={props.likeCount} src="/like.png" />
+            <LikeNum>{props.data?.fetchBoard.likeCount}</LikeNum>
           </Like>
           <Hate>
-            <HateButton src="/hate.png" />
-            <HateNum>1920</HateNum>
+            <HateButton onClick={props.hateCount} src="/hate.png" />
+            <HateNum>{props.data?.fetchBoard.dislikeCount}</HateNum>
           </Hate>
         </LikeAndHateButton>
       </Container>
@@ -143,9 +133,8 @@ export default function BoardReadUI(props) {
 
       <Underline />
 
-      {/* 댓글 적는 곳 */}
+      {/* ========================= 댓글 등록 폼 ============================ */}
       <Comment_Submit_Container>
-        {/* 댓글아이콘 , 댓글 */}
         <Comment_Img_Name>
           <CommentImg src="/commentImg.png" />
           <CommentName>댓글</CommentName>
@@ -163,7 +152,7 @@ export default function BoardReadUI(props) {
             placeholder="Password"
           />
           {/* 별점 */}
-          <Rate onChange={handleChange} value={value} />
+          <MyRate onChange={props.onChangeStar} />
         </Writer_Password_Starscope>
         {/* 댓글 등록 부분 */}
         <Comment_Submit>
@@ -182,84 +171,81 @@ export default function BoardReadUI(props) {
         </Comment_Submit>
       </Comment_Submit_Container>
 
-      {/* ======================================================================= */}
-
-      {/* 댓글 리스트 맵 돌려야 하는얘 */}
+      {/* Mapping */}
       <CommentList>
-        {/* map에서 key값을 받아와야 먹힘 */}
-        {props.commentsData?.fetchBoardComments
-          .map((el) => (
-            <CommentList_Comment_Container key={el._id}>
-              {el._id === props.eventTargetId && (
-                <Comments_Edit>
-                  <Edit_Writer_Password_Starscope>
-                    <Edit_Comment_Writer_Input
-                      type="text"
-                      placeholder="Writer"
-                    />
-                    <Edit_Comment_Password_Input
-                      type="password"
-                      onChange={props.onChangeEditCommentPasswordInput}
-                      placeholder="Password"
-                    />
-                    {/* 별점 */}
-                    <Rate onChange={handleChange} value={value} />
-                  </Edit_Writer_Password_Starscope>
-                  {/* 댓글 등록 부분 */}
-                  <Edit_Comment_Submit>
-                    <Edit_Comment_Submit_Input
-                      onChange={props.onChangeEditCommentSubmitInput}
-                    ></Edit_Comment_Submit_Input>
-                    <Underline2 />
-                    <Edit_Comment_Submit_Write_Button>
-                      <Edit_Comment_Submit_StringCount>
-                        <Edit_Comment_Submit_String>
-                          46/100
-                        </Edit_Comment_Submit_String>
-                      </Edit_Comment_Submit_StringCount>
-                      <Edit_Comment_Submit_Button
-                        onClick={props.onClickEditCommentButton}
+        {props.commentsData?.fetchBoardComments.map((el) => (
+          <CommentList_Comment_Container key={el._id}>
+            {/* ========================= 댓글 수정폼 ============================ */}
+
+            {el._id === props.eventTargetId && (
+              <Comments_Edit>
+                <Edit_Writer_Password_Starscope>
+                  <Edit_Comment_Writer_Input type="text" placeholder="Writer" />
+                  <Edit_Comment_Password_Input
+                    type="password"
+                    onChange={props.onChangeEditCommentPasswordInput}
+                    placeholder="Password"
+                  />
+                  {/* 별점 */}
+                  <MyRate onChange={props.onChangeStar} />
+                </Edit_Writer_Password_Starscope>
+                {/* 댓글 등록 부분 */}
+                <Edit_Comment_Submit>
+                  <Edit_Comment_Submit_Input
+                    onChange={props.onChangeEditCommentSubmitInput}
+                  ></Edit_Comment_Submit_Input>
+                  <Underline2 />
+                  <Edit_Comment_Submit_Write_Button>
+                    <Edit_Comment_Submit_StringCount>
+                      <Edit_Comment_Submit_String>
+                        46/100
+                      </Edit_Comment_Submit_String>
+                    </Edit_Comment_Submit_StringCount>
+                    <Edit_Comment_Submit_Button
+                      onClick={props.onClickEditCommentButton}
+                      id={el._id}
+                    >
+                      수정하기
+                    </Edit_Comment_Submit_Button>
+                  </Edit_Comment_Submit_Write_Button>
+                </Edit_Comment_Submit>
+              </Comments_Edit>
+            )}
+
+            {/* ========================= 댓글 리스트 ============================ */}
+
+            {el._id !== props.eventTargetId && (
+              <List>
+                <CommentList_Comment_Container_Top>
+                  <CommentList_ProfilePhoto src="/CommentList_Profile.png" />
+                  <CommentList_Comment_Container_Top_Right>
+                    <CommentList_Profile_StarScope>
+                      <CommentList_Writer>{el.writer}</CommentList_Writer>
+                      <MyRate value={el.rating} disabled />
+                      <CommentPencil
+                        src="/commentPencil.png"
+                        onClick={props.onClickEdit}
                         id={el._id}
-                      >
-                        수정하기
-                      </Edit_Comment_Submit_Button>
-                    </Edit_Comment_Submit_Write_Button>
-                  </Edit_Comment_Submit>
-                </Comments_Edit>
-              )}
-              {el._id !== props.eventTargetId && (
-                <List>
-                  <CommentList_Comment_Container_Top>
-                    <CommentList_ProfilePhoto src="/CommentList_Profile.png" />
-                    <CommentList_Comment_Container_Top_Right>
-                      <CommentList_Profile_StarScope>
-                        <CommentList_Writer>{el.writer}</CommentList_Writer>
-                        <ListRate onChange={handleChange} value={value} />
-                        <CommentPencil
-                          src="/commentPencil.png"
-                          onClick={props.onClickEdit}
-                          id={el._id}
-                        />
-                        <CommentX
-                          src="/commentX.png"
-                          onClick={props.onClickCommentDelete}
-                          id={el._id}
-                        />
-                      </CommentList_Profile_StarScope>
-                      <CommentList_Comment_Read>
-                        {el.contents}
-                      </CommentList_Comment_Read>
-                      <CommentList_Write_Date>
-                        {el.createdAt.slice(0, 10)}
-                      </CommentList_Write_Date>
-                    </CommentList_Comment_Container_Top_Right>
-                  </CommentList_Comment_Container_Top>
-                  <Underline3 />
-                </List>
-              )}
-            </CommentList_Comment_Container>
-          ))
-          .reverse()}
+                      />
+                      <CommentX
+                        src="/commentX.png"
+                        onClick={props.onClickCommentDelete}
+                        id={el._id}
+                      />
+                    </CommentList_Profile_StarScope>
+                    <CommentList_Comment_Read>
+                      {el.contents}
+                    </CommentList_Comment_Read>
+                    <CommentList_Write_Date>
+                      {el.createdAt.slice(0, 10)}
+                    </CommentList_Write_Date>
+                  </CommentList_Comment_Container_Top_Right>
+                </CommentList_Comment_Container_Top>
+                <Underline3 />
+              </List>
+            )}
+          </CommentList_Comment_Container>
+        ))}
       </CommentList>
     </Wrapper_Bottom>
   );

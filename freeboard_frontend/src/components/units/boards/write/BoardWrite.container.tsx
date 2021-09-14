@@ -3,6 +3,7 @@ import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
 import { useRouter } from "next/router";
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
+import { IMyUpdateBoardInput } from "./BoardWrite.types";
 
 export default function BoardWrite(props) {
   const [writer, setWriter] = useState("");
@@ -83,42 +84,28 @@ export default function BoardWrite(props) {
   }
 
   async function onclickEdit() {
-    if (writer === "") {
-      setWriterError("작성자를 입력해주세요.");
-      // isActive 조건문에 따라서 버튼 색 변하게 해야함
-    }
-    if (password === "") {
-      setPasswordError("비밀번호를 입력해주세요.");
-      // isActive 조건문에 따라서 버튼 색 변하게 해야함
-    }
-    if (title === "") {
-      setTitleError("제목을 입력해주세요.");
-      // isActive 조건문에 따라서 버튼 색 변하게 해야함
-    }
-    if (contents === "") {
-      setContentError("내용을 입력해주세요.");
-    }
-    if (writer !== "" && password !== "" && title !== "" && contents !== "") {
-      try {
-        await updateBoard({
-          variables: {
-            updateBoardInput: {
-              title,
-              contents,
-              youtubeUrl,
-            },
-            password,
-            boardId: router.query.detailPageNonMembersBasic,
-            // router 동적폴더 안에 있는 정보 가져오는거
+    const myUpdateboardInput: IMyUpdateBoardInput = {};
+    if (title) myUpdateboardInput.title = title;
+    if (contents) myUpdateboardInput.contents = contents;
+    if (youtubeUrl) myUpdateboardInput.youtubeUrl = youtubeUrl;
+    try {
+      await updateBoard({
+        variables: {
+          updateBoardInput: {
+            title,
+            contents,
+            youtubeUrl,
           },
-        });
-        router.push(
-          `/boards/detailPage-nonMembers-basic-read/${router.query.detailPageNonMembersBasic}`
-        );
-      } catch (error) {
-        console.log(error);
-        alert(error.message);
-      }
+          password,
+          boardId: router.query.detailPageNonMembersBasic,
+        },
+      });
+      router.push(
+        `/boards/detailPage-nonMembers-basic-read/${router.query.detailPageNonMembersBasic}`
+      );
+    } catch (error) {
+      console.log(error);
+      alert(error.message);
     }
   }
 
