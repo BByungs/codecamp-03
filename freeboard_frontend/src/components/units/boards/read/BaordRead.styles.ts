@@ -1,6 +1,15 @@
 import styled from "@emotion/styled";
 import { Rate } from "antd";
-import { EnvironmentOutlined } from "@ant-design/icons";
+import { EnvironmentOutlined, CaretDownOutlined } from "@ant-design/icons";
+
+export const LocationIcon = styled.img``;
+export const Smalltriangle = styled(CaretDownOutlined)`
+  font-size: 20px;
+  color: #aeaeae;
+  transform: rotate(1.634turn);
+  margin-left: 379.6px;
+  border: none;
+`;
 
 export const MapIcon = styled(EnvironmentOutlined)`
   color: #ffd600;
@@ -171,11 +180,19 @@ export const LikeButton = styled.img`
   width: 22px;
   height: 20px;
   margin-bottom: 2px;
+  cursor: pointer;
+  :hover {
+    opacity: 0.7;
+  }
 `;
 
 export const HateButton = styled.img`
   width: 22px;
   height: 20px;
+  cursor: pointer;
+  :hover {
+    opacity: 0.7;
+  }
 `;
 
 export const LikeNum = styled.div`
@@ -578,27 +595,4 @@ export const DeleteButton = styled.button`
   font-family: Noto Sans CJK KR;
   font-weight: 500;
   font-size: 16px;
-`;
-
-export const WriterAddress = styled.div`
-  width: 376px;
-  height: 70px;
-  background: #aeaeae;
-  padding: 8px 16px 8px 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  text-align: right;
-  margin-left: 600px;
-  margin-bottom: 5px;
-`;
-
-export const AddressFont = styled.div`
-  height: 16px;
-  width: 312px;
-  font-family: Noto Sans CJK KR;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
-  color: white;
 `;

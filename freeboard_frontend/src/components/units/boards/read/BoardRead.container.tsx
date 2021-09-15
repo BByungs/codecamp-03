@@ -12,9 +12,12 @@ import {
 import { useQuery, useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { Modal } from "antd";
 
 export default function BoardRead() {
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [myStar, setMyStar] = useState(0);
+  const [passwordModal, setPasswordModal] = useState("");
 
   function onChangeStar(value) {
     setMyStar(value);
@@ -33,6 +36,8 @@ export default function BoardRead() {
   const [deleteBoardComment] = useMutation(DELETE_BOARD_COMMENT);
   const [likeBoard] = useMutation(LIKE_BOARD);
   const [dislikeBoard] = useMutation(DISLIKE_BOARD);
+
+  const [deleteCommentId, setDeleteCommentId] = useState("");
 
   const router = useRouter();
   const { data } = useQuery(FETCH_BOARD, {
@@ -123,13 +128,14 @@ export default function BoardRead() {
     }
   }
 
-  async function onClickCommentDelete(event) {
-    const promptPassword = prompt("비밀번호를 입력하세요");
+  // ok버튼을 클릭했을때 작동한는 함수
+  async function CommentDeleteModalOk() {
+    console.log(passwordModal, isModalVisible);
     try {
       await deleteBoardComment({
         variables: {
-          password: promptPassword,
-          boardCommentId: event.target.id,
+          password: passwordModal,
+          boardCommentId: deleteCommentId,
         },
         refetchQueries: [
           {
@@ -138,21 +144,41 @@ export default function BoardRead() {
           },
         ],
       });
+      handleCancel();
     } catch (error) {
       alert(error);
     }
   }
 
+  // showmodal이 실행되면 모달창이 열리고
+  // id값을 스테이트에 저장한다 왜? Modal은 정상적으로 id값을 못받는다
+  const showModal = (event) => {
+    setIsModalVisible(true);
+    setDeleteCommentId(event.target.id);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  function onChangePasswordModal(event) {
+    setPasswordModal(event.target.value);
+  }
+  console.log(deleteCommentId);
+
   async function onClickBoardDelete() {
-    try {
-      await deleteBoard({
-        variables: {
-          boardId: router.query.detailPageNonMembersBasic,
-        },
-      });
-      router.push(`/boards/board-best`);
-    } catch (error) {
-      alert(error.message);
+    console.log(333);
+    if (!isModalVisible) {
+      try {
+        await deleteBoard({
+          variables: {
+            boardId: router.query.detailPageNonMembersBasic,
+          },
+        });
+        router.push(`/boards/board-best`);
+      } catch (error) {
+        alert(error.message);
+      }
     }
   }
 
@@ -196,11 +222,15 @@ export default function BoardRead() {
       onChangeEditCommentSubmitInput={onChangeEditCommentSubmitInput}
       updateBoardComment={updateBoardComment}
       onClickEditCommentButton={onClickEditCommentButton}
-      onClickCommentDelete={onClickCommentDelete}
+      onClickCommentDelete={CommentDeleteModalOk}
       onClickBoardDelete={onClickBoardDelete}
       likeCount={likeCount}
       hateCount={hateCount}
       onChangeStar={onChangeStar}
+      isModalVisible={isModalVisible}
+      onChangePasswordModal={onChangePasswordModal}
+      showModal={showModal}
+      handleCancel={handleCancel}
     />
   );
 }

@@ -9,7 +9,6 @@ import {
   ProfileWriteDay,
   Container_Top_WriterIcon,
   MagnetIcon,
-  PointIcon,
   Underbar,
   WriteTitle,
   Title,
@@ -67,25 +66,17 @@ import {
   DeleteButton,
   MapIcon,
   MyRate,
-  WriterAddress,
-  AddressFont,
 } from "./BaordRead.styles";
 import ReactPlayer from "react-player";
+import { Tooltip, Modal } from "antd";
 
 export default function BoardReadUI(props) {
+  console.log(props.showModal);
   return (
     <Wrapper_Bottom>
       <Container>
         <Container_Top>
           {/* 작성자와 아이콘 있는곳 */}
-          <WriterAddress>
-            <AddressFont>
-              {props.data?.fetchBoard.boardAddress.address}
-            </AddressFont>
-            <AddressFont>
-              {props.data?.fetchBoard.boardAddress.addressDetail}
-            </AddressFont>
-          </WriterAddress>
           <Container_Top_WriterInfo_Icon>
             {/* 작성자이름 , 날짜 , 프로필사진  */}
             <Container_Top_WriterInfo>
@@ -103,10 +94,23 @@ export default function BoardReadUI(props) {
 
             {/* 아이콘 있는 곳 */}
             <Container_Top_WriterIcon>
-              <MagnetIcon src="/magnet.png" />
-              <MapIcon />
+              {/* Youtube Tooltip */}
+              <Tooltip
+                placement="topRight"
+                title={`${props.data?.fetchBoard?.youtubeUrl}`}
+              >
+                <MagnetIcon src="/magnet.png" />
+              </Tooltip>
+              {/* Address Tooltip */}
+              <Tooltip
+                placement="topRight"
+                title={`${props.data?.fetchBoard.boardAddress?.address} ${props.data?.fetchBoard.boardAddress?.addressDetail}`}
+              >
+                <MapIcon />
+              </Tooltip>
             </Container_Top_WriterIcon>
           </Container_Top_WriterInfo_Icon>
+          {/* 아이콘 있는 곳 */}
           <Underbar />
         </Container_Top>
 
@@ -181,6 +185,19 @@ export default function BoardReadUI(props) {
         </Comment_Submit>
       </Comment_Submit_Container>
 
+      {/* Delete Comment Modal */}
+      {props.isModalVisible && (
+        <Modal
+          visible={props.isModalVisible}
+          onOk={props.CommentDeleteModalOk}
+          onCancel={props.handleCancel}
+        >
+          비밀번호:{" "}
+          <input type="password" onChange={props.onChangePasswordModal} />
+        </Modal>
+      )}
+      {/* Delete Comment Modal */}
+
       {/* Mapping */}
       <CommentList>
         {props.commentsData?.fetchBoardComments.map((el) => (
@@ -239,7 +256,7 @@ export default function BoardReadUI(props) {
                       />
                       <CommentX
                         src="/commentX.png"
-                        onClick={props.onClickCommentDelete}
+                        onClick={props.showModal}
                         id={el._id}
                       />
                     </CommentList_Profile_StarScope>
