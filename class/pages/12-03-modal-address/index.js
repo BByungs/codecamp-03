@@ -47,6 +47,7 @@ export default function ModalAddressesPage() {
     setMyAddress(data.address);
     console.log(data.zonecode);
     console.log(data.address);
+    console.log(data);
 
     setIsOpen(false);
   };
