@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -21,9 +17,20 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "src/components/units/boards-best-read/boardsBestRead.style.js",
+    "src/components/units/boards-best-read/boardsBestRead.queries.js",
+    "src/components/units/boards-best-read/boardsBestRead.presenter.js",
+    "src/components/units/boards-best-read/boardsBestRaad.container.js",
+    "src/components/units/boards/read/BaordRead.styles.js",
+    "src/components/units/boards/read/BoardRead.container.js",
+    "src/components/units/boards/read/BoardRead.presenter.js",
+    "src/components/units/boards/read/BoardRead.queries.js",
+    "src/components/units/boards/write/BoardWrite.types.js",
+    "src/components/units/boards/write/BoardWrite.styles.js",
+    "src/components/units/boards/write/BoardWrite.queries.js",
+    "src/components/units/boards/write/BoardWrite.presenter.js",
+    "src/components/units/boards/write/BoardWrite.container.js"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

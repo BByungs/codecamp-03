@@ -28,7 +28,9 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  padding-top: 80px;
+  padding-right: 360px;
+  padding-left: 360px;
 `;
 
 export const Container_Title = styled.div`

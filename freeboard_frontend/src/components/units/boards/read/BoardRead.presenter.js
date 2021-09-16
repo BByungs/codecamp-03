@@ -189,7 +189,7 @@ export default function BoardReadUI(props) {
       {props.isModalVisible && (
         <Modal
           visible={props.isModalVisible}
-          onOk={props.CommentDeleteModalOk}
+          onOk={props.commentDeleteModalOk}
           onCancel={props.handleCancel}
         >
           비밀번호:{" "}

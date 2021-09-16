@@ -28,7 +28,9 @@ export const Wrapper_Bottom = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 80px 360px 589px 360px;
+  padding-top: 80px;
+  padding-right: 360px;
+  padding-left: 360px;
 `;
 
 export const Container = styled.div`

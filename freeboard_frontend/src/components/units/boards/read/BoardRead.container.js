@@ -99,7 +99,6 @@ export default function BoardRead() {
   }
   // 펜슬버튼
   function onClickEdit(event) {
-    console.log(event.target.id);
     setEventTargetId(event.target.id);
   }
 
@@ -129,8 +128,8 @@ export default function BoardRead() {
   }
 
   // ok버튼을 클릭했을때 작동한는 함수
-  async function CommentDeleteModalOk() {
-    console.log(passwordModal, isModalVisible);
+  async function commentDeleteModalOk() {
+    console.log(deleteCommentId);
     try {
       await deleteBoardComment({
         variables: {
@@ -164,10 +163,8 @@ export default function BoardRead() {
   function onChangePasswordModal(event) {
     setPasswordModal(event.target.value);
   }
-  console.log(deleteCommentId);
 
   async function onClickBoardDelete() {
-    console.log(333);
     if (!isModalVisible) {
       try {
         await deleteBoard({
@@ -222,7 +219,7 @@ export default function BoardRead() {
       onChangeEditCommentSubmitInput={onChangeEditCommentSubmitInput}
       updateBoardComment={updateBoardComment}
       onClickEditCommentButton={onClickEditCommentButton}
-      onClickCommentDelete={CommentDeleteModalOk}
+      commentDeleteModalOk={commentDeleteModalOk}
       onClickBoardDelete={onClickBoardDelete}
       likeCount={likeCount}
       hateCount={hateCount}

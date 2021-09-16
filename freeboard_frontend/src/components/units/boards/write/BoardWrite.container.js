@@ -1,11 +1,14 @@
 import BoardWriteUI from "./BoardWrite.presenter";
-import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
+import { CREATE_BOARD, UPDATE_BOARD, FETCH_BOARD } from "./BoardWrite.queries";
 import { useRouter } from "next/router";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useState } from "react";
-import { IMyUpdateBoardInput } from "./BoardWrite.types";
 
 export default function BoardWrite(props) {
+  const router = useRouter();
+  const { data } = useQuery(FETCH_BOARD, {
+    variables: { boardId: router.query.detailPageNonMembersBasic },
+  });
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
   const [contents, setContents] = useState("");
@@ -22,7 +25,6 @@ export default function BoardWrite(props) {
   const [updateBoard] = useMutation(UPDATE_BOARD);
 
   const [id, setId] = useState("");
-  const router = useRouter();
 
   const [detailAddress, setDetailAddress] = useState("");
   const [myZipcode, setMyZipcode] = useState("");
@@ -95,26 +97,24 @@ export default function BoardWrite(props) {
   }
 
   async function onclickEdit() {
-    const myUpdateboardInput: IMyUpdateBoardInput = {};
-    if (title) myUpdateboardInput.title = title;
-    if (contents) myUpdateboardInput.contents = contents;
-    if (youtubeUrl) myUpdateboardInput.youtubeUrl = youtubeUrl;
+    const myVariables = {
+      updateBoardInput: { boardAddress: {} },
+      boardId: router.query.detailPageNonMembersBasic,
+    };
+    if (title) myVariables.updateBoardInput.title = title;
+    if (contents) myVariables.updateBoardInput.contents = contents;
+    if (youtubeUrl) myVariables.updateBoardInput.youtubeUrl = youtubeUrl;
+    if (myZipcode)
+      myVariables.updateBoardInput.boardAddress.zipcode = myZipcode;
+    if (myAddress)
+      myVariables.updateBoardInput.boardAddress.address = myAddress;
+    if (detailAddress)
+      myVariables.updateBoardInput.boardAddress.addressDetail = detailAddress;
+    if (password) myVariables.password = password;
+
     try {
       await updateBoard({
-        variables: {
-          updateBoardInput: {
-            title,
-            contents,
-            youtubeUrl,
-            boardAddress: {
-              zipcode: myZipcode,
-              address: myAddress,
-              addressDetail: detailAddress,
-            },
-          },
-          password,
-          boardId: router.query.detailPageNonMembersBasic,
-        },
+        variables: myVariables,
       });
       console.log(
         `우편번호: ${myZipcode} , 주소: ${myAddress} , 상세주소: ${detailAddress} , youtubeUrl: ${youtubeUrl}`
@@ -122,6 +122,7 @@ export default function BoardWrite(props) {
       router.push(
         `/boards/detailPage-nonMembers-basic-read/${router.query.detailPageNonMembersBasic}`
       );
+      // console.log(data);
     } catch (error) {
       console.log(error);
       alert(error.message);
@@ -135,7 +136,7 @@ export default function BoardWrite(props) {
   const handleComplete = (data) => {
     setMyZipcode(data.zonecode);
     setMyAddress(data.address);
-    console.log(data);
+    // console.log(data);
     setIsOpen((prev) => !prev);
   };
 
@@ -164,6 +165,10 @@ export default function BoardWrite(props) {
       myZipcode={myZipcode}
       myAddress={myAddress}
       isOpen={isOpen}
+      title={title}
+      youtubeUrl={youtubeUrl}
+      contents={contents}
+      data={data}
     />
   );
 }
