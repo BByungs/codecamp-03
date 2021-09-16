@@ -5,35 +5,43 @@ import {
   RightOutlined,
   DoubleLeftOutlined,
 } from "@ant-design/icons";
-import { red } from "@material-ui/core/colors";
+
+// 첫 페이지로 이동하는 버튼
 export const MoveStartPage = styled(DoubleLeftOutlined)`
   :hover {
     opacity: ${(props) => (props.isActive ? 1 : 0.7)};
   }
   color: ${(props) => (props.isActive ? "red" : "black")};
+  cursor: ${(props) => (props.isActive ? "pointer" : "default")};
 `;
 
+// 다음 페이지로 이동하는 버튼
 export const MoveToRight = styled(RightOutlined)`
   margin-right: 15px;
   :hover {
     opacity: ${(props) => (props.isActive ? 1 : 0.7)};
   }
   color: ${(props) => (props.isActive ? "red" : "black")};
-  cursor: pointer;
+  cursor: ${(props) => (props.isActive ? "pointer" : "default")};
 `;
 
+// 전 페이지로 이동하는 버튼
 export const MoveToLeft = styled(LeftOutlined)`
   margin-left: 15px;
   :hover {
     opacity: ${(props) => (props.isActive ? 1 : 0.7)};
   }
   color: ${(props) => (props.isActive ? "red" : "black")};
+  cursor: ${(props) => (props.isActive ? "pointer" : "default")};
 `;
+
+// 마지막 페이지로 이동하는 버튼
 export const MoveToLastPage = styled(DoubleRightOutlined)`
   color: ${(props) => (props.isActive ? "red" : "black")};
   :hover {
     opacity: ${(props) => (props.isActive ? 1 : 0.7)};
   }
+  cursor: ${(props) => (props.isActive ? "pointer" : "default")};
 `;
 
 export const Container = styled.div`

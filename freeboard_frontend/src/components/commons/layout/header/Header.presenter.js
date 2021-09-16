@@ -5,8 +5,8 @@ import "slick-carousel/slick/slick-theme.css";
 
 export default function LayoutBannerUI() {
   const settings = {
-    dots: true,
-    infinite: true,
+    dots: false,
+    infinite: false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
