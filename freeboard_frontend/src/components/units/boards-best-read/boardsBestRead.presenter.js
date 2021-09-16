@@ -175,8 +175,14 @@ export default function BoardBestUI(props) {
         {/* 페이지버튼 , 게시물 등록하기버튼 */}
         <Footer>
           <Page>
-            <MoveStartPage onClick={props.moveToStartPage} />
-            <MoveToLeft onClick={props.onClickLeft} />
+            <MoveStartPage
+              onClick={props.moveToStartPage}
+              isActive={props.currentPage === 1}
+            />
+            <MoveToLeft
+              onClick={props.onClickLeft}
+              isActive={props.currentPage === 1}
+            />
             <PageNum>
               {new Array(10).fill(1).map(
                 (_, idx) =>
@@ -192,8 +198,14 @@ export default function BoardBestUI(props) {
                   )
               )}
             </PageNum>
-            <MoveToRight onClick={props.onClickRight} />
-            <MoveToLastPage onClick={props.moveToLastPage} />
+            <MoveToRight
+              onClick={props.onClickRight}
+              isActive={props.currentPage === props.lastPage}
+            />
+            <MoveToLastPage
+              onClick={props.moveToLastPage}
+              isActive={props.currentPage === props.lastPage}
+            />
           </Page>
           <PostSubmitBtn onClick={props.onClickSubmit}>
             <PencilImg src="/pencil.png" />

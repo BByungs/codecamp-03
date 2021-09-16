@@ -7,8 +7,8 @@ export const globalStyles = css`
     /* font-size: 50px; */
   }
 
-  /* @font-face {
+  @font-face {
     font-family: "myfont";
     src: url("/fonts/scifibit.ttf");
-  } */
+  }
 `;

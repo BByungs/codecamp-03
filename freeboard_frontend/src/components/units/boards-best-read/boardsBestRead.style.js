@@ -5,22 +5,36 @@ import {
   RightOutlined,
   DoubleLeftOutlined,
 } from "@ant-design/icons";
-export const MoveStartPage = styled(DoubleLeftOutlined)``;
+import { red } from "@material-ui/core/colors";
+export const MoveStartPage = styled(DoubleLeftOutlined)`
+  :hover {
+    opacity: ${(props) => (props.isActive ? 1 : 0.7)};
+  }
+  color: ${(props) => (props.isActive ? "red" : "black")};
+`;
+
 export const MoveToRight = styled(RightOutlined)`
   margin-right: 15px;
-  cursor: pointer;
   :hover {
-    opacity: 0.7;
+    opacity: ${(props) => (props.isActive ? 1 : 0.7)};
   }
+  color: ${(props) => (props.isActive ? "red" : "black")};
+  cursor: pointer;
 `;
+
 export const MoveToLeft = styled(LeftOutlined)`
   margin-left: 15px;
-  cursor: pointer;
   :hover {
-    opacity: 0.7;
+    opacity: ${(props) => (props.isActive ? 1 : 0.7)};
+  }
+  color: ${(props) => (props.isActive ? "red" : "black")};
+`;
+export const MoveToLastPage = styled(DoubleRightOutlined)`
+  color: ${(props) => (props.isActive ? "red" : "black")};
+  :hover {
+    opacity: ${(props) => (props.isActive ? 1 : 0.7)};
   }
 `;
-export const MoveToLastPage = styled(DoubleRightOutlined)``;
 
 export const Container = styled.div`
   width: 1920;
@@ -387,7 +401,7 @@ export const Row = styled.div`
   :hover {
     opacity: 0.7;
   }
-  color: ${(props) => (props.changeColor === true ? "red" : "black")};
+  color: ${(props) => (props.changeColor === true ? "#ff6e40" : "black")};
 `;
 
 export const PageNum = styled.div`
@@ -424,4 +438,5 @@ export const Text = styled.div`
   font-size: 16px;
   text-align: center;
   margin-left: 11px;
+  /* font-family: "myfont"; */
 `;

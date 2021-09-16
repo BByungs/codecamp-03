@@ -77,3 +77,5 @@ export default function BoardBestReadPage() {
     />
   );
 }
+
+// 마지막 페이지일떄??
