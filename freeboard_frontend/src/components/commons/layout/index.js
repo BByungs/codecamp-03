@@ -4,9 +4,11 @@ import Header from "./header/Header.container";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 1920px;
+  width: 100vw;
 `;
-const Body = styled.div``;
+const Body = styled.div`
+  width: 100%;
+`;
 
 export default function Layout(props) {
   return (

@@ -36,12 +36,16 @@ import {
   EachPosts,
   Page,
   Footer,
-  LeftArrow,
-  RightArrow,
   PostSubmitBtn,
   PencilImg,
   Text,
   Container,
+  Row,
+  PageNum,
+  MoveToLastPage,
+  MoveToLeft,
+  MoveToRight,
+  MoveStartPage,
 } from "./boardsBestRead.style";
 
 export default function BoardBestUI(props) {
@@ -143,7 +147,6 @@ export default function BoardBestUI(props) {
 
         {/* 게시글 번호, 게시글 제목, 게시글 작성자, 게시글 날짜 */}
         <PostsList>
-          {/* 상단 부분 */}
           <PostListTop>
             <NumberName>번호</NumberName>
             <TitleName>제목</TitleName>
@@ -152,31 +155,45 @@ export default function BoardBestUI(props) {
           </PostListTop>
           <Underline />
 
-          {/* 밑 부분 */}
           <PostListBottom>
-            {props.data?.fetchBoards
-              .map((el, index) => (
-                <EachPosts key={el._id}>
-                  <EachPost>
-                    <PostsNumner>{index + 1}</PostsNumner>
-                    <PostsTitle onClick={props.onClickPost} id={el._id}>
-                      {el.title}
-                    </PostsTitle>
-                    <PostsWriter>{el.writer}</PostsWriter>
-                    <PostsDate>{el.createdAt.slice(0, 10)}</PostsDate>
-                  </EachPost>
-                  <Underline />
-                </EachPosts>
-              ))
-              .reverse()}
+            {props.data?.fetchBoards.map((el, index) => (
+              <EachPosts key={el._id}>
+                <EachPost>
+                  <PostsNumner>{index + 1}</PostsNumner>
+                  <PostsTitle onClick={props.onClickPost} id={el._id}>
+                    {el.title}
+                  </PostsTitle>
+                  <PostsWriter>{el.writer}</PostsWriter>
+                  <PostsDate>{el.createdAt.slice(0, 10)}</PostsDate>
+                </EachPost>
+                <Underline />
+              </EachPosts>
+            ))}
           </PostListBottom>
         </PostsList>
 
-        {/* 맨 밑에 페이지 버튼 , 게시물 등록하기 버튼 있는데 */}
+        {/* 페이지버튼 , 게시물 등록하기버튼 */}
         <Footer>
           <Page>
-            {/* <LeftArrow src="/leftArrow.png" />
-                    <RightArrow src="/rightArrow.png" /> */}
+            <MoveStartPage onClick={props.moveToStartPage} />
+            <MoveToLeft onClick={props.onClickLeft} />
+            <PageNum>
+              {new Array(10).fill(1).map(
+                (_, idx) =>
+                  props.startPage + idx <= props.lastPage && (
+                    <Row
+                      key={props.startPage + idx}
+                      onClick={props.onClickPage}
+                      id={String(props.startPage + idx)}
+                      changeColor={props.currentPage === props.startPage + idx}
+                    >
+                      {props.startPage + idx}
+                    </Row>
+                  )
+              )}
+            </PageNum>
+            <MoveToRight onClick={props.onClickRight} />
+            <MoveToLastPage onClick={props.moveToLastPage} />
           </Page>
           <PostSubmitBtn onClick={props.onClickSubmit}>
             <PencilImg src="/pencil.png" />

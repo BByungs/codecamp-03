@@ -228,6 +228,8 @@ export default function BoardRead() {
       onChangePasswordModal={onChangePasswordModal}
       showModal={showModal}
       handleCancel={handleCancel}
+      editCommentInput={editCommentInput}
+      commentInput={commentInput}
     />
   );
 }

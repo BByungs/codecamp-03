@@ -158,7 +158,6 @@ export default function BoardReadUI(props) {
             type="text"
             onChange={props.onChangeWriterInput}
             placeholder="Writer"
-            defaultValue=""
           />
           <Comment_Password_Input
             type="password"
@@ -176,7 +175,9 @@ export default function BoardReadUI(props) {
           <Underline2 />
           <Comment_Submit_Write_Button>
             <Comment_Submit_StringCount>
-              <Comment_Submit_String>46/100</Comment_Submit_String>
+              <Comment_Submit_String>
+                {props.commentInput.length}/100
+              </Comment_Submit_String>
             </Comment_Submit_StringCount>
             <Comment_Submit_Button onClick={props.onClickCommentSubmit}>
               등록하기
@@ -225,7 +226,7 @@ export default function BoardReadUI(props) {
                   <Edit_Comment_Submit_Write_Button>
                     <Edit_Comment_Submit_StringCount>
                       <Edit_Comment_Submit_String>
-                        46/100
+                        {props.editCommentInput.length}/100
                       </Edit_Comment_Submit_String>
                     </Edit_Comment_Submit_StringCount>
                     <Edit_Comment_Submit_Button

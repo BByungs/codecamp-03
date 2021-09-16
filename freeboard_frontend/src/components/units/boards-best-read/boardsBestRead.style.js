@@ -1,4 +1,26 @@
 import styled from "@emotion/styled";
+import {
+  DoubleRightOutlined,
+  LeftOutlined,
+  RightOutlined,
+  DoubleLeftOutlined,
+} from "@ant-design/icons";
+export const MoveStartPage = styled(DoubleLeftOutlined)``;
+export const MoveToRight = styled(RightOutlined)`
+  margin-right: 15px;
+  cursor: pointer;
+  :hover {
+    opacity: 0.7;
+  }
+`;
+export const MoveToLeft = styled(LeftOutlined)`
+  margin-left: 15px;
+  cursor: pointer;
+  :hover {
+    opacity: 0.7;
+  }
+`;
+export const MoveToLastPage = styled(DoubleRightOutlined)``;
 
 export const Container = styled.div`
   width: 1920;
@@ -329,6 +351,7 @@ export const Footer = styled.div`
   height: 52px;
   display: flex;
   align-items: center;
+  justify-content: center;
 `;
 
 export const Page = styled.div`
@@ -341,11 +364,36 @@ export const Page = styled.div`
 export const LeftArrow = styled.img`
   width: 7.41px;
   height: 12px;
+  cursor: pointer;
+  :hover {
+    opacity: 0.7;
+  }
 `;
 
 export const RightArrow = styled.img`
   width: 7.41px;
   height: 12px;
+  cursor: pointer;
+  :hover {
+    opacity: 0.7;
+  }
+`;
+
+export const Row = styled.div`
+  margin: 15px;
+  margin-bottom: 22px;
+  font-size: 15px;
+  cursor: pointer;
+  :hover {
+    opacity: 0.7;
+  }
+  color: ${(props) => (props.changeColor === true ? "red" : "black")};
+`;
+
+export const PageNum = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const PostSubmitBtn = styled.button`
