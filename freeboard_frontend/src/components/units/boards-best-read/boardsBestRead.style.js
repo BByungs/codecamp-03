@@ -11,18 +11,19 @@ export const MoveToLeft = styled(LeftOutlined)`
   margin-left: 15px;
   :hover {
     opacity: ${(props) => (props.isActive ? 1 : 0.7)};
+    cursor: ${(props) => (props.isActive ? "default" : "pointer")};
   }
   color: ${(props) => (props.isActive ? "gray" : "black")};
-  cursor: ${(props) => (props.isActive ? "default" : "pointer")};
 `;
 
 // 첫 페이지로 이동하는 버튼
 export const MoveStartPage = styled(DoubleLeftOutlined)`
+  //hover를 쓰면 구분해줘야 먹힘
   :hover {
     opacity: ${(props) => (props.isActive ? 1 : 0.7)};
+    cursor: ${(props) => (props.isActive ? "default" : "pointer")};
   }
   color: ${(props) => (props.isActive ? "gray" : "black")};
-  cursor: ${(props) => (props.isActive ? "default" : "pointer")};
 `;
 
 // 다음 페이지로 이동하는 버튼
@@ -30,9 +31,9 @@ export const MoveToRight = styled(RightOutlined)`
   margin-right: 15px;
   :hover {
     opacity: ${(props) => (props.isActive ? 1 : 0.7)};
+    cursor: ${(props) => (props.isActive ? "default" : "pointer")};
   }
   color: ${(props) => (props.isActive ? "gray" : "black")};
-  cursor: ${(props) => (props.isActive ? "default" : "pointer")};
 `;
 
 // 마지막 페이지로 이동하는 버튼
@@ -40,8 +41,8 @@ export const MoveToLastPage = styled(DoubleRightOutlined)`
   color: ${(props) => (props.isActive ? "gray" : "black")};
   :hover {
     opacity: ${(props) => (props.isActive ? 1 : 0.7)};
+    cursor: ${(props) => (props.isActive ? "default" : "pointer")};
   }
-  cursor: ${(props) => (props.isActive ? "default" : "pointer")};
 `;
 
 // Pagenation
