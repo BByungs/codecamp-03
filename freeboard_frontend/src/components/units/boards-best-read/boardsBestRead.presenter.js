@@ -178,6 +178,7 @@ export default function BoardBestUI(props) {
             <MoveStartPage
               onClick={props.moveToStartPage}
               isActive={props.currentPage === 1}
+              // style={{ cursor: props.isActive ? "default" : "pointer" }}
             />
             <MoveToLeft
               onClick={props.onClickLeft}

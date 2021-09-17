@@ -6,13 +6,23 @@ import {
   DoubleLeftOutlined,
 } from "@ant-design/icons";
 
+// 전 페이지로 이동하는 버튼
+export const MoveToLeft = styled(LeftOutlined)`
+  margin-left: 15px;
+  :hover {
+    opacity: ${(props) => (props.isActive ? 1 : 0.7)};
+  }
+  color: ${(props) => (props.isActive ? "gray" : "black")};
+  cursor: ${(props) => (props.isActive ? "default" : "pointer")};
+`;
+
 // 첫 페이지로 이동하는 버튼
 export const MoveStartPage = styled(DoubleLeftOutlined)`
   :hover {
     opacity: ${(props) => (props.isActive ? 1 : 0.7)};
   }
-  color: ${(props) => (props.isActive ? "red" : "black")};
-  cursor: ${(props) => (props.isActive ? "pointer" : "default")};
+  color: ${(props) => (props.isActive ? "gray" : "black")};
+  cursor: ${(props) => (props.isActive ? "default" : "pointer")};
 `;
 
 // 다음 페이지로 이동하는 버튼
@@ -21,27 +31,29 @@ export const MoveToRight = styled(RightOutlined)`
   :hover {
     opacity: ${(props) => (props.isActive ? 1 : 0.7)};
   }
-  color: ${(props) => (props.isActive ? "red" : "black")};
-  cursor: ${(props) => (props.isActive ? "pointer" : "default")};
-`;
-
-// 전 페이지로 이동하는 버튼
-export const MoveToLeft = styled(LeftOutlined)`
-  margin-left: 15px;
-  :hover {
-    opacity: ${(props) => (props.isActive ? 1 : 0.7)};
-  }
-  color: ${(props) => (props.isActive ? "red" : "black")};
-  cursor: ${(props) => (props.isActive ? "pointer" : "default")};
+  color: ${(props) => (props.isActive ? "gray" : "black")};
+  cursor: ${(props) => (props.isActive ? "default" : "pointer")};
 `;
 
 // 마지막 페이지로 이동하는 버튼
 export const MoveToLastPage = styled(DoubleRightOutlined)`
-  color: ${(props) => (props.isActive ? "red" : "black")};
+  color: ${(props) => (props.isActive ? "gray" : "black")};
   :hover {
     opacity: ${(props) => (props.isActive ? 1 : 0.7)};
   }
-  cursor: ${(props) => (props.isActive ? "pointer" : "default")};
+  cursor: ${(props) => (props.isActive ? "default" : "pointer")};
+`;
+
+// Pagenation
+export const Row = styled.div`
+  margin: 15px;
+  margin-bottom: 22px;
+  font-size: 15px;
+  cursor: pointer;
+  :hover {
+    opacity: 0.7;
+  }
+  color: ${(props) => (props.changeColor === true ? "#ff6e40" : "black")};
 `;
 
 export const Container = styled.div`
@@ -399,17 +411,6 @@ export const RightArrow = styled.img`
   :hover {
     opacity: 0.7;
   }
-`;
-
-export const Row = styled.div`
-  margin: 15px;
-  margin-bottom: 22px;
-  font-size: 15px;
-  cursor: pointer;
-  :hover {
-    opacity: 0.7;
-  }
-  color: ${(props) => (props.changeColor === true ? "#ff6e40" : "black")};
 `;
 
 export const PageNum = styled.div`
