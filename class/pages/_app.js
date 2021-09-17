@@ -8,7 +8,7 @@ function MyApp({ Component, pageProps }) {
   // Apollo Setting
   const client = new ApolloClient({
     // 주소를 등록해줘야함
-    uri: "http://example.codebootcamp.co.kr/graphql",
+    uri: "http://backend03.codebootcamp.co.kr/graphql",
     cache: new InMemoryCache(),
   });
   // 각각의 페이지는 index.js

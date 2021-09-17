@@ -8,23 +8,25 @@ import { useRouter } from "next/router";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  height: 1000px;
+  /* height: 1000px; */
   width: 1200px;
 `;
 
 const Body = styled.div`
-  width: 70%;
+  /* width: 100%; */
+  /* height: 100%; */
 `;
 
 const Sidebar = styled.div`
   width: 30%;
   background-color: skyblue;
+  font-family: "myfont";
 `;
 
 const SideAndBody = styled.div`
   display: flex;
-  height: 35%;
-  font-family: "myfont";
+  /* height: 35%; */
+  /* font-family: "myfont"; */
 `;
 
 const HIDEN_FOOTER = ["/13-01-layout-hidden"];

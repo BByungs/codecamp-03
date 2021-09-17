@@ -17,7 +17,7 @@ export default function LayoutBannerUI() {
   return (
     <>
       <Banner>
-        <Slider {...settings}>
+        {/* <Slider {...settings}>
           <div>
             <img src="/point.png" />
           </div>
@@ -27,7 +27,7 @@ export default function LayoutBannerUI() {
           <div>
             <img src="/profilePhoto.png" />
           </div>
-        </Slider>
+        </Slider> */}
       </Banner>
     </>
   );
