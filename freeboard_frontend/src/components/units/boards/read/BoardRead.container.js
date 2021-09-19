@@ -12,13 +12,13 @@ import {
 import { useQuery, useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { Modal } from "antd";
 
 export default function BoardRead() {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [myStar, setMyStar] = useState(0);
   const [passwordModal, setPasswordModal] = useState("");
+  // const loader = useRef(null);
 
+  const [myStar, setMyStar] = useState(0);
   function onChangeStar(value) {
     setMyStar(value);
   }
@@ -43,7 +43,8 @@ export default function BoardRead() {
   const { data } = useQuery(FETCH_BOARD, {
     variables: { boardId: router.query.detailPageNonMembersBasic },
   });
-  const { data: commentsData } = useQuery(FETCH_BOARD_COMMENTS, {
+
+  const { data: commentsData, fetchMore } = useQuery(FETCH_BOARD_COMMENTS, {
     variables: {
       boardId: router.query.detailPageNonMembersBasic,
     },
@@ -202,6 +203,26 @@ export default function BoardRead() {
       ],
     });
   }
+
+  function onLoadMore() {
+    if (!commentsData) {
+      return;
+    }
+    fetchMore({
+      variables: {
+        page: Math.ceil(commentsData?.fetchBoardComments.length / 10) + 1,
+      },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        return {
+          fetchBoardComments: [
+            ...prev.fetchBoardComments,
+            ...fetchMoreResult.fetchBoardComments,
+          ],
+        };
+      },
+    });
+  }
+
   return (
     <BoardReadUI
       router={router}
@@ -230,6 +251,7 @@ export default function BoardRead() {
       handleCancel={handleCancel}
       editCommentInput={editCommentInput}
       commentInput={commentInput}
+      onLoadMore={onLoadMore}
     />
   );
 }

@@ -17,10 +17,14 @@ export default function BoardBestReadPage() {
   function onClickSubmit() {
     router.push("/boards/new");
   }
+
   // 해당 게시물로 이동
   function onClickPost(event) {
-    router.push(`/boards/detailPage-nonMembers-basic-read/${event.target.id}`);
+    router.push(
+      `/boards/detailPage-nonMembers-basic-read/${event.currentTarget.id}`
+    );
   }
+
   const lastPage = Math.ceil(fetchBoardsCount?.fetchBoardsCount / 10);
   // ============================ 페이지 이동 함수 ===============================
 

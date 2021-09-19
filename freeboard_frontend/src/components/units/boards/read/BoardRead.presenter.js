@@ -66,9 +66,11 @@ import {
   DeleteButton,
   MapIcon,
   MyRate,
+  Loader,
 } from "./BaordRead.styles";
 import ReactPlayer from "react-player";
 import { Tooltip, Modal } from "antd";
+import InfiniteScroll from "react-infinite-scroller";
 
 export default function BoardReadUI(props) {
   console.log(props.showModal);
@@ -201,79 +203,95 @@ export default function BoardReadUI(props) {
 
       {/* Mapping */}
       <CommentList>
-        {props.commentsData?.fetchBoardComments.map((el) => (
-          <CommentList_Comment_Container key={el._id}>
-            {/* ========================= 댓글 수정폼 ============================ */}
+        <Loader>
+          <InfiniteScroll
+            pageStart={0}
+            loadMore={props.onLoadMore}
+            hasMore={true}
+            // 마지막 페이지면 false가 되게끔 하면 될거같음
+            // 현재페이지는??
+            useWindow={false}
+          >
+            {/* mapping되는곳 */}
+            {props.commentsData?.fetchBoardComments.map((el) => (
+              <CommentList_Comment_Container key={el._id}>
+                {/* ========================= 댓글 수정폼 ============================ */}
 
-            {el._id === props.eventTargetId && (
-              <Comments_Edit>
-                <Edit_Writer_Password_Starscope>
-                  <Edit_Comment_Writer_Input type="text" placeholder="Writer" />
-                  <Edit_Comment_Password_Input
-                    type="password"
-                    onChange={props.onChangeEditCommentPasswordInput}
-                    placeholder="Password"
-                  />
-                  {/* 별점 */}
-                  <MyRate onChange={props.onChangeStar} />
-                </Edit_Writer_Password_Starscope>
-                {/* 댓글 등록 부분 */}
-                <Edit_Comment_Submit>
-                  <Edit_Comment_Submit_Input
-                    onChange={props.onChangeEditCommentSubmitInput}
-                  ></Edit_Comment_Submit_Input>
-                  <Underline2 />
-                  <Edit_Comment_Submit_Write_Button>
-                    <Edit_Comment_Submit_StringCount>
-                      <Edit_Comment_Submit_String>
-                        {props.editCommentInput.length}/100
-                      </Edit_Comment_Submit_String>
-                    </Edit_Comment_Submit_StringCount>
-                    <Edit_Comment_Submit_Button
-                      onClick={props.onClickEditCommentButton}
-                      id={el._id}
-                    >
-                      수정하기
-                    </Edit_Comment_Submit_Button>
-                  </Edit_Comment_Submit_Write_Button>
-                </Edit_Comment_Submit>
-              </Comments_Edit>
-            )}
-
-            {/* ========================= 댓글 리스트 ============================ */}
-
-            {el._id !== props.eventTargetId && (
-              <List>
-                <CommentList_Comment_Container_Top>
-                  <CommentList_ProfilePhoto src="/CommentList_Profile.png" />
-                  <CommentList_Comment_Container_Top_Right>
-                    <CommentList_Profile_StarScope>
-                      <CommentList_Writer>{el.writer}</CommentList_Writer>
-                      <MyRate value={el.rating} disabled />
-                      <CommentPencil
-                        src="/commentPencil.png"
-                        onClick={props.onClickEdit}
-                        id={el._id}
+                {el._id === props.eventTargetId && (
+                  <Comments_Edit>
+                    <Edit_Writer_Password_Starscope>
+                      <Edit_Comment_Writer_Input
+                        type="text"
+                        placeholder="Writer"
                       />
-                      <CommentX
-                        src="/commentX.png"
-                        onClick={props.showModal}
-                        id={el._id}
+                      <Edit_Comment_Password_Input
+                        type="password"
+                        onChange={props.onChangeEditCommentPasswordInput}
+                        placeholder="Password"
                       />
-                    </CommentList_Profile_StarScope>
-                    <CommentList_Comment_Read>
-                      {el.contents}
-                    </CommentList_Comment_Read>
-                    <CommentList_Write_Date>
-                      {el.createdAt.slice(0, 10)}
-                    </CommentList_Write_Date>
-                  </CommentList_Comment_Container_Top_Right>
-                </CommentList_Comment_Container_Top>
-                <Underline3 />
-              </List>
-            )}
-          </CommentList_Comment_Container>
-        ))}
+                      {/* 별점 */}
+                      <MyRate onChange={props.onChangeStar} />
+                    </Edit_Writer_Password_Starscope>
+                    {/* 댓글 등록 부분 */}
+                    <Edit_Comment_Submit>
+                      <Edit_Comment_Submit_Input
+                        onChange={props.onChangeEditCommentSubmitInput}
+                      ></Edit_Comment_Submit_Input>
+                      <Underline2 />
+                      <Edit_Comment_Submit_Write_Button>
+                        <Edit_Comment_Submit_StringCount>
+                          <Edit_Comment_Submit_String>
+                            {props.editCommentInput.length}/100
+                          </Edit_Comment_Submit_String>
+                        </Edit_Comment_Submit_StringCount>
+                        <Edit_Comment_Submit_Button
+                          onClick={props.onClickEditCommentButton}
+                          id={el._id}
+                        >
+                          수정하기
+                        </Edit_Comment_Submit_Button>
+                      </Edit_Comment_Submit_Write_Button>
+                    </Edit_Comment_Submit>
+                  </Comments_Edit>
+                )}
+
+                {/* ========================= 댓글 리스트 ============================ */}
+
+                {el._id !== props.eventTargetId && (
+                  <List>
+                    <CommentList_Comment_Container_Top>
+                      <CommentList_ProfilePhoto src="/CommentList_Profile.png" />
+                      <CommentList_Comment_Container_Top_Right>
+                        <CommentList_Profile_StarScope>
+                          <CommentList_Writer>{el.writer}</CommentList_Writer>
+                          {/* 별점 */}
+                          <MyRate value={el.rating} s />
+                          <CommentPencil
+                            src="/commentPencil.png"
+                            onClick={props.onClickEdit}
+                            id={el._id}
+                          />
+                          <CommentX
+                            src="/commentX.png"
+                            onClick={props.showModal}
+                            id={el._id}
+                          />
+                        </CommentList_Profile_StarScope>
+                        <CommentList_Comment_Read>
+                          {el.contents}
+                        </CommentList_Comment_Read>
+                        <CommentList_Write_Date>
+                          {el.createdAt.slice(0, 10)}
+                        </CommentList_Write_Date>
+                      </CommentList_Comment_Container_Top_Right>
+                    </CommentList_Comment_Container_Top>
+                    <Underline3 />
+                  </List>
+                )}
+              </CommentList_Comment_Container>
+            ))}
+          </InfiniteScroll>
+        </Loader>
       </CommentList>
     </Wrapper_Bottom>
   );

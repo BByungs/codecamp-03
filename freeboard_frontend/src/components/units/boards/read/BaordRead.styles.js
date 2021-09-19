@@ -2,6 +2,12 @@ import styled from "@emotion/styled";
 import { Rate } from "antd";
 import { EnvironmentOutlined, CaretDownOutlined } from "@ant-design/icons";
 
+export const Loader = styled.div`
+  width: 1240px;
+  overflow: auto;
+  height: 1200px;
+`;
+
 export const LocationIcon = styled.img``;
 export const Smalltriangle = styled(CaretDownOutlined)`
   font-size: 20px;

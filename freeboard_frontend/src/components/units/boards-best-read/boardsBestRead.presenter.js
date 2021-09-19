@@ -158,11 +158,9 @@ export default function BoardBestUI(props) {
           <PostListBottom>
             {props.data?.fetchBoards.map((el, index) => (
               <EachPosts key={el._id}>
-                <EachPost>
+                <EachPost onClick={props.onClickPost} id={el._id}>
                   <PostsNumner>{index + 1}</PostsNumner>
-                  <PostsTitle onClick={props.onClickPost} id={el._id}>
-                    {el.title}
-                  </PostsTitle>
+                  <PostsTitle>{el.title}</PostsTitle>
                   <PostsWriter>{el.writer}</PostsWriter>
                   <PostsDate>{el.createdAt.slice(0, 10)}</PostsDate>
                 </EachPost>
@@ -184,6 +182,7 @@ export default function BoardBestUI(props) {
               onClick={props.onClickLeft}
               isActive={props.currentPage === 1}
             />
+
             <PageNum>
               {new Array(10).fill(1).map(
                 (_, idx) =>
@@ -199,6 +198,7 @@ export default function BoardBestUI(props) {
                   )
               )}
             </PageNum>
+
             <MoveToRight
               onClick={props.onClickRight}
               isActive={props.currentPage === props.lastPage}
