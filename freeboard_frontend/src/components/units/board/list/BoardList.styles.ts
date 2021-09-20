@@ -62,6 +62,7 @@ export const Wrapper = styled.div`
   height: 1173px;
   display: flex;
   flex-direction: column;
+  /* margin: 100px; */
 `;
 export const BestPosts = styled.div`
   width: 1200px;

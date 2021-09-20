@@ -1,6 +1,7 @@
 import {
   BottomWrapper,
-  Button,
+  EditButton,
+  SubmitButton,
   Contents,
   ContentsLength,
   ContentsWrapper,
@@ -42,12 +43,16 @@ export default function BoardCommentWriteUI(props) {
         />
         <BottomWrapper>
           <ContentsLength>0/100</ContentsLength>
-          <Button
-            id={props.el?._id}
-            onClick={props.isEdit ? props.onClickUpdate : props.onClickWrite}
-          >
-            {props.isEdit ? "수정하기" : "등록하기"}
-          </Button>
+          {props.isEdit && (
+            <EditButton id={props.el?._id} onClick={props.onClickUpdate}>
+              수정하기
+            </EditButton>
+          )}
+          {!props.isEdit && (
+            <SubmitButton id={props.el?._id} onClick={props.onClickWrite}>
+              등록하기
+            </SubmitButton>
+          )}
         </BottomWrapper>
       </ContentsWrapper>
     </Wrapper>

@@ -3,7 +3,7 @@ import { Rate } from "antd";
 
 export const Wrapper = styled.div`
   width: 1200px;
-  margin: 0px 100px;
+  /* margin: 0px 100px; */
 `;
 
 export const PencilIcon = styled.img``;
@@ -36,6 +36,7 @@ export const Contents = styled.textarea`
   padding: 20px;
   border: none;
   border-bottom: 1px solid lightgray;
+  resize: none;
 `;
 
 export const BottomWrapper = styled.div`
@@ -52,10 +53,20 @@ export const ContentsLength = styled.div`
   color: gray;
 `;
 
-export const Button = styled.button`
+export const EditButton = styled.button`
+  width: 91px;
+  height: 51px;
+  background-color: #ffd600;
+  color: black;
+  cursor: pointer;
+  border: none;
+`;
+
+export const SubmitButton = styled.button`
   width: 91px;
   height: 51px;
   background-color: black;
   color: white;
   cursor: pointer;
+  border: none;
 `;

@@ -6,7 +6,7 @@ export const Star = styled(Rate)``;
 export const List = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 100px;
+  /* margin: 100px; */
 `;
 
 export const CommentList_Comment_Container_Top = styled.div`
