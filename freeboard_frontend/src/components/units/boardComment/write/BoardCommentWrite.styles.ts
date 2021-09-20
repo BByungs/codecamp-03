@@ -20,6 +20,7 @@ export const InputWrapper = styled.div`
 
 export const ContentsWrapper = styled.div`
   border: 1px solid lightgray;
+  margin-bottom: 40px;
 `;
 
 export const Input = styled.input`
