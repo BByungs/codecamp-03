@@ -82,25 +82,54 @@ export default function BoardWriteUI(props) {
           <ErrorMessage>{props.contentError}</ErrorMessage>
         </Container_Contents>
 
+        {/* Modal */}
+        {props.isOpen && (
+          <Address visible={true} onCancel={props.onToggleZipcode}>
+            <DaumPostcode onComplete={props.handleComplete} />
+          </Address>
+        )}
+        {/* Modal */}
+
         {/* 주소 입력칸 */}
         <Container_Address>
           <SmallTitle>주소</SmallTitle>
           <AddressSearch>
-            <AddressInput type="text" defaultValue={props.myZipcode} />
+            {/* myZipcode */}
+            <AddressInput
+              type="text"
+              defaultValue={props.myZipcode}
+              placeholder="07250"
+              readOnly
+              // value={
+              //   props.myZipcode || props.data?.fetchBoard.boardAddress?.zipcode
+              // }
+              value={
+                props.myZipcode
+                  ? props.myZipcode
+                  : props.data?.fetchBoard.boardAddress?.zipcode
+              }
+            />
+
             <AddressSearchButton onClick={props.onToggleZipcode}>
               우편번호 검색
             </AddressSearchButton>
-            {props.isOpen && (
-              <Address visible={true} onCancel={props.onToggleZipcode}>
-                <DaumPostcode onComplete={props.handleComplete} />
-              </Address>
-            )}
           </AddressSearch>
-          <Input type="text" defaultValue={props.myAddress} />
+          {/* myAddress */}
+          <Input
+            type="text"
+            readOnly
+            // true인얘를 반환하는거임
+            value={
+              props.myAddress || props.data?.fetchBoard.boardAddress?.address
+            }
+          />
+
+          {/* addressDetail */}
           <Input
             type="text"
             placeholder="상세주소를 입력하세요"
             onChange={props.InputDetailAddress}
+            defaultValue={props.data?.fetchBoard.boardAddress?.addressDetail}
           />
         </Container_Address>
 

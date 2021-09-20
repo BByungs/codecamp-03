@@ -24,7 +24,7 @@ export default function BoardWrite(props) {
   const [createBoard] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(UPDATE_BOARD);
 
-  const [id, setId] = useState("");
+  // const [id, setId] = useState("");
 
   const [detailAddress, setDetailAddress] = useState("");
   const [myZipcode, setMyZipcode] = useState("");
@@ -49,6 +49,7 @@ export default function BoardWrite(props) {
     setYoutubeUrl(event.target.value);
   }
 
+  // 등록하기 버튼
   async function onClickButton() {
     if (writer === "") {
       setWriterError("작성자를 입력해주세요.");
@@ -96,36 +97,46 @@ export default function BoardWrite(props) {
     }
   }
 
+  // 수정하기 버튼
   async function onclickEdit() {
-    const myVariables = {
-      updateBoardInput: { boardAddress: {} },
-      boardId: router.query.detailPageNonMembersBasic,
-    };
-    if (title) myVariables.updateBoardInput.title = title;
-    if (contents) myVariables.updateBoardInput.contents = contents;
-    if (youtubeUrl) myVariables.updateBoardInput.youtubeUrl = youtubeUrl;
-    if (myZipcode)
-      myVariables.updateBoardInput.boardAddress.zipcode = myZipcode;
-    if (myAddress)
-      myVariables.updateBoardInput.boardAddress.address = myAddress;
+    if (
+      !title &&
+      !contents &&
+      !youtubeUrl &&
+      !myZipcode &&
+      !myAddress &&
+      !detailAddress
+    ) {
+      alert("수정된 내용이 없습니다.");
+      return;
+    }
+
+    const updateBoardInput = { boardAddress: {} };
+
+    if (title) updateBoardInput.title = title;
+    if (contents) updateBoardInput.contents = contents;
+    if (youtubeUrl) updateBoardInput.youtubeUrl = youtubeUrl;
+    if (myZipcode) updateBoardInput.boardAddress.zipcode = myZipcode;
+    if (myAddress) updateBoardInput.boardAddress.address = myAddress;
     if (detailAddress)
-      myVariables.updateBoardInput.boardAddress.addressDetail = detailAddress;
-    if (password) myVariables.password = password;
+      updateBoardInput.boardAddress.addressDetail = detailAddress;
 
     try {
-      await updateBoard({
-        variables: myVariables,
+      const result = await updateBoard({
+        variables: {
+          updateBoardInput,
+          password,
+          boardId: router.query.detailPageNonMembersBasic,
+        },
       });
       console.log(
         `우편번호: ${myZipcode} , 주소: ${myAddress} , 상세주소: ${detailAddress} , youtubeUrl: ${youtubeUrl}`
       );
       router.push(
-        `/boards/detailPage-nonMembers-basic-read/${router.query.detailPageNonMembersBasic}`
+        `/boards/detailPage-nonMembers-basic-read/${result.data.updateBoard._id}`
       );
-      // console.log(data);
-    } catch (error) {
-      console.log(error);
-      alert(error.message);
+    } catch (err) {
+      alert(err.message);
     }
   }
 
@@ -136,7 +147,7 @@ export default function BoardWrite(props) {
   const handleComplete = (data) => {
     setMyZipcode(data.zonecode);
     setMyAddress(data.address);
-    // console.log(data);
+    console.log(data);
     setIsOpen((prev) => !prev);
   };
 
