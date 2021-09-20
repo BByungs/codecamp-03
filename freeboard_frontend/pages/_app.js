@@ -1,9 +1,5 @@
-import "../styles/globals.css";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import "antd/dist/antd.css";
-import Layout from "../src/components/commons/layout";
-import { Global } from "@emotion/react";
-import { globalStyles } from "../src/commons/styles/globalStyles";
 
 function MyApp({ Component, pageProps }) {
   const client = new ApolloClient({
@@ -13,11 +9,8 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      <Global styles={globalStyles} />
       <ApolloProvider client={client}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <Component {...pageProps} />
       </ApolloProvider>
     </>
   );
