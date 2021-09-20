@@ -1,5 +1,30 @@
+import { useQuery } from "@apollo/client";
+import { useRouter } from "next/router";
+import { FETCH_BOARD_COMMENTS } from "./BoardCommentList.queries";
 import BoardCommentListUI from "./BoardCommentList.presenter";
 
 export default function BoardCommentList() {
-  return <BoardCommentListUI />;
+  const router = useRouter();
+  const { data, fetchMore } = useQuery(FETCH_BOARD_COMMENTS, {
+    variables: { boardId: router.query.boardID },
+  });
+  function onLoadMore() {
+    if (!data) {
+      return;
+    }
+    fetchMore({
+      variables: {
+        page: Math.ceil(data?.fetchBoardComments.length / 10) + 1,
+      },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        return {
+          fetchBoardComments: [
+            ...prev.fetchBoardComments,
+            ...fetchMoreResult.fetchBoardComments,
+          ],
+        };
+      },
+    });
+  }
+  return <BoardCommentListUI data={data} onLoadMore={onLoadMore} />;
 }

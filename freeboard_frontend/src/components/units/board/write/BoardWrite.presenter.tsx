@@ -36,7 +36,7 @@ export default function BoardWriteUI(props) {
   return (
     <Wrapper>
       <Container>
-        <BigTitle>{props.isEdit ? "게시물 수정" : "게시물 등록"}</BigTitle>
+        <BigTitle>{props.isEdit ? "게시판 등록" : "게시판 수정"}</BigTitle>
         {/* 작성자 , 비밀번호 */}
         <Container_Title>
           <Writer>
@@ -45,6 +45,7 @@ export default function BoardWriteUI(props) {
               type="text"
               placeholder="이름을 적어주세요."
               onChange={props.onChangeWriter}
+              defaultValue={props.data?.fetchBoard.writer}
             />
             <ErrorMessage>{props.writerError}</ErrorMessage>
           </Writer>
@@ -84,7 +85,17 @@ export default function BoardWriteUI(props) {
           <SmallTitle>주소</SmallTitle>
           <AddressSearch>
             {/* myZipcode */}
-            <AddressInput type="text" placeholder="07250" />
+            <AddressInput
+              type="text"
+              placeholder="07250"
+              readOnly
+              value={
+                props.zipcode
+                  ? props.zipcode
+                  : props.data?.fetchBoard.boardAddress?.zipcode
+              }
+              defaultValue={props.myZipcode}
+            />
             <AddressSearchButton onClick={props.onClickAddressSearch}>
               우편번호 검색
             </AddressSearchButton>
@@ -98,13 +109,21 @@ export default function BoardWriteUI(props) {
           </AddressSearch>
 
           {/* myAddress */}
-          <Input type="text" />
+          <Input
+            type="text"
+            readOnly
+            // true인얘를 반환하는거임
+            value={
+              props.address || props.data?.fetchBoard.boardAddress?.address
+            }
+          />
 
           {/* addressDetail */}
           <Input
             type="text"
             placeholder="상세주소를 입력하세요"
             onChange={props.onChangeDetailAddress}
+            defaultValue={props.data?.fetchBoard.boardAddress?.addressDetail}
           />
         </Container_Address>
 
@@ -152,14 +171,18 @@ export default function BoardWriteUI(props) {
         </MainSetting>
 
         {/* 등록하기 버튼(false) */}
-        {!props.isEdit && (
+        {props.isEdit && (
           <RegistrationButton onClick={props.onClickBoardSubmit}>
             등록하기
           </RegistrationButton>
         )}
 
         {/* 수정하기 버튼(true) */}
-        {props.isEdit && <RegistrationButton>수정하기</RegistrationButton>}
+        {!props.isEdit && (
+          <RegistrationButton onClick={props.onclickEdit}>
+            수정하기
+          </RegistrationButton>
+        )}
       </Container>
     </Wrapper>
   );

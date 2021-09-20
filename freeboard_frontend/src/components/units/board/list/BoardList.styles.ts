@@ -57,17 +57,6 @@ export const Row = styled.div`
   color: ${(props) => (props.changeColor === true ? "#ff6e40" : "black")};
 `;
 
-export const Container = styled.div`
-  width: 1920;
-  height: 1672px;
-  display: flex;
-  flex-direction: column;
-  padding-top: 80px;
-  padding-right: 360px;
-  padding-left: 360px;
-  align-items: center;
-`;
-
 export const Wrapper = styled.div`
   width: 1200px;
   height: 1173px;
