@@ -1,7 +1,9 @@
 import styled from "@emotion/styled";
 import LayoutHeader from "./header/LayoutHeader.container";
 
-const Body = styled.div``;
+const Body = styled.div`
+  width: 1200px;
+`;
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
