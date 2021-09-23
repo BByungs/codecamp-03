@@ -28,9 +28,7 @@ import {
 } from "./BoardCommentList.queries";
 
 export default function BoardCommentListUIItem(props) {
-  const [starValue, setStarValue] = useState(0);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [deleteCommentId, setDeleteCommentId] = useState("");
   const [isEdit, setIsEdit] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const [myPassword, setMyPassword] = useState("");
@@ -41,9 +39,8 @@ export default function BoardCommentListUIItem(props) {
     IMutationDeleteBoardCommentArgs
   >(DELETE_BOARD_COMMENT);
 
-  const showModal = (event) => {
+  const showModal = () => {
     setIsModalVisible(true);
-    setDeleteCommentId(event.target.id);
     setIsOpenDeleteModal((prev) => !prev);
   };
 
@@ -77,7 +74,7 @@ export default function BoardCommentListUIItem(props) {
   return (
     <>
       {isOpenDeleteModal && (
-        <Modal visible={true} onOk={onClickDelete}>
+        <Modal visible={isModalVisible} onOk={onClickDelete}>
           <div>비밀번호 입력: </div>
           <PasswordInput type="password" onChange={onChangeDeletePassword} />
         </Modal>

@@ -34,7 +34,7 @@ export default function BoardList() {
 
   // 다음 페이지로 이동
   function onClickRight() {
-    if (startPage + 10 > lastPage) {
+    if (currentPage + 10 > lastPage) {
       return;
     }
     setCurrentPage(currentPage + 10);
@@ -58,7 +58,8 @@ export default function BoardList() {
 
   // 마지막 페이지로 이동
   function moveToLastPage() {
-    setStartPage(lastPage);
+    setStartPage(lastPage - ((lastPage % 10) - 1));
+    // setStartPage(lastPage);
     setCurrentPage(lastPage);
   }
   // ========================================================================

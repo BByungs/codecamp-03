@@ -94,7 +94,6 @@ export default function BoardWriteUI(props) {
                   ? props.zipcode
                   : props.data?.fetchBoard.boardAddress?.zipcode
               }
-              defaultValue={props.myZipcode}
             />
             <AddressSearchButton onClick={props.onClickAddressSearch}>
               우편번호 검색
@@ -112,9 +111,13 @@ export default function BoardWriteUI(props) {
           <Input
             type="text"
             readOnly
-            // true인얘를 반환하는거임
+            // value={
+            //   props.address || props.data?.fetchBoard.boardAddress?.address
+            // }
             value={
-              props.address || props.data?.fetchBoard.boardAddress?.address
+              props.address
+                ? props.address
+                : props.data?.fetchBoard.boardAddress?.address
             }
           />
 

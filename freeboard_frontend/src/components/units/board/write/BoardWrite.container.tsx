@@ -122,7 +122,6 @@ export default function BoardWrite(props) {
           boardId: router.query.boardID,
         },
       });
-
       router.push(`/boards/${result.data.updateBoard._id}`);
     } catch (err) {
       alert(err.message);

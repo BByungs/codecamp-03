@@ -196,7 +196,10 @@ export default function BoardListUI(props) {
 
           <MoveToRight
             onClick={props.onClickRight}
-            isActive={props.currentPage === props.lastPage}
+            isActive={
+              props.currentPage === props.lastPage ||
+              props.currentPage + 10 > props.lastPage
+            }
           />
           <MoveToLastPage
             onClick={props.moveToLastPage}
