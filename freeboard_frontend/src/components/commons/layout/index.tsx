@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
-import LayoutHeader from "./header/LayoutHeader.container";
-
+import Header from "./header/header.container";
 const Body = styled.div`
   width: 1200px;
 `;
@@ -15,7 +14,7 @@ export default function Layout(props) {
   return (
     <>
       <Wrapper>
-        <LayoutHeader></LayoutHeader>
+        <Header />
         <Body>{props.children}</Body>
       </Wrapper>
     </>

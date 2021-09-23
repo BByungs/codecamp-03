@@ -109,6 +109,8 @@ export default function BoardCommentWrite(props) {
       onClickUpdate={onClickUpdate}
       isEdit={props.isEdit}
       el={props.el}
+      myContents={myContents}
+      data={props.data}
     />
   );
 }

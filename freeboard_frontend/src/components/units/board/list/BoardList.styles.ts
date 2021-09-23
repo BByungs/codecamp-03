@@ -54,7 +54,7 @@ export const Row = styled.div`
   :hover {
     opacity: 0.7;
   }
-  color: ${(props) => (props.changeColor === true ? "#ff6e40" : "black")};
+  color: ${(props) => (props.changeColor === true ? "#ef5350" : "black")};
 `;
 
 export const Wrapper = styled.div`

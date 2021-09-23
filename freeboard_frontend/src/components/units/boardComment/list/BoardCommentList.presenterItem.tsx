@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import BoardCommentWrite from "../write/BoardCommentWrite.container";
 import {
   List,
@@ -33,6 +33,10 @@ export default function BoardCommentListUIItem(props) {
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const [myPassword, setMyPassword] = useState("");
   const router = useRouter();
+
+  const { data } = useQuery(FETCH_BOARD_COMMENTS, {
+    variables: { boardCommentId: props.el?._id },
+  });
 
   const [deleteBoardComment] = useMutation<
     Pick<IMutation, "deleteBoardComment">,
@@ -115,6 +119,7 @@ export default function BoardCommentListUIItem(props) {
           isEdit={isEdit}
           setIsEdit={setIsEdit}
           el={props.el}
+          data={data}
         />
       )}
     </>
