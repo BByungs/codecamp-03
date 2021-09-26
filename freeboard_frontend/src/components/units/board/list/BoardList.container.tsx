@@ -58,8 +58,8 @@ export default function BoardList() {
 
   // 마지막 페이지로 이동
   function moveToLastPage() {
-    setStartPage(lastPage - ((lastPage % 10) - 1));
-    // setStartPage(lastPage);
+    // setStartPage(lastPage - ((lastPage % 10) - 1));
+    setStartPage(lastPage);
     setCurrentPage(lastPage);
   }
   // ========================================================================
