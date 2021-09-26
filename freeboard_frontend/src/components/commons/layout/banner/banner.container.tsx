@@ -9,26 +9,10 @@ const Wrapper = styled.div`
   /* background-color: black; */
   margin-bottom: 50px;
 `;
-const ImgThree = styled.img`
+const Img = styled.img`
   width: 100%;
   height: 100%;
 `;
-
-// export const Caresel = styled(Slider)`
-//   .slick-list {
-//     width: 1915px;
-//     margin: 0 auto;
-//   }
-//   .slick-slide div {
-//     /* cursor: pointer; */
-//   }
-//   .slick-dots {
-//     margin-top: 200px;
-//   }
-//   .slick-track {
-//     /* overflow-x: hidden; */
-//   }
-// `;
 
 export default function Banner() {
   const settings = {
@@ -45,28 +29,28 @@ export default function Banner() {
       <Wrapper>
         <Slider {...settings}>
           <div>
-            <ImgThree src="/images/banner/one.jpeg" />
+            <Img src="/images/banner/one.jpeg" />
           </div>
           <div>
-            <ImgThree src="/images/banner/two.jpeg" />
+            <Img src="/images/banner/two.jpeg" />
           </div>
           <div>
-            <ImgThree src="/images/banner/three.jpeg" />
+            <Img src="/images/banner/three.jpeg" />
           </div>
           <div>
-            <ImgThree src="/images/banner/four.jpeg" />
+            <Img src="/images/banner/four.jpeg" />
           </div>
           <div>
-            <ImgThree src="/images/banner/five.jpeg" />
+            <Img src="/images/banner/five.jpeg" />
           </div>
           <div>
-            <ImgThree src="/images/banner/six.jpeg" />
+            <Img src="/images/banner/six.jpeg" />
           </div>
           <div>
-            <ImgThree src="/images/banner/seven.png" />
+            <Img src="/images/banner/seven.png" />
           </div>
           <div>
-            <ImgThree src="/images/banner/eight.jpeg" />
+            <Img src="/images/banner/eight.jpeg" />
           </div>
         </Slider>
       </Wrapper>

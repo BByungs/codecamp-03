@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 import React from "react";
 import { SearchOutlined } from "@ant-design/icons";
 import { useRouter } from "next/router";
-import { route } from "next/dist/server/router";
 
 const Wrapper = styled.div`
   /* background-image: url("/images/header/poster1.jpeg"); */
