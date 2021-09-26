@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 const Wrapper = styled.div`
   /* background-image: url("/images/header/poster1.jpeg"); */
   width: 100%;
-  height: 75px;
+  /* height: 75px; */
   background-color: white;
   display: flex;
   /* margin-bottom: 1px; */

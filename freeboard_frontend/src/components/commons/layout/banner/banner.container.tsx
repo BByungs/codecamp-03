@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 930px;
+  /* height: 930px; */
   /* background-color: black; */
   margin-bottom: 50px;
 `;
