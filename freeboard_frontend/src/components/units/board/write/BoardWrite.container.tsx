@@ -104,15 +104,18 @@ export default function BoardWrite(props) {
       return;
     }
 
-    const updateBoardInput = { boardAddress: {} };
+    const updateBoardInput = {};
 
     if (title) updateBoardInput.title = title;
     if (contents) updateBoardInput.contents = contents;
     if (youtubeUrl) updateBoardInput.youtubeUrl = youtubeUrl;
-    if (zipcode) updateBoardInput.boardAddress.zipcode = zipcode;
-    if (address) updateBoardInput.boardAddress.address = address;
-    if (addressDetail)
-      updateBoardInput.boardAddress.addressDetail = addressDetail;
+    if (zipcode || address || addressDetail) {
+      updateBoardInput.boardAddress = {};
+      if (zipcode) updateBoardInput.boardAddress.zipcode = zipcode;
+      if (address) updateBoardInput.boardAddress.address = address;
+      if (addressDetail)
+        updateBoardInput.boardAddress.addressDetail = addressDetail;
+    }
 
     try {
       const result = await updateBoard({
