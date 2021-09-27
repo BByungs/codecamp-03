@@ -3,6 +3,17 @@ import "antd/dist/antd.css";
 import Layout from "../src/components/commons/layout";
 import { Global } from "@emotion/react";
 import { globalStyles } from "../src/commons/styles/globalStyles";
+import { initializeApp } from "firebase/app";
+
+export const firebaseApp = initializeApp({
+  apiKey: "AIzaSyDqMZBInmQqBw3YigL0dIeFzaswmw1DjGo",
+  authDomain: "test02-bd48c.firebaseapp.com",
+  projectId: "test02-bd48c",
+  storageBucket: "test02-bd48c.appspot.com",
+  messagingSenderId: "404431262637",
+  appId: "1:404431262637:web:8e97e12b2ef0008f670724",
+  measurementId: "G-N9JNDKFPJ5",
+});
 
 function MyApp({ Component, pageProps }) {
   // Apollo Setting
