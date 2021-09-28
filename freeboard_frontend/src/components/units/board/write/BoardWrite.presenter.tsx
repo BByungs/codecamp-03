@@ -13,7 +13,9 @@ import {
   Container_Youtube,
   PhotoAttach,
   Upload,
-  UploadButton,
+  UploadButton1,
+  UploadButton2,
+  UploadButton3,
   StringPlus,
   StringUpload,
   MainSetting,
@@ -143,18 +145,49 @@ export default function BoardWriteUI(props) {
         <PhotoAttach>
           <SmallTitle>사진 첨부</SmallTitle>
           <Upload>
-            <UploadButton>
+            <UploadButton1
+              onClick={props.onClickImageUpload1}
+              disabled={props.isUpload1}
+              // isActive1={props.isUpload1}
+            >
               <StringPlus>+</StringPlus>
               <StringUpload>upload</StringUpload>
-            </UploadButton>
-            <UploadButton>
+            </UploadButton1>
+            <UploadButton2
+              onClick={props.onClickImageUpload2}
+              disabled={props.isUpload2}
+              // isActive2={props.isUpload2}
+            >
               <StringPlus>+</StringPlus>
               <StringUpload>upload</StringUpload>
-            </UploadButton>
-            <UploadButton>
+            </UploadButton2>
+            <UploadButton3
+              onClick={props.onClickImageUpload3}
+              disabled={props.isUpload3}
+              // isActive3={props.isUpload3}
+            >
               <StringPlus>+</StringPlus>
               <StringUpload>upload</StringUpload>
-            </UploadButton>
+            </UploadButton3>
+
+            <input
+              ref={props.fileRef1}
+              style={{ display: "none" }}
+              type="file"
+              onChange={props.onChangeFile1}
+            />
+            <input
+              ref={props.fileRef2}
+              style={{ display: "none" }}
+              type="file"
+              onChange={props.onChangeFile2}
+            />
+            <input
+              ref={props.fileRef3}
+              style={{ display: "none" }}
+              type="file"
+              onChange={props.onChangeFile3}
+            />
           </Upload>
         </PhotoAttach>
 

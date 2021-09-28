@@ -130,13 +130,39 @@ export const Upload = styled.div`
   flex-direction: row;
   justify-content: space-between;
 `;
-export const UploadButton = styled.button`
+export const UploadButton1 = styled.button`
   height: 78px;
   width: 78px;
   border: none;
-  cursor: pointer;
   :hover {
-    opacity: 0.7;
+    /* opacity: 0.7; */
+    /* cursor: pointer; */
+    opacity: ${(props) => (props.disabled ? 1 : 0.7)};
+    cursor: ${(props) => (props.disabled ? "default" : "pointer")};
+  }
+`;
+
+export const UploadButton2 = styled.button`
+  height: 78px;
+  width: 78px;
+  border: none;
+  :hover {
+    /* opacity: 0.7; */
+    /* cursor: pointer; */
+    opacity: ${(props) => (props.disabled ? 1 : 0.7)};
+    cursor: ${(props) => (props.disabled ? "default" : "pointer")};
+  }
+`;
+
+export const UploadButton3 = styled.button`
+  height: 78px;
+  width: 78px;
+  border: none;
+  :hover {
+    /* opacity: 0.7; */
+    /* cursor: pointer; */
+    opacity: ${(props) => (props.disabled ? 1 : 0.7)};
+    cursor: ${(props) => (props.disabled ? "default" : "pointer")};
   }
 `;
 

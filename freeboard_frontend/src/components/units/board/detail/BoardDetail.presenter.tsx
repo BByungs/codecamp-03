@@ -21,6 +21,7 @@ import {
   DislikeCount,
   LinkIcon,
   LocationIcon,
+  UploadImg,
 } from "./BoardDetail.styles";
 import { Tooltip } from "antd";
 export default function BoardDetailUI(props) {
@@ -55,6 +56,14 @@ export default function BoardDetailUI(props) {
             width="486px"
             height="240px"
           />
+          <div>
+            {props.data?.fetchBoard.images.map((el: any, idx: any) => (
+              <UploadImg
+                key={el}
+                src={`https://storage.googleapis.com/${el}`}
+              />
+            ))}
+          </div>
           <LikeWrapper>
             <IconWrapper>
               <LikeIcon onClick={props.onClickLike} />

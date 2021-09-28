@@ -7,6 +7,12 @@ export const Wrapper = styled.div`
   /* margin: 100px; */
 `;
 
+export const UploadImg = styled.img`
+  width: 1000px;
+  height: 500px;
+  margin-bottom: 20px;
+`;
+
 export const CardWrapper = styled.div`
   border: 1px solid black;
   padding-top: 80px;
