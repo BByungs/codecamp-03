@@ -1,4 +1,9 @@
-import { ApolloClient, ApolloProvider, InMemoryCache , ApolloLink} from "@apollo/client"; // apollo 쓰려면 import해서 이렇게 가져와야함
+import {
+  ApolloClient,
+  ApolloProvider,
+  InMemoryCache,
+  ApolloLink,
+} from "@apollo/client"; // apollo 쓰려면 import해서 이렇게 가져와야함
 import "antd/dist/antd.css";
 import Layout from "../src/components/commons/layout";
 import { Global } from "@emotion/react";
@@ -21,13 +26,13 @@ function MyApp({ Component, pageProps }) {
   // Apollo Setting
   const uploadLink = createUploadLink({
     uri: "http://backend03.codebootcamp.co.kr/graphql",
-  })
+  });
 
   const client = new ApolloClient({
     // 주소를 등록해줘야함
     // uri: "http://backend03.codebootcamp.co.kr/graphql",
     cache: new InMemoryCache(),
-    link: ApolloLink.from([uploadLink])
+    link: ApolloLink.from([uploadLink]),
   });
   // 각각의 페이지는 index.js
 
