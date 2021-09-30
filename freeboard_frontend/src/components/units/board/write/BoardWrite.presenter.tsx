@@ -13,7 +13,7 @@ import {
   Container_Youtube,
   PhotoAttach,
   Upload,
-  UploadButton1,
+  // UploadButton1,
   UploadButton2,
   UploadButton3,
   StringPlus,
@@ -33,6 +33,7 @@ import {
 } from "./BoardWrite.styles";
 import { Modal } from "antd";
 import DaumPostcode from "react-daum-postcode";
+import UploadButton1 from "../../../commons/uploads/01/upload.container";
 
 export default function BoardWriteUI(props) {
   return (
@@ -144,50 +145,16 @@ export default function BoardWriteUI(props) {
         {/* 사진 첨부 */}
         <PhotoAttach>
           <SmallTitle>사진 첨부</SmallTitle>
+          {/* 맵 돌려야 함 */}
           <Upload>
-            <UploadButton1
-              onClick={props.onClickImageUpload1}
-              disabled={props.isUpload1}
-              // isActive1={props.isUpload1}
-            >
-              <StringPlus>+</StringPlus>
-              <StringUpload>upload</StringUpload>
-            </UploadButton1>
-            <UploadButton2
-              onClick={props.onClickImageUpload2}
-              disabled={props.isUpload2}
-              // isActive2={props.isUpload2}
-            >
-              <StringPlus>+</StringPlus>
-              <StringUpload>upload</StringUpload>
-            </UploadButton2>
-            <UploadButton3
-              onClick={props.onClickImageUpload3}
-              disabled={props.isUpload3}
-              // isActive3={props.isUpload3}
-            >
-              <StringPlus>+</StringPlus>
-              <StringUpload>upload</StringUpload>
-            </UploadButton3>
-
-            <input
-              ref={props.fileRef1}
-              style={{ display: "none" }}
-              type="file"
-              onChange={props.onChangeFile1}
-            />
-            <input
-              ref={props.fileRef2}
-              style={{ display: "none" }}
-              type="file"
-              onChange={props.onChangeFile2}
-            />
-            <input
-              ref={props.fileRef3}
-              style={{ display: "none" }}
-              type="file"
-              onChange={props.onChangeFile3}
-            />
+            {props.imageUrls.map((el, index) => (
+              <UploadButton1
+                key={`${el}_${index}`}
+                index={index}
+                imageUrl={el}
+                onChangeFile={props.onChangeFile}
+              />
+            ))}
           </Upload>
         </PhotoAttach>
 

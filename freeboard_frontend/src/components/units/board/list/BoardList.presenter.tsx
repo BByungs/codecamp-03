@@ -45,7 +45,9 @@ import {
   MoveToLeft,
   MoveToRight,
   MoveStartPage,
+  DatePick,
 } from "./BoardList.styles";
+import { Space } from "antd";
 
 export default function BoardListUI(props) {
   return (
@@ -135,9 +137,18 @@ export default function BoardListUI(props) {
 
       {/* 검색창 전체 */}
       <Search>
-        <TitleSearch type="text" placeholder="제목을 검색해주세요." />
-        <YearMonthDaySearch type="text" placeholder="YYYY.MM.DD ~ YYYY.MM.DD" />
-        <ToSearch>검색하기</ToSearch>
+        <TitleSearch
+          type="text"
+          placeholder="제목을 검색해주세요."
+          onChange={props.onChangeSearchTitle}
+        />
+        {/* <YearMonthDaySearch type="text" placeholder="YYYY.MM.DD ~ YYYY.MM.DD" /> */}
+        {/* ################DatePicker################ */}
+        <Space direction="vertical">
+          <DatePick onChange={props.onChange} />
+        </Space>
+        {/* ################DatePicker################ */}
+        <ToSearch onClick={props.onClickSearh}>검색하기</ToSearch>
       </Search>
 
       {/* 게시글 번호, 게시글 제목, 게시글 작성자, 게시글 날짜 */}

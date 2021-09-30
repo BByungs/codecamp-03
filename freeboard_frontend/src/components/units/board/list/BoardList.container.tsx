@@ -3,6 +3,8 @@ import { useQuery } from "@apollo/client";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { FETCH_BOARDS, FETCH_BOARDS_COUNT } from "./BoardList.queries";
+import _ from "lodash";
+import { v4 as uuid } from "uuid";
 
 export default function BoardList() {
   const [startPage, setStartPage] = useState(1);
@@ -12,6 +14,9 @@ export default function BoardList() {
   const { data: fetchBoardsCount } = useQuery(FETCH_BOARDS_COUNT);
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1);
+
+  const [searchTitle, setSearchTitle] = useState("");
+  // const [date, setDate] = useState("");
 
   // 게시물 등록 페이지로 이동
   function onClickSubmit() {
@@ -24,7 +29,6 @@ export default function BoardList() {
   }
 
   const lastPage = Math.ceil(fetchBoardsCount?.fetchBoardsCount / 10);
-  // ============================ 페이지 이동 함수 ===============================
 
   // 번호를 클릭하면 해당 페이지로 이동
   function onClickPage(event) {
@@ -62,7 +66,28 @@ export default function BoardList() {
     setStartPage(lastPage);
     setCurrentPage(lastPage);
   }
-  // ========================================================================
+
+  function onChangeSearchTitle(event: any) {
+    setSearchTitle(event.target.value);
+    // getDebounce(event.target.value);
+  }
+  function onClickSearh() {
+    refetch({
+      page: 1,
+      search: searchTitle,
+    });
+    setCurrentPage(1);
+  }
+
+  function onChange(date, dateString) {
+    console.log(dateString);
+    // setDate(dateString);
+    refetch({
+      page: 1,
+      startDate: dateString,
+      endDate: dateString,
+    });
+  }
 
   return (
     <BoardListUI
@@ -77,6 +102,9 @@ export default function BoardList() {
       moveToStartPage={moveToStartPage}
       moveToLastPage={moveToLastPage}
       currentPage={currentPage}
+      onChangeSearchTitle={onChangeSearchTitle}
+      onClickSearh={onClickSearh}
+      onChange={onChange}
     />
   );
 }

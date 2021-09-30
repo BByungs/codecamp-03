@@ -23,20 +23,16 @@ export default function BoardWrite(props) {
   const [titleError, setTitleError] = useState("");
   const [contentsError, setContentsError] = useState("");
 
-  const [imageUrl, setImageUrl] = useState([]);
+  const [imageUrls, setImageUrls] = useState(["", "", ""]);
   // let imageUrl = [];
 
-  const [isUpload1, setIsUpload1] = useState(false);
-  const [isUpload2, setIsUpload2] = useState(false);
-  const [isUpload3, setIsUpload3] = useState(false);
+  const [isUpload, setIsUpload] = useState(false);
 
   const [createBoard] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(UPDATE_BOARD);
   const [uploadFile] = useMutation(UPLOAD_FILE);
 
-  const fileRef1 = useRef<HTMLInputElement>();
-  const fileRef2 = useRef<HTMLInputElement>();
-  const fileRef3 = useRef<HTMLInputElement>();
+  const fileRef = useRef<HTMLInputElement>();
 
   function onChangeWriter(event) {
     setWriter(event.target.value);
@@ -89,7 +85,7 @@ export default function BoardWrite(props) {
               title,
               contents,
               youtubeUrl,
-              images: [...imageUrl],
+              images: [...imageUrls],
               boardAddress: {
                 zipcode,
                 address,
@@ -99,7 +95,7 @@ export default function BoardWrite(props) {
           },
         });
         router.push(`/boards/${result.data.createBoard._id}`);
-        console.log(imageUrl);
+        console.log(imageUrls);
       } catch (err) {
         alert(err.message);
       }
@@ -124,7 +120,7 @@ export default function BoardWrite(props) {
     if (title) updateBoardInput.title = title;
     if (contents) updateBoardInput.contents = contents;
     if (youtubeUrl) updateBoardInput.youtubeUrl = youtubeUrl;
-    if (imageUrl) updateBoardInput.images = [...imageUrl];
+    if (imageUrl) updateBoardInput.images = [...imageUrls];
     if (zipcode || address || addressDetail) {
       updateBoardInput.boardAddress = {};
       if (zipcode) updateBoardInput.boardAddress.zipcode = zipcode;
@@ -147,68 +143,16 @@ export default function BoardWrite(props) {
     }
   }
 
-  async function onChangeFile1(event) {
-    console.log(event.target.files[0]);
-    const myFile = event.target.files[0];
-    if (!myFile) {
-      alert("파일이 없습니다!");
-      return;
-    }
+  function onChangeFile(fileUrl: string, index: number) {
+    const newFileUrls = [...imageUrls];
 
-    const result = await uploadFile({
-      variables: {
-        file: myFile,
-      },
-    });
-    setIsUpload1(true);
-    setImageUrl(imageUrl.concat([result.data.uploadFile.url]));
-    // imageUrl.concat(result.data.uploadFile.url);
-  }
-  function onClickImageUpload1() {
-    fileRef1.current?.click();
+    newFileUrls[index] = fileUrl;
+    console.log(newFileUrls);
+    setImageUrls(newFileUrls);
   }
 
-  async function onChangeFile2(event) {
-    console.log(event.target.files[0]);
-    const myFile = event.target.files[0];
-    if (!myFile) {
-      alert("파일이 없습니다!");
-      return;
-    }
-
-    const result = await uploadFile({
-      variables: {
-        file: myFile,
-      },
-    });
-    setIsUpload2(true);
-    // setImageUrl([result.data.uploadFile.url]);
-    setImageUrl(imageUrl.concat([result.data.uploadFile.url]));
-    console.log(result.data.uploadFile.url);
-  }
-  function onClickImageUpload2() {
-    fileRef2.current?.click();
-  }
-
-  async function onChangeFile3(event) {
-    console.log(event.target.files[0]);
-    const myFile = event.target.files[0];
-    if (!myFile) {
-      alert("파일이 없습니다!");
-      return;
-    }
-
-    const result = await uploadFile({
-      variables: {
-        file: myFile,
-      },
-    });
-    setIsUpload3(true);
-    // setImageUrl([result.data.uploadFile.url]);
-    setImageUrl(imageUrl.concat([result.data.uploadFile.url]));
-  }
-  function onClickImageUpload3() {
-    fileRef3.current?.click();
+  function onClickImageUpload() {
+    fileRef.current?.click();
   }
 
   return (
@@ -232,18 +176,11 @@ export default function BoardWrite(props) {
       zipcode={zipcode}
       address={address}
       data={props.data}
-      onChangeFile1={onChangeFile1}
-      onClickImageUpload1={onClickImageUpload1}
-      onChangeFile2={onChangeFile2}
-      onClickImageUpload2={onClickImageUpload2}
-      onChangeFile3={onChangeFile3}
-      onClickImageUpload3={onClickImageUpload3}
-      fileRef1={fileRef1}
-      fileRef2={fileRef2}
-      fileRef3={fileRef3}
-      isUpload1={isUpload1}
-      isUpload2={isUpload2}
-      isUpload3={isUpload3}
+      onChangeFile={onChangeFile}
+      onClickImageUpload={onClickImageUpload}
+      fileRef={fileRef}
+      isUpload={isUpload}
+      imageUrls={imageUrls}
     />
   );
 }

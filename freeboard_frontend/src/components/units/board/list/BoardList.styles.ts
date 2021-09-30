@@ -5,6 +5,7 @@ import {
   RightOutlined,
   DoubleLeftOutlined,
 } from "@ant-design/icons";
+import { DatePicker } from "antd";
 
 // 전 페이지로 이동하는 버튼
 export const MoveToLeft = styled(LeftOutlined)`
@@ -205,6 +206,16 @@ export const TitleSearch = styled.input`
   background-color: #f2f2f2;
   border: none;
   border-radius: 10px;
+`;
+
+export const DatePick = styled(DatePicker)`
+  width: 244px;
+  height: 52px;
+  color: #bdbdbd;
+  padding: 14px 16px 14px 16px;
+  font-size: 16px;
+  font-family: Noto Sans CJK KR;
+  text-align: center;
 `;
 
 export const YearMonthDaySearch = styled.input`
