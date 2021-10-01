@@ -23,10 +23,7 @@ export default function BoardWrite(props) {
   const [titleError, setTitleError] = useState("");
   const [contentsError, setContentsError] = useState("");
 
-  const [imageUrls, setImageUrls] = useState(["", "", ""]);
-  // let imageUrl = [];
-
-  const [isUpload, setIsUpload] = useState(false);
+  const [files, setFiles] = useState<(File | null)[]>([null, null, null]); // 이미지 2차 실습
 
   const [createBoard] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(UPDATE_BOARD);
@@ -77,6 +74,11 @@ export default function BoardWrite(props) {
     }
     if (writer !== "" && password !== "" && title !== "" && contents !== "") {
       try {
+        const uploadFiles = files // [File1, File2, null]
+          .map((el) => (el ? uploadFile({ variables: { file: el } }) : null)); // [ uploadFile({ variables: { file: File1 } }), uploadFile({ variables: { file: File2 } }), null ]
+        const results = await Promise.all(uploadFiles); // await Promise.all([ uploadFile({ variables: { file: File1 } }), uploadFile({ variables: { file: File2 } }), null ])
+        const myImages = results.map((el) => el?.data.uploadFile.url || ""); // ["강아지이미지.png", "고양이이미지.png", ""]
+
         const result = await createBoard({
           variables: {
             createBoardInput: {
@@ -85,7 +87,7 @@ export default function BoardWrite(props) {
               title,
               contents,
               youtubeUrl,
-              images: [...imageUrls],
+              images: myImages,
               boardAddress: {
                 zipcode,
                 address,
@@ -95,7 +97,7 @@ export default function BoardWrite(props) {
           },
         });
         router.push(`/boards/${result.data.createBoard._id}`);
-        console.log(imageUrls);
+        // console.log(imageUrls);
       } catch (err) {
         alert(err.message);
       }
@@ -129,6 +131,23 @@ export default function BoardWrite(props) {
         updateBoardInput.boardAddress.addressDetail = addressDetail;
     }
 
+    const uploadFiles = files.map((el) =>
+      el ? uploadFile({ variables: { file: el } }) : null
+    );
+
+    const results = await Promise.all(uploadFiles);
+    const nextImages = results.map((el) => el?.data.uploadFile.url || "");
+    updateBoardInput.images = nextImages;
+    ///////////////////////////////////////////////////////////////////////////////////////////
+
+    ////////////////////////////////////////// 이미지 수정 ///////////////////////////////////
+    if (props.data?.fetchBoard.images?.length) {
+      const prevImages = [...props.data?.fetchBoard.images]; // ["토끼이미지.png", "", "거북이이미지.png"]
+      updateBoardInput.images = prevImages.map((el, index) => nextImages[index] || el); // prettier-ignore
+    } else {
+      updateBoardInput.images = nextImages;
+    }
+
     try {
       const result = await updateBoard({
         variables: {
@@ -143,12 +162,10 @@ export default function BoardWrite(props) {
     }
   }
 
-  function onChangeFile(fileUrl: string, index: number) {
-    const newFileUrls = [...imageUrls];
-
-    newFileUrls[index] = fileUrl;
-    console.log(newFileUrls);
-    setImageUrls(newFileUrls);
+  function onChangeFile(fileUrl: File, index: number) {
+    const newFiles = [...files];
+    newFiles[index] = fileUrl;
+    setFiles(newFiles);
   }
 
   function onClickImageUpload() {
@@ -176,11 +193,9 @@ export default function BoardWrite(props) {
       zipcode={zipcode}
       address={address}
       data={props.data}
-      onChangeFile={onChangeFile}
+      onChangeFiles={onChangeFile}
       onClickImageUpload={onClickImageUpload}
       fileRef={fileRef}
-      isUpload={isUpload}
-      imageUrls={imageUrls}
     />
   );
 }

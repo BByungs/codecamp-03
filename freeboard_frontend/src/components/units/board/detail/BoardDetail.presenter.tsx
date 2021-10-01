@@ -57,12 +57,20 @@ export default function BoardDetailUI(props) {
             height="240px"
           />
           <div>
-            {props.data?.fetchBoard.images.map((el: any, idx: any) => (
+            {/* {props.data?.fetchBoard.images.map((el: any, idx: any) => (
               <UploadImg
                 key={el}
                 src={`https://storage.googleapis.com/${el}`}
               />
-            ))}
+            ))} */}
+            {props.data?.fetchBoard.images
+              ?.filter((el) => el)
+              .map((el) => (
+                <UploadImg
+                  key={el}
+                  src={`https://storage.googleapis.com/${el}`}
+                />
+              ))}
           </div>
           <LikeWrapper>
             <IconWrapper>

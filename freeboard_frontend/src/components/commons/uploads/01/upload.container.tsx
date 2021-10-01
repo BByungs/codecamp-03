@@ -1,50 +1,37 @@
 import UploadButton1UI from "./upload.presenter";
-import { Modal } from "antd";
-import { ChangeEvent, useRef } from "react";
-import { useMutation } from "@apollo/client";
-
-import { UPLOAD_FILE } from "../../../units/board/write/BoardWrite.queries";
+import { ChangeEvent, useRef, useState } from "react";
 import { IUploads01Props } from "./upload.types";
+import CheckValidationImage from "../../library/CheckValidationImage";
 
 export default function UploadButton1(props: IUploads01Props) {
   const fileRef = useRef<HTMLInputElement>(null);
-  const [uploadFile] = useMutation(UPLOAD_FILE);
+  const [fileUrl, setFileUrl] = useState("");
 
   function onClickUpload() {
     fileRef.current?.click();
   }
 
-  async function onChangeFile(event: ChangeEvent<HTMLInputElement>) {
-    const file = event.target.files?.[0];
-    if (!file?.size) {
-      Modal.error({ content: "파일이 없습니다." });
-      return;
-    }
-    if (file.size > 5 * 1024 * 1024) {
-      Modal.error({ content: "파일이 너무 큽니다.(제한: 5MB)" });
-      return;
-    }
-    if (!file.type.includes("png") && !file.type.includes("jpeg")) {
-      Modal.error({
-        content: "파일 확장자가 올바르지 않습니다.(png, jpeg만 가능)",
-      });
+  function onChangeFile(event: ChangeEvent<HTMLInputElement>) {
+    const file = CheckValidationImage(event.target.files?.[0]);
+    if (!file) {
       return;
     }
 
-    try {
-      const result = await uploadFile({ variables: { file } });
-      props.onChangeFile(result.data.uploadFile.url, props.index);
-    } catch (error) {
-      Modal.error({ content: error.message });
-    }
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = (data) => {
+      setFileUrl(data.target?.result as string);
+      props.onChangeFiles(file, props.index);
+    };
   }
 
   return (
     <UploadButton1UI
-      imageUrl={props.imageUrl}
+      fileUrl={fileUrl}
       onClickUpload={onClickUpload}
       onChangeFile={onChangeFile}
       fileRef={fileRef}
+      defaultFileUrl={props.defaultFileUrl}
     />
   );
 }

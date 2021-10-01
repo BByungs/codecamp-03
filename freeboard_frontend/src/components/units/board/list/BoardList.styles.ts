@@ -153,19 +153,20 @@ export const WriterAndDate = styled.div`
 `;
 
 export const WriterNameAndPhoto = styled.div`
-  width: 71px;
+  width: 200px;
   height: 24px;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 `;
 
 export const WriterPhoto = styled.img`
   width: 20px;
   height: 20px;
+  margin-right: 10px;
 `;
 
 export const WriterName = styled.div`
-  width: 45px;
+  width: 150px;
   height: 24px;
   font-weight: 400;
   font-size: 16px;

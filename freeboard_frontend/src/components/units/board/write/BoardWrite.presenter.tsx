@@ -147,12 +147,12 @@ export default function BoardWriteUI(props) {
           <SmallTitle>사진 첨부</SmallTitle>
           {/* 맵 돌려야 함 */}
           <Upload>
-            {props.imageUrls.map((el, index) => (
+            {new Array(3).fill(1).map((el, index) => (
               <UploadButton1
                 key={`${el}_${index}`}
                 index={index}
-                imageUrl={el}
-                onChangeFile={props.onChangeFile}
+                onChangeFiles={props.onChangeFiles}
+                defaultFileUrl={props.data?.fetchBoard.images?.[index]}
               />
             ))}
           </Upload>

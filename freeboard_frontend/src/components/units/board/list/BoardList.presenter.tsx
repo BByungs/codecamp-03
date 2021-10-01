@@ -56,82 +56,27 @@ export default function BoardListUI(props) {
       <BestPosts>
         <BestPostsTitle>베스트 게시글</BestPostsTitle>
         <BestPost>
-          <Post>
-            <PostThumbnail src="/images/board/list/thumbnail1.png"></PostThumbnail>
-            <PostIntroduce>
-              <PostTitle>게시물 제목입니다.</PostTitle>
-              <WriterInfo>
-                <WriterAndDate>
-                  <WriterNameAndPhoto>
-                    <WriterPhoto src="/images/board/list/writerPhoto.png" />
-                    <WriterName>노원두</WriterName>
-                  </WriterNameAndPhoto>
-                  <WriterDate>Date: 2021.02.18</WriterDate>
-                </WriterAndDate>
-                <LikeButtonAndCount>
-                  <LikeButton src="/images/board/list/likeButton.png" />
-                  <LikeCount>356</LikeCount>
-                </LikeButtonAndCount>
-              </WriterInfo>
-            </PostIntroduce>
-          </Post>
-          <Post>
-            <PostThumbnail src="/images/board/list/thumbnail2.png"></PostThumbnail>
-            <PostIntroduce>
-              <PostTitle>게시물 제목입니다.</PostTitle>
-              <WriterInfo>
-                <WriterAndDate>
-                  <WriterNameAndPhoto>
-                    <WriterPhoto src="/images/board/list/writerPhoto.png" />
-                    <WriterName>노원두</WriterName>
-                  </WriterNameAndPhoto>
-                  <WriterDate>Date: 2021.02.18</WriterDate>
-                </WriterAndDate>
-                <LikeButtonAndCount>
-                  <LikeButton src="/images/board/list/likeButton.png" />
-                  <LikeCount>356</LikeCount>
-                </LikeButtonAndCount>
-              </WriterInfo>
-            </PostIntroduce>
-          </Post>
-          <Post>
-            <PostThumbnail src="/images/board/list/thumbnail3.png"></PostThumbnail>
-            <PostIntroduce>
-              <PostTitle>게시물 제목입니다.</PostTitle>
-              <WriterInfo>
-                <WriterAndDate>
-                  <WriterNameAndPhoto>
-                    <WriterPhoto src="/images/board/list/writerPhoto.png" />
-                    <WriterName>노원두</WriterName>
-                  </WriterNameAndPhoto>
-                  <WriterDate>Date: 2021.02.18</WriterDate>
-                </WriterAndDate>
-                <LikeButtonAndCount>
-                  <LikeButton src="/images/board/list/likeButton.png" />
-                  <LikeCount>356</LikeCount>
-                </LikeButtonAndCount>
-              </WriterInfo>
-            </PostIntroduce>
-          </Post>
-          <Post>
-            <PostThumbnail src="/images/board/list/thumbnail4.png"></PostThumbnail>
-            <PostIntroduce>
-              <PostTitle>게시물 제목입니다.</PostTitle>
-              <WriterInfo>
-                <WriterAndDate>
-                  <WriterNameAndPhoto>
-                    <WriterPhoto src="/images/board/list/writerPhoto.png" />
-                    <WriterName>노원두</WriterName>
-                  </WriterNameAndPhoto>
-                  <WriterDate>Date: 2021.02.18</WriterDate>
-                </WriterAndDate>
-                <LikeButtonAndCount>
-                  <LikeButton src="/images/board/list/likeButton.png" />
-                  <LikeCount>356</LikeCount>
-                </LikeButtonAndCount>
-              </WriterInfo>
-            </PostIntroduce>
-          </Post>
+          {props.fetchBoardsOfTheBest?.fetchBoardsOfTheBest?.map((el) => (
+            <Post id={el._id} key={el._id}>
+              <PostThumbnail src="/images/board/list/thumbnail1.png"></PostThumbnail>
+              <PostIntroduce>
+                <PostTitle>게시물 제목입니다.</PostTitle>
+                <WriterInfo>
+                  <WriterAndDate>
+                    <WriterNameAndPhoto>
+                      <WriterPhoto src="/images/board/list/writerPhoto.png" />
+                      <WriterName>{el.writer}</WriterName>
+                    </WriterNameAndPhoto>
+                    <WriterDate>{el.createdAt.slice(0, 10)}</WriterDate>
+                  </WriterAndDate>
+                  <LikeButtonAndCount>
+                    <LikeButton src="/images/board/list/likeButton.png" />
+                    <LikeCount>{el.likeCount}</LikeCount>
+                  </LikeButtonAndCount>
+                </WriterInfo>
+              </PostIntroduce>
+            </Post>
+          ))}
         </BestPost>
       </BestPosts>
 

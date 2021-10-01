@@ -2,9 +2,12 @@ import BoardListUI from "./BoardList.presenter";
 import { useQuery } from "@apollo/client";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { FETCH_BOARDS, FETCH_BOARDS_COUNT } from "./BoardList.queries";
+import {
+  FETCH_BOARDS,
+  FETCH_BOARDS_COUNT,
+  FETCH_BOARDS_OF_THE_BEST,
+} from "./BoardList.queries";
 import _ from "lodash";
-import { v4 as uuid } from "uuid";
 
 export default function BoardList() {
   const [startPage, setStartPage] = useState(1);
@@ -12,6 +15,7 @@ export default function BoardList() {
     variables: { page: startPage },
   });
   const { data: fetchBoardsCount } = useQuery(FETCH_BOARDS_COUNT);
+  const { data: fetchBoardsOfTheBest } = useQuery(FETCH_BOARDS_OF_THE_BEST);
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -85,7 +89,7 @@ export default function BoardList() {
     refetch({
       page: 1,
       startDate: dateString[0],
-      endDate: dateString[1],
+      endDate: dateString[1], // 2021-09-30
     });
     setCurrentPage(1);
   }
@@ -106,6 +110,7 @@ export default function BoardList() {
       onChangeSearchTitle={onChangeSearchTitle}
       onClickSearh={onClickSearh}
       onChange={onChange}
+      fetchBoardsOfTheBest={fetchBoardsOfTheBest}
     />
   );
 }
