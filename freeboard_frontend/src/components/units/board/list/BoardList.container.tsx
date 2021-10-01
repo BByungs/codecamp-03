@@ -78,15 +78,16 @@ export default function BoardList() {
     });
     setCurrentPage(1);
   }
-
+  // newDate 해서
   function onChange(date, dateString) {
-    console.log(dateString);
-    // setDate(dateString);
+    // console.log(String(dateString.split(",")));
+    console.log(dateString[0], dateString[1]);
     refetch({
       page: 1,
-      startDate: dateString,
-      endDate: dateString,
+      startDate: dateString[0],
+      endDate: dateString[1],
     });
+    setCurrentPage(1);
   }
 
   return (

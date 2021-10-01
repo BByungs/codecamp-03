@@ -45,7 +45,7 @@ import {
   MoveToLeft,
   MoveToRight,
   MoveStartPage,
-  DatePick,
+  Range,
 } from "./BoardList.styles";
 import { Space } from "antd";
 
@@ -144,8 +144,8 @@ export default function BoardListUI(props) {
         />
         {/* <YearMonthDaySearch type="text" placeholder="YYYY.MM.DD ~ YYYY.MM.DD" /> */}
         {/* ################DatePicker################ */}
-        <Space direction="vertical">
-          <DatePick onChange={props.onChange} />
+        <Space direction="vertical" size={12}>
+          <Range onChange={props.onChange} />
         </Space>
         {/* ################DatePicker################ */}
         <ToSearch onClick={props.onClickSearh}>검색하기</ToSearch>

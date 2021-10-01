@@ -6,7 +6,19 @@ import {
   DoubleLeftOutlined,
 } from "@ant-design/icons";
 import { DatePicker } from "antd";
+const { RangePicker } = DatePicker;
 
+export const Range = styled(RangePicker)`
+  width: 244px;
+  height: 52px;
+  color: #bdbdbd;
+  padding: 14px 16px 14px 16px;
+  font-size: 16px;
+  font-family: Noto Sans CJK KR;
+  text-align: center;
+  border: 1px solid #bdbdbd;
+  border-radius: 10px;
+`;
 // 전 페이지로 이동하는 버튼
 export const MoveToLeft = styled(LeftOutlined)`
   margin-left: 15px;
@@ -208,15 +220,17 @@ export const TitleSearch = styled.input`
   border-radius: 10px;
 `;
 
-export const DatePick = styled(DatePicker)`
-  width: 244px;
-  height: 52px;
-  color: #bdbdbd;
-  padding: 14px 16px 14px 16px;
-  font-size: 16px;
-  font-family: Noto Sans CJK KR;
-  text-align: center;
-`;
+// export const RangePick = styled(DatePicker)`
+//   width: 244px;
+//   height: 52px;
+//   color: #bdbdbd;
+//   padding: 14px 16px 14px 16px;
+//   font-size: 16px;
+//   font-family: Noto Sans CJK KR;
+//   text-align: center;
+//   border: 1px solid #bdbdbd;
+//   border-radius: 10px;
+// `;
 
 export const YearMonthDaySearch = styled.input`
   width: 244px;
