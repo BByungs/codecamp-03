@@ -30,8 +30,12 @@ export const FETCH_BOARDS = gql`
 // `;
 
 export const FETCH_BOARDS_COUNT = gql`
-  query fetchBoardsCount($search: String) {
-    fetchBoardsCount(search: $search)
+  query fetchBoardsCount(
+    $search: String
+    $endDate: DateTime
+    $startDate: DateTime
+  ) {
+    fetchBoardsCount(search: $search, endDate: $endDate, startDate: $startDate)
   }
 `;
 

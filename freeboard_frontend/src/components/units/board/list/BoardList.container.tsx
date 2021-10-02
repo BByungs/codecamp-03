@@ -7,18 +7,25 @@ import {
   FETCH_BOARDS_COUNT,
   FETCH_BOARDS_OF_THE_BEST,
 } from "./BoardList.queries";
-import _ from "lodash";
 
 export default function BoardList() {
   const [startPage, setStartPage] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTitle, setSearchTitle] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [keyword, setKeyword] = useState("");
   const { data, refetch } = useQuery(FETCH_BOARDS, {
-    variables: { page: startPage },
+    variables: {
+      page: 1,
+      search: keyword,
+    },
   });
   const { data: fetchBoardsCount } = useQuery(FETCH_BOARDS_COUNT, {
     variables: {
-      search: searchTitle,
+      search: keyword,
+      endDate,
+      startDate,
     },
   });
   const { data: fetchBoardsOfTheBest } = useQuery(FETCH_BOARDS_OF_THE_BEST);
@@ -74,29 +81,23 @@ export default function BoardList() {
 
   function onChangeSearchTitle(event: any) {
     setSearchTitle(event.target.value);
-    // getDebounce(event.target.value);
   }
 
   function onClickSearh() {
     refetch({
       page: 1,
       search: searchTitle,
+      startDate,
+      endDate,
     });
+    setKeyword(searchTitle);
     setCurrentPage(1);
     setStartPage(1);
   }
 
-  // newDate 해서
   function onChange(date, dateString) {
-    // console.log(String(dateString.split(",")));
-    console.log(dateString[0], dateString[1]);
-    refetch({
-      page: 1,
-      startDate: dateString[0],
-      endDate: dateString[1], // 2021-09-30
-    });
-    setCurrentPage(1);
-    setStartPage(1);
+    setStartDate(dateString[0]);
+    setEndDate(dateString[1]);
   }
 
   function onClickBestPost(event) {
