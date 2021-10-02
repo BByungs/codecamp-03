@@ -57,7 +57,7 @@ export default function BoardListUI(props) {
         <BestPostsTitle>베스트 게시글</BestPostsTitle>
         <BestPost>
           {props.fetchBoardsOfTheBest?.fetchBoardsOfTheBest?.map((el, idx) => (
-            <Post id={el._id} key={el._id} onClick={props.onClickPost}>
+            <Post id={el._id} key={el._id} onClick={props.onClickBestPost}>
               {el.images[0] ? (
                 <PostThumbnail
                   src={`https://storage.googleapis.com/${el.images[0]}`}
