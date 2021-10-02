@@ -41,10 +41,8 @@ import {
   Text,
   Row,
   PageNum,
-  MoveToLastPage,
   MoveToLeft,
   MoveToRight,
-  MoveStartPage,
   Range,
 } from "./BoardList.styles";
 import { Space } from "antd";
@@ -130,16 +128,10 @@ export default function BoardListUI(props) {
       {/* 페이지버튼 , 게시물 등록하기버튼 */}
       <Footer>
         <Page>
-          <MoveStartPage
-            onClick={props.moveToStartPage}
-            isActive={props.currentPage === 1}
-            // style={{ cursor: props.isActive ? "default" : "pointer" }}
-          />
           <MoveToLeft
             onClick={props.onClickLeft}
             isActive={props.currentPage === 1}
           />
-
           <PageNum>
             {new Array(10).fill(1).map(
               (_, idx) =>
@@ -155,17 +147,12 @@ export default function BoardListUI(props) {
                 )
             )}
           </PageNum>
-
           <MoveToRight
             onClick={props.onClickRight}
             isActive={
               props.currentPage === props.lastPage ||
               props.currentPage + 10 > props.lastPage
             }
-          />
-          <MoveToLastPage
-            onClick={props.moveToLastPage}
-            isActive={props.currentPage === props.lastPage}
           />
         </Page>
         <PostSubmitBtn onClick={props.onClickSubmit}>

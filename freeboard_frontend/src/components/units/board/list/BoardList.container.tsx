@@ -11,15 +11,20 @@ import _ from "lodash";
 
 export default function BoardList() {
   const [startPage, setStartPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchTitle, setSearchTitle] = useState("");
   const { data, refetch } = useQuery(FETCH_BOARDS, {
     variables: { page: startPage },
   });
-  const { data: fetchBoardsCount } = useQuery(FETCH_BOARDS_COUNT);
+  const { data: fetchBoardsCount } = useQuery(FETCH_BOARDS_COUNT, {
+    variables: {
+      search: searchTitle,
+    },
+  });
   const { data: fetchBoardsOfTheBest } = useQuery(FETCH_BOARDS_OF_THE_BEST);
+  // 여기도 리패치 하고 싶은데 어떻게 하는지..?
   const router = useRouter();
-  const [currentPage, setCurrentPage] = useState(1);
 
-  const [searchTitle, setSearchTitle] = useState("");
   // const [date, setDate] = useState("");
 
   // 게시물 등록 페이지로 이동
@@ -36,7 +41,7 @@ export default function BoardList() {
 
   // 번호를 클릭하면 해당 페이지로 이동
   function onClickPage(event) {
-    refetch({ page: Number(event.target.id) });
+    refetch({ page: Number(event.target.id), search: searchTitle });
     setCurrentPage(Number(event.target.id));
   }
 
@@ -45,8 +50,13 @@ export default function BoardList() {
     if (currentPage + 10 > lastPage) {
       return;
     }
+    refetch({
+      page: currentPage + 10,
+      search: searchTitle,
+    });
     setCurrentPage(currentPage + 10);
     setStartPage((prev) => prev + 10);
+    console.log(fetchBoardsCount);
   }
 
   // 이전 페이지로 이동
@@ -56,32 +66,26 @@ export default function BoardList() {
     }
     setCurrentPage(currentPage - 10);
     setStartPage((prev) => prev - 10);
-  }
-
-  // 첫 페이지로 이동
-  function moveToStartPage() {
-    setStartPage(1);
-    setCurrentPage(1);
-  }
-
-  // 마지막 페이지로 이동
-  function moveToLastPage() {
-    // setStartPage(lastPage - ((lastPage % 10) - 1));
-    setStartPage(lastPage);
-    setCurrentPage(lastPage);
+    refetch({
+      page: currentPage - 10,
+      search: searchTitle,
+    });
   }
 
   function onChangeSearchTitle(event: any) {
     setSearchTitle(event.target.value);
     // getDebounce(event.target.value);
   }
+
   function onClickSearh() {
     refetch({
       page: 1,
       search: searchTitle,
     });
     setCurrentPage(1);
+    setStartPage(1);
   }
+
   // newDate 해서
   function onChange(date, dateString) {
     // console.log(String(dateString.split(",")));
@@ -92,10 +96,11 @@ export default function BoardList() {
       endDate: dateString[1], // 2021-09-30
     });
     setCurrentPage(1);
+    setStartPage(1);
   }
 
   function onClickBestPost(event) {
-    router.push(`/boards/${event.target._id}`);
+    router.push(`/boards/${event.currentTarget.id}`);
   }
 
   return (
@@ -108,8 +113,6 @@ export default function BoardList() {
       onClickPage={onClickPage}
       startPage={startPage}
       lastPage={lastPage}
-      moveToStartPage={moveToStartPage}
-      moveToLastPage={moveToLastPage}
       currentPage={currentPage}
       onChangeSearchTitle={onChangeSearchTitle}
       onClickSearh={onClickSearh}

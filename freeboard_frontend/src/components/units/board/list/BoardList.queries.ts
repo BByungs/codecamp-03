@@ -23,9 +23,15 @@ export const FETCH_BOARDS = gql`
   }
 `;
 
+// export const FETCH_BOARDS_COUNT = gql`
+//   query fetchBoardsCount {
+//     fetchBoardsCount
+//   }
+// `;
+
 export const FETCH_BOARDS_COUNT = gql`
-  query fetchBoardsCount {
-    fetchBoardsCount
+  query fetchBoardsCount($search: String) {
+    fetchBoardsCount(search: $search)
   }
 `;
 
