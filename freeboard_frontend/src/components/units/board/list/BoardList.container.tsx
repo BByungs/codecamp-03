@@ -94,6 +94,10 @@ export default function BoardList() {
     setCurrentPage(1);
   }
 
+  function onClickBestPost(event) {
+    router.push(`/boards/${event.target._id}`);
+  }
+
   return (
     <BoardListUI
       data={data}
@@ -111,6 +115,7 @@ export default function BoardList() {
       onClickSearh={onClickSearh}
       onChange={onChange}
       fetchBoardsOfTheBest={fetchBoardsOfTheBest}
+      onClickBestPost={onClickBestPost}
     />
   );
 }
