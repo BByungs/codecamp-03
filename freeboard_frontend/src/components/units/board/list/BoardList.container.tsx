@@ -15,6 +15,9 @@ export default function BoardList() {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [keyword, setKeyword] = useState("");
+  const day = new Date().getDate();
+  const month = new Date().getMonth() + 1;
+  const year = new Date().getFullYear();
   const { data, refetch } = useQuery(FETCH_BOARDS, {
     variables: {
       page: 1,
@@ -24,8 +27,10 @@ export default function BoardList() {
   const { data: fetchBoardsCount } = useQuery(FETCH_BOARDS_COUNT, {
     variables: {
       search: keyword,
-      endDate,
-      startDate,
+      endDate: endDate
+        ? endDate
+        : `${year}-${month}-${day < 10 ? `0${day}` : day}`,
+      startDate: startDate ? startDate : `2021-08-30`,
     },
   });
   const { data: fetchBoardsOfTheBest } = useQuery(FETCH_BOARDS_OF_THE_BEST);
@@ -104,6 +109,7 @@ export default function BoardList() {
     router.push(`/boards/${event.currentTarget.id}`);
   }
 
+  // console.log(lastPage);
   return (
     <BoardListUI
       data={data}
