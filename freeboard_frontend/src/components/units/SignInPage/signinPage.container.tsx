@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { CREATE_USER } from "./signinPage.queries";
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
+// import CheckValidationSignin from "../../commons/library/CheckValidationSignin";
 
 export default function SignInPage() {
   const router = useRouter();
@@ -39,23 +40,24 @@ export default function SignInPage() {
   async function onClickSignIn() {
     if (!name && !email && !password) {
       alert("아무것도 입력하지 않았습니다.");
-      return;
+      return false;
     }
 
     if (!validationEmailCheck.test(email) || !email) {
       alert("이메일을 확인하세요");
-      return;
+      return false;
     }
 
     if (!validationPasswordCheck.test(password) || !password) {
       alert("비밀번호를 확인하세요");
-      return;
+      return false;
     }
 
     if (!validationNameCheck.test(name) || !name) {
       alert("이름을 확인하세요");
-      return;
+      return false;
     }
+
     if (
       validationNameCheck.test(name) &&
       validationPasswordCheck.test(password) &&
