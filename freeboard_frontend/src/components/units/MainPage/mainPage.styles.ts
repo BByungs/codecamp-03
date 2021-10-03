@@ -43,6 +43,7 @@ export const LogIn = styled.div`
   flex-direction: column;
   width: 350px;
   height: 369px;
+  /* height: 400px; */
   border: 1px solid #bdbdbd;
   align-items: center;
   padding-top: 25px;

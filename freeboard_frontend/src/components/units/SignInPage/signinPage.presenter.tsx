@@ -12,7 +12,6 @@ import {
   SigninButton,
   EmailError,
   NameError,
-  IdError,
   PasswordError,
   Login,
   AppDownload,
@@ -23,7 +22,7 @@ import {
   Footer2,
 } from "./signinPage.styles";
 
-export default function SignInUI() {
+export default function SignInUI(props) {
   return (
     <Wrapper>
       <InputInfo>
@@ -59,17 +58,27 @@ export default function SignInUI() {
           </div>
           <OrLine />
         </Or>
-        <Input type="text" placeholder="이메일 주소" />
+        <Input
+          type="text"
+          placeholder="이메일 주소"
+          onChange={props.onChangeEmail}
+        />
         <EmailError>이메일주소를 다시 확인해 주세요.</EmailError>
-        <Input type="text" placeholder="성명" />
+
+        <Input type="text" placeholder="이름" onChange={props.onChangeName} />
         <NameError>이름을 다시 확인해 주세요.</NameError>
-        <Input type="text" placeholder="아이디" />
-        <IdError>아이디를 다시 확인해 주세요.</IdError>
-        <Input type="password" placeholder="비밀번호" />
+
+        <Input
+          type="password"
+          placeholder="비밀번호"
+          onChange={props.onChangePassword}
+        />
         <PasswordError>비밀번호를 다시 확인해 주세요.</PasswordError>
-        <SigninButton>가입</SigninButton>
+
+        {/* 가입 버튼 */}
+        <SigninButton onClick={props.onClickSignIn}>가입</SigninButton>
       </InputInfo>
-      <Login>
+      <Login onClick={props.onClickLogin}>
         <span style={{ fontFamily: "Noto Sans CJK KR" }}>
           계정이 있으신가요?
         </span>

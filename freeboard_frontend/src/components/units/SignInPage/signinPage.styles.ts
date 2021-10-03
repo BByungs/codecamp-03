@@ -99,13 +99,6 @@ export const NameError = styled.div`
   display: none;
 `;
 
-export const IdError = styled.div`
-  margin-top: 5px;
-  font-size: 10px;
-  color: red;
-  display: none;
-`;
-
 export const PasswordError = styled.div`
   margin-top: 5px;
   font-size: 10px;

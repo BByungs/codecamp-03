@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import Header from "./header/header.container";
-import Banner from "./banner/banner.container";
 
 const Body = styled.div`
   width: 1200px;
@@ -17,7 +16,13 @@ export default function Layout(props) {
     <>
       <Wrapper>
         <Header />
-        <Banner />
+        <div
+          style={{
+            borderBottom: "1px solid #bdbdbd",
+            width: "100%",
+            marginBottom: "50px",
+          }}
+        ></div>
         <Body>{props.children}</Body>
       </Wrapper>
     </>

@@ -29,7 +29,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-export default function MainPageUI() {
+export default function MainPageUI(props) {
   const settings = {
     dots: false,
     autoplay: true,
@@ -108,7 +108,7 @@ export default function MainPageUI() {
             >
               계정이 없으신가요?
             </span>
-            <SignInButton>가입하기</SignInButton>
+            <SignInButton onClick={props.onClickSubmit}>가입하기</SignInButton>
           </SignIn>
           <div
             style={{
