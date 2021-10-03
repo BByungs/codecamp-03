@@ -72,7 +72,7 @@ export const Input = styled.input`
   margin-top: 5px;
 `;
 
-export const SigninButton = styled.div`
+export const SigninButton = styled.button`
   background-color: #277dc3;
   width: 262px;
   height: 30px;
@@ -83,28 +83,12 @@ export const SigninButton = styled.div`
   margin-top: 10px;
   border-radius: 3px;
   cursor: pointer;
+  border: none;
+  :hover {
+    opacity: 0.7;
+  }
 `;
 
-export const EmailError = styled.div`
-  margin-top: 5px;
-  font-size: 10px;
-  color: red;
-  display: none;
-`;
-
-export const NameError = styled.div`
-  margin-top: 5px;
-  font-size: 10px;
-  color: red;
-  display: none;
-`;
-
-export const PasswordError = styled.div`
-  margin-top: 5px;
-  font-size: 10px;
-  color: red;
-  display: none;
-`;
 export const Login = styled.div`
   width: 350px;
   height: 70px;

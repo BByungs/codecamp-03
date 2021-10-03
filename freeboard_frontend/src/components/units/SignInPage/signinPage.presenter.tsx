@@ -1,5 +1,4 @@
 import React from "react";
-import { ErrorMessage } from "../board/write/BoardWrite.styles";
 import {
   Wrapper,
   LogoImg,
@@ -63,20 +62,18 @@ export default function SignInUI(props) {
           placeholder="이메일 주소"
           onChange={props.onChangeEmail}
         />
-        <EmailError>이메일주소를 다시 확인해 주세요.</EmailError>
-
         <Input type="text" placeholder="이름" onChange={props.onChangeName} />
-        <NameError>이름을 다시 확인해 주세요.</NameError>
 
         <Input
           type="password"
           placeholder="비밀번호"
           onChange={props.onChangePassword}
         />
-        <PasswordError>비밀번호를 다시 확인해 주세요.</PasswordError>
 
         {/* 가입 버튼 */}
-        <SigninButton onClick={props.onClickSignIn}>가입</SigninButton>
+        <SigninButton isActive={props.isActive} onClick={props.onClickSignIn}>
+          가입
+        </SigninButton>
       </InputInfo>
       <Login onClick={props.onClickLogin}>
         <span style={{ fontFamily: "Noto Sans CJK KR" }}>

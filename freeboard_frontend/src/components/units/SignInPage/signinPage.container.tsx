@@ -7,35 +7,21 @@ import { useState } from "react";
 export default function SignInPage() {
   const router = useRouter();
   const [createUser] = useMutation(CREATE_USER);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
 
-  function onClickLogin() {
-    router.push("/main");
-  }
-  async function onClickSignIn() {
-    if (!email && !password && !name) {
-      return;
-    }
-    try {
-      const result = await createUser({
-        variables: {
-          createUserInput: {
-            email,
-            password,
-            name,
-          },
-        },
-      });
-      console.log(`id: ${result.data.createUser._id}`);
-      console.log(`email: ${result.data.createUser.email}`);
-      console.log(`name: ${result.data.createUser.name}`);
-      router.push("/main");
-    } catch (error) {
-      alert(error.message);
-    }
-  }
+  const [isActive, setIsActive] = useState(true);
+  const validationEmailCheck =
+    /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]/;
+
+  // 특수문자 / 문자 / 숫자 포함 형태의 8~15자리 이내
+  const validationPasswordCheck =
+    /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+
+  // 이름 2~4자
+  const validationNameCheck = /^[가-힣]{2,4}$/;
 
   function onChangeEmail(event) {
     setEmail(event.target.value);
@@ -46,6 +32,57 @@ export default function SignInPage() {
   function onChangePassword(event) {
     setPassword(event.target.value);
   }
+
+  function onClickLogin() {
+    router.push("/main");
+  }
+  async function onClickSignIn() {
+    if (!name && !email && !password) {
+      alert("아무것도 입력하지 않았습니다.");
+      return;
+    }
+
+    if (!validationEmailCheck.test(email) || !email) {
+      alert("이메일을 확인하세요");
+      return;
+    }
+
+    if (!validationPasswordCheck.test(password) || !password) {
+      alert("비밀번호를 확인하세요");
+      return;
+    }
+
+    if (!validationNameCheck.test(name) || !name) {
+      alert("이름을 확인하세요");
+      return;
+    }
+    if (
+      validationNameCheck.test(name) &&
+      validationPasswordCheck.test(password) &&
+      validationEmailCheck.test(email) &&
+      name &&
+      email &&
+      password
+    ) {
+      try {
+        const result = await createUser({
+          variables: {
+            createUserInput: {
+              email,
+              password,
+              name,
+            },
+          },
+        });
+        console.log(`id: ${result.data.createUser._id}`);
+        console.log(`email: ${result.data.createUser.email}`);
+        console.log(`name: ${result.data.createUser.name}`);
+        router.push("/main");
+      } catch (error) {
+        alert(error.message);
+      }
+    }
+  }
   return (
     <SignInUI
       onClickLogin={onClickLogin}
@@ -53,6 +90,7 @@ export default function SignInPage() {
       onChangeEmail={onChangeEmail}
       onChangeName={onChangeName}
       onChangePassword={onChangePassword}
+      isActive={isActive}
     />
   );
 }
