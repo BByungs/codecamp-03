@@ -6,8 +6,14 @@ import {
 } from "@apollo/client";
 import "antd/dist/antd.css";
 import Layout from "../src/components/commons/layout";
+import Main from "../pages/main";
+import SignIn from "../pages/signin";
 
 import { createUploadLink } from "apollo-upload-client";
+import { useRouter } from "next/router";
+("./signin");
+const HIDEN_MAIN = ["/main"];
+const HIDDEN_SIGNIN = ["/signin"];
 
 function MyApp({ Component, pageProps }) {
   const uploadLink = createUploadLink({
@@ -19,12 +25,20 @@ function MyApp({ Component, pageProps }) {
     link: ApolloLink.from([uploadLink]),
   });
 
+  const router = useRouter();
+  const isMain = HIDEN_MAIN.includes(router.pathname);
+  const isSignIn = HIDDEN_SIGNIN.includes(router.pathname);
+
   return (
     <>
       <ApolloProvider client={client}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        {!isMain && !isSignIn && (
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        )}
+        {isMain && <Main />}
+        {isSignIn && <SignIn />}
       </ApolloProvider>
     </>
   );
