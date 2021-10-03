@@ -11,11 +11,11 @@ import {
   Logout,
 } from "./header.styles";
 
-export default function HeaderUI() {
+export default function HeaderUI(props) {
   return (
     <Wrapper>
       <Container>
-        <Logo src="/images/header/logo.png" />
+        <Logo src="/images/header/logo.png" onClick={props.onClickLogo} />
         <Icon>
           <Home />
           <Message />

@@ -24,6 +24,7 @@ export const Container = styled.div`
 export const Logo = styled.img`
   width: 123px;
   height: 35px;
+  cursor: pointer;
 `;
 
 export const Icon = styled.div`
