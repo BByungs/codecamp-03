@@ -1,3 +1,5 @@
+// 여기로 setIsEmail , setIsName , setIsPassword 넘겨주면 됨
+
 export default function CheckValidationSignin(
   email: string,
   password: string,
@@ -15,22 +17,27 @@ export default function CheckValidationSignin(
 
   if (!name && !email && !password) {
     alert("아무것도 입력하지 않았습니다.");
-    return false;
+    return;
   }
 
   if (!validationEmailCheck.test(email) || !email) {
-    alert("이메일을 확인하세요");
-    return false;
+    // alert("이메일을 확인하세요");
+    setIsEmail(true);
+  } else {
+    setIsEmail(false);
   }
 
   if (!validationPasswordCheck.test(password) || !password) {
-    alert("비밀번호를 확인하세요");
-    return false;
+    // alert("비밀번호를 확인하세요");
+    setIsPassword(true);
+  } else {
+    setIsPassword(false);
   }
 
   if (!validationNameCheck.test(name) || !name) {
-    alert("이름을 확인하세요");
-    return false;
+    // alert("이름을 확인하세요");
+    setIsName(true);
+  } else {
+    setIsName(false);
   }
-  return true;
 }

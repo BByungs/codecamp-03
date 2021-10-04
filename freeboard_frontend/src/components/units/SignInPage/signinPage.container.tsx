@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { CREATE_USER } from "./signinPage.queries";
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
+import CheckValidationSignin from "../../commons/library/CheckValidationSignin";
 // import CheckValidationSignin from "../../commons/library/CheckValidationSignin";
 
 export default function SignInPage() {
@@ -13,7 +14,9 @@ export default function SignInPage() {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
 
-  const [isActive, setIsActive] = useState(true);
+  const [isEmail, setIsEmail] = useState(false);
+  const [isName, setIsName] = useState(false);
+  const [isPassword, setIsPassword] = useState(false);
   const validationEmailCheck =
     /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]/;
 
@@ -40,22 +43,28 @@ export default function SignInPage() {
   async function onClickSignIn() {
     if (!name && !email && !password) {
       alert("아무것도 입력하지 않았습니다.");
-      return false;
+      return;
     }
 
     if (!validationEmailCheck.test(email) || !email) {
-      alert("이메일을 확인하세요");
-      return false;
+      // alert("이메일을 확인하세요");
+      setIsEmail(true);
+    } else {
+      setIsEmail(false);
     }
 
     if (!validationPasswordCheck.test(password) || !password) {
-      alert("비밀번호를 확인하세요");
-      return false;
+      // alert("비밀번호를 확인하세요");
+      setIsPassword(true);
+    } else {
+      setIsPassword(false);
     }
 
     if (!validationNameCheck.test(name) || !name) {
-      alert("이름을 확인하세요");
-      return false;
+      // alert("이름을 확인하세요");
+      setIsName(true);
+    } else {
+      setIsName(false);
     }
 
     if (
@@ -92,7 +101,9 @@ export default function SignInPage() {
       onChangeEmail={onChangeEmail}
       onChangeName={onChangeName}
       onChangePassword={onChangePassword}
-      isActive={isActive}
+      isName={isName}
+      isEmail={isEmail}
+      isPassword={isPassword}
     />
   );
 }

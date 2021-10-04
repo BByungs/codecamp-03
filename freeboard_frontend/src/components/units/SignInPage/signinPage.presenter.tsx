@@ -9,9 +9,6 @@ import {
   OrLine,
   Input,
   SigninButton,
-  EmailError,
-  NameError,
-  PasswordError,
   Login,
   AppDownload,
   Download,
@@ -19,6 +16,9 @@ import {
   FooterTxt,
   Footer1,
   Footer2,
+  EmailError,
+  PasswordError,
+  NameError,
 } from "./signinPage.styles";
 
 export default function SignInUI(props) {
@@ -62,18 +62,24 @@ export default function SignInUI(props) {
           placeholder="이메일 주소"
           onChange={props.onChangeEmail}
         />
+        <EmailError isEmail={props.isEmail}>
+          이메일을 다시 확인해주세요
+        </EmailError>
+
         <Input type="text" placeholder="이름" onChange={props.onChangeName} />
+        <NameError isName={props.isName}>이름을 다시 확인해주세요</NameError>
 
         <Input
           type="password"
           placeholder="비밀번호"
           onChange={props.onChangePassword}
         />
+        <PasswordError isPassword={props.isPassword}>
+          비밀버호를 다시 확인해주세요
+        </PasswordError>
 
         {/* 가입 버튼 */}
-        <SigninButton isActive={props.isActive} onClick={props.onClickSignIn}>
-          가입
-        </SigninButton>
+        <SigninButton onClick={props.onClickSignIn}>가입</SigninButton>
       </InputInfo>
       <Login onClick={props.onClickLogin}>
         <span style={{ fontFamily: "Noto Sans CJK KR" }}>

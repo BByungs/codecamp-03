@@ -133,3 +133,29 @@ export const Footer1 = styled.div`
 `;
 
 export const Footer2 = styled.div``;
+
+interface IProps {
+  isEmail: boolean;
+  isName: boolean;
+  isPassword: boolean;
+}
+
+export const EmailError = styled.div`
+  margin-top: 5px;
+  color: red;
+  font-size: 12px;
+  display: ${(props: IProps) => (props.isEmail ? "block" : "none")};
+`;
+export const NameError = styled.div`
+  margin-top: 5px;
+  color: red;
+  font-size: 12px;
+  display: ${(props: IProps) => (props.isName ? "block" : "none")};
+`;
+
+export const PasswordError = styled.div`
+  margin-top: 5px;
+  color: red;
+  font-size: 12px;
+  display: ${(props: IProps) => (props.isPassword ? "block" : "none")};
+`;
