@@ -1,12 +1,17 @@
 import BoardListUI from "./BoardList.presenter";
 import { useQuery } from "@apollo/client";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/router";
 import {
   FETCH_BOARDS,
   FETCH_BOARDS_COUNT,
   FETCH_BOARDS_OF_THE_BEST,
 } from "./BoardList.queries";
+import {
+  IQuery,
+  IQueryFetchBoardsArgs,
+  IQueryFetchBoardsCountArgs,
+} from "../../../../commons/types/generated/types";
 
 export default function BoardList() {
   const [startPage, setStartPage] = useState(1);
@@ -18,13 +23,19 @@ export default function BoardList() {
   const day = new Date().getDate();
   const month = new Date().getMonth() + 1;
   const year = new Date().getFullYear();
-  const { data, refetch } = useQuery(FETCH_BOARDS, {
+  const { data, refetch } = useQuery<
+    Pick<IQuery, "fetchBoards">,
+    IQueryFetchBoardsArgs
+  >(FETCH_BOARDS, {
     variables: {
       page: 1,
       search: keyword,
     },
   });
-  const { data: fetchBoardsCount } = useQuery(FETCH_BOARDS_COUNT, {
+  const { data: fetchBoardsCount } = useQuery<
+    Pick<IQuery, "fetchBoardsCount">,
+    IQueryFetchBoardsCountArgs
+  >(FETCH_BOARDS_COUNT, {
     variables: {
       search: keyword,
       endDate: endDate
@@ -33,7 +44,9 @@ export default function BoardList() {
       startDate: startDate ? startDate : `2021-08-30`,
     },
   });
-  const { data: fetchBoardsOfTheBest } = useQuery(FETCH_BOARDS_OF_THE_BEST);
+  const { data: fetchBoardsOfTheBest } = useQuery<
+    Pick<IQuery, "fetchBoardsOfTheBest">
+  >(FETCH_BOARDS_OF_THE_BEST);
   // 여기도 리패치 하고 싶은데 어떻게 하는지..?
   const router = useRouter();
 
@@ -43,14 +56,15 @@ export default function BoardList() {
   }
 
   // 해당 게시물로 이동
-  function onClickPost(event) {
+  function onClickPost(event: ChangeEvent<HTMLInputElement>) {
     router.push(`/boards/${event.currentTarget.id}`);
   }
 
   const lastPage = Math.ceil(fetchBoardsCount?.fetchBoardsCount / 10);
 
   // 번호를 클릭하면 해당 페이지로 이동
-  function onClickPage(event) {
+  function onClickPage(event: any) {
+    // clickEvent는 어떻게 타입 주는지 궁금
     refetch({ page: Number(event.target.id), search: searchTitle });
     setCurrentPage(Number(event.target.id));
   }
@@ -82,7 +96,7 @@ export default function BoardList() {
     });
   }
 
-  function onChangeSearchTitle(event: any) {
+  function onChangeSearchTitle(event: ChangeEvent<HTMLInputElement>) {
     setSearchTitle(event.target.value);
   }
 
@@ -98,12 +112,12 @@ export default function BoardList() {
     setStartPage(1);
   }
 
-  function onChange(date, dateString) {
+  function onChange(_: any, dateString: string) {
     setStartDate(dateString[0]);
     setEndDate(dateString[1]);
   }
 
-  function onClickBestPost(event) {
+  function onClickBestPost(event: ChangeEvent<HTMLInputElement>) {
     router.push(`/boards/${event.currentTarget.id}`);
   }
 

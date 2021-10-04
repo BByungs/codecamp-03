@@ -1,8 +1,9 @@
 import BoardWriteUI from "./BoardWrite.presenter";
-import { useState, useRef } from "react";
+import { useState, useRef, ChangeEvent } from "react";
 import { useMutation } from "@apollo/client";
 import { CREATE_BOARD, UPDATE_BOARD, UPLOAD_FILE } from "./BoardWrite.queries";
 import { useRouter } from "next/router";
+import { IUpdateBoardInput } from "../../../../commons/types/generated/types";
 
 export default function BoardWrite(props) {
   const router = useRouter();
@@ -31,29 +32,29 @@ export default function BoardWrite(props) {
 
   const fileRef = useRef<HTMLInputElement>();
 
-  function onChangeWriter(event) {
+  function onChangeWriter(event: ChangeEvent<HTMLInputElement>) {
     setWriter(event.target.value);
   }
-  function onChangePassword(event) {
+  function onChangePassword(event: ChangeEvent<HTMLInputElement>) {
     setPassword(event.target.value);
   }
-  function onChangeTitle(event) {
+  function onChangeTitle(event: ChangeEvent<HTMLInputElement>) {
     setTitle(event.target.value);
   }
-  function onChangeContents(event) {
+  function onChangeContents(event: ChangeEvent<HTMLInputElement>) {
     setContents(event.target.value);
   }
-  function onChangeYoutubeUrl(event) {
+  function onChangeYoutubeUrl(event: ChangeEvent<HTMLInputElement>) {
     setYoutubeUrl(event.target.value);
   }
-  function onChangeDetailAddress(event) {
+  function onChangeDetailAddress(event: ChangeEvent<HTMLInputElement>) {
     setAddressDetail(event.target.value);
   }
   function onClickAddressSearch() {
     setIsDaumPostCodeOpen(true);
   }
 
-  const handleComplete = (data) => {
+  const handleComplete = (data: any) => {
     setAddress(data.address);
     setZipcode(data.zonecode);
     setIsDaumPostCodeOpen((prev) => !prev);
@@ -98,7 +99,7 @@ export default function BoardWrite(props) {
         });
         router.push(`/boards/${result.data.createBoard._id}`);
         // console.log(imageUrls);
-      } catch (err) {
+      } catch (err: any) {
         alert(err.message);
       }
     }
@@ -117,7 +118,7 @@ export default function BoardWrite(props) {
       return;
     }
 
-    const updateBoardInput = {};
+    const updateBoardInput: IUpdateBoardInput = {};
 
     if (title) updateBoardInput.title = title;
     if (contents) updateBoardInput.contents = contents;
@@ -157,7 +158,7 @@ export default function BoardWrite(props) {
         },
       });
       router.push(`/boards/${result.data.updateBoard._id}`);
-    } catch (err) {
+    } catch (err: any) {
       alert(err.message);
     }
   }

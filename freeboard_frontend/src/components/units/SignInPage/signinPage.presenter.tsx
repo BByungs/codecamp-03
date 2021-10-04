@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import {
   Wrapper,
   LogoImg,
@@ -21,7 +21,18 @@ import {
   NameError,
 } from "./signinPage.styles";
 
-export default function SignInUI(props) {
+interface ISignInUIProps {
+  onChangeEmail: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeName: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
+  onClickSignIn: () => Promise<void>;
+  onClickLogin: () => void;
+  isPassword: boolean;
+  isEmail: boolean;
+  isName: boolean;
+}
+
+export default function SignInUI(props: ISignInUIProps) {
   return (
     <Wrapper>
       <InputInfo>

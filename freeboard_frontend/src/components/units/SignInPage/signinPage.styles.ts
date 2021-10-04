@@ -7,7 +7,6 @@ export const Wrapper = styled.div`
   align-items: center;
   padding: 5em;
 `;
-
 export const LogoImg = styled.img`
   width: 175px;
   height: 55px;
@@ -20,12 +19,8 @@ export const InputInfo = styled.div`
   display: flex;
   flex-direction: column;
   border: 1px solid #bdbdbd;
-  /* align-items: center; */
-  /* padding-left: 20px;
-  padding-right: 20px; */
   padding: 3em;
 `;
-
 export const FaceBookLoginButton = styled.button`
   display: flex;
   justify-content: center;
@@ -38,14 +33,10 @@ export const FaceBookLoginButton = styled.button`
   border-radius: 5px;
   margin-top: 5px;
 `;
-
 export const FacebookLogo = styled.img`
   width: 16px;
   height: 16px;
-  /* color: #3495f6;
-  background-color: white; */
 `;
-
 export const Or = styled.div`
   display: flex;
   width: 262px;
@@ -71,7 +62,6 @@ export const Input = styled.input`
   border-radius: 3px;
   margin-top: 5px;
 `;
-
 export const SigninButton = styled.button`
   background-color: #277dc3;
   width: 262px;
@@ -88,7 +78,6 @@ export const SigninButton = styled.button`
     opacity: 0.7;
   }
 `;
-
 export const Login = styled.div`
   width: 350px;
   height: 70px;
@@ -99,7 +88,6 @@ export const Login = styled.div`
   align-items: center;
   margin-bottom: 13px;
 `;
-
 export const AppDownload = styled.div`
   width: 350px;
   height: 44px;
@@ -108,7 +96,6 @@ export const AppDownload = styled.div`
   align-items: center;
   margin-top: 10px;
 `;
-
 export const Download = styled.img`
   width: 136px;
   height: 40px;
@@ -131,7 +118,6 @@ export const FooterTxt = styled.span`
 export const Footer1 = styled.div`
   margin-bottom: 2px;
 `;
-
 export const Footer2 = styled.div``;
 
 interface IProps {
@@ -152,7 +138,6 @@ export const NameError = styled.div`
   font-size: 12px;
   display: ${(props: IProps) => (props.isName ? "block" : "none")};
 `;
-
 export const PasswordError = styled.div`
   margin-top: 5px;
   color: red;

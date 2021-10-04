@@ -2,7 +2,7 @@ import SignInUI from "./signinPage.presenter";
 import { useRouter } from "next/router";
 import { CREATE_USER } from "./signinPage.queries";
 import { useMutation } from "@apollo/client";
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 import CheckValidationSignin from "../../commons/library/CheckValidationSignin";
 // import CheckValidationSignin from "../../commons/library/CheckValidationSignin";
 
@@ -27,13 +27,13 @@ export default function SignInPage() {
   // 이름 2~4자
   const validationNameCheck = /^[가-힣]{2,4}$/;
 
-  function onChangeEmail(event) {
+  function onChangeEmail(event: ChangeEvent<HTMLInputElement>) {
     setEmail(event.target.value);
   }
-  function onChangeName(event) {
+  function onChangeName(event: ChangeEvent<HTMLInputElement>) {
     setName(event.target.value);
   }
-  function onChangePassword(event) {
+  function onChangePassword(event: ChangeEvent<HTMLInputElement>) {
     setPassword(event.target.value);
   }
 
@@ -89,7 +89,8 @@ export default function SignInPage() {
         console.log(`email: ${result.data.createUser.email}`);
         console.log(`name: ${result.data.createUser.name}`);
         router.push("/main");
-      } catch (error) {
+      } catch (error: any) {
+        // 타입 어떻게 해야하는지 궁금
         alert(error.message);
       }
     }
