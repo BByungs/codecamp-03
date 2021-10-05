@@ -1,9 +1,10 @@
 // 여기로 setIsEmail , setIsName , setIsPassword 넘겨주면 됨
 
-export default function CheckValidationSignin(
+export function CheckValidationSignin(
   email: string,
   password: string,
-  name: string
+  name: string,
+  check: (type: string, bool: boolean) => void
 ) {
   const validationEmailCheck =
     /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]/;
@@ -17,27 +18,38 @@ export default function CheckValidationSignin(
 
   if (!name && !email && !password) {
     alert("아무것도 입력하지 않았습니다.");
-    return;
+    return false;
   }
 
   if (!validationEmailCheck.test(email) || !email) {
     // alert("이메일을 확인하세요");
-    setIsEmail(true);
+    check("email", true);
   } else {
-    setIsEmail(false);
+    check("email", false);
   }
 
   if (!validationPasswordCheck.test(password) || !password) {
     // alert("비밀번호를 확인하세요");
-    setIsPassword(true);
+    check("password", true);
   } else {
-    setIsPassword(false);
+    check("password", false);
   }
 
   if (!validationNameCheck.test(name) || !name) {
     // alert("이름을 확인하세요");
-    setIsName(true);
+    check("name", true);
   } else {
-    setIsName(false);
+    check("name", false);
+  }
+
+  if (
+    validationNameCheck.test(name) &&
+    validationPasswordCheck.test(password) &&
+    validationEmailCheck.test(email) &&
+    name &&
+    email &&
+    password
+  ) {
+    return true;
   }
 }

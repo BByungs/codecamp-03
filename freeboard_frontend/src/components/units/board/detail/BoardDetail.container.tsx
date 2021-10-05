@@ -7,6 +7,10 @@ import {
   LIKE_BOARD,
   DISLIKE_BOARD,
 } from "./BoardDetail.queries";
+import {
+  IQuery,
+  IQueryFetchBoardArgs,
+} from "../../../../commons/types/generated/types";
 
 export default function BoardDetail() {
   const router = useRouter();
@@ -14,9 +18,12 @@ export default function BoardDetail() {
   const [likeBoard] = useMutation(LIKE_BOARD);
   const [dislikeBoard] = useMutation(DISLIKE_BOARD);
 
-  const { data } = useQuery(FETCH_BOARD, {
-    variables: { boardId: router.query.boardID },
-  });
+  const { data } = useQuery<Pick<IQuery, "fetchBoard">, IQueryFetchBoardArgs>(
+    FETCH_BOARD,
+    {
+      variables: { boardId: router.query.boardID },
+    }
+  );
 
   function onClickMoveToList() {
     router.push("/boards");
@@ -31,7 +38,7 @@ export default function BoardDetail() {
       await deleteBoard({ variables: { boardId: router.query.boardID } });
       alert("게시물이 삭제되었습니다.");
       router.push("/boards");
-    } catch (error) {
+    } catch (error: any) {
       alert(error.message);
     }
   }

@@ -94,7 +94,7 @@ export default function BoardCommentWrite(props) {
         ],
       });
       props.setIsEdit?.(false);
-    } catch (error) {
+    } catch (error: any) {
       alert(error.message);
     }
   }

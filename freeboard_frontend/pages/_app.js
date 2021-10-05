@@ -6,13 +6,13 @@ import {
 } from "@apollo/client";
 import "antd/dist/antd.css";
 import Layout from "../src/components/commons/layout";
-import Main from "../pages/main";
 import SignIn from "../pages/signin";
+import Main from "./index";
 
 import { createUploadLink } from "apollo-upload-client";
 import { useRouter } from "next/router";
 ("./signin");
-const HIDEN_MAIN = ["/main"];
+const HIDEN_MAIN = ["/"];
 const HIDDEN_SIGNIN = ["/signin"];
 
 function MyApp({ Component, pageProps }) {

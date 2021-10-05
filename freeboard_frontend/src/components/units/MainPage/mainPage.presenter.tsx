@@ -29,7 +29,11 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-export default function MainPageUI(props) {
+interface IMainPageUI {
+  onClickSubmit: () => void;
+}
+
+export default function MainPageUI(props: IMainPageUI) {
   const settings = {
     dots: false,
     autoplay: true,
