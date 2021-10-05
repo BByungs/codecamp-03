@@ -28,10 +28,7 @@ import {
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
-interface IMainPageUI {
-  onClickSubmit: () => void;
-}
+import { IMainPageUI } from "./mainPage.types";
 
 export default function MainPageUI(props: IMainPageUI) {
   const settings = {
@@ -63,10 +60,15 @@ export default function MainPageUI(props: IMainPageUI) {
             <InstagramLogo src="/images/mainPage/logo/1024px-Instagram_logo.svg.png" />
             <EmailInput
               type="text"
-              placeholder="전화번호, 사용자 이름 또는 이메일"
+              placeholder="이메일"
+              onChange={props.onChangeEmail}
             />
-            <PasswordInput type="password" placeholder="비밀번호" />
-            <LoginButton>로그인</LoginButton>
+            <PasswordInput
+              type="password"
+              placeholder="비밀번호"
+              onChange={props.onChangePassword}
+            />
+            <LoginButton onClick={props.onClickLogin}>로그인</LoginButton>
             <Or>
               <OrLine />
               <div style={{ color: "#8E8E8E", fontFamily: "Noto Sans CJK KR" }}>
@@ -93,7 +95,7 @@ export default function MainPageUI(props: IMainPageUI) {
               style={{
                 color: "#385185",
                 fontSize: "13px",
-                fontWeight: "400",
+                fontWeight: "lighter",
                 fontFamily: "Noto Sans CJK KR",
                 marginTop: "10px",
                 cursor: "pointer",

@@ -17,6 +17,7 @@ export default function HeaderUI(props) {
       <Container>
         <Logo src="/images/header/logo.png" onClick={props.onClickLogo} />
         <Icon>
+          <span>{props.data?.fetchUserLoggedIn.name}님 반갑습니다</span>
           <Home />
           <Message />
           <Compass />

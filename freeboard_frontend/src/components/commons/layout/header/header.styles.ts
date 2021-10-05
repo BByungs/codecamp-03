@@ -28,7 +28,7 @@ export const Logo = styled.img`
 `;
 
 export const Icon = styled.div`
-  width: 200px;
+  width: 350px;
   display: flex;
   justify-content: space-between;
 `;

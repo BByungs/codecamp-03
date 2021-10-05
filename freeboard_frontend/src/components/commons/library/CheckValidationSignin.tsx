@@ -22,21 +22,18 @@ export function CheckValidationSignin(
   }
 
   if (!validationEmailCheck.test(email) || !email) {
-    // alert("이메일을 확인하세요");
     check("email", true);
   } else {
     check("email", false);
   }
 
   if (!validationPasswordCheck.test(password) || !password) {
-    // alert("비밀번호를 확인하세요");
     check("password", true);
   } else {
     check("password", false);
   }
 
   if (!validationNameCheck.test(name) || !name) {
-    // alert("이름을 확인하세요");
     check("name", true);
   } else {
     check("name", false);

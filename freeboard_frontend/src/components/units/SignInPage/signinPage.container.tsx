@@ -17,12 +17,10 @@ export default function SignInPage() {
   const [isName, setIsName] = useState(false);
   const [isPassword, setIsPassword] = useState(false);
 
-  function check(type, bool) {
+  function check(type: string, bool: boolean) {
     if (type === "password") {
-      // 비밀번호 변경 : setIsPassword
       setIsPassword(bool);
     } else if (type === "name") {
-      // 이름 : setIsName
       setIsName(bool);
     } else if (type === "email") {
       setIsEmail(bool);
@@ -39,7 +37,7 @@ export default function SignInPage() {
   }
 
   function onClickLogin() {
-    router.push("/main");
+    router.push("/");
   }
   async function onClickSignIn() {
     CheckValidationSignin(email, password, name, check);
