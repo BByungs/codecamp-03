@@ -8,13 +8,13 @@ import {
 import "antd/dist/antd.css";
 import Layout from "../src/components/commons/layout";
 import SignIn from "../pages/signin";
-import Main from "./index";
+import Main from "./main";
 
 import { createUploadLink } from "apollo-upload-client";
 import { useRouter } from "next/router";
 import { createContext, useEffect, useState } from "react";
 ("./signin");
-const HIDEN_MAIN = ["/"];
+const HIDEN_MAIN = ["/main"];
 const HIDDEN_SIGNIN = ["/signin"];
 
 export const GlobalContext = createContext(null);
@@ -31,8 +31,6 @@ function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken") || "";
-    // localStorage.getItem("accessToken") 있으면 저장
-    // 없으면 ""
     setAccessToken(accessToken);
   }, []);
 

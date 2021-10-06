@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import LoginIcon from "@mui/icons-material/Login";
 import {
   HomeOutlined,
   MessageOutlined,
@@ -24,13 +25,11 @@ export const Container = styled.div`
 export const Logo = styled.img`
   width: 123px;
   height: 35px;
-  cursor: pointer;
 `;
 
 export const Icon = styled.div`
-  width: 350px;
   display: flex;
-  justify-content: space-between;
+  align-items: center;
 `;
 
 export const Home = styled(HomeOutlined)`
@@ -52,4 +51,17 @@ export const Love = styled(HeartOutlined)`
 export const Logout = styled(LogoutOutlined)`
   font-size: 26px;
   cursor: pointer;
+`;
+export const Login = styled(LoginIcon)`
+  font-size: 26px;
+  cursor: pointer;
+`;
+export const Name = styled.span`
+  width: 200px;
+  text-align: center;
+`;
+export const Icons = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 170px;
 `;

@@ -1,5 +1,4 @@
-import MainPage from "../src/components/units/MainPage/mainPage.container";
-
-export default function Main() {
-  return <MainPage />;
+import BoardList from "../src/components/units/board/list/BoardList.container";
+export default function List() {
+  return <BoardList />;
 }

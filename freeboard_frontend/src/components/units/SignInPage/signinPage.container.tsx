@@ -37,7 +37,7 @@ export default function SignInPage() {
   }
 
   function onClickLogin() {
-    router.push("/");
+    router.push("/main");
   }
   async function onClickSignIn() {
     CheckValidationSignin(email, password, name, check);
@@ -55,7 +55,7 @@ export default function SignInPage() {
         console.log(`id: ${result.data.createUser._id}`);
         console.log(`email: ${result.data.createUser.email}`);
         console.log(`name: ${result.data.createUser.name}`);
-        router.push("/");
+        router.push("/main");
       } catch (error: any) {
         // 타입 어떻게 해야하는지 궁금
         alert(error.message);
