@@ -3,8 +3,8 @@ import {
   Wrapper,
   Logo,
   Container,
-  Home,
-  Message,
+  HomeOutline,
+  HomeFilled,
   Icon,
   Compass,
   Love,
@@ -12,6 +12,8 @@ import {
   Login,
   Name,
   Icons,
+  MarketOutline,
+  MarketFilled,
 } from "./header.styles";
 
 export default function HeaderUI(props) {
@@ -24,8 +26,18 @@ export default function HeaderUI(props) {
             <Name>{props.data?.fetchUserLoggedIn.name}님 반갑습니다.</Name>
           )}
           <Icons>
-            <Home onClick={props.onClickHome} />
-            <Message />
+            {!props.isFirst ? (
+              <HomeOutline onClick={props.onClickHome} />
+            ) : (
+              <HomeFilled onClick={props.onClickHome} />
+            )}
+
+            {!props.isMainMarket ? (
+              <MarketOutline onClick={props.onClickMarket} />
+            ) : (
+              <MarketFilled onClick={props.onClickMarket} />
+            )}
+
             <Compass />
             <Love />
             {props.data ? (

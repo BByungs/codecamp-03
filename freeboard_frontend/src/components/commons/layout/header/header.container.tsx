@@ -5,14 +5,20 @@ import { useQuery } from "@apollo/client";
 import { IQuery } from "../../../../commons/types/generated/types";
 import { useContext, useState } from "react";
 import { GlobalContext } from "../../../../../pages/_app";
+
+const FIRST = ["/"];
+const MARKET_MAIN = ["/marketMain"];
 export default function Header() {
   const { setAccessToken } = useContext(GlobalContext);
   const { data } =
     useQuery<Pick<IQuery, "fetchUserLoggedIn">>(FETCH_USER_LOGGED_IN);
 
   const router = useRouter();
+  const isFirst = FIRST.includes(router.pathname);
+  const isMainMarket = MARKET_MAIN.includes(router.pathname);
+
   function onClickHome() {
-    router.push("/boards");
+    router.push("/");
   }
   function onClickLogin() {
     router.push("/main");
@@ -21,6 +27,9 @@ export default function Header() {
     localStorage.removeItem("accessToken");
     setAccessToken("");
   }
+  function onClickMarket() {
+    router.push("/marketMain");
+  }
   //data={data}
   return (
     <HeaderUI
@@ -28,6 +37,9 @@ export default function Header() {
       data={data}
       onClickLogin={onClickLogin}
       onClickLogout={onClickLogout}
+      isFirst={isFirst}
+      isMainMarket={isMainMarket}
+      onClickMarket={onClickMarket}
     />
   );
 }

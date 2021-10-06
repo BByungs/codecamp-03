@@ -1,8 +1,11 @@
 import styled from "@emotion/styled";
 import LoginIcon from "@mui/icons-material/Login";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import HomeIcon from "@mui/icons-material/Home";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+
 import {
-  HomeOutlined,
-  MessageOutlined,
   CompassOutlined,
   HeartOutlined,
   LogoutOutlined,
@@ -32,12 +35,23 @@ export const Icon = styled.div`
   align-items: center;
 `;
 
-export const Home = styled(HomeOutlined)`
-  font-size: 26px;
+export const HomeOutline = styled(HomeOutlinedIcon)`
+  font-size: 34px;
   cursor: pointer;
 `;
-export const Message = styled(MessageOutlined)`
-  font-size: 26px;
+
+export const HomeFilled = styled(HomeIcon)`
+  font-size: 34px;
+  cursor: pointer;
+`;
+
+export const MarketOutline = styled(ShoppingCartOutlinedIcon)`
+  font-size: 31px;
+  cursor: pointer;
+`;
+
+export const MarketFilled = styled(ShoppingCartIcon)`
+  font-size: 31px;
   cursor: pointer;
 `;
 export const Compass = styled(CompassOutlined)`
@@ -63,5 +77,6 @@ export const Name = styled.span`
 export const Icons = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 170px;
 `;

@@ -34,7 +34,7 @@ export default function MainPage() {
       localStorage.setItem("accessToken", result.data?.loginUser.accessToken);
       setAccessToken(result.data.loginUser.accessToken);
 
-      router.push("/boards");
+      router.push("/");
     } catch (err: any) {
       alert(err.message);
     }
