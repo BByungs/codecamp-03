@@ -13,9 +13,8 @@ import {
   Name,
   Icons,
 } from "./header.styles";
-import { withAuth } from "../../hoc/withAuth";
 
-export const HeaderUI = (props) => {
+export default function HeaderUI(props) {
   return (
     <Wrapper>
       <Container>
@@ -39,6 +38,4 @@ export const HeaderUI = (props) => {
       </Container>
     </Wrapper>
   );
-};
-
-export default withAuth(HeaderUI);
+}

@@ -24,7 +24,8 @@ import {
   UploadImg,
 } from "./BoardDetail.styles";
 import { Tooltip } from "antd";
-export default function BoardDetailUI(props) {
+import { withAuth } from "../../../commons/hoc/withAuth";
+const BoardDetailUI = (props) => {
   return (
     <Wrapper>
       <CardWrapper>
@@ -91,4 +92,6 @@ export default function BoardDetailUI(props) {
       </BottomWrapper>
     </Wrapper>
   );
-}
+};
+
+export default withAuth(BoardDetailUI);

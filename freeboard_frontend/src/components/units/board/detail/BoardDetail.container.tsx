@@ -11,13 +11,14 @@ import {
   IQuery,
   IQueryFetchBoardArgs,
 } from "../../../../commons/types/generated/types";
+import { useContext, useEffect } from "react";
+import { GlobalContext } from "../../../../../pages/_app";
 
 export default function BoardDetail() {
   const router = useRouter();
   const [deleteBoard] = useMutation(DELETE_BOARD);
   const [likeBoard] = useMutation(LIKE_BOARD);
   const [dislikeBoard] = useMutation(DISLIKE_BOARD);
-
   const { data } = useQuery<Pick<IQuery, "fetchBoard">, IQueryFetchBoardArgs>(
     FETCH_BOARD,
     {

@@ -34,8 +34,9 @@ import {
 import { Modal } from "antd";
 import DaumPostcode from "react-daum-postcode";
 import UploadButton1 from "../../../commons/uploads/01/upload.container";
+import { withAuth } from "../../../commons/hoc/withAuth";
 
-export default function BoardWriteUI(props) {
+const BoardWriteUI = (props) => {
   return (
     <Wrapper>
       <Container>
@@ -189,4 +190,6 @@ export default function BoardWriteUI(props) {
       </Container>
     </Wrapper>
   );
-}
+};
+
+export default withAuth(BoardWriteUI);

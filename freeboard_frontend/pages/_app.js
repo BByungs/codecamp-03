@@ -30,9 +30,10 @@ function MyApp({ Component, pageProps }) {
   };
 
   useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken") || "";
-    setAccessToken(accessToken);
-  }, []);
+    const token = localStorage.getItem("accessToken") || ""; // accessToken
+    // console.log(accessToken);
+    setAccessToken(token);
+  }, [accessToken]);
 
   const uploadLink = createUploadLink({
     uri: "http://backend03.codebootcamp.co.kr/graphql",

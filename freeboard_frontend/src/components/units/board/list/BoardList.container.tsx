@@ -47,7 +47,6 @@ export default function BoardList() {
   const { data: fetchBoardsOfTheBest } = useQuery<
     Pick<IQuery, "fetchBoardsOfTheBest">
   >(FETCH_BOARDS_OF_THE_BEST);
-  // 여기도 리패치 하고 싶은데 어떻게 하는지..?
   const router = useRouter();
 
   // 게시물 등록 페이지로 이동
