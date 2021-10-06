@@ -53,9 +53,11 @@ export default function SearchDebouncePage() {
   //   setMyKeyword(mySearch);
   //
   // }
+
   function onClickPage(event) {
     refetch({ search: myKeyword, page: Number(event.target.id) });
   }
+
   return (
     <>
       <div>검색페이지!!</div>

@@ -48,7 +48,8 @@ export default function SearchKeywordPage() {
     // 1. 검색버튼을 눌렀을때 mySearch를 myKeyword에 저장
   }
   function onClickPage(event) {
-    refetch({ search: myKeyword, page: Number(event.target.id) });
+    // refetch({ search: myKeyword, page: Number(event.target.id) });
+    refetch({ search: mySearch, page: Number(event.target.id) });
     // 2. 리패치 될때 내가 검색버튼 눌렀을때 저장된 myKeyword를 서치해서 리패치함
 
     // page가 없으면 1페이지로 가게끔 api가 설계되었음 (참고)

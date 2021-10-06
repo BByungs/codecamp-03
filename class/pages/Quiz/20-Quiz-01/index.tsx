@@ -19,16 +19,13 @@ const CREATE_BOARD = gql`
 
 export default function Quzi20() {
   const fileRef = useRef<HTMLInputElement>();
-  const [imageUrl, setImageUrl] = useState([]);
-  const [myFile, setMyFile] = useState([]);
   const [url, setUrl] = useState([]);
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
-  // ####
-  // const urlList = [];
-  // ####
+  const [list, setList] = useState([]);
+
   const [uploadFile] = useMutation(UPLOAD_FILE);
   const [createBoard] = useMutation(CREATE_BOARD);
 
@@ -57,32 +54,23 @@ export default function Quzi20() {
     const files = Array.from(data.target.files);
     const urlList = [];
     const result = await Promise.all(
-      files.map((el) =>
-        uploadFile({
-          variables: {
-            file: el,
-          },
-        })
-      )
+      files.map((el) => uploadFile({ variables: { file: el } }))
     );
 
     result.forEach((el) => {
       urlList.push(el);
     });
-
     console.log(urlList);
+
     setUrl(urlList);
+    const list = urlList.map((el) => {
+      return el.data.uploadFile.url;
+    });
+    setList(list);
   }
 
   // ##############################################
   async function onClickSubmit() {
-    const result = await uploadFile({
-      variables: {
-        file: myFile,
-      },
-    });
-
-    // const urls = [result].map((el) => el.data.uploadFile.url);
     try {
       const result = await createBoard({
         variables: {
@@ -91,7 +79,7 @@ export default function Quzi20() {
             password,
             title,
             contents,
-            images: url,
+            images: list,
           },
         },
       });
@@ -100,7 +88,6 @@ export default function Quzi20() {
       alert(error.message);
     }
   }
-
   // ##############################################
 
   return (
@@ -108,10 +95,6 @@ export default function Quzi20() {
       {url && (
         <>
           {url.map((el, idx) => (
-            // uuid 라는 라이브러리가 있는데
-            // 이걸 써주면 유니크한 아이디를 만들어줌
-            // 렌더링 할때 값을 다시 받아와서 재 렌더링 시켜줘야해서
-            // 스테이트값 씀
             <div key={el.data.uploadFile.url}>
               <img
                 src={`https://storage.googleapis.com/${el.data.uploadFile.url}`}

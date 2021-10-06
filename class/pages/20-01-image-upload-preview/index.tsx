@@ -37,15 +37,22 @@ export default function ImageUpladPreviewPage() {
     }
     console.log(file);
 
-    const fileReader = new FileReader(); // 자바스크립트에 있는 내장 객체
-    // 파일을 읽는 객체
-    fileReader.readAsDataURL(file); // 임시 url을 뽑아주는데
-    // 여기서 나오게되는 url은 스토리지에 올라간 url이 아님
-    // 그냥 말 그대로 임시 url임(내 컴퓨터에서만 돌아가는 임시 url)
+    // const fileReader = new FileReader(); // 자바스크립트에 있는 내장 객체
+    // // 파일을 읽는 객체
+    // fileReader.readAsDataURL(file); // 임시 url을 뽑아주는데
+    // // 여기서 나오게되는 url은 스토리지에 올라간 url이 아님
+    // // 그냥 말 그대로 임시 url임(내 컴퓨터에서만 돌아가는 임시 url)
 
+    // fileReader.onload = (data) => {
+    //   setImageUrl(data.target.result); // 임시로 생긴 url (서버에 올라가지않고 , 스토리지에 저장x인상태)
+    //   // console.log(data.target.result);
+    //   setMyFile(file);
+    // };
+
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file); // 이미지 파일의 임시 url을 생성
     fileReader.onload = (data) => {
-      setImageUrl(data.target.result); // 임시로 생긴 url (서버에 올라가지않고 , 스토리지에 저장x인상태)
-      // console.log(data.target.result);
+      setImageUrl(data.target.result);
       setMyFile(file);
     };
   }

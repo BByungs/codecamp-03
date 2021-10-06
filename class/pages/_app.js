@@ -11,6 +11,7 @@ import { globalStyles } from "../src/commons/styles/globalStyles";
 import { initializeApp } from "firebase/app";
 
 import { createUploadLink } from "apollo-upload-client";
+import { createContext, useState, useEffect } from "react";
 
 export const firebaseApp = initializeApp({
   apiKey: "AIzaSyDqMZBInmQqBw3YigL0dIeFzaswmw1DjGo",
@@ -22,10 +23,32 @@ export const firebaseApp = initializeApp({
   measurementId: "G-N9JNDKFPJ5",
 });
 
+export const GlobalContext = createContext(null);
 function MyApp({ Component, pageProps }) {
+  const [accessToken, setAccessToken] = useState("");
+  const [userInfo, setUserInfo] = useState({});
+  const value = {
+    accessToken: accessToken,
+    setAccessToken: setAccessToken,
+    userInfo: userInfo,
+    setUserInfo: setUserInfo,
+  };
+
+  // 스토리지에 넣는 방법
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken") || "";
+    // localStorage.getItem("accessToken") 있으면 저장
+    // 없으면 ""
+    setAccessToken(accessToken);
+  }, []);
+  // ###############################
+
   // Apollo Setting
   const uploadLink = createUploadLink({
     uri: "http://backend03.codebootcamp.co.kr/graphql",
+    headers: {
+      authorization: `Bearer ${accessToken}`,
+    },
   });
 
   const client = new ApolloClient({
@@ -39,14 +62,15 @@ function MyApp({ Component, pageProps }) {
   // 어떤 페이지를 들어가든 위에 있는 코드가 됨 그냥 이렇게 되는구나 라고만 이해하자
   // 여기다가 제공을 해줘야함
   return (
-    <>
+    // GlobalContext.Provider로 전체를 감싸고 value를 전달
+    <GlobalContext.Provider value={value}>
       <Global styles={globalStyles} />
       <ApolloProvider client={client}>
         <Layout>
           <Component {...pageProps} />
         </Layout>
       </ApolloProvider>
-    </>
+    </GlobalContext.Provider>
   );
 }
 

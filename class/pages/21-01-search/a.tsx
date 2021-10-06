@@ -4,6 +4,7 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 // v4라는 걸 불러왔는데 이름을 uuid4로 쓰고싶을때
 // as 를 붙여주고 쓰고싶은 이름 써주면 된다
+import _ from "lodash";
 
 const Column = styled.span`
   padding: 0px 50px;
@@ -25,36 +26,32 @@ const FETCH_BOARDS = gql`
   }
 `;
 
-export default function SearchPage() {
+export default function a() {
   const { data, refetch } = useQuery(FETCH_BOARDS);
-  const [mySearch, setMySearch] = useState("");
+  // const [mySearch, setMySearch] = useState("");
   const [myKeyword, setMyKeyword] = useState("");
 
-  function onChangeSearch(event) {
-    setMySearch(event.target.value);
-  }
-
-  function onClickSearch() {
+  const getDebounce = _.debounce((data) => {
     refetch({
-      // variables 생략됨
-      search: mySearch,
+      search: data,
+      page: 1,
     });
-    setMyKeyword(mySearch);
-    // 1. 검색버튼을 눌렀을때 mySearch를 myKeyword에 저장
+    setMyKeyword(data);
+  }, 500);
+
+  function onChangeSearch(event) {
+    getDebounce(event.target.value);
   }
 
   function onClickPage(event) {
     refetch({ search: myKeyword, page: Number(event.target.id) });
-    // 2. 리패치 될때 내가 검색버튼 눌렀을때 저장된 myKeyword를 서치해서 리패치함
-
-    // page가 없으면 1페이지로 가게끔 api가 설계되었음 (참고)
   }
 
   return (
     <>
       <div>검색페이지!!</div>
       검색어: <input type="text" onChange={onChangeSearch} />
-      <button onClick={onClickSearch}>검색</button>
+      {/* <button onClick={onClickSearch}>검색</button> */}
       {data?.fetchBoards.map((el) => (
         <div key={el._id}>
           <Column>{el.writer}</Column>
