@@ -46,12 +46,12 @@ export const HomeFilled = styled(HomeIcon)`
 `;
 
 export const MarketOutline = styled(ShoppingCartOutlinedIcon)`
-  font-size: 31px;
+  font-size: 30px;
   cursor: pointer;
 `;
 
 export const MarketFilled = styled(ShoppingCartIcon)`
-  font-size: 31px;
+  font-size: 30px;
   cursor: pointer;
 `;
 export const Compass = styled(CompassOutlined)`

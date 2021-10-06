@@ -6,7 +6,7 @@ import { IQuery } from "../../../../commons/types/generated/types";
 import { useContext, useState } from "react";
 import { GlobalContext } from "../../../../../pages/_app";
 
-const FIRST = ["/"];
+const MAIN = ["/"];
 const MARKET_MAIN = ["/marketMain"];
 export default function Header() {
   const { setAccessToken } = useContext(GlobalContext);
@@ -14,7 +14,7 @@ export default function Header() {
     useQuery<Pick<IQuery, "fetchUserLoggedIn">>(FETCH_USER_LOGGED_IN);
 
   const router = useRouter();
-  const isFirst = FIRST.includes(router.pathname);
+  const isMain = MAIN.includes(router.pathname);
   const isMainMarket = MARKET_MAIN.includes(router.pathname);
 
   function onClickHome() {
@@ -37,7 +37,7 @@ export default function Header() {
       data={data}
       onClickLogin={onClickLogin}
       onClickLogout={onClickLogout}
-      isFirst={isFirst}
+      isMain={isMain}
       isMainMarket={isMainMarket}
       onClickMarket={onClickMarket}
     />

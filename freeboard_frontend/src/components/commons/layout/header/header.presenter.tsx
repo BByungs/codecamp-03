@@ -26,7 +26,7 @@ export default function HeaderUI(props) {
             <Name>{props.data?.fetchUserLoggedIn.name}님 반갑습니다.</Name>
           )}
           <Icons>
-            {!props.isFirst ? (
+            {!props.isMain ? (
               <HomeOutline onClick={props.onClickHome} />
             ) : (
               <HomeFilled onClick={props.onClickHome} />
