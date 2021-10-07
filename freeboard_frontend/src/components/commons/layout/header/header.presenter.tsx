@@ -3,17 +3,17 @@ import {
   Wrapper,
   Logo,
   Container,
-  HomeOutline,
-  HomeFilled,
   Icon,
-  Compass,
-  Love,
   Logout,
   Login,
   Name,
   Icons,
-  MarketOutline,
-  MarketFilled,
+  HomeFilled,
+  HomeOutline,
+  ListFilled,
+  ListOutline,
+  MyPageOutline,
+  MyPageFilled,
 } from "./header.styles";
 
 export default function HeaderUI(props) {
@@ -27,19 +27,23 @@ export default function HeaderUI(props) {
           )}
           <Icons>
             {!props.isMain ? (
-              <HomeOutline onClick={props.onClickHome} />
+              <HomeOutline onClick={props.onClickMain} />
             ) : (
-              <HomeFilled onClick={props.onClickHome} />
+              <HomeFilled onClick={props.onClickMain} />
             )}
 
-            {!props.isMainMarket ? (
-              <MarketOutline onClick={props.onClickMarket} />
+            {!props.isBoardList ? (
+              <ListOutline onClick={props.onClickBoardList} />
             ) : (
-              <MarketFilled onClick={props.onClickMarket} />
+              <ListFilled onClick={props.onClickBoardList} />
             )}
 
-            <Compass />
-            <Love />
+            {!props.isMyPage ? (
+              <MyPageOutline onClick={props.onClickMyPage} />
+            ) : (
+              <MyPageFilled onClick={props.onClickMyPage} />
+            )}
+
             {props.data ? (
               <Logout onClick={props.onClickLogout} />
             ) : (

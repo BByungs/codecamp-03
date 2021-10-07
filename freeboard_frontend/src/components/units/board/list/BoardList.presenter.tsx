@@ -46,8 +46,9 @@ import {
   Range,
 } from "./BoardList.styles";
 import { Space } from "antd";
+import { withAuth } from "../../../commons/hoc/withAuth";
 
-export default function BoardListUI(props) {
+const BoardListUI = (props) => {
   return (
     <Wrapper>
       {/* 베스트 게시글 , 밑에 포스트들 까지 */}
@@ -162,4 +163,6 @@ export default function BoardListUI(props) {
       </Footer>
     </Wrapper>
   );
-}
+};
+
+export default withAuth(BoardListUI);

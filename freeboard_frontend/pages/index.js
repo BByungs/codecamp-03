@@ -1,4 +1,4 @@
-import BoardList from "../src/components/units/board/list/BoardList.container";
-export default function List() {
-  return <BoardList />;
+import MarketMainPage from "../src/components/units/Market/main/MarketMain.container";
+export default function MarketMain() {
+  return <MarketMainPage />;
 }

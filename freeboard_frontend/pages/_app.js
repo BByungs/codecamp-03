@@ -33,6 +33,7 @@ function MyApp({ Component, pageProps }) {
     const token = localStorage.getItem("accessToken") || ""; // accessToken
     // console.log(accessToken);
     setAccessToken(token);
+    // localStorage.clear();
   }, [accessToken]);
 
   const uploadLink = createUploadLink({

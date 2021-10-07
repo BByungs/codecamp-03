@@ -2,19 +2,27 @@ import styled from "@emotion/styled";
 import LoginIcon from "@mui/icons-material/Login";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import HomeIcon from "@mui/icons-material/Home";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import { MessageFilled, MessageOutlined } from "@ant-design/icons";
 
-import {
-  CompassOutlined,
-  HeartOutlined,
-  LogoutOutlined,
-} from "@ant-design/icons";
+import { LogoutOutlined } from "@ant-design/icons";
+
+export const MyPageOutline = styled(AccountCircleOutlinedIcon)`
+  font-size: 34px;
+  cursor: pointer;
+`;
+
+export const MyPageFilled = styled(AccountCircleIcon)`
+  font-size: 34px;
+  cursor: pointer;
+`;
 
 export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 1200px;
 `;
 
 export const Container = styled.div`
@@ -35,6 +43,16 @@ export const Icon = styled.div`
   align-items: center;
 `;
 
+export const ListFilled = styled(MessageFilled)`
+  font-size: 28px;
+  cursor: pointer;
+`;
+
+export const ListOutline = styled(MessageOutlined)`
+  font-size: 28px;
+  cursor: pointer;
+`;
+
 export const HomeOutline = styled(HomeOutlinedIcon)`
   font-size: 34px;
   cursor: pointer;
@@ -45,23 +63,6 @@ export const HomeFilled = styled(HomeIcon)`
   cursor: pointer;
 `;
 
-export const MarketOutline = styled(ShoppingCartOutlinedIcon)`
-  font-size: 30px;
-  cursor: pointer;
-`;
-
-export const MarketFilled = styled(ShoppingCartIcon)`
-  font-size: 30px;
-  cursor: pointer;
-`;
-export const Compass = styled(CompassOutlined)`
-  font-size: 26px;
-  cursor: pointer;
-`;
-export const Love = styled(HeartOutlined)`
-  font-size: 26px;
-  cursor: pointer;
-`;
 export const Logout = styled(LogoutOutlined)`
   font-size: 26px;
   cursor: pointer;
@@ -70,10 +71,11 @@ export const Login = styled(LoginIcon)`
   font-size: 26px;
   cursor: pointer;
 `;
-export const Name = styled.span`
+export const Name = styled.div`
   width: 200px;
   text-align: center;
 `;
+
 export const Icons = styled.div`
   display: flex;
   justify-content: space-between;

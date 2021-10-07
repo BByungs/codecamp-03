@@ -6,8 +6,9 @@ import { IQuery } from "../../../../commons/types/generated/types";
 import { useContext, useState } from "react";
 import { GlobalContext } from "../../../../../pages/_app";
 
-const MAIN = ["/"];
-const MARKET_MAIN = ["/marketMain"];
+const MAIN = ["/"]; // marketMain
+const BOARD_LIST = ["/boardList"]; // boardList
+const MYPAGE = ["/mypage"];
 export default function Header() {
   const { setAccessToken } = useContext(GlobalContext);
   const { data } =
@@ -15,11 +16,9 @@ export default function Header() {
 
   const router = useRouter();
   const isMain = MAIN.includes(router.pathname);
-  const isMainMarket = MARKET_MAIN.includes(router.pathname);
+  const isBoardList = BOARD_LIST.includes(router.pathname);
+  const isMyPage = MYPAGE.includes(router.pathname);
 
-  function onClickHome() {
-    router.push("/");
-  }
   function onClickLogin() {
     router.push("/main");
   }
@@ -27,19 +26,27 @@ export default function Header() {
     localStorage.removeItem("accessToken");
     setAccessToken("");
   }
-  function onClickMarket() {
-    router.push("/marketMain");
+  function onClickMain() {
+    router.push("/");
+  }
+  function onClickBoardList() {
+    router.push("/boardList");
+  }
+  function onClickMyPage() {
+    router.push("/mypage");
   }
   //data={data}
   return (
     <HeaderUI
-      onClickHome={onClickHome}
       data={data}
       onClickLogin={onClickLogin}
       onClickLogout={onClickLogout}
       isMain={isMain}
-      isMainMarket={isMainMarket}
-      onClickMarket={onClickMarket}
+      isMyPage={isMyPage}
+      isBoardList={isBoardList}
+      onClickMain={onClickMain}
+      onClickBoardList={onClickBoardList}
+      onClickMyPage={onClickMyPage}
     />
   );
 }
