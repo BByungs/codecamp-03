@@ -13,7 +13,6 @@ export const Header = styled.div`
   font-weight: 700;
   text-align: center;
   margin-bottom: 40px;
-  background-color: red;
 `;
 
 export const Footer = styled.div`

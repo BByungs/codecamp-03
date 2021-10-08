@@ -19,34 +19,36 @@ import {
   ProductPrice,
 } from "./List.styles";
 
-export default function ListUI() {
+export default function ListUI(props) {
   return (
     <Container>
-      <ListWrapper>
-        <Body>
-          <ProductImg src="/images/ProductMain/testimg.png" />
-          <ProductInfo>
-            <div>
-              <Info>
-                <ProductName>삼성전자 갤럭시 탭A10.1</ProductName>
-                <ProductDetail>2019 LTE 32GB</ProductDetail>
-                <ProductTag>#삼성전자 #갤럭시탭 #갓성비</ProductTag>
-              </Info>
-              <SellerInfo>
-                <SellerPhoto src="/images/ProductMain/sellerphoto.png" />
-                <SellerName>판매자</SellerName>
-                <HeartImg src="/images/ProductMain/heartimg.png" />
-                <HeartCount>1</HeartCount>
-              </SellerInfo>
-            </div>
-            <Price>
-              <MoneyImg src="/images/ProductMain/moneyimg.png" />
-              <ProductPrice>123,243원</ProductPrice>
-            </Price>
-          </ProductInfo>
-        </Body>
-        <SearchBarLine />
-      </ListWrapper>
+      {props.data?.fetchUseditems.map((el) => (
+        <ListWrapper key={el._id}>
+          <Body>
+            <ProductImg src="/images/ProductMain/testimg.png" />
+            <ProductInfo>
+              <div>
+                <Info>
+                  <ProductName>{el.name}</ProductName>
+                  <ProductDetail>{el.remarks}</ProductDetail>
+                  <ProductTag>#삼성전자 #갤럭시탭 #갓성비</ProductTag>
+                </Info>
+                <SellerInfo>
+                  <SellerPhoto src="/images/ProductMain/sellerphoto.png" />
+                  <SellerName>{el.seller.name}</SellerName>
+                  <HeartImg src="/images/ProductMain/heartimg.png" />
+                  <HeartCount>{el.pickedCount}</HeartCount>
+                </SellerInfo>
+              </div>
+              <Price>
+                <MoneyImg src="/images/ProductMain/moneyimg.png" />
+                <ProductPrice>{el.price}</ProductPrice>
+              </Price>
+            </ProductInfo>
+          </Body>
+          <SearchBarLine />
+        </ListWrapper>
+      ))}
     </Container>
   );
 }

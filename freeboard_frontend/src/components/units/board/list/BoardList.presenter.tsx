@@ -65,7 +65,7 @@ const BoardListUI = (props) => {
                 <PostThumbnail src="/noimage3.svg"></PostThumbnail>
               )}
               <PostIntroduce>
-                <PostTitle>게시물 제목입니다.</PostTitle>
+                <PostTitle>{el.title}</PostTitle>
                 <WriterInfo>
                   <WriterAndDate>
                     <WriterNameAndPhoto>

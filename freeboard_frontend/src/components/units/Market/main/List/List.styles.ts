@@ -1,11 +1,9 @@
 import styled from "@emotion/styled";
 
 export const Container = styled.div`
-  height: 1004px;
   width: 1200px;
   display: flex;
   flex-direction: column;
-  padding-top: 20px;
 `;
 
 export const ListWrapper = styled.div`
@@ -13,11 +11,12 @@ export const ListWrapper = styled.div`
   height: 200px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 `;
 
 export const Body = styled.div`
   display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
 `;
 
 export const ProductImg = styled.img`
@@ -68,7 +67,7 @@ export const ProductTag = styled.div`
 
 export const SellerInfo = styled.div`
   display: flex;
-  width: 131px;
+  width: 150px;
   align-items: center;
 `;
 
@@ -83,7 +82,7 @@ export const SellerName = styled.div`
   font-style: normal;
   margin-left: 6px;
   margin-right: 22px;
-  width: 45px;
+  width: 70px;
   height: 24px;
 `;
 

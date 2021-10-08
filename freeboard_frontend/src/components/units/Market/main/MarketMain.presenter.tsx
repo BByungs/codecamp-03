@@ -3,6 +3,7 @@ import BestProduct from "./BestProduct/BestProduct.container";
 import SearchBar from "./SearchBar/SearchBar.container";
 import List from "./List/List.container";
 import { ProductSubmut, Footer } from "./MarketMain.styles";
+
 export default function MarketMainUIPage() {
   return (
     <Wrapper>
