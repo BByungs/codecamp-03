@@ -5,10 +5,12 @@ export const Wrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  margin-bottom: 40px;
 `;
 
 export const Preview = styled.div`
-  width: 180px;
+  /* width: 180px; */
   height: 180px;
   display: flex;
+  align-items: center;
 `;
