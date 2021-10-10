@@ -27,11 +27,22 @@ const Wrapper = styled.div`
   margin-bottom: 40px;
 `;
 
+const ErrorMessage = styled.div`
+  margin-top: 10px;
+  color: red;
+`;
+
 export default function ProductWriteInput01(props) {
   return (
     <Wrapper>
       <Text>{props.name}</Text>
-      <Input type={props.type} placeholder={props.placeholder} />
+      <Input
+        type={props.type}
+        placeholder={props.placeholder}
+        onChange={props.onChange}
+        {...props.register}
+      />
+      <ErrorMessage>{props.formState}</ErrorMessage>
     </Wrapper>
   );
 }

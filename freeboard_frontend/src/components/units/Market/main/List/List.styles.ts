@@ -11,6 +11,10 @@ export const ListWrapper = styled.div`
   height: 200px;
   display: flex;
   flex-direction: column;
+  /* :hover {
+    background-color: #f5f5f5;
+  } */
+  cursor: pointer;
 `;
 
 export const Body = styled.div`

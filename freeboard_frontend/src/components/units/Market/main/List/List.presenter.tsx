@@ -23,7 +23,7 @@ export default function ListUI(props) {
   return (
     <Container>
       {props.data?.fetchUseditems.map((el) => (
-        <ListWrapper key={el._id}>
+        <ListWrapper id={el._id} key={el._id} onClick={props.onClickProduct}>
           <Body>
             <ProductImg src="/images/ProductMain/testimg.png" />
             <ProductInfo>

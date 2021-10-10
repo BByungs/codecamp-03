@@ -1,6 +1,9 @@
 // 등록 페이지
+import { withAuth } from "../../../src/components/commons/hoc/withAuth";
 import ProductWritePage from "../../../src/components/units/Market/ProductWrite/ProdcutWrite.container";
 
-export default function ProductSubmit() {
-  return <ProductWritePage />;
-}
+const ProductSubmit = () => {
+  return <ProductWritePage isEdit={false} />;
+};
+
+export default withAuth(ProductSubmit);

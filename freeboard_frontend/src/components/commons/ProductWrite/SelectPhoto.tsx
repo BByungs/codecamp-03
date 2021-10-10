@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { useRef } from "react";
 
 const Wrapper = styled.div`
   width: 140px;
@@ -27,12 +28,28 @@ const Text = styled.div`
   font-style: normal;
   font-weight: 500;
 `;
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
-export default function SelectPhoto() {
+export default function SelectPhoto(props) {
+  // const fileRef = useRef<HTMLInputElement>();
+  // function onClickUpload() {
+  //   fileRef.current?.click();
+  // }
   return (
-    <Wrapper>
-      <PlusImg src="/images/ProductWrite/plus.png" />
-      <Text>Upload</Text>
-    </Wrapper>
+    <Container>
+      <Wrapper>
+        <PlusImg src="/images/ProductWrite/plus.png" />
+        <Text>Upload</Text>
+      </Wrapper>
+      {/* <input
+        style={{ display: "none" }}
+        type="file"
+        {...props.register}
+        ref={fileRef}
+      /> */}
+    </Container>
   );
 }

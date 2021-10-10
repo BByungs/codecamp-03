@@ -47,3 +47,44 @@ export const ProductSubmitButton = styled.button`
   }
   cursor: pointer;
 `;
+
+export const ProductEditButton = styled.button`
+  font-family: Noto Sans CJK KR;
+  font-size: 16px;
+  color: black;
+  font-style: normal;
+  font-weight: 500;
+  text-align: center;
+  border: none;
+  background: #ffd600;
+  width: 179px;
+  height: 52px;
+  :hover {
+    opacity: 0.7;
+  }
+  cursor: pointer;
+`;
+
+export const CancelButton = styled.button`
+  font-family: Noto Sans CJK KR;
+  color: #4f4f4f;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  text-align: center;
+  border: none;
+  background: #bdbdbd;
+  width: 179px;
+  height: 52px;
+  :hover {
+    opacity: 0.7;
+  }
+  cursor: pointer;
+`;
+
+export const ProductEdit = styled.div`
+  width: 382px;
+  height: 52px;
+  display: flex;
+  justify-content: space-between;
+`;

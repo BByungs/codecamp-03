@@ -13,5 +13,11 @@ const Input = styled.input`
 `;
 
 export default function AddressSmallInput(props) {
-  return <Input placeholder={props.placeholder} />;
+  return (
+    <Input
+      placeholder={props.placeholder}
+      type={props.type}
+      {...props.register}
+    />
+  );
 }

@@ -155,3 +155,8 @@ export const Plus2 = styled.img`
   width: 20px;
   height: 20px;
 `;
+
+export const ErrorMessage = styled.div`
+  color: red;
+  margin-top: 10px;
+`;

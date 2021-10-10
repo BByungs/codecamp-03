@@ -22,6 +22,7 @@ import {
   AImg,
   Magnet2,
   Plus2,
+  ErrorMessage,
 } from "./PrpductDetail.styles";
 
 export default function ProductDetailUI(props) {
@@ -52,8 +53,9 @@ export default function ProductDetailUI(props) {
           <Magnet2 src="/images/ProductWrite/magnet1.png" />
           <Plus2 src="/images/ProductWrite/plus2.png" />
         </Togle>
-        <Input placeholder="상품을 설명해주세요." />
+        <Input placeholder="상품을 설명해주세요." {...props.register} />
       </InputBox>
+      <ErrorMessage>{props.formState}</ErrorMessage>
     </Wrapper>
   );
 }
