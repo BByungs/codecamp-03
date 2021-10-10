@@ -3,13 +3,12 @@ import BestProduct from "./BestProduct/BestProduct.container";
 import SearchBar from "./SearchBar/SearchBar.container";
 import List from "./List/List.container";
 import { ProductSubmut, Footer, All } from "./MarketMain.styles";
-
 export default function MarketMainUIPage(props) {
   return (
     <All>
       <Wrapper>
         <Header>베스트 상품</Header>
-        <BestProduct />
+        <BestProduct fetchUseditemsOfTheBest={props.fetchUseditemsOfTheBest} />
         <SearchBar />
         <List />
         <Footer>
