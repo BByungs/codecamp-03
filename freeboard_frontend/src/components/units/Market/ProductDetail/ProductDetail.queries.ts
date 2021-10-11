@@ -10,6 +10,11 @@ export const FETCH_USED_ITEM = gql`
       price
       pickedCount
       createdAt
+      seller {
+        _id
+        email
+        name
+      }
       useditemAddress {
         _id
         zipcode
@@ -18,6 +23,16 @@ export const FETCH_USED_ITEM = gql`
         lat
         lng
       }
+    }
+  }
+`;
+
+export const FETCH_USER_LOGGED_IN = gql`
+  query fetchUserLoggedIn {
+    fetchUserLoggedIn {
+      _id
+      name
+      email
     }
   }
 `;

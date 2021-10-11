@@ -28,7 +28,8 @@ export default function ProductWritePage(props) {
   };
 
   async function onClickSubmit(data) {
-    console.log(data.imgaes);
+    // console.log(data.imgaes);
+    console.log(data);
     try {
       const result = await createUseditem({
         variables: {
@@ -46,7 +47,7 @@ export default function ProductWritePage(props) {
         },
       });
       alert("상품을 등록합니다");
-      console.log(result.data.createUseditem._id);
+      // console.log(result.data.createUseditem._id);
       router.push(`/ProductWrite/${result.data.createUseditem._id}`);
     } catch (err: any) {
       alert(err.message);

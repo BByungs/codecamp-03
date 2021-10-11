@@ -8,7 +8,7 @@ export default function MarketMainUIPage(props) {
     <All>
       <Wrapper>
         <Header>베스트 상품</Header>
-        <BestProduct fetchUseditemsOfTheBest={props.fetchUseditemsOfTheBest} />
+        <BestProduct data={props.data} />
         <SearchBar />
         <List />
         <Footer>

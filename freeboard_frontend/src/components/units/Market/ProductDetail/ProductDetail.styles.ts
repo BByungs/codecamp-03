@@ -27,13 +27,18 @@ export const Buttons = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 84px;
+  margin-bottom: 80px;
 `;
 
 export const GotoMain = styled.button`
   width: 179px;
   height: 52px;
 `;
-export const Buy = styled.button`
+export const BuyButton = styled.button`
+  width: 179px;
+  height: 52px;
+`;
+export const EditButton = styled.button`
   width: 179px;
   height: 52px;
 `;

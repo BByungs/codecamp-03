@@ -123,3 +123,9 @@ export const ProductPrice = styled.div`
   height: 36px;
   text-align: center;
 `;
+
+export const Loader = styled.div`
+  width: 1240px;
+  height: 1004px;
+  overflow: auto;
+`;

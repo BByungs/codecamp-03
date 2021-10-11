@@ -8,7 +8,7 @@ export default function BestProduct(props) {
   }
   return (
     <BestProductUIPage
-      fetchUseditemsOfTheBest={props.fetchUseditemsOfTheBest}
+      data={props.data}
       onClickBestProduct={onClickBestProduct}
     />
   );

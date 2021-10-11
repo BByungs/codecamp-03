@@ -16,6 +16,7 @@ import {
 } from "./ProductWrite.styles";
 
 export default function ProductWriteUIPage(props) {
+  console.log(props.formState.isValid);
   return (
     <form onSubmit={props.handleSubmit(props.onClickSubmit)}>
       <All>

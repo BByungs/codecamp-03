@@ -25,7 +25,7 @@ export const BestProduct = styled.div`
   padding-right: 20px;
   border: none;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
-  /* border-radius: 20px; */
+  border-radius: 20px;
   :hover {
     box-shadow: none;
   }

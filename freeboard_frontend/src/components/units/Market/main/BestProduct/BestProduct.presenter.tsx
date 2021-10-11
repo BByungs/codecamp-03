@@ -15,7 +15,7 @@ import {
 export default function BestProductUIPage(props) {
   return (
     <Container>
-      {props.fetchUseditemsOfTheBest?.fetchUseditemsOfTheBest.map((el) => (
+      {props.data?.fetchUseditemsOfTheBest.map((el) => (
         <BestProduct
           key={el._id}
           id={el._id}
