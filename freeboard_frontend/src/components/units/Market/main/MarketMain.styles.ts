@@ -31,12 +31,3 @@ export const ProductSubmut = styled.button`
   background-color: white;
   padding: 14px 16px 14px 16px;
 `;
-
-export const ViewToday = styled.div`
-  width: 196px;
-  height: 505px;
-  position: relative;
-  top: -1100px;
-  left: 1260px;
-  /* background-color: black; */
-`;

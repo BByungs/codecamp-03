@@ -20,7 +20,6 @@ import {
   Loader,
 } from "./List.styles";
 import InfiniteScroll from "react-infinite-scroller";
-import { v4 as uuidv4 } from "uuid";
 
 export default function ListUI(props) {
   return (
@@ -34,12 +33,7 @@ export default function ListUI(props) {
       >
         <Loader>
           {props.data?.fetchUseditems.map((el) => (
-            <ListWrapper
-              id={el._id}
-              // key={el._id}
-              // key={uuidv4()}
-              onClick={props.onClickProduct(el)}
-            >
+            <ListWrapper key={el._id} onClick={props.onClickProduct(el)}>
               <Body>
                 <ProductImg src="/images/ProductMain/testimg.png" />
                 <ProductInfo>

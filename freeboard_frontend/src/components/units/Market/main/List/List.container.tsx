@@ -8,7 +8,7 @@ import {
 import ListUI from "./List.presenter";
 import { FETCH_USED_ITEMS } from "./List.queries";
 
-export default function List() {
+export default function List(props) {
   const router = useRouter();
   const { data, fetchMore } = useQuery<
     Pick<IQuery, "fetchUseditems">,

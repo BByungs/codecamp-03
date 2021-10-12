@@ -19,7 +19,7 @@ export default function BestProductUIPage(props) {
         <BestProduct
           key={el._id}
           id={el._id}
-          onClick={props.onClickBestProduct}
+          onClick={props.onClickBestProduct(el)}
         >
           <Photo src="/images/ProductMain/testimg.png" />
           <Name>{el.name}</Name>
