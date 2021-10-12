@@ -13,10 +13,10 @@ export default function ProductDetailPage() {
   });
   const { data: fetchUserLoggedIn } = useQuery(FETCH_USER_LOGGED_IN);
 
+  console.log(fetchUserLoggedIn);
   function onClickMain() {
     router.push("/");
   }
-
   return (
     <ProductDetailUIPage
       data={data}

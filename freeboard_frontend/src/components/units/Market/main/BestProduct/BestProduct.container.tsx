@@ -6,6 +6,7 @@ export default function BestProduct(props) {
   function onClickBestProduct(event) {
     router.push(`/ProductWrite/${event.currentTarget.id}`);
   }
+
   return (
     <BestProductUIPage
       data={props.data}

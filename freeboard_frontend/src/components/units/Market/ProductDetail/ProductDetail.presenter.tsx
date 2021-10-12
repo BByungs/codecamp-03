@@ -20,7 +20,7 @@ export default function ProductDetailUIPage(props) {
   // console.log(props.fetchUserLoggedIn?.fetchUserLoggedIn.email);
   const fetchUseditem = props.data?.fetchUseditem.seller.email;
   const fetchUserLoggedIn = props.fetchUserLoggedIn?.fetchUserLoggedIn.email;
-  const isTrue = fetchUseditem === fetchUserLoggedIn; // 판매자일때
+  const isSeller = fetchUseditem === fetchUserLoggedIn; // 판매자일때
   return (
     <Container>
       <Wrapper>
@@ -32,7 +32,7 @@ export default function ProductDetailUIPage(props) {
         <Buttons>
           <GotoMain onClick={props.onClickMain}>목록으로</GotoMain>
 
-          {fetchUseditem === fetchUserLoggedIn ? (
+          {isSeller ? (
             <EditButton>수정하기</EditButton>
           ) : (
             <BuyButton>구매하기</BuyButton>
@@ -40,7 +40,8 @@ export default function ProductDetailUIPage(props) {
         </Buttons>
         <Underline2 />
         <DetailAsk />
-        {isTrue && <SellerComment />}
+        {isSeller && <SellerComment />}
+        {/* {!iseSeller &&} */}
       </Wrapper>
     </Container>
   );

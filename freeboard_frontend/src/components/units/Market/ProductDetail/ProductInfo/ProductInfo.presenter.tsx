@@ -26,7 +26,7 @@ export default function ProductInfoUI(props) {
         <Info>
           <Remarks>{props.data?.fetchUseditem.remarks}</Remarks>
           <Name>{props.data?.fetchUseditem.name}</Name>
-          <Price>{props.data?.fetchUseditem.price}</Price>
+          <Price>{`${props.data?.fetchUseditem.price.toLocaleString()}원`}</Price>
         </Info>
         <Heart>
           <HeartIcon onClick={props.onClickHeart} />

@@ -4,6 +4,7 @@ export const PresenterWrapper = styled.div`
   display: flex;
   width: 1198px;
   flex-direction: column;
+  margin-top: 20px;
 `;
 
 export const PresenterRow = styled.div`
@@ -61,6 +62,7 @@ export const PresenterDate = styled.div`
 export const PresenterRight = styled.img`
   width: 20px;
   height: 20px;
+  cursor: pointer;
 `;
 
 export const WideLine = styled.div`

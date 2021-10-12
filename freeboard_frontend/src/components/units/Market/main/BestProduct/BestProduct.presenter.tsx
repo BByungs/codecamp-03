@@ -26,7 +26,7 @@ export default function BestProductUIPage(props) {
           <Info>
             <RemarksAndPrice>
               <Remarks>{el.remarks}</Remarks>
-              <Price>{`${el.price}원`}</Price>
+              <Price>{`${Number(el.price).toLocaleString()}원`}</Price>
             </RemarksAndPrice>
             <Heart>
               <HeartIcon />

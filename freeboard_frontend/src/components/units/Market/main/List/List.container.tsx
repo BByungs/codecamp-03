@@ -1,4 +1,5 @@
 import { useQuery } from "@apollo/client";
+import { route } from "next/dist/server/router";
 import { useRouter } from "next/router";
 import {
   IQuery,
@@ -19,10 +20,35 @@ export default function List() {
     },
   });
 
-  function onClickProduct(event) {
-    // console.log(event.currentTarget.id);
-    router.push(`/ProductWrite/${event.currentTarget.id}`);
-  }
+  // function onClickProduct(event) {
+  //   // console.log(event.currentTarget.id);
+  //   router.push(`/ProductWrite/${event.currentTarget.id}`);
+  //   localStorage.setItem("todayView", event.target.id);
+  // }
+
+  const onClickProduct = (el) => () => {
+    console.log(el);
+    router.push(`/ProductWrite/${el._id}`);
+
+    const views = JSON.parse(localStorage.getItem("todayView")) || [];
+
+    let isExists = false;
+    views.forEach((viewsEl) => {
+      if (viewsEl._id === el._id) {
+        isExists = true;
+      }
+    });
+    if (isExists) {
+      return;
+    }
+
+    if (views.length > 3) {
+      views.shift();
+    }
+
+    views.push(el);
+    localStorage.setItem("todayView", JSON.stringify(views));
+  };
 
   function onLoadMore() {
     if (!data) return;

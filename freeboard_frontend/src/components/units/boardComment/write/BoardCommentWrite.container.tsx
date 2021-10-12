@@ -64,7 +64,7 @@ export default function BoardCommentWrite(props) {
           },
         ],
       });
-    } catch (error) {
+    } catch (error: any) {
       alert(error.message);
     }
   }

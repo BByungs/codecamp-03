@@ -30,14 +30,15 @@ export default function ListUI(props) {
         loadMore={props.onLoadMore}
         hasMore={true}
         useWindow={false}
+        style={{ height: "1004px" }}
       >
         <Loader>
           {props.data?.fetchUseditems.map((el) => (
             <ListWrapper
               id={el._id}
               // key={el._id}
-              key={uuidv4()}
-              onClick={props.onClickProduct}
+              // key={uuidv4()}
+              onClick={props.onClickProduct(el)}
             >
               <Body>
                 <ProductImg src="/images/ProductMain/testimg.png" />
@@ -57,7 +58,9 @@ export default function ListUI(props) {
                   </div>
                   <Price>
                     <MoneyImg src="/images/ProductMain/moneyimg.png" />
-                    <ProductPrice>{el.price}</ProductPrice>
+                    <ProductPrice>
+                      {Number(el.price).toLocaleString()}
+                    </ProductPrice>
                   </Price>
                 </ProductInfo>
               </Body>
