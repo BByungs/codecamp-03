@@ -1,9 +1,14 @@
-import { Wrapper, Header } from "./MarketMain.styles";
+import {
+  Wrapper,
+  Header,
+  ProductSubmut,
+  Footer,
+  All,
+} from "./MarketMain.styles";
 import BestProduct from "./BestProduct/BestProduct.container";
 import SearchBar from "./SearchBar/SearchBar.container";
 import List from "./List/List.container";
 import ViewToday from "./ViewToday/ViewToday.container";
-import { ProductSubmut, Footer, All } from "./MarketMain.styles";
 import { useEffect, useState } from "react";
 
 export default function MarketMainUIPage(props) {

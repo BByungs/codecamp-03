@@ -2,14 +2,25 @@ import { useForm } from "react-hook-form";
 import ProductWriteUIPage from "./ProductWrite.presenter";
 import { schema } from "./ProductWrite.validation";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { CREATE_USED_ITEM } from "./ProductWrite.queries";
+import { CREATE_USED_ITEM, UPLOAD_FILE } from "./ProductWrite.queries";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 export default function ProductWritePage(props) {
   const router = useRouter();
+  const [uploadFile] = useMutation(UPLOAD_FILE);
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
-  const { handleSubmit, register, formState } = useForm({
+
+  const [files, setFiles] = useState<(File | null)[]>([null, null, null]);
+
+  function onChangeFiles(file: File, index: number) {
+    const newFiles = [...files];
+    newFiles[index] = file;
+    setFiles(newFiles);
+  }
+
+  const { handleSubmit, register, formState, setValue, trigger } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
   });
@@ -31,6 +42,10 @@ export default function ProductWritePage(props) {
     // console.log(data.imgaes);
     console.log(data);
     try {
+      const uploadFiles = files // [File1, File2, null]
+        .map((el) => (el ? uploadFile({ variables: { file: el } }) : null));
+      const results = await Promise.all(uploadFiles);
+      const myImages = results.map((el) => el?.data.uploadFile.url || "");
       const result = await createUseditem({
         variables: {
           createUseditemInput: {
@@ -38,7 +53,7 @@ export default function ProductWritePage(props) {
             remarks: data.remarks,
             contents: data.contents,
             price: Number(data.price),
-            // images: data.images,
+            images: myImages,
             useditemAddress: {
               address: data.address,
               addressDetail: data.addressDetail,
@@ -48,6 +63,7 @@ export default function ProductWritePage(props) {
       });
       alert("상품을 등록합니다");
       // console.log(result.data.createUseditem._id);
+      console.log(data);
       router.push(`/ProductWrite/${result.data.createUseditem._id}`);
     } catch (err: any) {
       alert(err.message);
@@ -67,6 +83,10 @@ export default function ProductWritePage(props) {
       MapErrorMsg={MapErrorMsg}
       onClickCancel={onClickCancel}
       isEdit={props.isEdit}
+      setValue={setValue}
+      trigger={trigger}
+      data={props.data}
+      onChangeFiles={onChangeFiles}
     />
   );
 }

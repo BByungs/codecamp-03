@@ -22,7 +22,7 @@ export default function BestProduct(props) {
       return;
     }
 
-    if (views.length > 3) {
+    if (views.length > 2) {
       views.shift();
     }
 

@@ -42,7 +42,7 @@ export default function List(props) {
       return;
     }
 
-    if (views.length > 3) {
+    if (views.length > 2) {
       views.shift();
     }
 

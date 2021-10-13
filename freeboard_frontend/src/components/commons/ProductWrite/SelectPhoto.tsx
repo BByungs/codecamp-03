@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
-import { useRef } from "react";
+import { ChangeEvent, useRef, useState } from "react";
+import { CheckValidationImage } from "../library/CheckValidationImage";
+import SelectedPhoto from "./SelectedPhoto";
 
 const Wrapper = styled.div`
   width: 140px;
@@ -34,22 +36,49 @@ const Container = styled.div`
 `;
 
 export default function SelectPhoto(props) {
-  // const fileRef = useRef<HTMLInputElement>();
-  // function onClickUpload() {
-  //   fileRef.current?.click();
-  // }
+  const [fileUrl, setFileUrl] = useState("");
+
+  const fileRef = useRef<HTMLInputElement>();
+  function onChangeFile(data) {
+    const file = CheckValidationImage(data.target.files[0]);
+    if (!file) return;
+    // console.log(data.target.files[0]);
+
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+
+    fileReader.onload = (data) => {
+      setFileUrl(data.target?.result as string);
+      props.onChangeFiles(file, props.index);
+    };
+  }
+
+  function onClickUpload() {
+    fileRef.current?.click();
+  }
+
   return (
     <Container>
-      <Wrapper>
-        <PlusImg src="/images/ProductWrite/plus.png" />
-        <Text>Upload</Text>
-      </Wrapper>
-      {/* <input
-        style={{ display: "none" }}
+      {fileUrl || props.defaultFileUrl ? (
+        <SelectedPhoto
+          onClickUpload={onClickUpload}
+          src={
+            fileUrl || `https://storage.googleapis.com/${props.defaultFileUrl}`
+          }
+        />
+      ) : (
+        <Wrapper onClick={onClickUpload}>
+          <PlusImg src="/images/ProductWrite/plus.png" />
+          <Text>Upload</Text>
+        </Wrapper>
+      )}
+
+      <input
         type="file"
-        {...props.register}
+        style={{ display: "none" }}
         ref={fileRef}
-      /> */}
+        onChange={onChangeFile}
+      />
     </Container>
   );
 }

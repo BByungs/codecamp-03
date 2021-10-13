@@ -88,7 +88,7 @@ export const PhotoWrapper = styled.div`
 export const Photo = styled.div`
   width: 296px;
   height: 296px;
-  background-color: #bdbdbd;
+  /* background-color: #bdbdbd; */
 `;
 
 export const PhotoList = styled.div`

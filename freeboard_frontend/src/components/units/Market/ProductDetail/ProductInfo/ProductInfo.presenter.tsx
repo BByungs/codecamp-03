@@ -18,8 +18,21 @@ import {
   TagsWrapper,
 } from "./ProductInfo.styles";
 import Underline from "../../../../commons/ProductDetail/Underline";
+import Dompurify from "dompurify";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export default function ProductInfoUI(props) {
+  const settings = {
+    dots: false,
+    autoplay: true,
+    infinite: true,
+    speed: 1500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+  };
   return (
     <Wrapper>
       <ProductInfo>
@@ -36,7 +49,13 @@ export default function ProductInfoUI(props) {
 
       <ProductPhotoWrapper>
         <PhotoWrapper>
-          <Photo></Photo>
+          <Photo>
+            <Slider {...settings}>
+              {props.data?.fetchUseditem.images.map((el) => (
+                <img src={el} />
+              ))}
+            </Slider>
+          </Photo>
         </PhotoWrapper>
         <PhotoList>
           <EachPhoto />
@@ -46,7 +65,11 @@ export default function ProductInfoUI(props) {
         </PhotoList>
       </ProductPhotoWrapper>
 
-      <Contents>{props.data?.fetchUseditem.contents}</Contents>
+      <Contents
+        dangerouslySetInnerHTML={{
+          __html: Dompurify.sanitize(props.data?.fetchUseditem.contents),
+        }}
+      />
 
       <TagsWrapper>
         <Tags>#삼성전자 #갤럭시탭 #갓성비</Tags>

@@ -16,9 +16,13 @@ import {
 } from "./ProductWrite.styles";
 
 export default function ProductWriteUIPage(props) {
-  console.log(props.formState.isValid);
+  // console.log(props.formState.isValid);
   return (
-    <form onSubmit={props.handleSubmit(props.onClickSubmit)}>
+    <form
+      onSubmit={props.handleSubmit(
+        props.isEdit ? props.onClickEdit : props.onClickSubmit
+      )}
+    >
       <All>
         <Container>
           <Wrapper>
@@ -45,6 +49,8 @@ export default function ProductWriteUIPage(props) {
               name="상품설명"
               register={props.register("contents")}
               formState={props.formState.errors.contents?.message}
+              trigger={props.trigger}
+              setValue={props.setValue}
             />
             <ProductWriteInput01
               name="판매가격"
@@ -62,7 +68,7 @@ export default function ProductWriteUIPage(props) {
               useditemAddress={props.useditemAddress}
               MapErrorMsg={props.MapErrorMsg}
             />
-            <AddPicture register={props.register("images")} />
+            <AddPicture data={props.data} onChangeFiles={props.onChangeFiles} />
             <MainPhotoSetting />
             {props.isEdit ? (
               <ProductEdit>

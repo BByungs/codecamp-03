@@ -13,11 +13,9 @@ import ProductInfo from "./ProductInfo/ProductInfo.container";
 import Underline2 from "../../../commons/ProductDetail/Underline2";
 import DetailAsk from "./DetailAsk/DetailAsk.container";
 import SellerComment from "./SellerComment/SellerComment.container";
+import NormalComment from "./NormalComment/NormalComment.container";
 
 export default function ProductDetailUIPage(props) {
-  // console.log(props.data?.fetchUseditem.seller.email);
-  // console.log(`=========================================================`);
-  // console.log(props.fetchUserLoggedIn?.fetchUserLoggedIn.email);
   const fetchUseditem = props.data?.fetchUseditem.seller.email;
   const fetchUserLoggedIn = props.fetchUserLoggedIn?.fetchUserLoggedIn.email;
   const isSeller = fetchUseditem === fetchUserLoggedIn; // 판매자일때
@@ -41,7 +39,7 @@ export default function ProductDetailUIPage(props) {
         <Underline2 />
         <DetailAsk />
         {isSeller && <SellerComment />}
-        {/* {!iseSeller &&} */}
+        {!isSeller && <NormalComment fetchUserLoggedIn={fetchUserLoggedIn} />}
       </Wrapper>
     </Container>
   );

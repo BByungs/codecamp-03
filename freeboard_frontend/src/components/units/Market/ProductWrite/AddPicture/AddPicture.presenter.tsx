@@ -6,12 +6,22 @@ import { Wrapper, Preview } from "./AddPicture.styles";
 
 export default function AddPictureUI(props) {
   return (
-    <Wrapper>
-      <ProductWriteText name="사진 첨부" />
-      <Preview>
-        <SelectedPhoto />
-        <SelectPhoto register={props.register} />
-      </Preview>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <ProductWriteText name="사진 첨부" />
+        {/* <SelectedPhoto /> */}
+        <Preview>
+          {new Array(3).fill(1).map((el, index) => (
+            <SelectPhoto
+              key={`${el}_${index}`}
+              el={el}
+              index={index}
+              onChangeFiles={props.onChangeFiles}
+              defaultFileUrl={props.data?.fetchUseditem.images?.[index]}
+            />
+          ))}
+        </Preview>
+      </Wrapper>
+    </>
   );
 }

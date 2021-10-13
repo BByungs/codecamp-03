@@ -31,14 +31,14 @@ const Wrapper = styled.div`
   flex-direction: column;
   margin-right: 24px;
 `;
-export default function SelectedPhoto() {
+export default function SelectedPhoto(props) {
   return (
-    <Wrapper>
+    <Wrapper onClick={props.onClickUpload}>
       <DivX>
         <XImg src="/images/ProductWrite/X.png" />
       </DivX>
       <Photo>
-        <PhotoImg src="/images/ProductWrite/갤럭시탭Aimage03.png"></PhotoImg>
+        <PhotoImg src={props.src}></PhotoImg>
       </Photo>
     </Wrapper>
   );

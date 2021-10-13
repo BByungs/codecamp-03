@@ -9,6 +9,7 @@ import { GlobalContext } from "../../../../../pages/_app";
 const MAIN = ["/"]; // marketMain
 const BOARD_LIST = ["/boardList"]; // boardList
 const MYPAGE = ["/mypage"];
+
 export default function Header() {
   const { setAccessToken } = useContext(GlobalContext);
   const { data } =
