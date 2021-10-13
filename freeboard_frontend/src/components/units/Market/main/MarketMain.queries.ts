@@ -8,6 +8,7 @@ export const FETCH_USED_ITEMS_OF_THE_BEST = gql`
       remarks
       contents
       price
+      images
       pickedCount
       createdAt
       seller {

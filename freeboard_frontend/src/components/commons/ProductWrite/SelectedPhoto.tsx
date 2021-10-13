@@ -5,12 +5,12 @@ const DivX = styled.div`
   height: 20px;
   width: 180px;
   justify-content: flex-end;
+  cursor: pointer;
 `;
 
 const XImg = styled.img`
   width: 14px;
   height: 14px;
-  cursor: pointer;
 `;
 
 const Photo = styled.div`
@@ -19,6 +19,7 @@ const Photo = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  /* cursor: pointer; */
 `;
 
 const PhotoImg = styled.img`
@@ -33,11 +34,11 @@ const Wrapper = styled.div`
 `;
 export default function SelectedPhoto(props) {
   return (
-    <Wrapper onClick={props.onClickUpload}>
-      <DivX>
+    <Wrapper>
+      <DivX onClick={props.onClickDelete}>
         <XImg src="/images/ProductWrite/X.png" />
       </DivX>
-      <Photo>
+      <Photo onClick={props.onClickUpload}>
         <PhotoImg src={props.src}></PhotoImg>
       </Photo>
     </Wrapper>

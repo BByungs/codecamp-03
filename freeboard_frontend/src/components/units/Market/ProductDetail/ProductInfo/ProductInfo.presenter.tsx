@@ -16,6 +16,7 @@ import {
   Contents,
   Tags,
   TagsWrapper,
+  Img,
 } from "./ProductInfo.styles";
 import Underline from "../../../../commons/ProductDetail/Underline";
 import Dompurify from "dompurify";
@@ -25,13 +26,13 @@ import "slick-carousel/slick/slick-theme.css";
 
 export default function ProductInfoUI(props) {
   const settings = {
-    dots: false,
+    dots: true,
     autoplay: true,
+    arrows: true,
     infinite: true,
     speed: 1500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: false,
   };
   return (
     <Wrapper>
@@ -51,19 +52,24 @@ export default function ProductInfoUI(props) {
         <PhotoWrapper>
           <Photo>
             <Slider {...settings}>
-              {props.data?.fetchUseditem.images.map((el) => (
-                <img src={el} />
-              ))}
+              {props.data?.fetchUseditem.images.map((el) =>
+                el ? (
+                  <Img src={`https://storage.googleapis.com/${el}`} />
+                ) : (
+                  <Img src="/noimage.png" />
+                )
+              )}
             </Slider>
           </Photo>
         </PhotoWrapper>
-        <PhotoList>
-          <EachPhoto />
-          <EachPhoto />
-          <EachPhoto />
-          <EachPhoto />
-        </PhotoList>
       </ProductPhotoWrapper>
+
+      <PhotoList>
+        <EachPhoto />
+        <EachPhoto />
+        <EachPhoto />
+        <EachPhoto />
+      </PhotoList>
 
       <Contents
         dangerouslySetInnerHTML={{

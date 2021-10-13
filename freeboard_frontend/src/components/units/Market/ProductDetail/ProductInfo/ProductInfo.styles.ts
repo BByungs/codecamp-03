@@ -74,7 +74,7 @@ export const ProductPhotoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 80px;
+  /* margin-bottom: 10px; */
 `;
 
 export const PhotoWrapper = styled.div`
@@ -91,11 +91,18 @@ export const Photo = styled.div`
   /* background-color: #bdbdbd; */
 `;
 
+export const Img = styled.img`
+  width: 296px;
+  height: 296px;
+  margin-bottom: 40px;
+`;
+
 export const PhotoList = styled.div`
   width: 384px;
   height: 78px;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 80px;
 `;
 
 export const EachPhoto = styled.div`

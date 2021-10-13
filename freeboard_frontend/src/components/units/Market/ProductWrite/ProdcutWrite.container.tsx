@@ -63,7 +63,7 @@ export default function ProductWritePage(props) {
       });
       alert("상품을 등록합니다");
       // console.log(result.data.createUseditem._id);
-      console.log(data);
+      console.log("data:", data);
       router.push(`/ProductWrite/${result.data.createUseditem._id}`);
     } catch (err: any) {
       alert(err.message);

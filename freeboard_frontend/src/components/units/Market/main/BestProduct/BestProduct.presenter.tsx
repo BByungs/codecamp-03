@@ -21,7 +21,12 @@ export default function BestProductUIPage(props) {
           id={el._id}
           onClick={props.onClickBestProduct(el)}
         >
-          <Photo src="/images/ProductMain/testimg.png" />
+          {el.images[0] ? (
+            <Photo src={`https://storage.googleapis.com/${el.images[0]}`} />
+          ) : (
+            <Photo src="/noimage.png" />
+          )}
+
           <Name>{el.name}</Name>
           <Info>
             <RemarksAndPrice>
