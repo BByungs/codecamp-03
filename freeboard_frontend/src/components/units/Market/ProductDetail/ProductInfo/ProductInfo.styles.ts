@@ -1,6 +1,18 @@
 import styled from "@emotion/styled";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+export const MySlider = styled(Slider)`
+  .slick-prev:before,
+  .slick-next:before {
+    color: #bdbdbd;
+    font-size: 25px;
+  }
+`;
+
 export const Wrapper = styled.div`
   /* width: 792px; */
   display: flex;
@@ -79,6 +91,7 @@ export const ProductPhotoWrapper = styled.div`
 
 export const PhotoWrapper = styled.div`
   width: 384px;
+  /* width: 600px; */
   height: 384px;
   display: flex;
   justify-content: center;

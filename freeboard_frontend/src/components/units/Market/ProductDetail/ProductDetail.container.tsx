@@ -6,7 +6,7 @@ import { FETCH_USER_LOGGED_IN } from "./ProductDetail.queries";
 
 export default function ProductDetailPage() {
   const router = useRouter();
-  const { data } = useQuery(FETCH_USED_ITEM, {
+  const { data, refetch } = useQuery(FETCH_USED_ITEM, {
     variables: {
       useditemId: router.query.useditemId,
     },
@@ -22,6 +22,7 @@ export default function ProductDetailPage() {
       data={data}
       onClickMain={onClickMain}
       fetchUserLoggedIn={fetchUserLoggedIn}
+      refetch={refetch}
     />
   );
 }

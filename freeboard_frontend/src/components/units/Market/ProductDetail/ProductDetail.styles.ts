@@ -16,7 +16,7 @@ export const Container = styled.div`
 export const KakaoMap = styled.div`
   width: 792px;
   height: 360px;
-  background-color: #bdbdbd;
+  /* background-color: #bdbdbd; */
   margin-top: 80px;
   margin-bottom: 76px;
 `;

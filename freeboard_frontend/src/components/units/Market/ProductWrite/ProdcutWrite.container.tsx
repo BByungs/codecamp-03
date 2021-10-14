@@ -13,6 +13,8 @@ export default function ProductWritePage(props) {
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
 
   const [files, setFiles] = useState<(File | null)[]>([null, null, null]);
+  const [lat, setLat] = useState("");
+  const [lng, setLng] = useState("");
 
   function onChangeFiles(file: File, index: number) {
     const newFiles = [...files];
@@ -39,7 +41,6 @@ export default function ProductWritePage(props) {
   };
 
   async function onClickSubmit(data) {
-    // console.log(data.imgaes);
     console.log(data);
     try {
       const uploadFiles = files // [File1, File2, null]
@@ -57,6 +58,8 @@ export default function ProductWritePage(props) {
             useditemAddress: {
               address: data.address,
               addressDetail: data.addressDetail,
+              lat,
+              lng,
             },
           },
         },
@@ -83,10 +86,14 @@ export default function ProductWritePage(props) {
       MapErrorMsg={MapErrorMsg}
       onClickCancel={onClickCancel}
       isEdit={props.isEdit}
-      setValue={setValue}
       trigger={trigger}
       data={props.data}
       onChangeFiles={onChangeFiles}
+      setLat={setLat}
+      setLng={setLng}
+      lat={lat}
+      lng={lng}
+      setValue={setValue}
     />
   );
 }

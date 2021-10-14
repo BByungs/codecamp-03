@@ -38,7 +38,6 @@ export default function MainPageUI(props: IMainPageUI) {
     speed: 1500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: false,
   };
   return (
     <Wrapper>

@@ -20,6 +20,7 @@ export const BodyLeft = styled.div`
   height: 618px;
   margin-top: -30px;
 `;
+
 export const Img = styled.img`
   margin-top: 97.2px;
   /* margin-bottom: 1000px; */
@@ -27,6 +28,7 @@ export const Img = styled.img`
   border-bottom: 1px solid black;
   /* height: 428px; */
 `;
+
 export const Slick = styled.div`
   /* border-top: 1px solid black; */
   /* border-bottom: 1px solid black; */

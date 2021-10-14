@@ -2,7 +2,7 @@ import ProductWriteText from "../../../../commons/ProductWrite/ProductWriteText"
 import styled from "@emotion/styled";
 import AddressSmallInput from "../../../../commons/ProductWrite/AddressSmallInput";
 import RoomIcon from "@mui/icons-material/Room";
-import React from "react";
+import React, { useEffect } from "react";
 import AddressInput from "../../../../commons/ProductWrite/AddressInput";
 
 const KakaoMap = styled.div`
@@ -60,12 +60,61 @@ const Address = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+declare const window: typeof globalThis & {
+  kakao: any;
+};
 export default function Map(props) {
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src =
+      "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=618745b280cea9ed79e1e61c9c19a187";
+    document.head.appendChild(script);
+    script.onload = () => {
+      window.kakao.maps.load(function () {
+        const container = document.getElementById("map");
+        const options = {
+          center: new window.kakao.maps.LatLng(
+            37.485053527846674,
+            126.89533419993485
+          ),
+          level: 3,
+        };
+
+        const map = new window.kakao.maps.Map(container, options);
+        console.log(map);
+
+        const marker = new window.kakao.maps.Marker({
+          position: map.getCenter(),
+        });
+
+        marker.setMap(map);
+        interface IMouseEvent {
+          latLng: any;
+        }
+        window.kakao.maps.event.addListener(
+          map,
+          "click",
+          // function (mouseEvent: { latLng: any }) {
+          function (mouseEvent: IMouseEvent) {
+            const latlng = mouseEvent.latLng;
+            marker.setPosition(latlng);
+
+            console.log(
+              `클릭한 위치의 위도는 ${latlng.getLat()}이고, 경도는 ${latlng.getLng()}입니다.`
+            );
+            props.setLat(latlng.getLat());
+            props.setLng(latlng.getLng());
+          }
+        );
+      });
+    };
+  }, []);
   return (
     <Wrapper>
       <Left>
         <ProductWriteText name="거래위치" />
-        <KakaoMap></KakaoMap>
+        <KakaoMap id="map"></KakaoMap>
       </Left>
       <Right>
         <GPSInput>
@@ -75,11 +124,14 @@ export default function Map(props) {
               placeholder="위도(LAT)"
               type="text"
               register={props.useditemAddress.lat}
+              value={props.lat}
             />
             <Pin />
             <AddressSmallInput
               placeholder="경도(LNG)"
+              type="text"
               register={props.useditemAddress.lng}
+              value={props.lng}
             />
           </GPS>
         </GPSInput>
