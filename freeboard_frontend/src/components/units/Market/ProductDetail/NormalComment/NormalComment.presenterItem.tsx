@@ -1,10 +1,12 @@
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import NormalCommentEdit from "../NormalCommentEdit/NormalCommentEdit.container";
+import SellerNestedCommentResult from "../SellerNestedCommentResult/SellerNestedCommentResult.container";
 import {
   DELETE_USEDITEM_QUESTION,
   FETCH_USED_ITEM_QUESTIONS,
+  FETCH_USED_ITEM_QUESTION_ANSWERS,
 } from "./NormalComment.queries";
 import {
   PresenterWrapper,
@@ -25,7 +27,11 @@ export default function NormalCommentUIItem(props) {
   const router = useRouter();
   const [isEdit, setIsEdit] = useState(false);
   const [deleteUseditemQuestion] = useMutation(DELETE_USEDITEM_QUESTION);
-
+  const { data } = useQuery(FETCH_USED_ITEM_QUESTION_ANSWERS, {
+    variables: {
+      useditemQuestionId: props.el._id,
+    },
+  });
   function onClickEdit() {
     setIsEdit((prev) => !prev);
   }
@@ -70,7 +76,10 @@ export default function NormalCommentUIItem(props) {
               </Right>
             )}
           </PresenterRow>
-          <WideLine />
+          {/* <WideLine /> */}
+          {data?.fetchUseditemQuestionAnswers.map((el) => (
+            <SellerNestedCommentResult el={el} />
+          ))}
         </PresenterWrapper>
       )}
       {isEdit && <NormalCommentEdit el={props.el} setIsEdit={setIsEdit} />}
