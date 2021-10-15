@@ -63,6 +63,9 @@ export const PresenterRight = styled.img`
   width: 20px;
   height: 20px;
   cursor: pointer;
+  :hover {
+    opacity: 0.7;
+  }
 `;
 
 export const WideLine = styled.div`

@@ -17,7 +17,6 @@ export default function AddressSmallInput(props) {
     <Input
       placeholder={props.placeholder}
       type={props.type}
-      value={props.value}
       {...props.register}
     />
   );

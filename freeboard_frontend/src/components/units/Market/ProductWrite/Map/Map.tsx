@@ -103,8 +103,8 @@ export default function Map(props) {
             console.log(
               `클릭한 위치의 위도는 ${latlng.getLat()}이고, 경도는 ${latlng.getLng()}입니다.`
             );
-            props.setLat(latlng.getLat());
-            props.setLng(latlng.getLng());
+            props.setValue("lat", latlng.getLat());
+            props.setValue("lng", latlng.getLng());
           }
         );
       });
@@ -124,14 +124,12 @@ export default function Map(props) {
               placeholder="위도(LAT)"
               type="text"
               register={props.useditemAddress.lat}
-              value={props.lat}
             />
             <Pin />
             <AddressSmallInput
               placeholder="경도(LNG)"
               type="text"
               register={props.useditemAddress.lng}
-              value={props.lng}
             />
           </GPS>
         </GPSInput>

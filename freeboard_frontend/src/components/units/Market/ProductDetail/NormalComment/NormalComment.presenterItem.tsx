@@ -1,6 +1,11 @@
+import { useMutation } from "@apollo/client";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import NormalCommentEdit from "../NormalCommentEdit/NormalCommentEdit.container";
-
+import {
+  DELETE_USEDITEM_QUESTION,
+  FETCH_USED_ITEM_QUESTIONS,
+} from "./NormalComment.queries";
 import {
   PresenterWrapper,
   PresenterRow,
@@ -17,10 +22,30 @@ import {
 } from "./NormalComment.styles";
 
 export default function NormalCommentUIItem(props) {
+  const router = useRouter();
   const [isEdit, setIsEdit] = useState(false);
+  const [deleteUseditemQuestion] = useMutation(DELETE_USEDITEM_QUESTION);
 
   function onClickEdit() {
     setIsEdit((prev) => !prev);
+  }
+
+  async function onClickQuestionDelete() {
+    try {
+      await deleteUseditemQuestion({
+        variables: {
+          useditemQuestionId: props.el?._id,
+        },
+        refetchQueries: [
+          {
+            query: FETCH_USED_ITEM_QUESTIONS,
+            variables: { useditemId: router.query.useditemId },
+          },
+        ],
+      });
+    } catch (error: any) {
+      alert(error.message);
+    }
   }
   return (
     <>
@@ -41,7 +66,7 @@ export default function NormalCommentUIItem(props) {
                   src="/normalCommentEdit.png"
                   onClick={onClickEdit}
                 />
-                <XButton src="/ximg.png" />
+                <XButton src="/ximg.png" onClick={onClickQuestionDelete} />
               </Right>
             )}
           </PresenterRow>

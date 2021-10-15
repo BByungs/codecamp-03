@@ -67,10 +67,7 @@ export default function ProductWriteUIPage(props) {
             <Map
               useditemAddress={props.useditemAddress}
               MapErrorMsg={props.MapErrorMsg}
-              setLat={props.setLat}
-              setLng={props.setLng}
-              lat={props.lat}
-              lng={props.lng}
+              setValue={props.setValue}
             />
             <AddPicture data={props.data} onChangeFiles={props.onChangeFiles} />
             <MainPhotoSetting />

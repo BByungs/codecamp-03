@@ -13,8 +13,6 @@ export default function ProductWritePage(props) {
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
 
   const [files, setFiles] = useState<(File | null)[]>([null, null, null]);
-  const [lat, setLat] = useState("");
-  const [lng, setLng] = useState("");
 
   function onChangeFiles(file: File, index: number) {
     const newFiles = [...files];
@@ -58,14 +56,13 @@ export default function ProductWritePage(props) {
             useditemAddress: {
               address: data.address,
               addressDetail: data.addressDetail,
-              lat,
-              lng,
+              lat: Number(data.lat),
+              lng: Number(data.lng),
             },
           },
         },
       });
       alert("상품을 등록합니다");
-      // console.log(result.data.createUseditem._id);
       console.log("data:", data);
       router.push(`/ProductWrite/${result.data.createUseditem._id}`);
     } catch (err: any) {
@@ -89,10 +86,6 @@ export default function ProductWritePage(props) {
       trigger={trigger}
       data={props.data}
       onChangeFiles={onChangeFiles}
-      setLat={setLat}
-      setLng={setLng}
-      lat={lat}
-      lng={lng}
       setValue={setValue}
     />
   );
