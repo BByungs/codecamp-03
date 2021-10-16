@@ -80,10 +80,6 @@ export default function SellerCommentUIItem(props) {
             </PresenterLeft>
             <PresenterRight src="/comment.png" onClick={onClickQuestion} />
           </PresenterRow>
-
-          {/* {data?.fetchUseditemQuestionAnswers.map((el) => (
-            <SellerNestedCommentResult el={el} key={el._id} />
-          ))} */}
         </PresenterWrapper>
       )}
 
