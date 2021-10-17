@@ -22,7 +22,6 @@ import {
 
 export default function SellerCommentUIItem(props) {
   const [isNestedComments, setIsNestedComments] = useState(false);
-  const [isNestedCommentResult, setIsNestedCommentsResult] = useState(false);
   const [contents, setContents] = useState("");
 
   const [createUseditemQuestionAnswer] = useMutation(
@@ -58,9 +57,6 @@ export default function SellerCommentUIItem(props) {
           },
         ],
       });
-      console.log(result.data?.createUseditemQuestionAnswer._id);
-
-      setIsNestedComments((prev) => !prev);
     } catch (error: any) {
       alert(error.message);
     }
