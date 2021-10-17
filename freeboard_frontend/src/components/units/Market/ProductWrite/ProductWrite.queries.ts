@@ -17,6 +17,9 @@ export const CREATE_USED_ITEM = gql`
         lat
         lng
       }
+      seller {
+        name
+      }
     }
   }
 `;

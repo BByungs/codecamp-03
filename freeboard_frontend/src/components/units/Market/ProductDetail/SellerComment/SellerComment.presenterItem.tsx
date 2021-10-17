@@ -1,11 +1,12 @@
 import { useMutation, useQuery } from "@apollo/client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SellerNestedComment from "../SellerNestedComment/SellerNestedComment.container";
 import SellerNestedCommentResult from "../SellerNestedCommentResult/SellerNestedCommentResult.container";
 import {
   CREATE_USED_ITEM_QUESTION_ANSWER,
   FETCH_USED_ITEM_QUESTION_ANSWERS,
 } from "./SellerComment.queries";
+
 import {
   PresenterWrapper,
   PresenterRow,
@@ -23,14 +24,17 @@ export default function SellerCommentUIItem(props) {
   const [isNestedComments, setIsNestedComments] = useState(false);
   const [isNestedCommentResult, setIsNestedCommentsResult] = useState(false);
   const [contents, setContents] = useState("");
+
   const [createUseditemQuestionAnswer] = useMutation(
     CREATE_USED_ITEM_QUESTION_ANSWER
   );
+
   const { data } = useQuery(FETCH_USED_ITEM_QUESTION_ANSWERS, {
     variables: {
       useditemQuestionId: props.sellerEl._id,
     },
   });
+
   function onClickQuestion() {
     setIsNestedComments((prev) => !prev);
   }
@@ -101,8 +105,11 @@ export default function SellerCommentUIItem(props) {
             <PresenterRight src="/comment.png" onClick={onClickQuestion} />
           </PresenterRow>
           {/* 판매자가 대 댓글 단 부분 */}
-          {data?.fetchUseditemQuestionAnswers.map((el: any) => (
-            <SellerNestedCommentResult sellerAnswersEl={el} key={el._id} />
+          {data?.fetchUseditemQuestionAnswers.map((sellerAnswersEl: any) => (
+            <SellerNestedCommentResult
+              sellerAnswersEl={sellerAnswersEl}
+              key={sellerAnswersEl._id}
+            />
           ))}
           <SellerNestedComment // 댓글 다는 부분
             setIsNestedComments={setIsNestedComments}

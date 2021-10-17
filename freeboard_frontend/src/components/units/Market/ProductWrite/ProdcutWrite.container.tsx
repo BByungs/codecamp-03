@@ -12,7 +12,7 @@ export default function ProductWritePage(props) {
   const [uploadFile] = useMutation(UPLOAD_FILE);
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
 
-  const [files, setFiles] = useState<(File | null)[]>([null, null, null]);
+  const [files, setFiles] = useState<(File | null)[]>([null, myFile1, myFile2]);
 
   function onChangeFiles(file: File, index: number) {
     const newFiles = [...files];
@@ -41,10 +41,13 @@ export default function ProductWritePage(props) {
   async function onClickSubmit(data) {
     console.log(data);
     try {
-      const uploadFiles = files // [File1, File2, null]
+      const uploadFiles = files // [null, File2, File3]
         .map((el) => (el ? uploadFile({ variables: { file: el } }) : null));
       const results = await Promise.all(uploadFiles);
+      // results = [null, resutl2, result3]
+
       const myImages = results.map((el) => el?.data.uploadFile.url || "");
+      // myImages = ["", "http://googleapis.com/url1", "http://googleapis.com/url1"]
       const result = await createUseditem({
         variables: {
           createUseditemInput: {

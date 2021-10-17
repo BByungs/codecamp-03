@@ -27,6 +27,9 @@ export const CREATE_USED_ITEM_QUESTION_ANSWER = gql`
       _id
       contents
       createdAt
+      user {
+        name
+      }
     }
   }
 `;
@@ -42,16 +45,9 @@ export const FETCH_USED_ITEM_QUESTION_ANSWERS = gql`
       _id
       contents
       createdAt
+      user {
+        name
+      }
     }
   }
 `;
-
-// // createUseditemQuestion
-// export const CREATE_USED_ITEM_QUESTION = gql`
-//   mutaion createUseditemQuestion($createUseditemQuestionInput:CreateUseditemQuestionInput! , $useditemId:ID!) {
-//     createUseditemQuestion(createUseditemQuestionInput:$createUseditemQuestionInput, useditemId:$useditemId) {
-//       _id
-//       contents
-//     }
-//   }
-// `;
