@@ -28,7 +28,7 @@ export default function SellerCommentUIItem(props) {
   );
   const { data } = useQuery(FETCH_USED_ITEM_QUESTION_ANSWERS, {
     variables: {
-      useditemQuestionId: props.el._id,
+      useditemQuestionId: props.sellerEl._id,
     },
   });
   function onClickQuestion() {
@@ -36,20 +36,20 @@ export default function SellerCommentUIItem(props) {
   }
 
   async function onClickNestedCommentSubmit() {
-    console.log(props.el._id);
+    console.log(props.sellerEl._id);
     try {
       const result = await createUseditemQuestionAnswer({
         variables: {
           createUseditemQuestionAnswerInput: {
             contents,
           },
-          useditemQuestionId: props.el._id,
+          useditemQuestionId: props.sellerEl._id,
         },
         refetchQueries: [
           {
             query: FETCH_USED_ITEM_QUESTION_ANSWERS,
             variables: {
-              useditemQuestionId: props.el._id,
+              useditemQuestionId: props.sellerEl._id,
             },
           },
         ],
@@ -73,9 +73,11 @@ export default function SellerCommentUIItem(props) {
             <PresenterLeft>
               <PresenterPhoto src="/profilePhoto.png" />
               <PresenterLeftCol>
-                <PresenterName>{props.el.user.name}</PresenterName>
-                <PresenterComment>{props.el.contents}</PresenterComment>
-                <PresenterDate>{props.el.createdAt.slice(0, 10)}</PresenterDate>
+                <PresenterName>{props.sellerEl.user.name}</PresenterName>
+                <PresenterComment>{props.sellerEl.contents}</PresenterComment>
+                <PresenterDate>
+                  {props.sellerEl.createdAt.slice(0, 10)}
+                </PresenterDate>
               </PresenterLeftCol>
             </PresenterLeft>
             <PresenterRight src="/comment.png" onClick={onClickQuestion} />
@@ -89,17 +91,20 @@ export default function SellerCommentUIItem(props) {
             <PresenterLeft>
               <PresenterPhoto src="/profilePhoto.png" />
               <PresenterLeftCol>
-                <PresenterName>{props.el.user.name}</PresenterName>
-                <PresenterComment>{props.el.contents}</PresenterComment>
-                <PresenterDate>{props.el.createdAt.slice(0, 10)}</PresenterDate>
+                <PresenterName>{props.sellerEl.user.name}</PresenterName>
+                <PresenterComment>{props.sellerEl.contents}</PresenterComment>
+                <PresenterDate>
+                  {props.sellerEl.createdAt.slice(0, 10)}
+                </PresenterDate>
               </PresenterLeftCol>
             </PresenterLeft>
             <PresenterRight src="/comment.png" onClick={onClickQuestion} />
           </PresenterRow>
+          {/* 판매자가 대 댓글 단 부분 */}
           {data?.fetchUseditemQuestionAnswers.map((el: any) => (
-            <SellerNestedCommentResult el={el} key={el._id} />
+            <SellerNestedCommentResult sellerAnswersEl={el} key={el._id} />
           ))}
-          <SellerNestedComment
+          <SellerNestedComment // 댓글 다는 부분
             setIsNestedComments={setIsNestedComments}
             onClickNestedCommentSubmit={onClickNestedCommentSubmit}
             onChangeNestedComment={onChangeNestedComment}

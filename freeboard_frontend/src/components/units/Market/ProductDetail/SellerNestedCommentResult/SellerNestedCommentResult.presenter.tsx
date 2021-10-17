@@ -23,7 +23,7 @@ export default function SellerNestedCommentResultUI(props) {
               <Seller>판매자</Seller>
               <QuestionButton src="/comment.png" />
             </UserRow>
-            <Contents>{props.el.contents}</Contents>
+            <Contents>{props.sellerAnswersEl.contents}</Contents>
           </UserCol>
         </UserInfo>
       </Row>

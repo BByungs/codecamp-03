@@ -10,7 +10,7 @@ export default function NormalCommentEdit(props) {
   }
   return (
     <NormalCommentEditUI
-      el={props.el}
+      normalEl={props.normalEl}
       onClickEdit={onClickEdit}
       handleSubmit={handleSubmit}
       register={register}

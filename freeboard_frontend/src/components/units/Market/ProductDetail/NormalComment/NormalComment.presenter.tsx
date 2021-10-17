@@ -5,7 +5,7 @@ export default function NormalCommentUI(props) {
     <>
       {props.data?.fetchUseditemQuestions.map((el) => (
         <SellerCommentUIItem
-          el={el}
+          normalEl={el}
           key={el._id}
           fetchUserLoggedIn={props.fetchUserLoggedIn}
         />

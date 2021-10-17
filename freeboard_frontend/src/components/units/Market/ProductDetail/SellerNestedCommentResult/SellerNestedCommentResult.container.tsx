@@ -1,5 +1,7 @@
 import SellerNestedCommentResultUI from "./SellerNestedCommentResult.presenter";
 
 export default function SellerNestedCommentResult(props) {
-  return <SellerNestedCommentResultUI el={props.el} />;
+  return (
+    <SellerNestedCommentResultUI sellerAnswersEl={props.sellerAnswersEl} />
+  );
 }

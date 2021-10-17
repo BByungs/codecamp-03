@@ -29,7 +29,7 @@ export default function NormalCommentUIItem(props) {
   const [deleteUseditemQuestion] = useMutation(DELETE_USEDITEM_QUESTION);
   const { data } = useQuery(FETCH_USED_ITEM_QUESTION_ANSWERS, {
     variables: {
-      useditemQuestionId: props.el._id,
+      useditemQuestionId: props.normalEl._id,
     },
   });
   function onClickEdit() {
@@ -40,7 +40,7 @@ export default function NormalCommentUIItem(props) {
     try {
       await deleteUseditemQuestion({
         variables: {
-          useditemQuestionId: props.el?._id,
+          useditemQuestionId: props.normalEl?._id,
         },
         refetchQueries: [
           {
@@ -61,12 +61,14 @@ export default function NormalCommentUIItem(props) {
             <PresenterLeft>
               <PresenterPhoto src="/profilePhoto.png" />
               <PresenterLeftCol>
-                <PresenterName>{props.el.user.name}</PresenterName>
-                <PresenterComment>{props.el.contents}</PresenterComment>
-                <PresenterDate>{props.el.createdAt.slice(0, 10)}</PresenterDate>
+                <PresenterName>{props.normalEl.user.name}</PresenterName>
+                <PresenterComment>{props.normalEl.contents}</PresenterComment>
+                <PresenterDate>
+                  {props.normalEl.createdAt.slice(0, 10)}
+                </PresenterDate>
               </PresenterLeftCol>
             </PresenterLeft>
-            {props.el?.user.email === props.fetchUserLoggedIn && (
+            {props.normalEl?.user.email === props.fetchUserLoggedIn && (
               <Right>
                 <PresenterRight
                   src="/normalCommentEdit.png"
@@ -77,12 +79,15 @@ export default function NormalCommentUIItem(props) {
             )}
           </PresenterRow>
           {/* <WideLine /> */}
+
           {data?.fetchUseditemQuestionAnswers.map((el) => (
-            <SellerNestedCommentResult el={el} />
+            <SellerNestedCommentResult sellerAnswersEl={el} />
           ))}
         </PresenterWrapper>
       )}
-      {isEdit && <NormalCommentEdit el={props.el} setIsEdit={setIsEdit} />}
+      {isEdit && (
+        <NormalCommentEdit normalEl={props.normalEl} setIsEdit={setIsEdit} />
+      )}
     </>
   );
 }
