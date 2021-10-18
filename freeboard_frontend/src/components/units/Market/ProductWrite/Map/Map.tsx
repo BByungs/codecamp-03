@@ -75,8 +75,8 @@ export default function Map(props) {
         const container = document.getElementById("map");
         const options = {
           center: new window.kakao.maps.LatLng(
-            37.485053527846674,
-            126.89533419993485
+            props.defaultValue?.lat || 37.485053527846674,
+            props.defaultValue?.lng || 126.89533419993485
           ),
           level: 3,
         };
@@ -109,7 +109,7 @@ export default function Map(props) {
         );
       });
     };
-  }, []);
+  }, [props.defaultValue.lat, props.defaultValue.lng]);
   return (
     <Wrapper>
       <Left>
@@ -124,22 +124,29 @@ export default function Map(props) {
               placeholder="위도(LAT)"
               type="text"
               register={props.useditemAddress.lat}
+              defaultValue={props.defaultValue.lat}
             />
             <Pin />
             <AddressSmallInput
               placeholder="경도(LNG)"
               type="text"
               register={props.useditemAddress.lng}
+              defaultValue={props.defaultValue.lng}
             />
           </GPS>
         </GPSInput>
         <Address>
           <ProductWriteText name="주소" />
-          <AddressInput type="text" register={props.useditemAddress.address} />
+          <AddressInput
+            type="text"
+            register={props.useditemAddress.address}
+            defaultValue={props.defaultValue.address}
+          />
           <ErrorMessage>{props.MapErrorMsg.address}</ErrorMessage>
           <AddressInput
             type="text"
             register={props.useditemAddress.addressDetail}
+            defaultValue={props.defaultValue.addressDetail}
           />
           <ErrorMessage>{props.MapErrorMsg.addressDetail}</ErrorMessage>
         </Address>

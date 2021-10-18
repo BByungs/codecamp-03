@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { CheckValidationImage } from "../library/CheckValidationImage";
 import SelectedPhoto from "./SelectedPhoto";
 
@@ -57,9 +57,7 @@ export default function SelectPhoto(props) {
     fileRef.current?.click();
   }
 
-  function onClickDelete() {
-    setFileUrl("");
-  }
+  function onClickDelete() {}
 
   return (
     <Container>

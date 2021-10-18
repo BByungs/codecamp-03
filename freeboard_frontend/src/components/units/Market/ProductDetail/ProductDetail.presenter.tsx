@@ -33,7 +33,7 @@ export default function ProductDetailUIPage(props) {
           <GotoMain onClick={props.onClickMain}>목록으로</GotoMain>
 
           {isSeller ? (
-            <EditButton>수정하기</EditButton>
+            <EditButton onClick={props.onClickMoveToEdit}>수정하기</EditButton>
           ) : (
             <BuyButton>구매하기</BuyButton>
           )}

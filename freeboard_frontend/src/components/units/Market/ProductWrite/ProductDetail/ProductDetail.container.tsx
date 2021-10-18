@@ -6,7 +6,7 @@ export default function ProductDetail(props) {
 
     console.log(value);
 
-    props.trigger("contents");
+    props.trigger("contents"); // 작동되는걸 감지하기위해 trigger를 썼고
   }
 
   const modules = {
@@ -72,6 +72,8 @@ export default function ProductDetail(props) {
       formState={props.formState}
       onChangeMyEdit={onChangeMyEdit}
       modules={modules}
+      defaultValue={props.defaultValue}
+      isEdit={props.isEdit}
     />
   );
 }

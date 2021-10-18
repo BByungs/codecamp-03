@@ -12,5 +12,11 @@ const Input = styled.input`
 `;
 
 export default function AddressInput(props) {
-  return <Input type={props.type} {...props.register} />;
+  return (
+    <Input
+      type={props.type}
+      {...props.register}
+      defaultValue={props.defaultValue}
+    />
+  );
 }

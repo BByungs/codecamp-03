@@ -14,6 +14,12 @@ const FETCH_USED_ITEM = gql`
       contents
       price
       images
+      useditemAddress {
+        lat
+        lng
+        address
+        addressDetail
+      }
     }
   }
 `;

@@ -16,7 +16,14 @@ import {
 } from "./ProductWrite.styles";
 
 export default function ProductWriteUIPage(props) {
-  // console.log(props.formState.isValid);
+  const defaultValue = {
+    lat: props.data?.fetchUseditem.useditemAddress?.lat,
+    lng: props.data?.fetchUseditem.useditemAddress?.lng,
+    address: props.data?.fetchUseditem.useditemAddress?.address,
+    addressDetail: props.data?.fetchUseditem.useditemAddress?.addressDetail,
+  };
+
+  console.log(props.useditemAddress?.lat);
   return (
     <form
       onSubmit={props.handleSubmit(
@@ -37,6 +44,7 @@ export default function ProductWriteUIPage(props) {
               type="text"
               register={props.register("name")}
               formState={props.formState.errors.name?.message}
+              defaultValue={props.data?.fetchUseditem.name}
             />
             <ProductWriteInput01
               name="한줄요약"
@@ -44,6 +52,7 @@ export default function ProductWriteUIPage(props) {
               type="text"
               register={props.register("remarks")}
               formState={props.formState.errors.remarks?.message}
+              defaultValue={props.data?.fetchUseditem.remarks}
             />
             <ProductDetail
               name="상품설명"
@@ -51,6 +60,8 @@ export default function ProductWriteUIPage(props) {
               formState={props.formState.errors.contents?.message}
               trigger={props.trigger}
               setValue={props.setValue}
+              defaultValue={props.data?.fetchUseditem.contents}
+              isEdit={props.isEdit}
             />
             <ProductWriteInput01
               name="판매가격"
@@ -58,6 +69,7 @@ export default function ProductWriteUIPage(props) {
               type="text"
               register={props.register("price")}
               formState={props.formState.errors.price?.message}
+              defaultValue={props.data?.fetchUseditem.price}
             />
             <ProductWriteInput01
               name="태그입력"
@@ -68,6 +80,7 @@ export default function ProductWriteUIPage(props) {
               useditemAddress={props.useditemAddress}
               MapErrorMsg={props.MapErrorMsg}
               setValue={props.setValue}
+              defaultValue={defaultValue}
             />
             <AddPicture data={props.data} onChangeFiles={props.onChangeFiles} />
             <MainPhotoSetting />

@@ -53,12 +53,17 @@ export default function ProductDetailPage() {
   function onClickMain() {
     router.push("/");
   }
+
+  function onClickMoveToEdit() {
+    router.push(`/ProductWrite/${router.query.useditemId}/edit`);
+  }
   return (
     <ProductDetailUIPage
       data={data}
       onClickMain={onClickMain}
       fetchUserLoggedIn={fetchUserLoggedIn}
       refetch={refetch}
+      onClickMoveToEdit={onClickMoveToEdit}
     />
   );
 }
