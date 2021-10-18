@@ -77,12 +77,16 @@ export default function ProductWriteUIPage(props) {
               type="text"
             />
             <Map
-              useditemAddress={props.useditemAddress}
               MapErrorMsg={props.MapErrorMsg}
               setValue={props.setValue}
               defaultValue={defaultValue}
+              register={props.register}
             />
-            <AddPicture data={props.data} onChangeFiles={props.onChangeFiles} />
+            <AddPicture
+              data={props.data}
+              onChangeFiles={props.onChangeFiles}
+              defaultValue={props.data?.fetchUseditem.images}
+            />
             <MainPhotoSetting />
             {props.isEdit ? (
               <ProductEdit>

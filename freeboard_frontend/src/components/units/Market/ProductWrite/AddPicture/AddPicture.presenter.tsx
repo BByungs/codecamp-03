@@ -11,11 +11,12 @@ export default function AddPictureUI(props) {
         {/* <SelectedPhoto /> */}
         <Preview>
           {new Array(3).fill(1).map((el, index) => (
+            // 선택된 포토
             <SelectPhoto
               key={`${el}_${index}`}
               index={index}
               onChangeFiles={props.onChangeFiles}
-              defaultFileUrl={props.data?.fetchUseditem.images?.[index]}
+              defaultFileUrl={props.data?.fetchUseditem.images}
             />
           ))}
         </Preview>

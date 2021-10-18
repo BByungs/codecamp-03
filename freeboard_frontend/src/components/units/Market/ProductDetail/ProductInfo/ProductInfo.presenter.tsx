@@ -32,6 +32,9 @@ export default function ProductInfoUI(props) {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+
+  // console.log("asdasd", props.data?.fetchUseditem.images); // 정상
+
   return (
     <Wrapper>
       <ProductInfo>
@@ -50,13 +53,19 @@ export default function ProductInfoUI(props) {
         <PhotoWrapper>
           <Photo>
             <MySlider {...settings}>
-              {props.data?.fetchUseditem.images.map((el) =>
-                el ? (
-                  <Img src={`https://storage.googleapis.com/${el}`} />
-                ) : (
-                  <Img src="/noimage.png" />
-                )
-              )}
+              {props.data?.fetchUseditem.images.map((el: any) => (
+                // el ? (
+                //   <Img src={`https://storage.googleapis.com/${el}`} />
+                // ) : (
+                //   <Img src="/noimage.png" />
+                // )
+
+                <Img
+                  src={
+                    el ? `https://storage.googleapis.com/${el}` : "/noimage.png"
+                  }
+                />
+              ))}
             </MySlider>
           </Photo>
         </PhotoWrapper>

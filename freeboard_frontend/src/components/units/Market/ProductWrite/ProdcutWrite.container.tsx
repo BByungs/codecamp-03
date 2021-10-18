@@ -31,14 +31,6 @@ export default function ProductWritePage(props) {
     mode: "onChange",
   });
 
-  const useditemAddress = {
-    zipcode: register("zipcode"),
-    address: register("address"),
-    addressDetail: register("addressDetail"),
-    lat: register("lat"),
-    lng: register("lng"),
-  };
-
   const MapErrorMsg = {
     address: formState.errors.address?.message,
     addressDetail: formState.errors.addressDetail?.message,
@@ -47,14 +39,11 @@ export default function ProductWritePage(props) {
   async function onClickSubmit(data) {
     console.log(data);
     try {
-      const uploadFiles = files // [ files1 , null , null ]
-        .map((el) => (el ? uploadFile({ variables: { file: el } }) : null));
+      const uploadFiles = files.map((el) =>
+        el ? uploadFile({ variables: { file: el } }) : null
+      );
       const results = await Promise.all(uploadFiles);
-      // results = [null, resutl2, result3]
-
       const myImages = results.map((el) => el?.data.uploadFile.url || "");
-      // myImages = ["", "http://googleapis.com/url1", "http://googleapis.com/url1"]
-      // [...files] => 기존의 files안에는 [file1 , null , null] 이렇게 들어있음
 
       const result = await createUseditem({
         variables: {
@@ -81,57 +70,67 @@ export default function ProductWritePage(props) {
     }
   }
 
-  async function onClickEdit(data) {
-    const uploadFiles = files // [null, File2, File3]
-      .map((el) => (el ? uploadFile({ variables: { file: el } }) : null));
-    const results = await Promise.all(uploadFiles);
-    // results = [null, resutl2, result3]
-
-    const myImages = results.map((el) => el?.data.uploadFile.url || "");
-    setValue("images", myImages);
-    // myImages = ["", "http://googleapis.com/url1", "http://googleapis.com/url1"]
-    try {
-      const result = await updateUseditem({
-        variables: {
-          updateUseditemInput: {
-            name: data.name,
-            remarks: data.remarks,
-            contents: data.contents,
-            price: Number(data.price),
-            // images: myImages,
-            images: data.images,
-            useditemAddress: {
-              address: data.address,
-              addressDetail: data.addressDetail,
-              lat: Number(data.lat),
-              lng: Number(data.lng),
-            },
-          },
-          useditemId: router.query.useditemId,
-        },
-      });
-      alert("상품을 수정합니다");
-      router.push(`/ProductWrite/${result.data.updateUseditem._id}`);
-    } catch (error) {
-      alert(error);
-    }
-  }
-
-  if (props.isEdit) {
-    useEffect(() => {
+  useEffect(() => {
+    if (props?.isEdit || props?.data?.fetchUseditem) {
       setValue("name", props.data?.fetchUseditem.name);
       setValue("remarks", props.data?.fetchUseditem.remarks);
       setValue("contents", props.data?.fetchUseditem.contents);
       setValue("price", props.data?.fetchUseditem.price);
-      setValue("lat", props.data?.fetchUseditem.useditemAddress.lat);
-      setValue("lng", props.data?.fetchUseditem.useditemAddress.lng);
-      setValue("address", props.data?.fetchUseditem.useditemAddress.address);
-      setValue(
-        "addressDetail",
-        props.data?.fetchUseditem.useditemAddress.addressDetail
+    }
+  }, [props?.isEdit, props?.data?.fetchUseditem]);
+
+  interface IMyUpdateInput {
+    name?: string;
+    remarks?: string;
+    contents?: string;
+    price?: number;
+    images?: string[];
+    tags?: string[];
+    useditemAddress?: any;
+  }
+
+  async function onClickEdit(data) {
+    const myUpdateInput: IMyUpdateInput = {};
+    console.log("12131213", data);
+
+    if (data.name) myUpdateInput.name = data.name;
+    if (data.remarks) myUpdateInput.remarks = data.remarks;
+    if (data.contents) myUpdateInput.contents = data.contents;
+    if (data.price) myUpdateInput.price = Number(data.price);
+    if (data.tags) myUpdateInput.tags = data.tags;
+    if (data.zipcode) myUpdateInput.useditemAddress.zipcode = data.zipcode;
+    if (data.address) myUpdateInput.useditemAddress.address = data.address;
+    if (data.addressDetail)
+      myUpdateInput.useditemAddress.addressDetail = data.addressDetail;
+    if (data.lat) myUpdateInput.useditemAddress.lat = data.lat;
+    if (data.lng) myUpdateInput.useditemAddress.lng = data.lng;
+
+    const uploadFiles = files.map((el) =>
+      el ? uploadFile({ variables: { file: el } }) : null
+    );
+    const results = await Promise.all(uploadFiles);
+    const nextImages = results.map((el) => el?.data.uploadFile.url || "");
+    myUpdateInput.images = nextImages;
+    if (props.data?.fetchUseditem.images?.length) {
+      const prevImages = [...props.data?.fetchUseditem.images];
+      myUpdateInput.images = prevImages.map(
+        (el, index) => nextImages[index] || el
       );
-      setValue("images", props.data?.fetchUseditem.images);
-    });
+    } else {
+      myUpdateInput.images = nextImages;
+    }
+
+    try {
+      const result = await updateUseditem({
+        variables: {
+          updateUseditemInput: myUpdateInput,
+          useditemId: router.query.useditemId,
+        },
+      });
+      router.push(`/ProductWrite/${result.data.updateUseditem._id}`);
+    } catch (error: any) {
+      alert(error.message);
+    }
   }
 
   function onClickCancel() {
@@ -143,7 +142,6 @@ export default function ProductWritePage(props) {
       register={register}
       onClickSubmit={onClickSubmit}
       formState={formState}
-      useditemAddress={useditemAddress}
       MapErrorMsg={MapErrorMsg}
       onClickCancel={onClickCancel}
       isEdit={props.isEdit}

@@ -123,15 +123,19 @@ export default function Map(props) {
             <AddressSmallInput
               placeholder="위도(LAT)"
               type="text"
-              register={props.useditemAddress.lat}
+              // register={props.useditemAddress.lat}
               defaultValue={props.defaultValue.lat}
+              // {...props.register("lat")}
+              register={props.register}
             />
             <Pin />
             <AddressSmallInput
               placeholder="경도(LNG)"
               type="text"
-              register={props.useditemAddress.lng}
+              // register={props.useditemAddress.lng}
               defaultValue={props.defaultValue.lng}
+              register={props.register("lng")}
+              // {...props.register("lat")}
             />
           </GPS>
         </GPSInput>
@@ -139,14 +143,16 @@ export default function Map(props) {
           <ProductWriteText name="주소" />
           <AddressInput
             type="text"
-            register={props.useditemAddress.address}
+            // register={props.useditemAddress.address}
             defaultValue={props.defaultValue.address}
+            register={props.register("address")}
           />
           <ErrorMessage>{props.MapErrorMsg.address}</ErrorMessage>
           <AddressInput
             type="text"
-            register={props.useditemAddress.addressDetail}
+            // register={props.useditemAddress.addressDetail}
             defaultValue={props.defaultValue.addressDetail}
+            register={props.register("addressDetail")}
           />
           <ErrorMessage>{props.MapErrorMsg.addressDetail}</ErrorMessage>
         </Address>

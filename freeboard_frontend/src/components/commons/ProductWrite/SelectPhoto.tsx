@@ -64,9 +64,11 @@ export default function SelectPhoto(props) {
       {fileUrl || props.defaultFileUrl ? (
         <SelectedPhoto
           onClickUpload={onClickUpload}
-          onClickDelete={onClickDelete}
           src={
-            fileUrl || `https://storage.googleapis.com/${props.defaultFileUrl}`
+            fileUrl ||
+            `https://storage.googleapis.com/${
+              props.defaultFileUrl[props.index]
+            }`
           }
         />
       ) : (
