@@ -76,6 +76,14 @@ export default function ProductWritePage(props) {
       setValue("remarks", props.data?.fetchUseditem.remarks);
       setValue("contents", props.data?.fetchUseditem.contents);
       setValue("price", props.data?.fetchUseditem.price);
+      // 밑에부터 안써주면 검증하라고 에러메시지 뜸
+      setValue("lat", props.data?.fetchUseditem.useditemAddress.lat);
+      setValue("lng", props.data?.fetchUseditem.useditemAddress.lng);
+      setValue("address", props.data?.fetchUseditem.useditemAddress.address);
+      setValue(
+        "addressDetail",
+        props.data?.fetchUseditem.useditemAddress.addressDetail
+      );
     }
   }, [props?.isEdit, props?.data?.fetchUseditem]);
 
@@ -93,17 +101,19 @@ export default function ProductWritePage(props) {
     const myUpdateInput: IMyUpdateInput = {};
     console.log("12131213", data);
 
-    if (data.name) myUpdateInput.name = data.name;
-    if (data.remarks) myUpdateInput.remarks = data.remarks;
-    if (data.contents) myUpdateInput.contents = data.contents;
-    if (data.price) myUpdateInput.price = Number(data.price);
-    if (data.tags) myUpdateInput.tags = data.tags;
-    if (data.zipcode) myUpdateInput.useditemAddress.zipcode = data.zipcode;
-    if (data.address) myUpdateInput.useditemAddress.address = data.address;
-    if (data.addressDetail)
+    if (props.data.name) myUpdateInput.name = data.name;
+    if (props.data.remarks) myUpdateInput.remarks = data.remarks;
+    if (props.data.contents) myUpdateInput.contents = data.contents;
+    if (props.data.price) myUpdateInput.price = Number(data.price);
+    if (props.data.tags) myUpdateInput.tags = data.tags;
+    if (props.data.zipcode)
+      myUpdateInput.useditemAddress.zipcode = data.zipcode;
+    if (props.data.address)
+      myUpdateInput.useditemAddress.address = data.address;
+    if (props.data.addressDetail)
       myUpdateInput.useditemAddress.addressDetail = data.addressDetail;
-    if (data.lat) myUpdateInput.useditemAddress.lat = data.lat;
-    if (data.lng) myUpdateInput.useditemAddress.lng = data.lng;
+    if (props.data.lat) myUpdateInput.useditemAddress.lat = data.lat;
+    if (props.data.lng) myUpdateInput.useditemAddress.lng = data.lng;
 
     const uploadFiles = files.map((el) =>
       el ? uploadFile({ variables: { file: el } }) : null

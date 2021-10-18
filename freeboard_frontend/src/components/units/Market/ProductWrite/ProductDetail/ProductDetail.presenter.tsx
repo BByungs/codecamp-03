@@ -26,15 +26,6 @@ export default function ProductDetailUI(props) {
               defaultValue={props.defaultValue}
             />
           )}
-
-        {/* {props.defaultValue && (
-          <Quill
-            onChange={props.onChangeMyEdit}
-            modules={props.modules}
-            placeholder="상품을 설명해주세요."
-            defaultValue={props.defaultValue}
-          />
-        )} */}
       </Wrapper>
       <ErrorMessage>{props.formState}</ErrorMessage>
     </All>

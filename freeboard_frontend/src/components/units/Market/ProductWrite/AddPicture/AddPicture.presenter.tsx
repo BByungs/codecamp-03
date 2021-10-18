@@ -16,7 +16,7 @@ export default function AddPictureUI(props) {
               key={`${el}_${index}`}
               index={index}
               onChangeFiles={props.onChangeFiles}
-              defaultFileUrl={props.data?.fetchUseditem.images}
+              defaultFileUrl={props.data?.fetchUseditem.images[index]}
             />
           ))}
         </Preview>

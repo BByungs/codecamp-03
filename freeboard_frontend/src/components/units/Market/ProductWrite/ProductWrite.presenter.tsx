@@ -16,14 +16,6 @@ import {
 } from "./ProductWrite.styles";
 
 export default function ProductWriteUIPage(props) {
-  const defaultValue = {
-    lat: props.data?.fetchUseditem.useditemAddress?.lat,
-    lng: props.data?.fetchUseditem.useditemAddress?.lng,
-    address: props.data?.fetchUseditem.useditemAddress?.address,
-    addressDetail: props.data?.fetchUseditem.useditemAddress?.addressDetail,
-  };
-
-  console.log(props.useditemAddress?.lat);
   return (
     <form
       onSubmit={props.handleSubmit(
@@ -79,7 +71,6 @@ export default function ProductWriteUIPage(props) {
             <Map
               MapErrorMsg={props.MapErrorMsg}
               setValue={props.setValue}
-              defaultValue={defaultValue}
               register={props.register}
             />
             <AddPicture

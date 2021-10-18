@@ -18,7 +18,7 @@ export default function AddressSmallInput(props) {
       placeholder={props.placeholder}
       type={props.type}
       defaultValue={props.defaultValue}
-      // {...props.register}
+      {...props.register}
     />
   );
 }
