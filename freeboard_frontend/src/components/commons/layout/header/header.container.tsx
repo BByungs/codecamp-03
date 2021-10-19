@@ -10,6 +10,10 @@ const MAIN = ["/"]; // marketMain
 const BOARD_LIST = ["/boardList"]; // boardList
 const MYPAGE = ["/mypage"];
 
+declare const window: typeof globalThis & {
+  IMP: any;
+};
+
 export default function Header() {
   const { setAccessToken } = useContext(GlobalContext);
   const { data } =
@@ -37,7 +41,19 @@ export default function Header() {
     router.push("/mypage");
   }
 
-  //data={data}
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
   return (
     <HeaderUI
       data={data}
@@ -49,6 +65,11 @@ export default function Header() {
       onClickMain={onClickMain}
       onClickBoardList={onClickBoardList}
       onClickMyPage={onClickMyPage}
+      // onClickPayment={onClickPayment}
+      showModal={showModal}
+      handleOk={handleOk}
+      handleCancel={handleCancel}
+      isModalVisible={isModalVisible}
     />
   );
 }

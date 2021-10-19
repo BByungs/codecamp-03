@@ -13,6 +13,9 @@ import Main from "./main";
 import { createUploadLink } from "apollo-upload-client";
 import { useRouter } from "next/router";
 import { createContext, useEffect, useState } from "react";
+
+import { onError } from "@apollo/client/link/error";
+import { getAccessToken } from "../src/components/commons/library/getAccessToken";
 ("./signin");
 const HIDEN_MAIN = ["/main"];
 const HIDDEN_SIGNIN = ["/signin"];
@@ -29,23 +32,47 @@ function MyApp({ Component, pageProps }) {
     setUserInfo: setUserInfo,
   };
 
+  // useEffect(() => {
+  //   const token = localStorage.getItem("accessToken") || ""; // accessToken
+  //   // console.log(accessToken);
+  //   setAccessToken(token);
+  //   // localStorage.clear();
+  // }, [accessToken]);
+
   useEffect(() => {
-    const token = localStorage.getItem("accessToken") || ""; // accessToken
-    // console.log(accessToken);
-    setAccessToken(token);
-    // localStorage.clear();
-  }, [accessToken]);
+    if (localStorage.getItem("refreshToken")) {
+      getAccessToken(setAccessToken);
+    }
+  }, []);
+
+  const errorLink = onError(({ graphQLErrors, operation, forward }) => {
+    if (graphQLErrors) {
+      for (const err of graphQLErrors) {
+        if (err.extensions?.code === "UNAUTHENTICATED") {
+          operation.setContext({
+            headers: {
+              ...operation.getContext().headers,
+              authorization: `Bearer ${getAccessToken(setAccessToken)}`,
+            },
+          });
+          return forward(operation);
+        }
+      }
+    }
+  });
 
   const uploadLink = createUploadLink({
-    uri: "http://backend03.codebootcamp.co.kr/graphql",
+    uri: "https://backend03.codebootcamp.co.kr/graphql",
     headers: {
       authorization: `Bearer ${accessToken}`,
     },
+    credentials: "include",
   });
+
   const client = new ApolloClient({
     // uri: "http://backend03.codebootcamp.co.kr/graphql",
     cache: new InMemoryCache(),
-    link: ApolloLink.from([uploadLink]),
+    link: ApolloLink.from([errorLink, uploadLink]),
   });
 
   const router = useRouter();

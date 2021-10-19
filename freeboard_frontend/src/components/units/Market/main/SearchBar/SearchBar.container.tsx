@@ -1,7 +1,7 @@
 import { useState } from "react";
 import SearchBarUIPage from "./SearchBar.presenter";
 
-export default function SearchBar() {
+export default function SearchBar(props) {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
@@ -9,6 +9,20 @@ export default function SearchBar() {
     setStartDate(dateString[0]);
     setEndDate(dateString[1]);
   }
+  function onClickOnSale() {
+    props.setIsSoldout(false);
+  }
 
-  return <SearchBarUIPage onChange={onChange} />;
+  function onClickSoldout() {
+    props.setIsSoldout(true);
+  }
+
+  return (
+    <SearchBarUIPage
+      onChange={onChange}
+      onClickOnSale={onClickOnSale}
+      onClickSoldout={onClickSoldout}
+      isSoldout={props.isSoldout}
+    />
+  );
 }

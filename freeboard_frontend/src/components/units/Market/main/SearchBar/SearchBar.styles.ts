@@ -32,6 +32,10 @@ export const OnSaleText = styled.div`
   font-style: normal;
   font-weight: 500;
   color: black;
+  cursor: pointer;
+  :hover {
+    opacity: 0.7;
+  }
 `;
 export const SoldOutText = styled.div`
   font-family: Noto Sans CJK KR;
@@ -39,6 +43,10 @@ export const SoldOutText = styled.div`
   font-style: normal;
   font-weight: 400; // 조건부 렌더링 줘서 선택되면 500으로 바꿔야함
   color: #4f4f4f;
+  cursor: pointer;
+  :hover {
+    opacity: 0.7;
+  }
 `;
 export const SelectLine = styled.div`
   border-bottom: 2px solid #ffd600;

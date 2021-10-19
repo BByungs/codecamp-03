@@ -16,7 +16,7 @@ export default function List(props) {
   >(FETCH_USED_ITEMS, {
     variables: {
       page: 1,
-      isSoldout: false,
+      isSoldout: props.isSoldout,
     },
   });
 

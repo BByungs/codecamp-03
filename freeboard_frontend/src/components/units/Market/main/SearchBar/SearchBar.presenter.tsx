@@ -22,11 +22,13 @@ export default function SearchBarUIPage(props) {
       <Body>
         <Select>
           <OnSale>
-            <OnSaleText>판매중상품</OnSaleText>
-            <SelectLine />
+            <OnSaleText onClick={props.onClickOnSale}>판매중상품</OnSaleText>
+            {!props.isSoldout && <SelectLine />}
+            {/* <SelectLine /> */}
           </OnSale>
           <SoldOut>
-            <SoldOutText>판매된상품</SoldOutText>
+            <SoldOutText onClick={props.onClickSoldout}>판매된상품</SoldOutText>
+            {props.isSoldout && <SelectLine />}
           </SoldOut>
         </Select>
 

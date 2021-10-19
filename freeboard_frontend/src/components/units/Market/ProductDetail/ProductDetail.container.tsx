@@ -1,12 +1,12 @@
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import ProductDetailUIPage from "./ProductDetail.presenter";
-import { FETCH_USED_ITEM, FETCH_USER_LOGGED_IN } from "./ProductDetail.queries";
-
-declare const window: typeof globalThis & {
-  kakao: any;
-};
+import {
+  FETCH_USED_ITEM,
+  FETCH_USER_LOGGED_IN,
+  CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING,
+} from "./ProductDetail.queries";
 
 export default function ProductDetailPage() {
   const router = useRouter();
@@ -16,6 +16,9 @@ export default function ProductDetailPage() {
     },
   });
   const { data: fetchUserLoggedIn } = useQuery(FETCH_USER_LOGGED_IN);
+  const [createPointTransactionOfBuyingAndSelling] = useMutation(
+    CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING
+  );
 
   useEffect(() => {
     if (
@@ -67,6 +70,20 @@ export default function ProductDetailPage() {
   function onClickMoveToEdit() {
     router.push(`/ProductWrite/${router.query.useditemId}/edit`);
   }
+
+  function onClickBuy() {
+    try {
+      createPointTransactionOfBuyingAndSelling({
+        variables: {
+          useritemId: router.query.useditemId,
+        },
+      });
+      alert("상품을 구매합니다");
+      router.push("/");
+    } catch (error: any) {
+      alert(error.message);
+    }
+  }
   return (
     <ProductDetailUIPage
       data={data}
@@ -74,6 +91,7 @@ export default function ProductDetailPage() {
       fetchUserLoggedIn={fetchUserLoggedIn}
       refetch={refetch}
       onClickMoveToEdit={onClickMoveToEdit}
+      onClickBuy={onClickBuy}
     />
   );
 }

@@ -30,8 +30,9 @@ export default function MainPage() {
           email,
         },
       });
-      console.log(result.data.loginUser.accessToken);
-      localStorage.setItem("accessToken", result.data?.loginUser.accessToken);
+      // console.log(result.data.loginUser.accessToken);
+      localStorage.setItem("refreshToken", "true");
+      // localStorage.setItem("accessToken", result.data?.loginUser.accessToken);
       setAccessToken(result.data.loginUser.accessToken);
 
       router.push("/");

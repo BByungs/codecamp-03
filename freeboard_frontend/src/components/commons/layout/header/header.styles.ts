@@ -5,8 +5,23 @@ import HomeIcon from "@mui/icons-material/Home";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { MessageFilled, MessageOutlined } from "@ant-design/icons";
+import PaymentIcon from "@mui/icons-material/Payment";
 
+import { Modal } from "antd";
 import { LogoutOutlined } from "@ant-design/icons";
+
+export const PayModal = styled(Modal)`
+  /* width: 100px; */
+  /* height: 200px; */
+`;
+
+export const Payment = styled(PaymentIcon)`
+  font-size: 34px;
+  cursor: pointer;
+  :hover {
+    opacity: 0.7;
+  }
+`;
 
 export const MyPageOutline = styled(AccountCircleOutlinedIcon)`
   font-size: 34px;
@@ -80,5 +95,5 @@ export const Icons = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 170px;
+  width: 200px;
 `;
