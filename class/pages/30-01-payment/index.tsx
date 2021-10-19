@@ -35,9 +35,9 @@ export default function PaymentPage() {
       },
       function (rsp: any) {
         // callback
-        if (rsp.success) {
-          console.log(rsp);
+        console.log(rsp);
 
+        if (rsp.success) {
           // mutation() => createPointTransactionOfLoading
           // ...,
           // 결제 성공 시 로직,

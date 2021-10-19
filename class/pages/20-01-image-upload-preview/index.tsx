@@ -60,43 +60,39 @@ export default function ImageUpladPreviewPage() {
   async function onClickSubmit() {
     const start = performance.now();
     const result = await Promise.all([
-      uploadFile({ variables: { file: myFile } }),
-      uploadFile({ variables: { file: myFile } }),
-      uploadFile({ variables: { file: myFile } }),
-      uploadFile({ variables: { file: myFile } }),
-      uploadFile({ variables: { file: myFile } }),
+      uploadFile({ variables: { file: myFile1 } }),
+      uploadFile({ variables: { file: myFile2 } }),
+      uploadFile({ variables: { file: myFile3 } }),
+      // uploadFile({ variables: { file: myFile } }),
+      // uploadFile({ variables: { file: myFile } }),
       // 얘를 맵으로 한번 해보는걸 도전해보자
     ]); // promise를 동시에 요청하는 방법
+
+    // result = [result1, result2, result3]
+
+
+
     const end = performance.now();
     console.log(end - start);
 
     const urls = result.map((el) => el.data.uploadFile.url);
     console.log(urls);
+    // urls = ["http://googleapis.com/url1", "http://googleapis.com/url1", "http://googleapis.com/url1"]
 
     // const start = performance.now();
     // const result1 = await uploadFile({
     //   variables: {
-    //     file: myFile,
+    //     file: myFile1,
     //   },
     // });
     // const result2 = await uploadFile({
     //   variables: {
-    //     file: myFile,
+    //     file: myFile2,
     //   },
     // });
     // const result3 = await uploadFile({
     //   variables: {
-    //     file: myFile,
-    //   },
-    // });
-    // const result4 = await uploadFile({
-    //   variables: {
-    //     file: myFile,
-    //   },
-    // });
-    // const result5 = await uploadFile({
-    //   variables: {
-    //     file: myFile,
+    //     file: myFile3,
     //   },
     // });
     // const end = performance.now();
@@ -109,6 +105,15 @@ export default function ImageUpladPreviewPage() {
     // const url5 = result5.data.uploadFile5.url;
 
     // 게시물 등록
+    // createBoard({
+      variables: {
+        title: "",
+        contents: "",
+        writer: "",
+
+        images: urls
+      }
+    })
   }
 
   return (

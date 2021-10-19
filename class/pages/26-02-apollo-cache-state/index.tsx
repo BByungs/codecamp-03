@@ -34,9 +34,10 @@ export default function ApolloCacheStatePage() {
   const [createBoard] = useMutation(CREATE_BOARD);
 
   const onClickDelete = (boardId) => async () => {
+    // boardId => el._id임
     await deleteBoard({
       variables: {
-        boardId,
+        boardId, // boardId: boardId(el._id)
       },
       update(cache, { data }) {
         // 언제 실행되나? 요청이 끝나면 update실행

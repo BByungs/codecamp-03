@@ -27,7 +27,7 @@ export default function UseApolloClientPage() {
   const { setAccessToken, setUserInfo, userInfo } = useContext(GlobalContext);
   const { handleSubmit, register } = useForm();
   const [loginUser] = useMutation(LOGIN_USER);
-  const client = useApolloClient();
+  const client = useApolloClient(); // useApolloClient import해야함
 
   async function onClickLogin(data) {
     try {
@@ -37,22 +37,28 @@ export default function UseApolloClientPage() {
           password: data.myPassword,
         },
       });
-      const accessToken = result.data.loginUser.accessToken;
+      const accessToken = result.data.loginUser.accessToken; // ! 1. 로그인 한 유저의 accessToken을 가져와서
 
       //   const result = await axios.get("koreajson.com")  // client.query와 비교해보기
+
       const resultUserInfo = await client.query({
+        // variables : {
+
+        // }
+        // ! 2. query로 accessToken을 가져오기위해 FETCH_USER_LOGGED_IN 을 써줬고
         query: FETCH_USER_LOGGED_IN, // accessToken이 없으면 요청이 안됨
         context: {
           // 그래서 여기서 accessToken을 가져옴
+          // 헤더같은 추가적인, 부가적인 옵션들을 담아준다.
           headers: {
-            authorization: `Bearer ${accessToken}`,
+            authorization: `Bearer ${accessToken}`, // ! 3. localStorage에 있는 accessToken을 가져옴
           },
         },
       });
       //   const userInfo = (await resultUserInfo).data.fetchUserLoggedIn;
-      const userInfo = resultUserInfo.data.fetchUserLoggedIn;
-      setAccessToken(accessToken);
-      setUserInfo(userInfo);
+      const userInfo = resultUserInfo.data.fetchUserLoggedIn; // ! 4. resultUserInfo의 fetchUserLoggedIn을 userInfo에 담음
+      setAccessToken(accessToken); // ! 5. GlobalContext의 accessToken을 업데이트
+      setUserInfo(userInfo); // ! 6. GlobalContext의 userInfo를 업데이트
     } catch (error) {
       alert(error.message);
     }
@@ -66,8 +72,10 @@ export default function UseApolloClientPage() {
         <form onSubmit={handleSubmit(onClickLogin)}>
           이메일: <input type="text" {...register("myEmail")} />
           <br />
-          비밀번호: <input type="text" {...register("myPassword")} />
+          비밀번호: <input type="password" {...register("myPassword")} />
           <br />
+          {/* <button type="button" onClick={onClickFunction}>로그인하기</button> */}
+          {/* 이렇게 하면 onClickFunction만 단독적으로 실행 시킬 수 있다. */}
           <button type="submit">로그인하기</button>
         </form>
       )}

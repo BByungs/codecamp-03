@@ -13,6 +13,11 @@ import { initializeApp } from "firebase/app";
 import { createUploadLink } from "apollo-upload-client";
 import { createContext, useState, useEffect } from "react";
 
+//! refreshToken 수업 내용
+import { onError } from "@apollo/client/link/error"; // 에러가 났을때 체크해주는 기능
+import { getAccessToken } from "../src/commons/libraries/getAccessToken";
+//! ######################
+
 export const firebaseApp = initializeApp({
   apiKey: "AIzaSyDqMZBInmQqBw3YigL0dIeFzaswmw1DjGo",
   authDomain: "test02-bd48c.firebaseapp.com",
@@ -36,26 +41,58 @@ function MyApp({ Component, pageProps }) {
 
   // 스토리지에 넣는 방법
   useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken") || "";
-    // localStorage.getItem("accessToken") 있으면 저장
-    // 없으면 ""
-    setAccessToken(accessToken);
+    // const accessToken = localStorage.getItem("accessToken") || "";
+    // setAccessToken(accessToken);
+    // localStorage에 저장하면 위험해서 변수에 이렇게 담았었음
+    if (localStorage.getItem("refreshToken")) {
+      //  refreshToken이 있다면
+      getAccessToken(setAccessToken);
+      // Restore API를 날리는 getAccessToken함수 실행
+      // setAccessToken을 날려서 새로운 accessToken을 저장하는 함수임
+    }
   }, []);
   // ###############################
 
-  // Apollo Setting
+  // ! refreshToken 수업 내용
+  const errorLink = onError(({ graphQLErrors, operation, forward }) => {
+    // 어떤 쿼리를 했다가 실패했는지 (operation)
+    // 그다음 취해질 동작(forword)
+    if (graphQLErrors) {
+      // graphQLErrors가 있다면
+      for (const err of graphQLErrors) {
+        // 그때 발생한 에러가 unAuth라면
+        if (err.extensions?.code === "UNAUTHENTICATED") {
+          operation.setContext({
+            headers: {
+              // 기존의 http header를 가져와야함
+              ...operation.getContext().headers,
+              authorization: `Bearer ${getAccessToken(setAccessToken)}`,
+            },
+          });
+          // 이 결과를 forwoard해줘야함
+          return forward(operation);
+        }
+      }
+    }
+  });
+  // ! refreshToken 수업 내용
+
+  // ! Apollo Setting
   const uploadLink = createUploadLink({
-    uri: "http://backend03.codebootcamp.co.kr/graphql",
+    uri: "https://backend03.codebootcamp.co.kr/graphql",
     headers: {
       authorization: `Bearer ${accessToken}`,
     },
+    credentials: "include", // "중요한 정보들을 포함시켜줘"
   });
+  // ! Apollo Setting
 
   const client = new ApolloClient({
     // 주소를 등록해줘야함
     // uri: "http://backend03.codebootcamp.co.kr/graphql",
     cache: new InMemoryCache(),
-    link: ApolloLink.from([uploadLink]),
+    link: ApolloLink.from([errorLink, uploadLink]),
+    // errorLink , uploadLink 순서에 맞춰서 넣어줌
   });
   // 각각의 페이지는 index.js
 
