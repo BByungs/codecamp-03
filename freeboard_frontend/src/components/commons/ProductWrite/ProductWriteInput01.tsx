@@ -40,7 +40,7 @@ export default function ProductWriteInput01(props) {
         type={props.type}
         placeholder={props.placeholder}
         onChange={props.onChange}
-        defaultValue={props.defaultValue}
+        // defaultValue={props.defaultValue}
         {...props.register}
       />
       <ErrorMessage>{props.formState}</ErrorMessage>

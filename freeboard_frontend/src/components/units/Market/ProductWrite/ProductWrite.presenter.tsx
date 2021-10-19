@@ -16,6 +16,7 @@ import {
 } from "./ProductWrite.styles";
 
 export default function ProductWriteUIPage(props) {
+  console.log("data", props.data);
   return (
     <form
       onSubmit={props.handleSubmit(
@@ -72,6 +73,7 @@ export default function ProductWriteUIPage(props) {
               MapErrorMsg={props.MapErrorMsg}
               setValue={props.setValue}
               register={props.register}
+              data={props.data}
             />
             <AddPicture
               data={props.data}

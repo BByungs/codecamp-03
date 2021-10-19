@@ -77,7 +77,6 @@ export default function Map(props) {
           center: new window.kakao.maps.LatLng(
             props.data?.fetchUseditem.useditemAddress.lat || 37.485053527846674,
             props.data?.fetchUseditem.useditemAddress.lng || 126.89533419993485
-
             // props.data?.fetchUseditem.useditemAddress.lat,
             // props.data?.fetchUseditem.useditemAddress.lng
           ),
@@ -98,7 +97,6 @@ export default function Map(props) {
         window.kakao.maps.event.addListener(
           map,
           "click",
-          // function (mouseEvent: { latLng: any }) {
           function (mouseEvent: IMouseEvent) {
             const latlng = mouseEvent.latLng;
             marker.setPosition(latlng);

@@ -72,11 +72,11 @@ export default function ProductWritePage(props) {
 
   useEffect(() => {
     if (props?.isEdit || props?.data?.fetchUseditem) {
+      // 수정하기 페이지에서만 작동 혹은 fetchUseditem data가 있을때만 작동
       setValue("name", props.data?.fetchUseditem.name);
       setValue("remarks", props.data?.fetchUseditem.remarks);
       setValue("contents", props.data?.fetchUseditem.contents);
       setValue("price", props.data?.fetchUseditem.price);
-      // 밑에부터 안써주면 검증하라고 에러메시지 뜸
       setValue("lat", props.data?.fetchUseditem.useditemAddress.lat);
       setValue("lng", props.data?.fetchUseditem.useditemAddress.lng);
       setValue("address", props.data?.fetchUseditem.useditemAddress.address);
@@ -85,7 +85,17 @@ export default function ProductWritePage(props) {
         props.data?.fetchUseditem.useditemAddress.addressDetail
       );
     }
-  }, [props?.isEdit, props?.data?.fetchUseditem]);
+  }, [
+    props.isEdit,
+    props.data?.fetchUseditem.name,
+    props.data?.fetchUseditem.remarks,
+    props.data?.fetchUseditem.contents,
+    props.data?.fetchUseditem.price,
+    props.data?.fetchUseditem.useditemAddress.lat,
+    props.data?.fetchUseditem.useditemAddress.lng,
+    props.data?.fetchUseditem.useditemAddress.address,
+    props.data?.fetchUseditem.useditemAddress.addressDetail,
+  ]);
 
   interface IMyUpdateInput {
     name?: string;
@@ -97,37 +107,40 @@ export default function ProductWritePage(props) {
     useditemAddress?: any;
   }
 
-  async function onClickEdit(data) {
+  async function onClickEdit(updateData) {
     const myUpdateInput: IMyUpdateInput = {};
-    console.log("12131213", data);
+    console.log("update한 data", updateData);
 
-    if (props.data.name) myUpdateInput.name = data.name;
-    if (props.data.remarks) myUpdateInput.remarks = data.remarks;
-    if (props.data.contents) myUpdateInput.contents = data.contents;
-    if (props.data.price) myUpdateInput.price = Number(data.price);
-    if (props.data.tags) myUpdateInput.tags = data.tags;
-    if (props.data.zipcode)
-      myUpdateInput.useditemAddress.zipcode = data.zipcode;
-    if (props.data.address)
-      myUpdateInput.useditemAddress.address = data.address;
-    if (props.data.addressDetail)
-      myUpdateInput.useditemAddress.addressDetail = data.addressDetail;
-    if (props.data.lat) myUpdateInput.useditemAddress.lat = data.lat;
-    if (props.data.lng) myUpdateInput.useditemAddress.lng = data.lng;
+    if (updateData.name) myUpdateInput.name = updateData.name;
+    if (updateData.remarks) myUpdateInput.remarks = updateData.remarks;
+    if (updateData.contents) myUpdateInput.contents = updateData.contents;
+    if (updateData.price) myUpdateInput.price = Number(updateData.price);
+    // if (props.data.tags) myUpdateInput.tags = data.tags;
+    // if (props.data.zipcode)
+    //   myUpdateInput.useditemAddress.zipcode = data.zipcode;
+    myUpdateInput.useditemAddress = {};
+    if (updateData.address)
+      myUpdateInput.useditemAddress.address = updateData.address;
+    if (updateData.addressDetail)
+      myUpdateInput.useditemAddress.addressDetail = updateData.addressDetail;
+    if (updateData.lat) myUpdateInput.useditemAddress.lat = updateData.lat;
+    if (updateData.lng) myUpdateInput.useditemAddress.lng = updateData.lng;
 
     const uploadFiles = files.map((el) =>
       el ? uploadFile({ variables: { file: el } }) : null
     );
     const results = await Promise.all(uploadFiles);
     const nextImages = results.map((el) => el?.data.uploadFile.url || "");
-    myUpdateInput.images = nextImages;
+    myUpdateInput.images = nextImages; // 추가한 이미지
     if (props.data?.fetchUseditem.images?.length) {
+      // 추가한 이미지가 있으면
       const prevImages = [...props.data?.fetchUseditem.images];
       myUpdateInput.images = prevImages.map(
-        (el, index) => nextImages[index] || el
+        // 기존 데이터에서 후에 들어온 이미지 추가
+        (el, index) => nextImages[index] || el // 추가 된 이미지를 업데이트
       );
     } else {
-      myUpdateInput.images = nextImages;
+      myUpdateInput.images = nextImages; // 그냥 그대로 올라감
     }
 
     try {
