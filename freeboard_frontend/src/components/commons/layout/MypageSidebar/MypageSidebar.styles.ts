@@ -56,10 +56,11 @@ export const Point = styled.div`
 
 export const MyProduct = styled.div`
   display: flex;
-  /* align-items: center; */
+  align-items: center;
   width: 103px;
   height: 42px;
-  margin-bottom: 23px;
+  /* margin-bottom: 23px; */
+  cursor: pointer;
 `;
 
 export const ClickMyProduct = styled.img`
@@ -86,6 +87,7 @@ export const NoSelectText = styled.div`
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
+  color: #bdbdbd;
 `;
 
 export const MyPointRow = styled.div`
@@ -93,6 +95,8 @@ export const MyPointRow = styled.div`
   width: 103px;
   height: 42px;
   margin-bottom: 23px;
+  align-items: center;
+  cursor: pointer;
 `;
 
 export const SelectMyPoint = styled.img`
@@ -111,6 +115,9 @@ export const MyProfile = styled.div`
   display: flex;
   width: 103px;
   height: 42px;
+  margin-bottom: 23px;
+  align-items: center;
+  cursor: pointer;
 `;
 
 export const ClickMyProfile = styled.img`

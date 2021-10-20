@@ -1,6 +1,4 @@
 import styled from "@emotion/styled";
-import { useEffect } from "react";
-import MyPage from "../../../../pages/mypage";
 import Header from "./header/header.container";
 import MypageSidebar from "./MypageSidebar/MypageSidebar.container";
 
@@ -20,18 +18,11 @@ const Wrapper = styled.div`
 
 const Mypage = styled.div`
   width: 1200px;
-  /* height: 648px; */
   display: flex;
   flex-direction: row;
-  /* justify-content: center; */
-  /* align-items: center; */
 `;
 
 export default function Layout(props) {
-  // useEffect(() => {
-  //   console.log([props.isMypage]);
-  // }, [props.isMypage]);
-
   return (
     <>
       {!props.isMypage && (

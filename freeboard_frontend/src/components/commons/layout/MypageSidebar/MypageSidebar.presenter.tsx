@@ -30,13 +30,13 @@ export default function MypageSidebarUI() {
         <Point>100000</Point>
       </PointRow>
 
-      {/* src="/images/Mypage/clickPointLogo.png" */}
-      <MyProduct>
-        <ClickMyProduct src="/images/Mypage/clickMyProductLogo.png" />
-        {/* <NoClickMyProduct src="/images/Mypage/clickMyProductLogo.png" /> */}
-        <SelectText>내장터</SelectText>
-        {/* <NoSelectText>내장터</NoSelectText> */}
-      </MyProduct>
+      <MyProfile>
+        <NoClickMyProfile src="/images/Mypage/noClickSmallPhoto.png" />
+        {/* <ClickMyProfile src="/images/Mypage/clickSmallPhoto.png" /> */}
+
+        {/* <NoSelectText>내 프로필</NoSelectText> */}
+        <SelectText>내 프로필</SelectText>
+      </MyProfile>
 
       <MyPointRow>
         {/* <SelectMyPoint src="/images/Mypage/clickPointLogo.png" /> */}
@@ -45,13 +45,12 @@ export default function MypageSidebarUI() {
         {/* <NoSelectText>내 포인트</NoSelectText> */}
       </MyPointRow>
 
-      <MyProfile>
-        <NoClickMyProfile src="/images/Mypage/noClickSmallPhoto.png" />
-        {/* <ClickMyProfile src="/images/Mypage/clickSmallPhoto.png" /> */}
-
-        <NoSelectText>내 프로필</NoSelectText>
-        {/* <NoSelectText>내 프로필</NoSelectText> */}
-      </MyProfile>
+      <MyProduct>
+        <ClickMyProduct src="/images/Mypage/clickMyProductLogo.png" />
+        {/* <NoClickMyProduct src="/images/Mypage/clickMyProductLogo.png" /> */}
+        {/* <SelectText>내장터</SelectText> */}
+        <NoSelectText>내장터</NoSelectText>
+      </MyProduct>
     </Wrapper>
   );
 }
