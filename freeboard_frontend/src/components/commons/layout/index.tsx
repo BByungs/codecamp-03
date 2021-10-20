@@ -28,9 +28,9 @@ const Mypage = styled.div`
 `;
 
 export default function Layout(props) {
-  useEffect(() => {
-    console.log([props.isMypage]);
-  }, [props.isMypage]);
+  // useEffect(() => {
+  //   console.log([props.isMypage]);
+  // }, [props.isMypage]);
 
   return (
     <>

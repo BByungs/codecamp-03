@@ -21,10 +21,6 @@ export default function Header() {
   const { data } =
     useQuery<Pick<IQuery, "fetchUserLoggedIn">>(FETCH_USER_LOGGED_IN);
 
-  // useEffect(() => {
-  //   setRefreshToken(localStorage.getItem("refreshToken"));
-  // }, []);
-
   const router = useRouter();
   const isMain = MAIN.includes(router.pathname);
   const isBoardList = BOARD_LIST.includes(router.pathname);
@@ -35,6 +31,7 @@ export default function Header() {
   }
   function onClickLogout() {
     localStorage.removeItem("refreshToken");
+    localStorage.removeItem("accessToken");
     setRefreshToken("");
   }
   function onClickMain() {
