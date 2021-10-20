@@ -38,7 +38,7 @@ export default function HeaderUI(props) {
       <Container>
         <Logo src="/images/header/logo.png" />
         <Icon>
-          {props.data && (
+          {props.refreshToken && (
             <Name>{props.data?.fetchUserLoggedIn.name}님 반갑습니다.</Name>
           )}
           <Icons>
@@ -60,7 +60,7 @@ export default function HeaderUI(props) {
               <MyPageFilled onClick={props.onClickMyPage} />
             )}
 
-            {props.data ? (
+            {props.refreshToken ? (
               <Logout onClick={props.onClickLogout} />
             ) : (
               <Login onClick={props.onClickLogin} />

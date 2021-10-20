@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { FETCH_USER_LOGGED_IN } from "./header.queries";
 import { useQuery } from "@apollo/client";
 import { IQuery } from "../../../../commons/types/generated/types";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../../../../pages/_app";
 
 const MAIN = ["/"]; // marketMain
@@ -15,9 +15,15 @@ declare const window: typeof globalThis & {
 };
 
 export default function Header() {
-  const { setAccessToken } = useContext(GlobalContext);
+  const { setAccessToken, setRefreshToken, refreshToken } =
+    useContext(GlobalContext);
+
   const { data } =
     useQuery<Pick<IQuery, "fetchUserLoggedIn">>(FETCH_USER_LOGGED_IN);
+
+  // useEffect(() => {
+  //   setRefreshToken(localStorage.getItem("refreshToken"));
+  // }, []);
 
   const router = useRouter();
   const isMain = MAIN.includes(router.pathname);
@@ -28,8 +34,8 @@ export default function Header() {
     router.push("/main");
   }
   function onClickLogout() {
-    localStorage.removeItem("accessToken");
-    setAccessToken("");
+    localStorage.removeItem("refreshToken");
+    setRefreshToken("");
   }
   function onClickMain() {
     router.push("/");
@@ -70,6 +76,7 @@ export default function Header() {
       handleOk={handleOk}
       handleCancel={handleCancel}
       isModalVisible={isModalVisible}
+      refreshToken={refreshToken}
     />
   );
 }

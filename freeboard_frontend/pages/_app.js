@@ -16,28 +16,26 @@ import { createContext, useEffect, useState } from "react";
 
 import { onError } from "@apollo/client/link/error";
 import { getAccessToken } from "../src/components/commons/library/getAccessToken";
+import MyPage from "../src/components/units/Mypage/Mypage.container";
 ("./signin");
 const HIDEN_MAIN = ["/main"];
 const HIDDEN_SIGNIN = ["/signin"];
+const HIDDEM_MYPAGE = ["/mypage"];
 
 export const GlobalContext = createContext(null);
 function MyApp({ Component, pageProps }) {
   const [accessToken, setAccessToken] = useState("");
   const [userInfo, setUserInfo] = useState({});
+  const [refreshToken, setRefreshToken] = useState(true);
 
   const value = {
     accessToken: accessToken,
     setAccessToken: setAccessToken,
     userInfo: userInfo,
     setUserInfo: setUserInfo,
+    setRefreshToken: setRefreshToken,
+    refreshToken: refreshToken,
   };
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem("accessToken") || ""; // accessToken
-  //   // console.log(accessToken);
-  //   setAccessToken(token);
-  //   // localStorage.clear();
-  // }, [accessToken]);
 
   useEffect(() => {
     if (localStorage.getItem("refreshToken")) {
@@ -78,12 +76,13 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const isMain = HIDEN_MAIN.includes(router.pathname);
   const isSignIn = HIDDEN_SIGNIN.includes(router.pathname);
+  const isMypage = HIDDEM_MYPAGE.includes(router.pathname);
 
   return (
     <GlobalContext.Provider value={value}>
       <ApolloProvider client={client}>
         {!isMain && !isSignIn && (
-          <Layout>
+          <Layout isMypage={isMypage}>
             <Component {...pageProps} />
           </Layout>
         )}

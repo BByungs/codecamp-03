@@ -16,6 +16,7 @@ export default function ProductWritePage(props) {
   const [uploadFile] = useMutation(UPLOAD_FILE);
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
   const [updateUseditem] = useMutation(UPDATE_USED_ITEM);
+  const [enterInput, setEnterInput] = useState([]);
 
   const [files, setFiles] = useState<(File | null)[]>([null, null, null]);
 
@@ -156,6 +157,16 @@ export default function ProductWritePage(props) {
     }
   }
 
+  function onKeyUp(event) {
+    if (event.keyCode === 32) {
+      // space를 눌렀을때 space를 누르기 전의 값까지 배열에 넣으면 됨
+    }
+  }
+
+  // function onChangeTag(event) {
+  //   console.log(event.target);
+  // }
+
   function onClickCancel() {
     router.push("/");
   }
@@ -173,6 +184,11 @@ export default function ProductWritePage(props) {
       onChangeFiles={onChangeFiles}
       setValue={setValue}
       onClickEdit={onClickEdit}
+      onKeyUp={onKeyUp}
+      // onChangeTag={onChangeTag}
     />
   );
 }
+
+// onKeyUp => event로 받았을따
+// event.keyCode => 13번이 엔터임

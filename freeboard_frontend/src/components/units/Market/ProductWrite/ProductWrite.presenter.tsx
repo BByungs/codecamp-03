@@ -68,6 +68,8 @@ export default function ProductWriteUIPage(props) {
               name="태그입력"
               placeholder="#태그 #태그 #태그"
               type="text"
+              onKeyUp={props.onKeyUp}
+              // register={props.register("tags")}
             />
             <Map
               MapErrorMsg={props.MapErrorMsg}

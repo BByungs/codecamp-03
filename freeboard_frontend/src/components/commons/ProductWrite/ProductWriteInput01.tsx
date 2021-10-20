@@ -42,6 +42,7 @@ export default function ProductWriteInput01(props) {
         onChange={props.onChange}
         // defaultValue={props.defaultValue}
         {...props.register}
+        onKeyUp={props.onKeyUp}
       />
       <ErrorMessage>{props.formState}</ErrorMessage>
     </Wrapper>

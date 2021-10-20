@@ -3,16 +3,17 @@ import { useContext, useEffect } from "react";
 import { GlobalContext } from "../../../../pages/_app";
 
 export const withAuth = (Component) => (props) => {
-  const { accessToken } = useContext(GlobalContext);
+  const { refreshToken, setRefreshToken } = useContext(GlobalContext);
   const router = useRouter();
-  console.log(accessToken);
+  // console.log(refreshToken);
+
   useEffect(() => {
-    const accessTokenItem = window.localStorage.getItem("accessToken");
-    if (!accessTokenItem) {
+    const refreshTokenItem = window.localStorage.getItem("refreshToken");
+    if (!refreshTokenItem) {
       alert("로그인을 다시 해주세요");
       router.push("/");
     }
-  }, [accessToken]);
+  }, [refreshToken]);
 
   return <Component {...props} />;
 };

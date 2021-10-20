@@ -6,7 +6,7 @@ import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../../../pages/_app";
 
 export default function MainPage() {
-  const { setAccessToken } = useContext(GlobalContext);
+  const { setRefreshToken } = useContext(GlobalContext);
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -30,10 +30,8 @@ export default function MainPage() {
           email,
         },
       });
-      // console.log(result.data.loginUser.accessToken);
       localStorage.setItem("refreshToken", "true");
-      // localStorage.setItem("accessToken", result.data?.loginUser.accessToken);
-      setAccessToken(result.data.loginUser.accessToken);
+      setRefreshToken(localStorage.getItem("refreshToken"));
 
       router.push("/");
     } catch (err: any) {

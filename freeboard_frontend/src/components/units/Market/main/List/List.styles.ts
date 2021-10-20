@@ -4,6 +4,7 @@ export const Container = styled.div`
   width: 1200px;
   display: flex;
   flex-direction: column;
+  height: 100%;
 `;
 
 export const ListWrapper = styled.div`
@@ -122,10 +123,4 @@ export const ProductPrice = styled.div`
   width: 150px;
   height: 36px;
   text-align: center;
-`;
-
-export const Loader = styled.div`
-  width: 1240px;
-  height: 1004px;
-  overflow: auto;
 `;

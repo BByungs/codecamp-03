@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { route } from "next/dist/server/router";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import {
   IQuery,
   IQueryFetchUseditemsArgs,
@@ -15,7 +16,7 @@ export default function List(props) {
     IQueryFetchUseditemsArgs
   >(FETCH_USED_ITEMS, {
     variables: {
-      page: 1,
+      // page: 0,
       isSoldout: props.isSoldout,
     },
   });
@@ -51,11 +52,12 @@ export default function List(props) {
   };
 
   function onLoadMore() {
-    if (!data) return;
+    // if (data?.fetchUseditems.length % 10 !== 0) return;
+    // if (!data) return;
 
     fetchMore({
       variables: {
-        page: Math.ceil(Number(data?.fetchUseditems.length) / 10),
+        page: Math.ceil(data?.fetchUseditems.length / 10) + 1,
       },
       updateQuery: (prev, { fetchMoreResult }) => {
         return {

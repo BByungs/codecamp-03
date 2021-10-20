@@ -41,7 +41,7 @@ export const SoldOutText = styled.div`
   font-family: Noto Sans CJK KR;
   font-size: 18px;
   font-style: normal;
-  font-weight: 400; // 조건부 렌더링 줘서 선택되면 500으로 바꿔야함
+  font-weight: 400;
   color: #4f4f4f;
   cursor: pointer;
   :hover {
