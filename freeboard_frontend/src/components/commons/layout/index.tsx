@@ -27,7 +27,7 @@ export default function Layout(props) {
     <>
       {!props.isMypage && (
         <Wrapper>
-          <Header />
+          <Header isMypage={props.isMypage} />
           <div
             style={{
               borderBottom: "1px solid #bdbdbd",
@@ -41,7 +41,7 @@ export default function Layout(props) {
 
       {props.isMypage && (
         <Wrapper>
-          <Header />
+          <Header isMypage={props.isMypage} />
           <div
             style={{
               borderBottom: "1px solid #bdbdbd",
@@ -50,7 +50,11 @@ export default function Layout(props) {
             }}
           ></div>
           <Mypage>
-            <MypageSidebar />
+            <MypageSidebar
+              isMypageMain={props.isMypageMain}
+              isMypageMyPoint={props.isMypageMyPoint}
+              isMypageMyProduct={props.isMypageMyProduct}
+            />
             <div
               style={{
                 borderRight: "1px solid #bdbdbd",

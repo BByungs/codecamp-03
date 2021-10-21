@@ -14,7 +14,7 @@ declare const window: typeof globalThis & {
   IMP: any;
 };
 
-export default function Header() {
+export default function Header(props) {
   const { setAccessToken, setRefreshToken, refreshToken } =
     useContext(GlobalContext);
 
@@ -63,17 +63,16 @@ export default function Header() {
       onClickLogin={onClickLogin}
       onClickLogout={onClickLogout}
       isMain={isMain}
-      isMyPage={isMyPage}
       isBoardList={isBoardList}
       onClickMain={onClickMain}
       onClickBoardList={onClickBoardList}
       onClickMyPage={onClickMyPage}
-      // onClickPayment={onClickPayment}
       showModal={showModal}
       handleOk={handleOk}
       handleCancel={handleCancel}
       isModalVisible={isModalVisible}
       refreshToken={refreshToken}
+      isMypage={props.isMypage}
     />
   );
 }

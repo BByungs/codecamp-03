@@ -36,7 +36,7 @@ export const Name = styled.div`
 
 export const PointRow = styled.div`
   display: flex;
-  width: 92px;
+  width: 103px;
   height: 24px;
   margin-bottom: 76.5px;
 `;

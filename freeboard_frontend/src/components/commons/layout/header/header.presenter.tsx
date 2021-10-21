@@ -54,7 +54,7 @@ export default function HeaderUI(props) {
               <ListFilled onClick={props.onClickBoardList} />
             )}
 
-            {!props.isMyPage ? (
+            {!props.isMypage ? (
               <MyPageOutline onClick={props.onClickMyPage} />
             ) : (
               <MyPageFilled onClick={props.onClickMyPage} />

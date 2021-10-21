@@ -1,5 +1,9 @@
-import MypagePage from "../../src/components/units/Mypage/Mypage.container";
+import { withAuth } from "../../src/components/commons/hoc/withAuth";
+import MyPageMain from "../../src/components/units/Market/MyPage/MyPageMain/MyPageMain.container";
 
-export default function MyPage() {
-  return <MypagePage />;
-}
+// 내 프로필이 메인임
+const MyPage = () => {
+  return <MyPageMain />;
+};
+
+export default withAuth(MyPage);

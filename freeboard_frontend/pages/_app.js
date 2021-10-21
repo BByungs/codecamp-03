@@ -16,13 +16,13 @@ import { createContext, useEffect, useState } from "react";
 
 import { onError } from "@apollo/client/link/error";
 import { getAccessToken } from "../src/components/commons/library/getAccessToken";
-import MyPage from "../src/components/units/Mypage/Mypage.container";
-("./signin");
 const HIDEN_MAIN = ["/main"];
 const HIDDEN_SIGNIN = ["/signin"];
-const HIDDEM_MYPAGE = ["/mypage"];
+const HIDDEM_MYPAGE = ["/mypage", "/mypage/mypoint", "/mypage/myproduct"];
 
 export const GlobalContext = createContext(null);
+
+// * 함수 시작
 function MyApp({ Component, pageProps }) {
   const [accessToken, setAccessToken] = useState("");
   const [userInfo, setUserInfo] = useState({});
@@ -78,11 +78,20 @@ function MyApp({ Component, pageProps }) {
   const isSignIn = HIDDEN_SIGNIN.includes(router.pathname);
   const isMypage = HIDDEM_MYPAGE.includes(router.pathname);
 
+  const isMypageMain = router.pathname === "/mypage";
+  const isMypageMyPoint = router.pathname === "/mypage/mypoint";
+  const isMypageMyProduct = router.pathname === "/mypage/myproduct";
+
   return (
     <GlobalContext.Provider value={value}>
       <ApolloProvider client={client}>
         {!isMain && !isSignIn && (
-          <Layout isMypage={isMypage}>
+          <Layout
+            isMypage={isMypage}
+            isMypageMain={isMypageMain}
+            isMypageMyPoint={isMypageMyPoint}
+            isMypageMyProduct={isMypageMyProduct}
+          >
             <Component {...pageProps} />
           </Layout>
         )}
