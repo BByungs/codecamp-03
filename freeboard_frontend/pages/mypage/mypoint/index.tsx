@@ -1,5 +1,8 @@
+import { withAuth } from "../../../src/components/commons/hoc/withAuth";
 import MyPoint from "../../../src/components/units/Market/MyPage/MyPoint/MyPoint.container";
 
-export default function MyPointPage() {
+const MyPointPage = () => {
   return <MyPoint />;
-}
+};
+
+export default withAuth(MyPointPage);

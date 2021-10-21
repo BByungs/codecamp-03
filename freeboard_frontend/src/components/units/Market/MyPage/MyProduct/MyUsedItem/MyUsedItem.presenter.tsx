@@ -36,7 +36,9 @@ export default function MyFavoriteUI(props) {
                 <ChargeText style={{ width: "20%" }}></ChargeText>
               )}
 
-              <ImpText style={{ width: "20%" }}>{el.price}</ImpText>
+              <ImpText style={{ width: "20%" }}>
+                {`₩ ${el.price.toLocaleString()}`}
+              </ImpText>
               <ImpText style={{ width: "10%" }}>
                 {el.createdAt.slice(0, 10)}
               </ImpText>
