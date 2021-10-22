@@ -48,6 +48,48 @@ export default function MyFavoriteUI(props) {
           <UnderLine />
         </Col>
       ))}
+
+      {/* 내가 누른 페이지와 현재 페이지와 같다면 ? 색 변함
+      prev button , next button 만들고 
+      존재하는 페이지까지만 보여야 함 */}
+
+      <div
+        style={{
+          width: "980px",
+          marginTop: "40px",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <div>
+          <span
+            style={{ marginRight: "40px", fontSize: "15x", cursor: "pointer" }}
+          >
+            {"<"}
+          </span>
+
+          <span>
+            {new Array(10).fill(1).map(
+              (_, idx) =>
+                idx < props.pickedLastPage && (
+                  <span
+                    style={{
+                      marginRight: "40px",
+                      fontSize: "15x",
+                      cursor: "pointer",
+                    }}
+                    onClick={props.onClickFavoritePage}
+                    id={String(props.favoriteStartPage + idx)}
+                  >
+                    {props.favoriteStartPage + idx}
+                  </span>
+                )
+            )}
+          </span>
+
+          <span style={{ fontSize: "15px", cursor: "pointer" }}>{">"}</span>
+        </div>
+      </div>
     </Wrapper>
   );
 }

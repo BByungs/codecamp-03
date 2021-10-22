@@ -36,9 +36,7 @@ export default function MyFavoriteUI(props) {
                 <ChargeText style={{ width: "20%" }}></ChargeText>
               )}
 
-              <ImpText style={{ width: "20%" }}>
-                {`₩ ${el.price.toLocaleString()}`}
-              </ImpText>
+              <ImpText style={{ width: "20%" }}>{el.price}</ImpText>
               <ImpText style={{ width: "10%" }}>
                 {el.createdAt.slice(0, 10)}
               </ImpText>
@@ -47,6 +45,44 @@ export default function MyFavoriteUI(props) {
           </Col>
         ))
         .reverse()}
+
+      <div
+        style={{
+          width: "980px",
+          marginTop: "40px",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <div>
+          <span
+            style={{ marginRight: "40px", fontSize: "15x", cursor: "pointer" }}
+          >
+            {"<"}
+          </span>
+
+          <span>
+            {new Array(10).fill(1).map(
+              (_, idx) =>
+                idx <= props.soldLastPage && (
+                  <span
+                    style={{
+                      marginRight: "40px",
+                      fontSize: "15x",
+                      cursor: "pointer",
+                    }}
+                    onClick={props.onClickSoldPage}
+                    id={String(props.soldStartPage + idx)}
+                  >
+                    {props.soldStartPage + idx}
+                  </span>
+                )
+            )}
+          </span>
+
+          <span style={{ fontSize: "15px", cursor: "pointer" }}>{">"}</span>
+        </div>
+      </div>
     </Wrapper>
   );
 }

@@ -47,11 +47,22 @@ export default function MyProductUI(props) {
       <Line />
 
       {props.isMyUsedItem && (
-        <MyUsedItem fetchUseditemsISold={props.fetchUseditemsISold} />
+        <MyUsedItem
+          fetchUseditemsISold={props.fetchUseditemsISold}
+          soldStartPage={props.soldStartPage}
+          onClickSoldPage={props.onClickSoldPage}
+          soldCurrentPage={props.soldCurrentPage}
+          soldLastPage={props.soldLastPage}
+        />
       )}
 
       {props.isMyFavorite && (
-        <MyFavorite fetchUseditemsIPicked={props.fetchUseditemsIPicked} />
+        <MyFavorite
+          fetchUseditemsIPicked={props.fetchUseditemsIPicked}
+          onClickFavoritePage={props.onClickFavoritePage}
+          favoriteStartPage={props.favoriteStartPage}
+          pickedLastPage={props.pickedLastPage}
+        />
       )}
     </Wrapper>
   );

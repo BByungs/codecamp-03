@@ -26,3 +26,18 @@ export const FETCH_USED_ITEMS_I_PICKED = gql`
     }
   }
 `;
+
+// fetchUseditemsCountISold
+export const FETCH_USED_ITEMS_COUNT_I_SOLD = gql`
+  query fetchUseditemsCountISold {
+    fetchUseditemsCountISold
+  }
+`;
+
+// fetchUseditemsCountIPicked
+
+export const FETCH_USED_ITEMS_COUNT_I_PICKED = gql`
+  query fetchUseditemsCountIPicked {
+    fetchUseditemsCountIPicked
+  }
+`;
