@@ -7,6 +7,7 @@ import {
   GotoMain,
   BuyButton,
   EditButton,
+  DeleteButton,
 } from "./ProductDetail.styles";
 import Underline from "../../../commons/ProductDetail/Underline";
 import ProductInfo from "./ProductInfo/ProductInfo.container";
@@ -29,11 +30,18 @@ export default function ProductDetailUIPage(props) {
         <ProductInfo data={props.data} />
         <KakaoMap id="map" />
         <Underline />
-        <Buttons>
+        <Buttons isSeller={isSeller}>
           <GotoMain onClick={props.onClickMain}>목록으로</GotoMain>
 
           {isSeller ? (
-            <EditButton onClick={props.onClickMoveToEdit}>수정하기</EditButton>
+            <>
+              <EditButton onClick={props.onClickMoveToEdit}>
+                수정하기
+              </EditButton>
+              <DeleteButton onClick={props.onClickProductDelete}>
+                삭제하기
+              </DeleteButton>
+            </>
           ) : (
             <BuyButton onClick={props.onClickBuy}>구매하기</BuyButton>
           )}

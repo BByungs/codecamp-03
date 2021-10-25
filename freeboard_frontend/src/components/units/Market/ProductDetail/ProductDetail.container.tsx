@@ -6,10 +6,12 @@ import {
   FETCH_USED_ITEM,
   FETCH_USER_LOGGED_IN,
   CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING,
+  DELETE_USED_ITME,
 } from "./ProductDetail.queries";
 
 export default function ProductDetailPage() {
   const router = useRouter();
+  const [deleteUseditem] = useMutation(DELETE_USED_ITME);
   const { data, refetch } = useQuery(FETCH_USED_ITEM, {
     variables: {
       useditemId: router.query.useditemId,
@@ -84,6 +86,21 @@ export default function ProductDetailPage() {
       alert(error.message);
     }
   }
+
+  async function onClickProductDelete() {
+    try {
+      await deleteUseditem({
+        variables: {
+          useditemId: router.query.useditemId,
+        },
+      });
+      alert("상품을 삭제합니다.");
+      router.push(`/`);
+    } catch (err: any) {
+      alert(err.message);
+    }
+  }
+
   return (
     <ProductDetailUIPage
       data={data}
@@ -92,6 +109,7 @@ export default function ProductDetailPage() {
       refetch={refetch}
       onClickMoveToEdit={onClickMoveToEdit}
       onClickBuy={onClickBuy}
+      onClickProductDelete={onClickProductDelete}
     />
   );
 }

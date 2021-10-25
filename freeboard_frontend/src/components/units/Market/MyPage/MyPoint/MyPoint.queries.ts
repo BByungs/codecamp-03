@@ -36,10 +36,10 @@ export const FETCH_POINT_TRANSACTIONS_OF_BUYING = gql`
       createdAt
       useditem {
         name
+        # seller {
+        #   name
+        # }
       }
-      # seller {
-      #   name
-      # }
       amount
       balance
     }

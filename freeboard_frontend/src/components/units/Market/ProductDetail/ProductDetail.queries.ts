@@ -46,3 +46,10 @@ export const CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING = gql`
     }
   }
 `;
+
+// deleteUseditem
+export const DELETE_USED_ITME = gql`
+  mutation deleteUseditem($useditemId: ID!) {
+    deleteUseditem(useditemId: $useditemId)
+  }
+`;

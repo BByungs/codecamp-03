@@ -1,5 +1,10 @@
 import styled from "@emotion/styled";
+import SearchIcon from "@mui/icons-material/Search";
 
+interface IProps {
+  isMyUsedItem: boolean;
+  isMyFavorite: boolean;
+}
 export const Wrapper = styled.div`
   width: 980px;
   display: flex;
@@ -49,7 +54,7 @@ export const Row = styled.div`
   margin-bottom: 20px;
   height: 24px;
 `;
-// 날짜 text
+
 export const DateText = styled.div`
   font-family: Noto Sans CJK KR;
   font-size: 16px;
@@ -60,7 +65,6 @@ export const DateText = styled.div`
   text-align: center;
 `;
 
-// text: 충전 , 거래및충전내역 금액 (yellow)
 export const ChargeText = styled.div`
   font-family: Noto Sans CJK KR;
   font-size: 16px;
@@ -71,7 +75,6 @@ export const ChargeText = styled.div`
   text-align: center;
 `;
 
-// text: 구매 , 거래및충전내역 금액 (blue)
 export const BuyText = styled.div`
   font-family: Noto Sans CJK KR;
   font-size: 16px;
@@ -82,7 +85,6 @@ export const BuyText = styled.div`
   text-align: center;
 `;
 
-// 잔액 text
 export const Balance = styled.div`
   font-family: Noto Sans CJK KR;
   font-size: 16px;

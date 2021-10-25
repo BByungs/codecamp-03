@@ -1,5 +1,9 @@
 import styled from "@emotion/styled";
 
+interface IProps {
+  isSeller: boolean;
+}
+
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -22,7 +26,8 @@ export const KakaoMap = styled.div`
 `;
 
 export const Buttons = styled.div`
-  width: 382px;
+  /* width: 382px; */
+  width: ${(props: IProps) => (props.isSeller ? "561px" : "382px")};
   height: 52px;
   display: flex;
   justify-content: space-between;
@@ -39,6 +44,11 @@ export const BuyButton = styled.button`
   height: 52px;
 `;
 export const EditButton = styled.button`
+  width: 179px;
+  height: 52px;
+`;
+
+export const DeleteButton = styled.button`
   width: 179px;
   height: 52px;
 `;

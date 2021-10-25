@@ -41,7 +41,6 @@ export const ProductInfo = styled.div`
   display: flex;
   justify-content: space-between;
 `;
-// productInfo 해야함
 
 export const Info = styled.div`
   display: flex;

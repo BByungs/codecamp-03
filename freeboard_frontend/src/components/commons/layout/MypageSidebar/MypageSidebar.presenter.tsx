@@ -28,7 +28,6 @@ export default function MypageSidebarUI(props) {
       <PointRow>
         <PointPhoto src="/images/Mypage/clickPointLogo.png" />
         <Point>
-          {/* {`${props.fetchUserLoggedIn?.fetchUserLoggedIn.userPoint?.amount.toLocaleString()}원`} */}
           {props.fetchUserLoggedIn?.fetchUserLoggedIn.userPoint?.amount}
         </Point>
       </PointRow>

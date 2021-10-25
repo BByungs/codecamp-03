@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   Wrapper,
   HeaderLine,
@@ -13,6 +14,10 @@ import {
 } from "./MyFavorite.styles";
 
 export default function MyFavoriteUI(props) {
+  useEffect(() => {
+    console.log(props.pickedLastPage);
+  }, [props.pickedLastPage]);
+
   return (
     <Wrapper>
       <HeaderRow>
@@ -48,10 +53,6 @@ export default function MyFavoriteUI(props) {
           <UnderLine />
         </Col>
       ))}
-
-      {/* 내가 누른 페이지와 현재 페이지와 같다면 ? 색 변함
-      prev button , next button 만들고 
-      존재하는 페이지까지만 보여야 함 */}
 
       <div
         style={{

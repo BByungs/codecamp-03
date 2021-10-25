@@ -38,32 +38,20 @@ export default function MyProductUI(props) {
 
         <ProductSearch>
           <Search />
-          <SearchbarInput placeholder="필요한 내용을 검색해주세요." />
+          <SearchbarInput
+            placeholder="필요한 내용을 검색해주세요."
+            onChange={props.onChangeSearch}
+          />
         </ProductSearch>
 
-        <SearchButton>검색</SearchButton>
+        <SearchButton onClick={props.onClickSearch}>검색</SearchButton>
       </Header>
 
       <Line />
 
-      {props.isMyUsedItem && (
-        <MyUsedItem
-          fetchUseditemsISold={props.fetchUseditemsISold}
-          soldStartPage={props.soldStartPage}
-          onClickSoldPage={props.onClickSoldPage}
-          soldCurrentPage={props.soldCurrentPage}
-          soldLastPage={props.soldLastPage}
-        />
-      )}
+      {props.isMyUsedItem && <MyUsedItem enterSearch={props.enterSearch} />}
 
-      {props.isMyFavorite && (
-        <MyFavorite
-          fetchUseditemsIPicked={props.fetchUseditemsIPicked}
-          onClickFavoritePage={props.onClickFavoritePage}
-          favoriteStartPage={props.favoriteStartPage}
-          pickedLastPage={props.pickedLastPage}
-        />
-      )}
+      {props.isMyFavorite && <MyFavorite enterSearch={props.enterSearch} />}
     </Wrapper>
   );
 }

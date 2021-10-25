@@ -11,8 +11,10 @@ import {
   Balance,
   UnderLine,
 } from "./MyUsedItem.styles";
+import { v4 as uuidv4 } from "uuid";
+import { useEffect } from "react";
 
-export default function MyFavoriteUI(props) {
+export default function MyUsedItemUI(props) {
   return (
     <Wrapper>
       <HeaderRow>
@@ -24,27 +26,26 @@ export default function MyFavoriteUI(props) {
       </HeaderRow>
 
       <HeaderLine />
-      {props.fetchUseditemsISold?.fetchUseditemsISold
-        .map((el, idx) => (
-          <Col key={el._id}>
-            <Row>
-              <DateText style={{ width: "10%" }}>{idx + 1}</DateText>
-              <ImpText style={{ width: "40%" }}>{el.name}</ImpText>
-              {el.soldAt ? (
-                <ChargeText style={{ width: "20%" }}>판매완료</ChargeText>
-              ) : (
-                <ChargeText style={{ width: "20%" }}></ChargeText>
-              )}
 
-              <ImpText style={{ width: "20%" }}>{el.price}</ImpText>
-              <ImpText style={{ width: "10%" }}>
-                {el.createdAt.slice(0, 10)}
-              </ImpText>
-            </Row>
-            <UnderLine />
-          </Col>
-        ))
-        .reverse()}
+      {props.fetchUseditemsISold?.fetchUseditemsISold.map((el, idx) => (
+        <Col key={uuidv4()}>
+          <Row>
+            <DateText style={{ width: "10%" }}>{idx + 1}</DateText>
+            <ImpText style={{ width: "40%" }}>{el.name}</ImpText>
+            {el.soldAt ? (
+              <ChargeText style={{ width: "20%" }}>판매완료</ChargeText>
+            ) : (
+              <ChargeText style={{ width: "20%" }}></ChargeText>
+            )}
+
+            <ImpText style={{ width: "20%" }}>{el.price}</ImpText>
+            <ImpText style={{ width: "10%" }}>
+              {el.createdAt.slice(0, 10)}
+            </ImpText>
+          </Row>
+          <UnderLine />
+        </Col>
+      ))}
 
       <div
         style={{
@@ -62,23 +63,18 @@ export default function MyFavoriteUI(props) {
           </span>
 
           <span>
-            {
-              new Array(10).fill(1).map((_, idx) => (
-                // idx <= props.soldLastPage && (
-                <span
-                  style={{
-                    marginRight: "40px",
-                    fontSize: "15x",
-                    cursor: "pointer",
-                  }}
-                  onClick={props.onClickSoldPage}
-                  id={String(props.soldStartPage + idx)}
-                >
-                  {props.soldStartPage + idx}
-                </span>
-              ))
-              // )
-            }
+            {new Array(5).fill(1).map((el, idx) => (
+              <span
+                style={{
+                  marginRight: "40px",
+                  fontSize: "15x",
+                  cursor: "pointer",
+                }}
+                onClick={props.onClickPage(el + idx)}
+              >
+                {el + idx}
+              </span>
+            ))}
           </span>
 
           <span style={{ fontSize: "15px", cursor: "pointer" }}>{">"}</span>

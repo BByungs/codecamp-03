@@ -59,7 +59,6 @@ export const MyProduct = styled.div`
   align-items: center;
   width: 103px;
   height: 42px;
-  /* margin-bottom: 23px; */
   cursor: pointer;
 `;
 

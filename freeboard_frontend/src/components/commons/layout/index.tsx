@@ -58,7 +58,6 @@ export default function Layout(props) {
             <div
               style={{
                 borderRight: "1px solid #bdbdbd",
-                height: "100vh",
                 marginRight: "40px",
               }}
             />

@@ -41,3 +41,10 @@ export const FETCH_USED_ITEMS_COUNT_I_PICKED = gql`
     fetchUseditemsCountIPicked
   }
 `;
+
+// fetchUseditemsCountIBought
+export const FETCH_USED_ITEMS_COUNT_I_BOUGHT = gql`
+  query fetchUseditemsCountIBought {
+    fetchUseditemsCountIBought
+  }
+`;
