@@ -62,22 +62,23 @@ export default function MyFavoriteUI(props) {
           </span>
 
           <span>
-            {new Array(10).fill(1).map(
-              (_, idx) =>
-                idx <= props.soldLastPage && (
-                  <span
-                    style={{
-                      marginRight: "40px",
-                      fontSize: "15x",
-                      cursor: "pointer",
-                    }}
-                    onClick={props.onClickSoldPage}
-                    id={String(props.soldStartPage + idx)}
-                  >
-                    {props.soldStartPage + idx}
-                  </span>
-                )
-            )}
+            {
+              new Array(10).fill(1).map((_, idx) => (
+                // idx <= props.soldLastPage && (
+                <span
+                  style={{
+                    marginRight: "40px",
+                    fontSize: "15x",
+                    cursor: "pointer",
+                  }}
+                  onClick={props.onClickSoldPage}
+                  id={String(props.soldStartPage + idx)}
+                >
+                  {props.soldStartPage + idx}
+                </span>
+              ))
+              // )
+            }
           </span>
 
           <span style={{ fontSize: "15px", cursor: "pointer" }}>{">"}</span>

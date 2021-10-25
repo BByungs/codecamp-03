@@ -95,7 +95,9 @@ function MyApp({ Component, pageProps }) {
             <Component {...pageProps} />
           </Layout>
         )}
+
         {isMain && <Main />}
+
         {isSignIn && <SignIn />}
       </ApolloProvider>
     </GlobalContext.Provider>

@@ -25,7 +25,9 @@ const FETCH_USER_LOGGED_IN = gql`
 
 export default function UseApolloClientPage() {
   const { setAccessToken, setUserInfo, userInfo } = useContext(GlobalContext);
+
   const { handleSubmit, register } = useForm();
+
   const [loginUser] = useMutation(LOGIN_USER);
   const client = useApolloClient(); // useApolloClient import해야함
 
@@ -63,6 +65,13 @@ export default function UseApolloClientPage() {
       alert(error.message);
     }
   }
+
+  // 원래는 로그인하고 , data.fetchUserLoggedIn?.name으로 사용자의 이름을 불러와야 하지만,
+  // 로그인하면서 fetchUserLoggedIn의 쿼리를 동시에 요청해서
+  // 데이터를 받아오기 때문에 useQuery를 따로 할 필요가 없음.
+
+  // 그리고 데이터를 제대로 불러오려면 새로고침을 해야 불러와졌는데,
+  // 이렇게 하면 바로바로 받아와짐.
 
   return (
     <>

@@ -23,7 +23,7 @@ export default function MyProduct() {
     {
       variables: {
         page: 0,
-        search: "",
+        // search: "",
       },
     }
   );
@@ -38,6 +38,7 @@ export default function MyProduct() {
     }
   );
 
+  // 이상함
   const { data: fetchUseditemsCountISold } = useQuery(
     FETCH_USED_ITEMS_COUNT_I_SOLD
   );
@@ -45,10 +46,6 @@ export default function MyProduct() {
   const { data: fetchUseditemsCountIPicked } = useQuery(
     FETCH_USED_ITEMS_COUNT_I_PICKED
   );
-
-  // useEffect(() => {
-  //   console.log(fetchUseditemsCountIPicked?.fetchUseditemsCountIPicked);
-  // }, []);
 
   const soldLastPage = Math.ceil(
     fetchUseditemsCountISold?.fetchUseditemsCountISold / 10

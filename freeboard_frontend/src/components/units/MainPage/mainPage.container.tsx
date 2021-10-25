@@ -22,6 +22,7 @@ export default function MainPage() {
   function onChangePassword(e: ChangeEvent<HTMLInputElement>) {
     setPassword(e.target.value);
   }
+
   async function onClickLogin() {
     try {
       const result = await loginUser({
