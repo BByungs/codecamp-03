@@ -5,6 +5,7 @@ import NestedCommentResult from "../NestedCommentResult/NestedCommentResult.cont
 import {
   CREATE_USED_ITEM_QUESTION_ANSWER,
   FETCH_USED_ITEM_QUESTION_ANSWERS,
+  UPDATE_USED_ITEM_QUESTION_ANSWER,
 } from "./Comment.queries";
 
 import {
@@ -23,9 +24,14 @@ import {
 export default function CommentUIItem(props: any) {
   const [isNestedComments, setIsNestedComments] = useState(false);
   const [contents, setContents] = useState("");
+  const [replyContents, setReplyContents] = useState("");
 
   const [createUseditemQuestionAnswer] = useMutation(
     CREATE_USED_ITEM_QUESTION_ANSWER
+  );
+
+  const [updateUseditemQuestionAnswer] = useMutation(
+    UPDATE_USED_ITEM_QUESTION_ANSWER
   );
 
   const { data } = useQuery(FETCH_USED_ITEM_QUESTION_ANSWERS, {
@@ -34,12 +40,13 @@ export default function CommentUIItem(props: any) {
     },
   });
 
+  // sellerEl 은 처음 단 댓글
   function onClickQuestion() {
     setIsNestedComments((prev) => !prev);
   }
 
   async function onClickNestedCommentSubmit() {
-    console.log(props.sellerEl._id);
+    // console.log(props.sellerEl._id);
     try {
       const result = await createUseditemQuestionAnswer({
         variables: {
@@ -64,7 +71,37 @@ export default function CommentUIItem(props: any) {
 
   function onChangeNestedComment(event: ChangeEvent<HTMLInputElement>) {
     setContents(event.target.value);
+    console.log(contents);
   }
+
+  function onChangeReplyComment(event: ChangeEvent<HTMLInputElement>) {
+    setReplyContents(event.target.value);
+    console.log(replyContents);
+  }
+
+  async function onClickNestedCommentEdit(event: any) {
+    try {
+      await updateUseditemQuestionAnswer({
+        variables: {
+          updateUseditemQuestionAnswerInput: {
+            contents: replyContents,
+          },
+          useditemQuestionAnswerId: event.target.id,
+        },
+        refetchQueries: [
+          {
+            query: FETCH_USED_ITEM_QUESTION_ANSWERS,
+            variables: {
+              useditemQuestionAnswerId: props.sellerEl._id,
+            },
+          },
+        ],
+      });
+    } catch (error: any) {
+      alert(error.message);
+    }
+  }
+
   return (
     <>
       {!isNestedComments && (
@@ -100,17 +137,23 @@ export default function CommentUIItem(props: any) {
             </PresenterLeft>
             <PresenterRight src="/comment.png" onClick={onClickQuestion} />
           </PresenterRow>
-          {/* 판매자가 대 댓글 단 부분 */}
+          {/* 대 댓글 단 부분 */}
           {data?.fetchUseditemQuestionAnswers.map((sellerAnswersEl: any) => (
             <NestedCommentResult
               sellerAnswersEl={sellerAnswersEl}
+              onClickNestedCommentEdit={onClickNestedCommentEdit}
+              onChangeReplyComment={onChangeReplyComment}
+              id={sellerAnswersEl._id}
               key={sellerAnswersEl._id}
+              data={data}
             />
           ))}
-          <NestedComment // 댓글 다는 부분
+          <NestedComment
             setIsNestedComments={setIsNestedComments}
             onClickNestedCommentSubmit={onClickNestedCommentSubmit}
             onChangeNestedComment={onChangeNestedComment}
+            onClickNestedCommentEdit={onClickNestedCommentEdit}
+            onChangeReplyComment={onChangeReplyComment}
           />
         </PresenterWrapper>
       )}

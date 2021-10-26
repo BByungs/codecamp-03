@@ -47,7 +47,33 @@ export const FETCH_USED_ITEM_QUESTION_ANSWERS = gql`
       createdAt
       user {
         name
+        email
       }
+    }
+  }
+`;
+
+// fetchUserLoggedIn
+export const FETCH_USER_LOGGED_IN = gql`
+  query fetchUserLoggedIn {
+    fetchUserLoggedIn {
+      email
+      _id
+    }
+  }
+`;
+
+// updateUseditemQuestionAnswer
+export const UPDATE_USED_ITEM_QUESTION_ANSWER = gql`
+  mutation updateUseditemQuestionAnswer(
+    $useditemQuestionAnswerId: ID!
+    $updateUseditemQuestionAnswerInput: UpdateUseditemQuestionAnswerInput!
+  ) {
+    updateUseditemQuestionAnswer(
+      useditemQuestionAnswerId: $useditemQuestionAnswerId
+      updateUseditemQuestionAnswerInput: $updateUseditemQuestionAnswerInput
+    ) {
+      _id
     }
   }
 `;

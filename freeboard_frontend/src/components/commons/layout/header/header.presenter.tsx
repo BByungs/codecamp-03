@@ -75,6 +75,8 @@ export default function HeaderUI(props: any) {
                 visible={true}
                 onOk={props.handleOk}
                 onCancel={props.handleCancel}
+                cancelButtonProps={{ style: { display: "none" } }}
+                okButtonProps={{ style: { display: "none" } }}
               >
                 <Pay />
               </PayModal>

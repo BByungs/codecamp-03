@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import DetailAskUI from "./DetailAsk.presenter";
 import { CREATE_USED_ITEM_QUESTION } from "./DetailAsk.queries";
-import { FETCH_USED_ITEM_QUESTIONS } from "../Comment/Comment.queries";
+import { FETCH_USED_ITEM_QUESTIONS } from "../productComment/Comment/Comment.queries";
 import { useState } from "react";
 export default function DetailAsk() {
   const router = useRouter();

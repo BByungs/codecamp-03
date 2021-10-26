@@ -5,8 +5,9 @@ export const Wrapper = styled.div`
   height: 117px;
   display: flex;
   padding-left: 63px;
+  /* margin-top: 20px; */
+  margin-bottom: 20px;
 `;
-// 1136px
 
 export const Row = styled.div`
   width: 1136px;
@@ -62,4 +63,24 @@ export const Contents = styled.div`
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
+`;
+
+export const EditButton = styled.img`
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+`;
+
+export const IconRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 48px;
+  height: 18px;
+  justify-content: space-between;
+`;
+
+export const Ximg = styled.img`
+  height: 14px;
+  width: 14px;
+  cursor: pointer;
 `;

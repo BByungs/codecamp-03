@@ -1,12 +1,15 @@
 import styled from "@emotion/styled";
 
+interface IProps {
+  isEdit?: boolean;
+}
+
 export const Wrapper = styled.div`
   width: 1200px;
   height: 117px;
   display: flex;
-  padding-left: 63px;
+  padding-left: ${(props: IProps) => (props.isEdit ? "0px" : "63px")};
 `;
-// 1136px
 
 export const Row = styled.div`
   width: 1136px;
@@ -56,10 +59,15 @@ export const Length = styled.div`
   border-top: 1px solid #bdbdbd;
 `;
 
+interface IProps {
+  isEdit?: boolean;
+}
+
 export const Button = styled.button`
   width: 92px;
   height: 52px;
-  background: #ffd600;
+  background: ${(props: IProps) => (props.isEdit ? "black" : "#ffd600")};
+  color: ${(props: IProps) => (props.isEdit ? "white" : "black")};
   font-family: Noto Sans CJK KR;
   font-size: 16px;
   font-style: normal;
