@@ -24,7 +24,7 @@ export async function getAccessToken(
     const newAccessToken = result.restoreAccessToken.accessToken;
     setAccessToken(newAccessToken); // globalContext에 저장
     return newAccessToken;
-  } catch (error) {
+  } catch (error: any) {
     console.log(error.message);
   }
 }

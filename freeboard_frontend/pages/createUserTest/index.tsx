@@ -39,7 +39,7 @@ export default function CreateUserTest() {
         },
       });
       console.log(result.data.createUser._id, result.data.createUser.email);
-    } catch (err) {
+    } catch (err: any) {
       alert(err.message);
     }
   };

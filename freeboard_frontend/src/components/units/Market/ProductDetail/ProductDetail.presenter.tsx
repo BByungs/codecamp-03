@@ -14,7 +14,6 @@ import ProductInfo from "./ProductInfo/ProductInfo.container";
 import Underline2 from "../../../commons/ProductDetail/Underline2";
 import DetailAsk from "./DetailAsk/DetailAsk.container";
 import SellerComment from "./SellerComment/SellerComment.container";
-import NormalComment from "./NormalComment/NormalComment.container";
 import { useRouter } from "next/router";
 
 export default function ProductDetailUIPage(props) {
@@ -48,8 +47,9 @@ export default function ProductDetailUIPage(props) {
         </Buttons>
         <Underline2 />
         <DetailAsk />
-        {isSeller && <SellerComment />}
-        {!isSeller && <NormalComment fetchUserLoggedIn={fetchUserLoggedIn} />}
+        {/* {isSeller && <SellerComment />} */}
+        <SellerComment></SellerComment>
+        {/* {!isSeller && <NormalComment fetchUserLoggedIn={fetchUserLoggedIn} />} */}
       </Wrapper>
     </Container>
   );

@@ -22,7 +22,7 @@ export default function BoardDetail() {
   const { data } = useQuery<Pick<IQuery, "fetchBoard">, IQueryFetchBoardArgs>(
     FETCH_BOARD,
     {
-      variables: { boardId: router.query.boardID },
+      variables: { boardId: String(router.query.boardID) },
     }
   );
 

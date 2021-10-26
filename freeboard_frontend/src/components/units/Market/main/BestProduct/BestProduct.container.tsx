@@ -1,19 +1,19 @@
 import { useRouter } from "next/router";
 import BestProductUIPage from "./BestProduct.presenter";
 
-export default function BestProduct(props) {
+export default function BestProduct(props: any) {
   const router = useRouter();
   // function onClickBestProduct(event) {
   //   router.push(`/ProductWrite/${event.currentTarget.id}`);
   // }
 
-  const onClickBestProduct = (el) => () => {
+  const onClickBestProduct = (el: any) => () => {
     router.push(`/ProductWrite/${el._id}`);
 
     const views = JSON.parse(localStorage.getItem("todayView")) || [];
 
     let isExists = false;
-    views.forEach((viewsEl) => {
+    views.forEach((viewsEl: any) => {
       if (viewsEl._id === el._id) {
         isExists = true;
       }

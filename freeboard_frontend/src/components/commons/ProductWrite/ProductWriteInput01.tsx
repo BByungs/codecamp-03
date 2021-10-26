@@ -32,7 +32,7 @@ const ErrorMessage = styled.div`
   color: red;
 `;
 
-export default function ProductWriteInput01(props) {
+export default function ProductWriteInput01(props: any) {
   return (
     <Wrapper>
       <Text>{props.name}</Text>

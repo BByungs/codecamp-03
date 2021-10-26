@@ -5,7 +5,7 @@ import { CREATE_BOARD, UPDATE_BOARD, UPLOAD_FILE } from "./BoardWrite.queries";
 import { useRouter } from "next/router";
 import { IUpdateBoardInput } from "../../../../commons/types/generated/types";
 
-export default function BoardWrite(props) {
+export default function BoardWrite(props: any) {
   const router = useRouter();
   const [isDaumPostCodeOpen, setIsDaumPostCodeOpen] = useState(false);
 
@@ -123,7 +123,7 @@ export default function BoardWrite(props) {
     if (title) updateBoardInput.title = title;
     if (contents) updateBoardInput.contents = contents;
     if (youtubeUrl) updateBoardInput.youtubeUrl = youtubeUrl;
-    if (imageUrl) updateBoardInput.images = [...imageUrls];
+    // if (imageUrl) updateBoardInput.images = [...imageUrls];
     if (zipcode || address || addressDetail) {
       updateBoardInput.boardAddress = {};
       if (zipcode) updateBoardInput.boardAddress.zipcode = zipcode;

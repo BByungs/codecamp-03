@@ -12,7 +12,7 @@ import {
   Wrapper,
 } from "./BoardCommentWrite.styles";
 
-export default function BoardCommentWriteUI(props) {
+export default function BoardCommentWriteUI(props: any) {
   return (
     <Wrapper>
       {!props.isEdit && (

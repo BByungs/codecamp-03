@@ -25,7 +25,7 @@ import {
 } from "./BoardDetail.styles";
 import { Tooltip } from "antd";
 import { withAuth } from "../../../commons/hoc/withAuth";
-const BoardDetailUI = (props) => {
+const BoardDetailUI = (props: any) => {
   return (
     <Wrapper>
       <CardWrapper>
@@ -65,8 +65,8 @@ const BoardDetailUI = (props) => {
               />
             ))} */}
             {props.data?.fetchBoard.images
-              ?.filter((el) => el)
-              .map((el) => (
+              ?.filter((el: any) => el)
+              .map((el: any) => (
                 <UploadImg
                   key={el}
                   src={`https://storage.googleapis.com/${el}`}

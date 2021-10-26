@@ -1,7 +1,8 @@
 import UploadButton1UI from "./upload.presenter";
 import { ChangeEvent, useRef, useState } from "react";
 import { IUploads01Props } from "./upload.types";
-import CheckValidationImage from "../../library/CheckValidationImage";
+import { CheckValidationImage } from "../../library/CheckValidationImage";
+// import CheckValidationImage from "../../library/CheckValidationImage";
 
 export default function UploadButton1(props: IUploads01Props) {
   const fileRef = useRef<HTMLInputElement>(null);

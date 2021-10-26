@@ -35,11 +35,11 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-export default function SelectPhoto(props) {
+export default function SelectPhoto(props: any) {
   const [fileUrl, setFileUrl] = useState("");
 
-  const fileRef = useRef<HTMLInputElement>();
-  function onChangeFile(data) {
+  const fileRef = useRef<HTMLInputElement>(null);
+  function onChangeFile(data: any) {
     const file = CheckValidationImage(data.target.files[0]);
     if (!file) return;
     // console.log(data.target.files[0]);

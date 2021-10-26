@@ -15,7 +15,7 @@ export const FETCH_USER_LOGGED_IN = gql`
   }
 `;
 
-export default function MypageSidebar(props) {
+export default function MypageSidebar(props: any) {
   const { data: fetchUserLoggedIn } = useQuery(FETCH_USER_LOGGED_IN);
   const router = useRouter();
 

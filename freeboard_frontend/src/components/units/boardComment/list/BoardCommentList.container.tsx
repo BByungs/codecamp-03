@@ -16,7 +16,7 @@ export default function BoardCommentList() {
       variables: {
         page: Math.ceil(data?.fetchBoardComments.length / 10) + 1,
       },
-      updateQuery: (prev, { fetchMoreResult }) => {
+      updateQuery: (prev: any, { fetchMoreResult }: any) => {
         return {
           fetchBoardComments: [
             ...prev.fetchBoardComments,

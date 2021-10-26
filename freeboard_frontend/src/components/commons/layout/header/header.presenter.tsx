@@ -19,7 +19,7 @@ import {
 import Head from "next/head";
 import Pay from "../../../units/Market/Pay/Pay";
 
-export default function HeaderUI(props) {
+export default function HeaderUI(props: any) {
   return (
     <Wrapper>
       <Head>

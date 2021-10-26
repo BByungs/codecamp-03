@@ -6,7 +6,7 @@ import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../../../pages/_app";
 
 export default function MainPage() {
-  const { setRefreshToken, setAccessToken } = useContext(GlobalContext);
+  const { setRefreshToken, setAccessToken }: any = useContext(GlobalContext);
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

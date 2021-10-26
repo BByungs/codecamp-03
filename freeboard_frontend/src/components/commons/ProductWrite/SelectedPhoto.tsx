@@ -34,7 +34,7 @@ const Wrapper = styled.div`
   /* margin-right: 24px; */
   /* margin-right: 3px; */
 `;
-export default function SelectedPhoto(props) {
+export default function SelectedPhoto(props: any) {
   return (
     <Wrapper>
       {/* <DivX onClick={props.onClickDelete}>

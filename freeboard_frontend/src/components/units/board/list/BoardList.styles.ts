@@ -19,24 +19,29 @@ export const Range = styled(RangePicker)`
   border: 1px solid #bdbdbd;
   border-radius: 10px;
 `;
-// 전 페이지로 이동하는 버튼
+
+interface IProps {
+  isActive: boolean;
+  changeColor: boolean;
+}
+
 export const MoveToLeft = styled(LeftOutlined)`
   margin-left: 15px;
   :hover {
-    opacity: ${(props) => (props.isActive ? 1 : 0.7)};
-    cursor: ${(props) => (props.isActive ? "default" : "pointer")};
+    opacity: ${(props: IProps) => (props.isActive ? 1 : 0.7)};
+    cursor: ${(props: IProps) => (props.isActive ? "default" : "pointer")};
   }
-  color: ${(props) => (props.isActive ? "gray" : "black")};
+  color: ${(props: IProps) => (props.isActive ? "gray" : "black")};
 `;
 
 // 다음 페이지로 이동하는 버튼
 export const MoveToRight = styled(RightOutlined)`
   margin-right: 15px;
   :hover {
-    opacity: ${(props) => (props.isActive ? 1 : 0.7)};
-    cursor: ${(props) => (props.isActive ? "default" : "pointer")};
+    opacity: ${(props: IProps) => (props.isActive ? 1 : 0.7)};
+    cursor: ${(props: IProps) => (props.isActive ? "default" : "pointer")};
   }
-  color: ${(props) => (props.isActive ? "gray" : "black")};
+  color: ${(props: IProps) => (props.isActive ? "gray" : "black")};
 `;
 
 // Pagenation
@@ -48,7 +53,8 @@ export const Row = styled.div`
   :hover {
     opacity: 0.7;
   }
-  color: ${(props) => (props.changeColor === true ? "#ef5350" : "black")};
+  color: ${(props: IProps) =>
+    props.changeColor === true ? "#ef5350" : "black"};
 `;
 
 export const Wrapper = styled.div`
@@ -201,18 +207,6 @@ export const TitleSearch = styled.input`
   border: none;
   border-radius: 10px;
 `;
-
-// export const RangePick = styled(DatePicker)`
-//   width: 244px;
-//   height: 52px;
-//   color: #bdbdbd;
-//   padding: 14px 16px 14px 16px;
-//   font-size: 16px;
-//   font-family: Noto Sans CJK KR;
-//   text-align: center;
-//   border: 1px solid #bdbdbd;
-//   border-radius: 10px;
-// `;
 
 export const YearMonthDaySearch = styled.input`
   width: 244px;

@@ -1,5 +1,5 @@
 import { gql, useMutation } from "@apollo/client";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 const LOGIN_USER = gql`
   mutation loginUser($password: String!, $email: String!) {
@@ -14,10 +14,10 @@ export default function LoginTest() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  function onChangeEmail(e) {
+  function onChangeEmail(e: ChangeEvent<HTMLInputElement>) {
     setEmail(e.target.value);
   }
-  function onChangePassword(e) {
+  function onChangePassword(e: ChangeEvent<HTMLInputElement>) {
     setPassword(e.target.value);
   }
   async function onClickLogin() {
@@ -30,7 +30,7 @@ export default function LoginTest() {
       });
       console.log(result.data.loginUser.accessToken);
       console.log("로그인성공!!");
-    } catch (err) {
+    } catch (err: any) {
       alert(err.message);
     }
   }

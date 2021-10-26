@@ -36,7 +36,7 @@ import DaumPostcode from "react-daum-postcode";
 import UploadButton1 from "../../../commons/uploads/01/upload.container";
 import { withAuth } from "../../../commons/hoc/withAuth";
 
-const BoardWriteUI = (props) => {
+const BoardWriteUI = (props: any) => {
   return (
     <Wrapper>
       <Container>

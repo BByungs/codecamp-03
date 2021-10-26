@@ -9,6 +9,10 @@ import {
   DELETE_USED_ITME,
 } from "./ProductDetail.queries";
 
+declare const window: typeof globalThis & {
+  kakao: any;
+};
+
 export default function ProductDetailPage() {
   const router = useRouter();
   const [deleteUseditem] = useMutation(DELETE_USED_ITME);
@@ -23,41 +27,34 @@ export default function ProductDetailPage() {
   );
 
   useEffect(() => {
-    if (
-      data?.fetchUseditem.useditemAddress.lat ||
-      data?.fetchUseditem.useditemAddress?.lng
-    ) {
-      console.log("data", data?.fetchUseditem);
-      const script = document.createElement("script");
-      script.src =
-        "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=618745b280cea9ed79e1e61c9c19a187";
-      console.log(script);
-      document.head.appendChild(script);
+    console.log("data", data?.fetchUseditem);
+    const script = document.createElement("script");
+    script.src =
+      "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=618745b280cea9ed79e1e61c9c19a187";
+    console.log(script);
+    document.head.appendChild(script);
 
-      script.onload = () => {
-        window.kakao.maps.load(function () {
-          const container = document.getElementById("map");
-          const options = {
-            center: new window.kakao.maps.LatLng(
-              // data?.fetchUseditem.useditemAddress?.lat || 37.485155689411144,
-              // data?.fetchUseditem.useditemAddress?.lng || 126.89519472508692
-              data?.fetchUseditem.useditemAddress?.lat,
-              data?.fetchUseditem.useditemAddress?.lng
-            ),
-            level: 3,
-          };
+    script.onload = () => {
+      window.kakao.maps.load(function () {
+        const container = document.getElementById("map");
+        const options = {
+          center: new window.kakao.maps.LatLng(
+            data?.fetchUseditem.useditemAddress?.lat || 37.485155689411144,
+            data?.fetchUseditem.useditemAddress?.lng || 126.89519472508692
+          ),
+          level: 3,
+        };
 
-          const map = new window.kakao.maps.Map(container, options);
-          console.log(map);
+        const map = new window.kakao.maps.Map(container, options);
+        console.log(map);
 
-          const marker = new window.kakao.maps.Marker({
-            position: map.getCenter(),
-          });
-
-          marker.setMap(map);
+        const marker = new window.kakao.maps.Marker({
+          position: map.getCenter(),
         });
-      };
-    }
+
+        marker.setMap(map);
+      });
+    };
   }, [
     data?.fetchUseditem.useditemAddress?.lat,
     data?.fetchUseditem.useditemAddress?.lng,

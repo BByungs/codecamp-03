@@ -293,7 +293,7 @@ export type IQuery = {
   fetchBoard: IBoard;
   fetchBoardComments: Array<IBoardComment>;
   fetchBoards: Array<IBoard>;
-  fetchBoardsCount: Scalars["Int"];
+  fetchBoardsCount: Scalars["Int"] | Scalars["undefined"];
   fetchBoardsCountOfMine: Scalars["Int"];
   fetchBoardsOfMine: Array<IBoard>;
   fetchBoardsOfTheBest: Array<IBoard>;

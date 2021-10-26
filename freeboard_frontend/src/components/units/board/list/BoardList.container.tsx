@@ -32,6 +32,7 @@ export default function BoardList() {
       search: keyword,
     },
   });
+
   const { data: fetchBoardsCount } = useQuery<
     Pick<IQuery, "fetchBoardsCount">,
     IQueryFetchBoardsCountArgs
@@ -44,6 +45,7 @@ export default function BoardList() {
       startDate: startDate ? startDate : `2021-08-30`,
     },
   });
+
   const { data: fetchBoardsOfTheBest } = useQuery<
     Pick<IQuery, "fetchBoardsOfTheBest">
   >(FETCH_BOARDS_OF_THE_BEST);

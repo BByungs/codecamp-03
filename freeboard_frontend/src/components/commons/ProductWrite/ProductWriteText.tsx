@@ -8,6 +8,6 @@ const Text = styled.div`
   margin-bottom: 16px;
 `;
 
-export default function ProductWriteText(props) {
+export default function ProductWriteText(props: any) {
   return <Text>{props.name}</Text>;
 }

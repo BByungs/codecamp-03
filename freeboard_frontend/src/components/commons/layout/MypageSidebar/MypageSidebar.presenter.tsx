@@ -19,7 +19,7 @@ import {
   ClickMyProfile,
 } from "./MypageSidebar.styles";
 
-export default function MypageSidebarUI(props) {
+export default function MypageSidebarUI(props: any) {
   return (
     <Wrapper>
       <Text>MYPAGE</Text>

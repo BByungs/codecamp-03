@@ -12,7 +12,7 @@ const Input = styled.input`
   outline: none;
 `;
 
-export default function AddressSmallInput(props) {
+export default function AddressSmallInput(props: any) {
   return (
     <Input
       placeholder={props.placeholder}

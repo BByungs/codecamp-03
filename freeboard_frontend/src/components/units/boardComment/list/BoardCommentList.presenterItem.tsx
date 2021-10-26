@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import BoardCommentWrite from "../write/BoardCommentWrite.container";
 import {
@@ -27,7 +27,7 @@ import {
   FETCH_BOARD_COMMENTS,
 } from "./BoardCommentList.queries";
 
-export default function BoardCommentListUIItem(props) {
+export default function BoardCommentListUIItem(props: any) {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
@@ -66,12 +66,12 @@ export default function BoardCommentListUIItem(props) {
           },
         ],
       });
-    } catch (error) {
+    } catch (error: any) {
       alert(error.message);
     }
   }
 
-  function onChangeDeletePassword(event) {
+  function onChangeDeletePassword(event: ChangeEvent<HTMLInputElement>) {
     setMyPassword(event.target.value);
   }
 

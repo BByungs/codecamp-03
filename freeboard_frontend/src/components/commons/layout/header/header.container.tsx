@@ -14,8 +14,8 @@ declare const window: typeof globalThis & {
   IMP: any;
 };
 
-export default function Header(props) {
-  const { setAccessToken, setRefreshToken, refreshToken } =
+export default function Header(props: any) {
+  const { setAccessToken, setRefreshToken, refreshToken }: any =
     useContext(GlobalContext);
 
   const { data } =

@@ -13,7 +13,7 @@ import {
   UPDATE_BOARD_COMMENT,
 } from "./BoardCommentWrite.queries";
 
-export default function BoardCommentWrite(props) {
+export default function BoardCommentWrite(props: any) {
   const router = useRouter();
   const [myWriter, setMyWriter] = useState("");
   const [myPassword, setMyPassword] = useState("");
@@ -29,19 +29,19 @@ export default function BoardCommentWrite(props) {
     IMutationUpdateBoardCommentArgs
   >(UPDATE_BOARD_COMMENT);
 
-  function onChangeMyWriter(event) {
+  function onChangeMyWriter(event: ChangeEvent<HTMLInputElement>) {
     setMyWriter(event.target.value);
   }
 
-  function onChangeMyPassword(event) {
+  function onChangeMyPassword(event: ChangeEvent<HTMLInputElement>) {
     setMyPassword(event.target.value);
   }
 
-  function onChangeMyContents(event) {
+  function onChangeMyContents(event: ChangeEvent<HTMLInputElement>) {
     setMyContents(event.target.value);
   }
 
-  function onChangeStar(value) {
+  function onChangeStar(value: any) {
     setMyStar(value);
   }
 
@@ -69,7 +69,7 @@ export default function BoardCommentWrite(props) {
     }
   }
 
-  async function onClickUpdate(event) {
+  async function onClickUpdate(event: any) {
     if (!myContents) {
       alert("내용이 수정되지 않았습니다.");
       return;

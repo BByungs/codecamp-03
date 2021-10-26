@@ -47,40 +47,42 @@ import {
 } from "./BoardList.styles";
 import { Space } from "antd";
 
-export default function BoardListUI(props) {
+export default function BoardListUI(props: any) {
   return (
     <Wrapper>
       {/* 베스트 게시글 , 밑에 포스트들 까지 */}
       <BestPosts>
         <BestPostsTitle>베스트 게시글</BestPostsTitle>
         <BestPost>
-          {props.fetchBoardsOfTheBest?.fetchBoardsOfTheBest?.map((el, idx) => (
-            <Post id={el._id} key={el._id} onClick={props.onClickBestPost}>
-              {el.images[0] ? (
-                <PostThumbnail
-                  src={`https://storage.googleapis.com/${el.images[0]}`}
-                ></PostThumbnail>
-              ) : (
-                <PostThumbnail src="/noimage3.svg"></PostThumbnail>
-              )}
-              <PostIntroduce>
-                <PostTitle>{el.title}</PostTitle>
-                <WriterInfo>
-                  <WriterAndDate>
-                    <WriterNameAndPhoto>
-                      <WriterPhoto src="/images/board/list/writerPhoto.png" />
-                      <WriterName>{el.writer}</WriterName>
-                    </WriterNameAndPhoto>
-                    <WriterDate>{el.createdAt.slice(0, 10)}</WriterDate>
-                  </WriterAndDate>
-                  <LikeButtonAndCount>
-                    <LikeButton src="/images/board/list/likeButton.png" />
-                    <LikeCount>{el.likeCount}</LikeCount>
-                  </LikeButtonAndCount>
-                </WriterInfo>
-              </PostIntroduce>
-            </Post>
-          ))}
+          {props.fetchBoardsOfTheBest?.fetchBoardsOfTheBest?.map(
+            (el: any, idx: number) => (
+              <Post id={el._id} key={el._id} onClick={props.onClickBestPost}>
+                {el.images[0] ? (
+                  <PostThumbnail
+                    src={`https://storage.googleapis.com/${el.images[0]}`}
+                  ></PostThumbnail>
+                ) : (
+                  <PostThumbnail src="/noimage3.svg"></PostThumbnail>
+                )}
+                <PostIntroduce>
+                  <PostTitle>{el.title}</PostTitle>
+                  <WriterInfo>
+                    <WriterAndDate>
+                      <WriterNameAndPhoto>
+                        <WriterPhoto src="/images/board/list/writerPhoto.png" />
+                        <WriterName>{el.writer}</WriterName>
+                      </WriterNameAndPhoto>
+                      <WriterDate>{el.createdAt.slice(0, 10)}</WriterDate>
+                    </WriterAndDate>
+                    <LikeButtonAndCount>
+                      <LikeButton src="/images/board/list/likeButton.png" />
+                      <LikeCount>{el.likeCount}</LikeCount>
+                    </LikeButtonAndCount>
+                  </WriterInfo>
+                </PostIntroduce>
+              </Post>
+            )
+          )}
         </BestPost>
       </BestPosts>
 
@@ -111,7 +113,7 @@ export default function BoardListUI(props) {
         <Underline />
 
         <PostListBottom>
-          {props.data?.fetchBoards.map((el, index) => (
+          {props.data?.fetchBoards.map((el: any, index: number) => (
             <EachPosts key={el._id}>
               <EachPost onClick={props.onClickPost} id={el._id}>
                 <PostsNumner>{index + 1}</PostsNumner>
@@ -131,6 +133,7 @@ export default function BoardListUI(props) {
           <MoveToLeft
             onClick={props.onClickLeft}
             isActive={props.currentPage === 1}
+            changeColor={false}
           />
           <PageNum>
             {new Array(10).fill(1).map(
@@ -141,6 +144,7 @@ export default function BoardListUI(props) {
                     onClick={props.onClickPage}
                     id={String(props.startPage + idx)}
                     changeColor={props.currentPage === props.startPage + idx}
+                    isActive={false}
                   >
                     {props.startPage + idx}
                   </Row>
@@ -153,6 +157,7 @@ export default function BoardListUI(props) {
               props.currentPage === props.lastPage ||
               props.currentPage + 10 > props.lastPage
             }
+            changeColor={false}
           />
         </Page>
         <PostSubmitBtn onClick={props.onClickSubmit}>

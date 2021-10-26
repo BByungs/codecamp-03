@@ -11,7 +11,7 @@ const Input = styled.input`
   padding-bottom: 14px;
 `;
 
-export default function AddressInput(props) {
+export default function AddressInput(props: any) {
   return (
     <Input
       type={props.type}

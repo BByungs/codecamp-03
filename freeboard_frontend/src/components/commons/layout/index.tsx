@@ -22,7 +22,7 @@ const Mypage = styled.div`
   flex-direction: row;
 `;
 
-export default function Layout(props) {
+export default function Layout(props: any) {
   return (
     <>
       {!props.isMypage && (
