@@ -1,7 +1,7 @@
 import { useState } from "react";
 import SearchBarUIPage from "./SearchBar.presenter";
 
-export default function SearchBar(props) {
+export default function SearchBar(props: any) {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 

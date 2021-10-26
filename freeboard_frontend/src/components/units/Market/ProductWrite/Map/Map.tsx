@@ -64,7 +64,7 @@ const Address = styled.div`
 declare const window: typeof globalThis & {
   kakao: any;
 };
-export default function Map(props) {
+export default function Map(props: any) {
   useEffect(() => {
     const script = document.createElement("script");
     script.src =

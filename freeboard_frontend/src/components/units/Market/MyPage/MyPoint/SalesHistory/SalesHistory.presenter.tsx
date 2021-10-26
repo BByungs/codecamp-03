@@ -12,7 +12,7 @@ import {
   UnderLine,
 } from "./SalesHistory.styles";
 
-export default function SalesHistoryUI(props) {
+export default function SalesHistoryUI(props: any) {
   return (
     <Wrapper>
       <HeaderLine />

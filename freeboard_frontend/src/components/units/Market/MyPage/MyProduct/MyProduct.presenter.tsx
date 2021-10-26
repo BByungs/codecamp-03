@@ -14,7 +14,7 @@ import React from "react";
 import MyUsedItem from "./MyUsedItem/MyUsedItem.container";
 import MyFavorite from "./MyFavorite/MyFavorite.container";
 
-export default function MyProductUI(props) {
+export default function MyProductUI(props: any) {
   return (
     <Wrapper>
       <Header>

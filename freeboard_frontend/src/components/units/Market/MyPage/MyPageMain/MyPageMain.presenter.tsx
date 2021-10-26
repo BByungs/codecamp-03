@@ -8,7 +8,7 @@ import {
   ButtonWrapper,
 } from "./MyPageMain.styles";
 
-export default function MyPageMainUI(props) {
+export default function MyPageMainUI(props: any) {
   return (
     <form onSubmit={props.handleSubmit(props.onClickResetPassword)}>
       <Wrapper>

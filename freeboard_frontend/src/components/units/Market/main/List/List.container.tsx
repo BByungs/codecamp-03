@@ -9,7 +9,7 @@ import {
 import ListUI from "./List.presenter";
 import { FETCH_USED_ITEMS } from "./List.queries";
 
-export default function List(props) {
+export default function List(props: any) {
   const router = useRouter();
   const { data, fetchMore } = useQuery<
     Pick<IQuery, "fetchUseditems">,
@@ -27,14 +27,14 @@ export default function List(props) {
   //   localStorage.setItem("todayView", event.target.id);
   // }
 
-  const onClickProduct = (el) => () => {
+  const onClickProduct = (el: any) => () => {
     console.log(el);
     router.push(`/ProductWrite/${el._id}`);
 
-    const views = JSON.parse(localStorage.getItem("todayView")) || [];
+    const views = JSON.parse(String(localStorage.getItem("todayView"))) || [];
 
     let isExists = false;
-    views.forEach((viewsEl) => {
+    views.forEach((viewsEl: any) => {
       if (viewsEl._id === el._id) {
         isExists = true;
       }
@@ -59,7 +59,7 @@ export default function List(props) {
       variables: {
         page: Math.ceil(data?.fetchUseditems.length / 10) + 1,
       },
-      updateQuery: (prev, { fetchMoreResult }) => {
+      updateQuery: (prev: any, { fetchMoreResult }: any) => {
         return {
           fetchUseditems: [
             ...prev.fetchUseditems,

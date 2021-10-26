@@ -10,7 +10,7 @@ export default function DetailAsk() {
   const [createUseditemQuestion] = useMutation(CREATE_USED_ITEM_QUESTION);
   const { handleSubmit, register } = useForm();
   // const [isQuestion, setIsQuestion] = useState(false);
-  async function onClickQuestion(data) {
+  async function onClickQuestion(data: any) {
     try {
       await createUseditemQuestion({
         variables: {

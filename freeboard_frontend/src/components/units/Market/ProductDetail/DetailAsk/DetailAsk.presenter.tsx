@@ -12,7 +12,7 @@ import {
   AskButton,
 } from "./DetailAsk.styles";
 
-export default function DetailAskUI(props) {
+export default function DetailAskUI(props: any) {
   return (
     <form onSubmit={props.handleSubmit(props.onClickQuestion)}>
       <Wrapper>

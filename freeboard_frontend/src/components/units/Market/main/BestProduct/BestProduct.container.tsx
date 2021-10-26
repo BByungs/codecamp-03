@@ -10,9 +10,9 @@ export default function BestProduct(props: any) {
   const onClickBestProduct = (el: any) => () => {
     router.push(`/ProductWrite/${el._id}`);
 
-    const views = JSON.parse(localStorage.getItem("todayView")) || [];
-
+    const views = JSON.parse(String(localStorage.getItem("todayView"))) || [];
     let isExists = false;
+
     views.forEach((viewsEl: any) => {
       if (viewsEl._id === el._id) {
         isExists = true;

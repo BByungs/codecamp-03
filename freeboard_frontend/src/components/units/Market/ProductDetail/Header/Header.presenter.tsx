@@ -10,7 +10,7 @@ import {
   Pin,
 } from "./Header.styles";
 
-export default function HeaderUI(props) {
+export default function HeaderUI(props: any) {
   return (
     <Wrapper>
       <Info>

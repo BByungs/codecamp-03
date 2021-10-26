@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import MyProductUI from "./MyProduct.presenter";
 import {
   FETCH_USED_ITEMS_I_PICKED,
@@ -33,7 +33,7 @@ export default function MyProduct() {
     setEnterSearch("");
   }
 
-  function onChangeSearch(event) {
+  function onChangeSearch(event: ChangeEvent<HTMLInputElement>) {
     setSearch(event.target.value);
   }
 

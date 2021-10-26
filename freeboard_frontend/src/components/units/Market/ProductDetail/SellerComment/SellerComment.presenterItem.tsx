@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@apollo/client";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import SellerNestedComment from "../SellerNestedComment/SellerNestedComment.container";
 import SellerNestedCommentResult from "../SellerNestedCommentResult/SellerNestedCommentResult.container";
 import {
@@ -20,7 +20,7 @@ import {
   WideLine,
 } from "./SellerComment.styles";
 
-export default function SellerCommentUIItem(props) {
+export default function SellerCommentUIItem(props: any) {
   const [isNestedComments, setIsNestedComments] = useState(false);
   const [contents, setContents] = useState("");
 
@@ -62,7 +62,7 @@ export default function SellerCommentUIItem(props) {
     }
   }
 
-  function onChangeNestedComment(event) {
+  function onChangeNestedComment(event: ChangeEvent<HTMLInputElement>) {
     setContents(event.target.value);
   }
   return (

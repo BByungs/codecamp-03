@@ -14,7 +14,7 @@ import {
   Tags,
 } from "./ViewToday.styles";
 
-export default function ViewTodayUI(props) {
+export default function ViewTodayUI(props: any) {
   return (
     <ViewToday>
       <TextWrapper>
@@ -22,7 +22,7 @@ export default function ViewTodayUI(props) {
       </TextWrapper>
       {props.todayViewItems
         ?.slice(-2)
-        ?.map((el) => (
+        ?.map((el: any) => (
           <VTWrapper onClick={props.onClickVT(el)} key={el._id}>
             <Heart>
               <HeartImg src="/images/ProductMain/heartimg.png" />

@@ -144,3 +144,12 @@ export const PasswordError = styled.div`
   font-size: 12px;
   display: ${(props: IProps) => (props.isPassword ? "block" : "none")};
 `;
+
+export const Div = styled.div`
+  font-size: 17px;
+  color: 88ee8e;
+  font-family: Noto Sans CJK KR;
+  width: 270px;
+  text-align: center;
+  font-weight: 600; ;
+`;

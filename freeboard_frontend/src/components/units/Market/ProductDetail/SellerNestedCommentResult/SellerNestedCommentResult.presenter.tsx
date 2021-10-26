@@ -1,4 +1,3 @@
-import { WideLine } from "../NormalComment/NormalComment.styles";
 import {
   Wrapper,
   Row,
@@ -12,7 +11,7 @@ import {
   Contents,
 } from "./SellerNestedCommentResult.styles";
 
-export default function SellerNestedCommentResultUI(props) {
+export default function SellerNestedCommentResultUI(props: any) {
   return (
     <Wrapper>
       <Row>

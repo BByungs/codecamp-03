@@ -6,7 +6,7 @@ import {
 } from "../MyProduct.queries";
 import MyUsedItemUI from "./MyUsedItem.presenter";
 
-export default function MyUsedItem(props) {
+export default function MyUsedItem(props: any) {
   const { data: fetchUseditemsISold, refetch } = useQuery(
     FETCH_USED_ITEMS_I_SOLD,
     {
@@ -17,7 +17,7 @@ export default function MyUsedItem(props) {
     }
   );
 
-  const onClickPage = (el) => () => {
+  const onClickPage = (el: any) => () => {
     refetch({
       page: Number(el),
     });

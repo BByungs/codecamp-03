@@ -16,7 +16,7 @@ import {
 } from "./SearchBar.styles";
 import { Space } from "antd";
 
-export default function SearchBarUIPage(props) {
+export default function SearchBarUIPage(props: any) {
   return (
     <Wrapper>
       <Body>

@@ -21,7 +21,7 @@ import {
 import InfiniteScroll from "react-infinite-scroller";
 // import { v4 as key } from "uuid";
 
-export default function ListUI(props) {
+export default function ListUI(props: any) {
   return (
     <Container>
       {/* div를 InfinitiScroll 밖에 감싸줘서 해결 */}
@@ -34,7 +34,7 @@ export default function ListUI(props) {
             useWindow={false}
             style={{ height: "400px" }}
           >
-            {props.data?.fetchUseditems.map((el) => (
+            {props.data?.fetchUseditems.map((el: any) => (
               <ListWrapper key={el._id} onClick={props.onClickProduct(el)}>
                 <Body>
                   {el.images[0] ? (

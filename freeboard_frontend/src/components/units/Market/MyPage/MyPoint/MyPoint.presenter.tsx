@@ -4,7 +4,7 @@ import ChargeList from "./ChargeList/ChargeList.container";
 import BuyList from "./BuyList/BuyList.container";
 import SalesHistory from "./SalesHistory/SalesHistory.container";
 
-export default function MyPointUI(props) {
+export default function MyPointUI(props: any) {
   return (
     <Wrapper>
       <Select>

@@ -11,12 +11,12 @@ import List from "./List/List.container";
 import ViewToday from "./ViewToday/ViewToday.container";
 import { useEffect, useState } from "react";
 
-export default function MarketMainUIPage(props) {
+export default function MarketMainUIPage(props: any) {
   const [todayViewItems, setTodayViewItems] = useState([]);
   const today = new Date().toISOString().slice(0, 10);
   const [isSoldout, setIsSoldout] = useState(false);
   useEffect(() => {
-    const items = JSON.parse(localStorage.getItem("todayView"));
+    const items = JSON.parse(String(localStorage.getItem("todayView")));
 
     setTodayViewItems(items);
   }, []);

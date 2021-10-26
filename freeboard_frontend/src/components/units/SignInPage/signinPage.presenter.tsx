@@ -19,6 +19,7 @@ import {
   EmailError,
   PasswordError,
   NameError,
+  Div,
 } from "./signinPage.styles";
 
 interface ISignInUIProps {
@@ -37,21 +38,10 @@ export default function SignInUI(props: ISignInUIProps) {
     <Wrapper>
       <InputInfo>
         <LogoImg src="/images/signinPage/logo/1024px-Instagram_logo.svg.png" />
-        <div
-          style={{
-            fontSize: "17px",
-            fontWeight: "600",
-            color: "#8E8E8E",
-            fontFamily: "Noto Sans CJK KR",
-            width: "270px",
-            textAlign: "center",
-          }}
-        >
-          친구들의 사진과 동영상을 보려면 가입하세요.
-        </div>
+        <Div>친구들의 사진과 동영상을 보려면 가입하세요.</Div>
         <FaceBookLoginButton>
           <FacebookLogo src="/images/signinPage/logo/facebookLogo1.png" />
-          <sapn
+          <span
             style={{
               fontFamily: "Noto Sans CJK KR",
               marginTop: "5px",
@@ -59,7 +49,7 @@ export default function SignInUI(props: ISignInUIProps) {
             }}
           >
             FaceBook으로 로그인
-          </sapn>
+          </span>
         </FaceBookLoginButton>
         <Or>
           <OrLine />
@@ -73,19 +63,25 @@ export default function SignInUI(props: ISignInUIProps) {
           placeholder="이메일 주소"
           onChange={props.onChangeEmail}
         />
-        <EmailError isEmail={props.isEmail}>
+        <EmailError isEmail={props.isEmail} isName={false} isPassword={false}>
           이메일을 다시 확인해주세요
         </EmailError>
 
         <Input type="text" placeholder="이름" onChange={props.onChangeName} />
-        <NameError isName={props.isName}>이름을 다시 확인해주세요</NameError>
+        <NameError isName={props.isName} isEmail={false} isPassword={false}>
+          이름을 다시 확인해주세요
+        </NameError>
 
         <Input
           type="password"
           placeholder="비밀번호"
           onChange={props.onChangePassword}
         />
-        <PasswordError isPassword={props.isPassword}>
+        <PasswordError
+          isPassword={props.isPassword}
+          isEmail={false}
+          isName={false}
+        >
           비밀버호를 다시 확인해주세요
         </PasswordError>
 

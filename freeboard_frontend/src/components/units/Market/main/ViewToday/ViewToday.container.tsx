@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
 import ViewTodayUI from "./ViewToday.presenter";
 
-export default function ViewToday(props) {
+export default function ViewToday(props: any) {
   const router = useRouter();
-  const onClickVT = (el) => () => {
+  const onClickVT = (el: any) => () => {
     // console.log(el);
     router.push(`/ProductWrite/${el._id}`);
   };

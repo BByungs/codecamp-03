@@ -6,7 +6,7 @@ import {
 } from "../MyProduct.queries";
 import MyFavoriteUI from "./MyFavorite.presenter";
 
-export default function MyFavorite(props) {
+export default function MyFavorite(props: any) {
   const [favoriteStartPage, setFavoriteStartPage] = useState(1);
   const [favoriteCurrentPage, setFavoriteCurrentPage] = useState(1);
 
@@ -29,7 +29,7 @@ export default function MyFavorite(props) {
     fetchUseditemsCountIPicked?.fetchUseditemsCountIPicked / 10
   );
 
-  function onClickFavoritePage(event) {
+  function onClickFavoritePage(event: any) {
     pickedRefetch({
       page: Number(event.target.id),
     });

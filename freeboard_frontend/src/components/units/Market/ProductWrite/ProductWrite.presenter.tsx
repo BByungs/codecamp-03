@@ -15,7 +15,7 @@ import {
   CancelButton,
 } from "./ProductWrite.styles";
 
-export default function ProductWriteUIPage(props) {
+export default function ProductWriteUIPage(props: any) {
   console.log("data", props.data);
   return (
     <form

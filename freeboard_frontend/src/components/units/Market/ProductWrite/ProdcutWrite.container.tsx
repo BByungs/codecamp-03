@@ -11,7 +11,7 @@ import { useMutation } from "@apollo/client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-export default function ProductWritePage(props) {
+export default function ProductWritePage(props: any) {
   const router = useRouter();
   const [uploadFile] = useMutation(UPLOAD_FILE);
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
@@ -37,7 +37,7 @@ export default function ProductWritePage(props) {
     addressDetail: formState.errors.addressDetail?.message,
   };
 
-  async function onClickSubmit(data) {
+  async function onClickSubmit(data: any) {
     console.log(data);
     try {
       const uploadFiles = files.map((el) =>
@@ -108,7 +108,7 @@ export default function ProductWritePage(props) {
     useditemAddress?: any;
   }
 
-  async function onClickEdit(updateData) {
+  async function onClickEdit(updateData: any) {
     const myUpdateInput: IMyUpdateInput = {};
     console.log("update한 data", updateData);
 
@@ -157,7 +157,7 @@ export default function ProductWritePage(props) {
     }
   }
 
-  function onKeyUp(event) {
+  function onKeyUp(event: any) {
     if (event.keyCode === 32) {
       // space를 눌렀을때 space를 누르기 전의 값까지 배열에 넣으면 됨
     }

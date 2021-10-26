@@ -12,7 +12,7 @@ import {
   HeaderText,
 } from "./All.styles";
 
-export default function MyPageAllUI(props) {
+export default function MyPageAllUI(props: any) {
   return (
     <Wrapper>
       <HeaderLine />

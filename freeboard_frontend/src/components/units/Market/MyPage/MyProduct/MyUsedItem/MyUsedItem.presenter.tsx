@@ -14,7 +14,7 @@ import {
 import { v4 as uuidv4 } from "uuid";
 import { useEffect } from "react";
 
-export default function MyUsedItemUI(props) {
+export default function MyUsedItemUI(props: any) {
   return (
     <Wrapper>
       <HeaderRow>
@@ -27,25 +27,27 @@ export default function MyUsedItemUI(props) {
 
       <HeaderLine />
 
-      {props.fetchUseditemsISold?.fetchUseditemsISold.map((el, idx) => (
-        <Col key={uuidv4()}>
-          <Row>
-            <DateText style={{ width: "10%" }}>{idx + 1}</DateText>
-            <ImpText style={{ width: "40%" }}>{el.name}</ImpText>
-            {el.soldAt ? (
-              <ChargeText style={{ width: "20%" }}>판매완료</ChargeText>
-            ) : (
-              <ChargeText style={{ width: "20%" }}></ChargeText>
-            )}
+      {props.fetchUseditemsISold?.fetchUseditemsISold.map(
+        (el: any, idx: number) => (
+          <Col key={uuidv4()}>
+            <Row>
+              <DateText style={{ width: "10%" }}>{idx + 1}</DateText>
+              <ImpText style={{ width: "40%" }}>{el.name}</ImpText>
+              {el.soldAt ? (
+                <ChargeText style={{ width: "20%" }}>판매완료</ChargeText>
+              ) : (
+                <ChargeText style={{ width: "20%" }}></ChargeText>
+              )}
 
-            <ImpText style={{ width: "20%" }}>{el.price}</ImpText>
-            <ImpText style={{ width: "10%" }}>
-              {el.createdAt.slice(0, 10)}
-            </ImpText>
-          </Row>
-          <UnderLine />
-        </Col>
-      ))}
+              <ImpText style={{ width: "20%" }}>{el.price}</ImpText>
+              <ImpText style={{ width: "10%" }}>
+                {el.createdAt.slice(0, 10)}
+              </ImpText>
+            </Row>
+            <UnderLine />
+          </Col>
+        )
+      )}
 
       <div
         style={{
@@ -63,7 +65,7 @@ export default function MyUsedItemUI(props) {
           </span>
 
           <span>
-            {new Array(5).fill(1).map((el, idx) => (
+            {new Array(5).fill(1).map((el: any, idx: number) => (
               <span
                 style={{
                   marginRight: "40px",

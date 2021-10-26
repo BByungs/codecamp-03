@@ -13,7 +13,7 @@ import {
   ImpText,
 } from "./BuyList.styles";
 
-export default function BuyListUI(props) {
+export default function BuyListUI(props: any) {
   return (
     <Wrapper>
       <HeaderLine />

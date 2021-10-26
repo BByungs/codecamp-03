@@ -12,10 +12,10 @@ import {
   HeartCount,
 } from "./BestProduct.styles";
 
-export default function BestProductUIPage(props) {
+export default function BestProductUIPage(props: any) {
   return (
     <Container>
-      {props.data?.fetchUseditemsOfTheBest.map((el) => (
+      {props.data?.fetchUseditemsOfTheBest.map((el: any) => (
         <BestProduct
           key={el._id}
           id={el._id}

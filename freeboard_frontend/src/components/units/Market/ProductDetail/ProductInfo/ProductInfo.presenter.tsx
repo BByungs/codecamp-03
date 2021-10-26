@@ -22,7 +22,7 @@ import {
 import Underline from "../../../../commons/ProductDetail/Underline";
 import Dompurify from "dompurify";
 
-export default function ProductInfoUI(props) {
+export default function ProductInfoUI(props: any) {
   const settings = {
     dots: true,
     autoplay: true,

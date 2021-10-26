@@ -13,7 +13,7 @@ export default function MyPageMain() {
   const { handleSubmit, register, formState } = useForm();
   const [resetUserPassword] = useMutation(RESET_USER_PASSWORD);
 
-  async function onClickResetPassword(data) {
+  async function onClickResetPassword(data: any) {
     // console.log(data);
     try {
       await resetUserPassword({

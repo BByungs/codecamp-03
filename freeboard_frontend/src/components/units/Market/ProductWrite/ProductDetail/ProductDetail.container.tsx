@@ -1,7 +1,7 @@
 import ProductDetailUI from "./ProductDetail.presenter";
 
-export default function ProductDetail(props) {
-  function onChangeMyEdit(value) {
+export default function ProductDetail(props: any) {
+  function onChangeMyEdit(value: any) {
     props.setValue("contents", value === "<p><br></p>" ? "" : value);
 
     console.log(value);

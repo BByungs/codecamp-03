@@ -13,7 +13,7 @@ import {
   ImpText,
 } from "./ChargeList.styles";
 
-export default function ChargeListUI(props) {
+export default function ChargeListUI(props: any) {
   return (
     <Wrapper>
       <HeaderLine />

@@ -307,7 +307,7 @@ export type IQuery = {
   fetchUseditem: IUseditem;
   fetchUseditemQuestionAnswers: Array<IUseditemQuestionAnswer>;
   fetchUseditemQuestions: Array<IUseditemQuestion>;
-  fetchUseditems: Array<IUseditem>;
+  fetchUseditems: Array<IUseditem> | Scalars["undefined"];
   fetchUseditemsCountIBought: Scalars["Int"];
   fetchUseditemsCountIPicked: Scalars["Int"];
   fetchUseditemsCountISold: Scalars["Int"];

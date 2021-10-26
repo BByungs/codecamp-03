@@ -1,7 +1,7 @@
 import ProductWriteText from "../../../../commons/ProductWrite/ProductWriteText";
 import { Wrapper, Quill, ErrorMessage, All } from "./PrpductDetail.styles";
 
-export default function ProductDetailUI(props) {
+export default function ProductDetailUI(props: any) {
   return (
     // 상품설명 에디터
     <All>

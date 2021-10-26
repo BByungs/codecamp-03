@@ -16,7 +16,7 @@ import DetailAsk from "./DetailAsk/DetailAsk.container";
 import SellerComment from "./SellerComment/SellerComment.container";
 import { useRouter } from "next/router";
 
-export default function ProductDetailUIPage(props) {
+export default function ProductDetailUIPage(props: any) {
   const fetchUseditem = props.data?.fetchUseditem.seller.email;
   const fetchUserLoggedIn = props.fetchUserLoggedIn?.fetchUserLoggedIn.email;
   const isSeller = fetchUseditem === fetchUserLoggedIn; // 판매자일때

@@ -9,7 +9,7 @@ import {
   Button,
 } from "./SellerNestedComment.styles";
 
-export default function SellerNestedCommentUI(props) {
+export default function SellerNestedCommentUI(props: any) {
   return (
     <Wrapper>
       <Row>
