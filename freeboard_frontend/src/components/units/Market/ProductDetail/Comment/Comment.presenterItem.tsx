@@ -1,11 +1,11 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { ChangeEvent, useEffect, useState } from "react";
-import SellerNestedComment from "../SellerNestedComment/SellerNestedComment.container";
-import SellerNestedCommentResult from "../SellerNestedCommentResult/SellerNestedCommentResult.container";
+import NestedComment from "../NestedComment/NestedComment.container";
+import NestedCommentResult from "../NestedCommentResult/NestedCommentResult.container";
 import {
   CREATE_USED_ITEM_QUESTION_ANSWER,
   FETCH_USED_ITEM_QUESTION_ANSWERS,
-} from "./SellerComment.queries";
+} from "./Comment.queries";
 
 import {
   PresenterWrapper,
@@ -18,9 +18,9 @@ import {
   PresenterComment,
   PresenterDate,
   WideLine,
-} from "./SellerComment.styles";
+} from "./Comment.styles";
 
-export default function SellerCommentUIItem(props: any) {
+export default function CommentUIItem(props: any) {
   const [isNestedComments, setIsNestedComments] = useState(false);
   const [contents, setContents] = useState("");
 
@@ -102,12 +102,12 @@ export default function SellerCommentUIItem(props: any) {
           </PresenterRow>
           {/* 판매자가 대 댓글 단 부분 */}
           {data?.fetchUseditemQuestionAnswers.map((sellerAnswersEl: any) => (
-            <SellerNestedCommentResult
+            <NestedCommentResult
               sellerAnswersEl={sellerAnswersEl}
               key={sellerAnswersEl._id}
             />
           ))}
-          <SellerNestedComment // 댓글 다는 부분
+          <NestedComment // 댓글 다는 부분
             setIsNestedComments={setIsNestedComments}
             onClickNestedCommentSubmit={onClickNestedCommentSubmit}
             onChangeNestedComment={onChangeNestedComment}

@@ -1,8 +1,8 @@
-import SellerNestedCommentUI from "./SellerNestedComment.presenter";
+import NestedCommentUI from "./NestedComment.presenter";
 
 export default function SellerNestedComment(props: any) {
   return (
-    <SellerNestedCommentUI
+    <NestedCommentUI
       onClickNestedCommentSubmit={props.onClickNestedCommentSubmit}
       onChangeNestedComment={props.onChangeNestedComment}
     />

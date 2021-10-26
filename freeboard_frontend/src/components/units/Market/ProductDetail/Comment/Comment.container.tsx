@@ -1,9 +1,9 @@
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import SellerCommentUI from "./SellerComment.presenter";
-import { FETCH_USED_ITEM_QUESTIONS } from "./SellerComment.queries";
+import CommentUI from "./Comment.presenter";
+import { FETCH_USED_ITEM_QUESTIONS } from "./Comment.queries";
 
-export default function SellerComment() {
+export default function Comment() {
   const router = useRouter();
   const { data } = useQuery(FETCH_USED_ITEM_QUESTIONS, {
     variables: {
@@ -11,5 +11,5 @@ export default function SellerComment() {
     },
   });
 
-  return <SellerCommentUI data={data} />;
+  return <CommentUI data={data} />;
 }

@@ -7,9 +7,9 @@ import {
   ButtonAndLength,
   Length,
   Button,
-} from "./SellerNestedComment.styles";
+} from "./NestedComment.styles";
 
-export default function SellerNestedCommentUI(props: any) {
+export default function NestedCommentUI(props: any) {
   return (
     <Wrapper>
       <Row>

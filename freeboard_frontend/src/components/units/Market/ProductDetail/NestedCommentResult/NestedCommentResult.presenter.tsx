@@ -9,9 +9,9 @@ import {
   Seller,
   QuestionButton,
   Contents,
-} from "./SellerNestedCommentResult.styles";
+} from "./NestedCommentResult.styles";
 
-export default function SellerNestedCommentResultUI(props: any) {
+export default function NestedCommentResultUI(props: any) {
   return (
     <Wrapper>
       <Row>
