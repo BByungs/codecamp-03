@@ -34,8 +34,9 @@ export default function MarketPage(props) {
 
 
 export const getServerSideProps = async (context) => {
-
-
+    // ! getServerSideProps는 정해져 있는 이름임
+    // ! 바꿀 수 없음
+    
     // * 1. grahphql 데이터를 요청.
     const result = await request("https://backend03.codebootcamp.co.kr/graphql" , FETCH_USED_ITEM, {
         useditemId: context.query.useditemId
