@@ -29,7 +29,7 @@ export default function NestedCommentUI(props: any) {
             {props.isEdit ? (
               <Button
                 onClick={props.onClickNestedCommentEdit}
-                id={props.sellerAnswersEl._id}
+                // id={props.sellerAnswersEl._id}
                 isEdit={props.isEdit}
               >
                 답글수정

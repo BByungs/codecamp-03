@@ -49,6 +49,9 @@ export const FETCH_USED_ITEM_QUESTION_ANSWERS = gql`
         name
         email
       }
+      useditemQuestion {
+        _id
+      }
     }
   }
 `;
@@ -72,6 +75,28 @@ export const UPDATE_USED_ITEM_QUESTION_ANSWER = gql`
     updateUseditemQuestionAnswer(
       useditemQuestionAnswerId: $useditemQuestionAnswerId
       updateUseditemQuestionAnswerInput: $updateUseditemQuestionAnswerInput
+    ) {
+      _id
+    }
+  }
+`;
+
+// deleteUseditemQuestion
+export const DELETE_USED_ITEM_QUESTION = gql`
+  mutation deleteUseditemQuestion($useditemQuestionId: ID!) {
+    deleteUseditemQuestion(useditemQuestionId: $useditemQuestionId)
+  }
+`;
+
+// updateUseditemQuestion
+export const UPDATE_USED_ITEM_QUESTION = gql`
+  mutation updateUseditemQuestion(
+    $updateUseditemQuestionInput: UpdateUseditemQuestionInput!
+    $useditemQuestionId: ID!
+  ) {
+    updateUseditemQuestion(
+      updateUseditemQuestionInput: $updateUseditemQuestionInput
+      useditemQuestionId: $useditemQuestionId
     ) {
       _id
     }

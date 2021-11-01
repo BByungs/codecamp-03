@@ -27,6 +27,7 @@ function MyApp({ Component, pageProps }) {
   const [accessToken, setAccessToken] = useState("");
   const [userInfo, setUserInfo] = useState({});
   const [refreshToken, setRefreshToken] = useState(true);
+  const [isEdit, setIsEdit] = useState(false);
 
   const value = {
     accessToken: accessToken,
@@ -35,6 +36,8 @@ function MyApp({ Component, pageProps }) {
     setUserInfo: setUserInfo,
     setRefreshToken: setRefreshToken,
     refreshToken: refreshToken,
+    setIsEdit: { setIsEdit },
+    isEdit: { isEdit },
   };
 
   useEffect(() => {

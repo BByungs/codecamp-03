@@ -52,6 +52,7 @@ export default function NestedCommentResultUI(props: any) {
       {props.isEdit && (
         <NestedComment
           isEdit={props.isEdit}
+          setIsEdit={props.setIsEdit}
           sellerAnswersEl={props.sellerAnswersEl}
           id={props.id}
           onClickNestedCommentEdit={props.onClickNestedCommentEdit}

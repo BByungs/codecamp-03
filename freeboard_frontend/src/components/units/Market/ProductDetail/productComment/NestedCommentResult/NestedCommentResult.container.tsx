@@ -51,6 +51,7 @@ export default function SellerNestedCommentResult(props: any) {
       onClickReplyDelete={onClickReplyDelete}
       onChangeReplyComment={props.onChangeReplyComment}
       id={props.id}
+      setIsEdit={setIsEdit}
     />
   );
 }

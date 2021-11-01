@@ -84,3 +84,9 @@ export const Ximg = styled.img`
   width: 14px;
   cursor: pointer;
 `;
+
+export const Edit = styled.img`
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+`;

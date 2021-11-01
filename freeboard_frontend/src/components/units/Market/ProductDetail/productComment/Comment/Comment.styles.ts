@@ -72,3 +72,18 @@ export const WideLine = styled.div`
   border-bottom: 1px solid #bdbdbd;
   width: 1200px;
 `;
+
+export const Icons = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 70px;
+  justify-content: space-between;
+  /* align-items: center; */
+  /* padding-right: 20px; */
+`;
+
+export const Edit = styled.img`
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+`;
